@@ -2,11 +2,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 // import { wrapper } from '@store'
 // import { getPages } from '@store/actions'
-import { Home } from '@components'
+import { Home, Navbar } from '@components'
 
 const HomePage = () => {
   // const { page: { homePage: { home } } } = useSelector((state: any) => state)
-  return <Home />
+  return (
+    <div>
+      <Navbar />
+      <Home />
+    </div>
+  )
 }
 
 // export const getStaticProps = wrapper.getStaticProps(

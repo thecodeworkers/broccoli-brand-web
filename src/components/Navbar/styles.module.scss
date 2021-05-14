@@ -1,0 +1,89 @@
+@import '@styles/index.scss';
+
+._container {
+    margin: auto;
+}
+
+._topContainer {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
+
+._logoContainer {
+    width: 15%;
+    margin-left: 1rem;
+}
+
+._searchContainer {
+    width: 20%;
+}
+
+._bottomContainer {
+    background-color: black;
+}
+
+._bottomSectionsContainer {
+    height: 2rem;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+._topSections {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 85%;
+
+    ._topSection {
+        display: flex;
+        align-items: center;
+        margin-left: 3rem;
+        cursor: pointer;
+    }
+}
+
+._topText {
+    font-family: $roboto;
+    color: $tundora;
+    font-size: $roboto16;
+    margin-left: 0.5rem;
+}
+
+._rightMargin {
+    margin-right: 0.5rem;
+}
+
+._bottomSections {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    width: 60%;
+
+    ._bottomSection {
+        display: flex;
+        align-items: center;
+        height: inherit;
+        margin-right: 1.5rem;
+        padding: 0 1rem;
+        cursor: pointer;
+
+        &:hover {
+            border: 1.5px solid $white;
+            border-top: 2px;
+        }
+    }
+}
+
+._bottomText {
+    font-family: $roboto;
+    color: $white;
+    font-size: $roboto16;
+    margin-bottom: 0;
+}

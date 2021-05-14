@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ant-design/icons": "4.0.0",
     "antd": "^4.15.5",
     "next": "10.2.0",
     "next-redux-wrapper": "^6.0.2",
