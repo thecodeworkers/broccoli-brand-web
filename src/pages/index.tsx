@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 // import { wrapper } from '@store'
 // import { getPages } from '@store/actions'
-import { Home, Navbar } from '@components'
+import { Home, Navbar, Footer } from '@components'
 
 const HomePage = () => {
   // const { page: { homePage: { home } } } = useSelector((state: any) => state)
@@ -10,6 +10,7 @@ const HomePage = () => {
     <div>
       <Navbar />
       <Home />
+      <Footer />
     </div>
   )
 }
