@@ -41,9 +41,8 @@ const makeStore: any = ({ isServer }) => {
   const storage = typeof window !== "undefined" ? createWebStorage("local") : createNoopStorage()
 
   const persistConfig = {
-    key: 'cryptobuyerRoot',
-    storage,
-    whitelist: ['posts', 'page']
+    key: 'broccoliBrandRoot',
+    storage
   }
 
   const persistedReducer = persistReducer(persistConfig, reducer)
