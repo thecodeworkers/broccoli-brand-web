@@ -55,10 +55,12 @@ const Navbar = () => {
 							</div>
 						</div>
 						<div className={styles._searchContainer}>
-							<Search 
+							<input type="text" className={styles._input} />
+							<img src='images/backgrounds/search.svg' className={styles._inputImg} />
+							{/* <Search 
 								id="search"
 								onSearch={onSearch} 
-							/>
+							/> */}
 						</div>
 					</div>
 				</section>
