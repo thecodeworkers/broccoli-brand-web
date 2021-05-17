@@ -2,12 +2,6 @@ import React from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components';
 import { World, Coin, Bag, User, Pipe } from '@images/svg';
-import { Input } from 'antd';
-import "antd/dist/antd.css";
-
-const { Search } = Input;
-
-const onSearch = value => console.log(value);
 
 const Navbar = () => {
 	return (
@@ -57,10 +51,6 @@ const Navbar = () => {
 						<div className={styles._searchContainer}>
 							<input type="text" className={styles._input} />
 							<img src='images/backgrounds/search.svg' className={styles._inputImg} />
-							{/* <Search 
-								id="search"
-								onSearch={onSearch} 
-							/> */}
 						</div>
 					</div>
 				</section>
