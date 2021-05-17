@@ -55,7 +55,10 @@ const Navbar = () => {
 							</div>
 						</div>
 						<div className={styles._searchContainer}>
-							<Search onSearch={onSearch} />
+							<Search 
+								id="search"
+								onSearch={onSearch} 
+							/>
 						</div>
 					</div>
 				</section>

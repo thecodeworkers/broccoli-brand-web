@@ -20,14 +20,39 @@
 
 ._searchContainer {
     width: 20%;
+
+    .ant-input-search .ant-input:hover, .ant-input-search .ant-input:focus {
+        border-color: white !important;
+    }
+
+    span > span > #search.ant-input {
+        border: 1px solid white !important;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    span > span > span {
+        background-color: $white !important;
+    }
+
+    span > span > span > button {
+        border: none;
+        height: inherit;
+    }
+}
+
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary) {
+    color: $black;
 }
 
 ._bottomContainer {
-    background-color: black;
+    background-color: $black;
 }
 
 ._bottomSectionsContainer {
-    height: 2rem;
+    height: 2.5rem;
     width: 90%;
     margin: auto;
     display: flex;
