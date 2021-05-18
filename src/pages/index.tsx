@@ -2,17 +2,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 // import { wrapper } from '@store'
 // import { getPages } from '@store/actions'
-import { Home, Button } from '@components'
+import { Home, Navbar, Footer } from '@components'
 
 const HomePage = () => {
   // const { page: { homePage: { home } } } = useSelector((state: any) => state)
   return (
-    <>
+    <div>
+      <Navbar />
       <Home />
-      <div style={{width: '20%'}}>
-        <Button borderColor="black" text="GO TO SHOP" colorText='black' />
-      </div>
-    </>
+      <Footer />
+    </div>
   )
 }
 
