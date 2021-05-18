@@ -19,15 +19,34 @@
 }
 
 ._searchContainer {
+    position:relative;
+    height: 100%;
     width: 20%;
+    
+    ._input {
+        height: -webkit-fill-available;
+        font-family: $roboto;
+        margin:0;
+        width: 100%;
+        border: 3px solid $black;
+    }
+
+    ._inputImg {
+        position:absolute;
+        bottom: 0;
+        top: 0;
+        right: 7%;
+        width: 15px;
+        height: inherit;
+    }
 }
 
 ._bottomContainer {
-    background-color: black;
+    background-color: $black;
 }
 
 ._bottomSectionsContainer {
-    height: 2rem;
+    height: 2.5rem;
     width: 90%;
     margin: auto;
     display: flex;
