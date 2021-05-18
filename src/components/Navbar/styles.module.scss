@@ -20,16 +20,15 @@
 
 ._searchContainer {
     position:relative;
-    height: inherit;
+    height: 100%;
     width: 20%;
-
+    
     ._input {
-        height: inherit;
+        height: -webkit-fill-available;
+        font-family: $roboto;
         margin:0;
-        padding-right: 30px;
         width: 100%;
         border: 3px solid $black;
-        font-size: $roboto;
     }
 
     ._inputImg {
