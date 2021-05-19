@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import { FirstBanner } from './elements'
 
 const Home = () => {
   return (
@@ -7,10 +8,7 @@ const Home = () => {
       <Head>
         <title>Broccoli</title>
       </Head>
-
-      <div>
-        <p>HOME </p>
-      </div>
+      <FirstBanner />
     </div>
   )
 }

@@ -1,0 +1,51 @@
+@import '@styles/index.scss';
+
+._content {
+//   height: 100%;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+// //   width: 85%;
+// //   margin: auto;
+//   flex-direction: column;
+}
+
+._main {
+//   margin-top: 150px;
+}
+
+._hidden {
+  display:  none;
+}
+
+._show {
+  display: block;
+  animation: fadeIn 2s ease;
+}
+
+._img{
+  width: 100%;
+  height: 85vh;
+}
+
+._cardContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+._card{
+  width: 13.5rem;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: .4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
