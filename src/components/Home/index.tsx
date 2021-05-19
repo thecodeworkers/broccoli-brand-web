@@ -1,5 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
+import { FirstBanner } from './elements'
+import { Navbar, Footer } from '@components'
 
 const Home = () => {
   return (
@@ -7,10 +9,9 @@ const Home = () => {
       <Head>
         <title>Broccoli</title>
       </Head>
-
-      <div>
-        <p>HOME </p>
-      </div>
+      <Navbar />
+      <FirstBanner />
+      <Footer />
     </div>
   )
 }
