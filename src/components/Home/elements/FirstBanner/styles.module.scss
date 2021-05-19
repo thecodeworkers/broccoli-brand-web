@@ -1,18 +1,8 @@
 @import '@styles/index.scss';
 
-._content {
-//   height: 100%;
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-// //   width: 85%;
-// //   margin: auto;
-//   flex-direction: column;
-}
 
 ._main {
     position: relative;
-//   margin-top: 150px;
 }
 
 ._hidden {
@@ -21,7 +11,7 @@
 
 ._show {
   display: block;
-  animation: fadeIn 10s ease;
+  animation: fadeIn 1s ease;
 }
 
 ._img{
@@ -31,7 +21,7 @@
 
 @keyframes fadeIn {
   0% {
-    opacity: .4;
+    opacity: .7;
   }
 
   100% {

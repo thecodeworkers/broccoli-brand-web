@@ -8,13 +8,13 @@ const FirstBanner = () => {
 		{
 			className: '',
 			image: {
-				mediaItemUrl: 'https://picsum.photos/id/240/1360/768'
+				mediaItemUrl: 'https://picsum.photos/id/1005/1360/768'
 			}
 		},
 		{
 			className: '',
 			image: {
-				mediaItemUrl: 'https://picsum.photos/id/238/1360/768'
+				mediaItemUrl: 'https://picsum.photos/id/1012/1360/768'
 			}
 		}
 	]
