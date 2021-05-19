@@ -11,8 +11,7 @@
 
 
 ._footerSection {
-    width: 33.33%;
-    padding: 2% 5%;
+    width: 33.2%;
 }
 
 ._whiteText {
@@ -20,14 +19,15 @@
     font-size: $roboto16;
     color: $white;
     margin: 0%;
+    padding-bottom: 1%;
 }
 
 ._bottomSection {
-    padding: 1% 0% 1.5% 5%;
     align-self: center;
 
     ._bottomItem {
         display: flex;
+        margin: 3% 0% 3% 15%;
         
         ._textMargin {
             margin-right: 13%;
@@ -39,31 +39,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5%;
 
     ._iconMargin {
         margin-right: 10%;
         cursor: pointer;
     }
+
+    ._iconMargin:last-child {
+        margin-right: 0%;
+    }
 }
 
-._bottomCopy {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1% 5% 1.5% 5%;
+._bottomCopy {  
+    ._bottomCopyItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 3% 5% 3% 15%;
+    }
 
     ._copy {
-        width: 70%;
+        width: 60%;
     }
 
     ._logos {
-        width: 30%;
+        width: 40%;
         display: flex;
-        justify-content: space-between;
 
         ._logo {
-            margin-right: 3%;
+            margin-right: 15%;
         }
     }
 }
@@ -92,27 +96,41 @@
     border-bottom:  1px solid $white;
 }
 
+._textFormContainer {
+    margin: 10% 0 10% 15%;
+}
+
 ._formContainer {
     margin-top: 2%;
+    height: 35px;
 
     input {
-        width: 70%;
+        width: 50%;
         border: 2px solid white;
-        height: 35px;
+        height: -webkit-fill-available;
         background: $codGray;
         padding: 1% 5%;
         font-family: $roboto;
         font-size: $roboto16;
+        color: $white;
     }
 
     ._formButton {
         font-family: $roboto;
         font-size: $roboto16;
         width: 30%;
-        height: 35px;
+        height: 100%;
         background-color: $white;
         color: $black;
         border: none;
         cursor: pointer;
     }
+}
+
+._textContainer {
+    margin: 10% 15%;
+}
+
+._marginBottom {
+    margin-bottom: 5%;
 }
