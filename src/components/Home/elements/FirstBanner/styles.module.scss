@@ -11,6 +11,7 @@
 }
 
 ._main {
+    position: relative;
 //   margin-top: 150px;
 }
 
@@ -20,25 +21,13 @@
 
 ._show {
   display: block;
-  animation: fadeIn 2s ease;
+  animation: fadeIn 10s ease;
 }
 
 ._img{
   width: 100%;
   height: 85vh;
 }
-
-._cardContainer{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-._card{
-  width: 13.5rem;
-}
-
 
 @keyframes fadeIn {
   0% {
@@ -48,4 +37,27 @@
   100% {
     opacity: 1;
   }
+}
+
+._leftShopContainer {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+}
+
+._rightShopContainer {
+    position: absolute;
+    bottom: 10%;
+    right: 15%;
+}
+
+._textTitle {
+    font-family: $roboto;
+    font-size: $roboto44;
+    color: $white;
+    margin-bottom: 5%;
+}
+
+._buttonContainer {
+    width: 250px;
 }

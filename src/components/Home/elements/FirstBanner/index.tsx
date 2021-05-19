@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss'
+import { Button } from '@components'
 
 const FirstBanner = () => {
 
@@ -55,6 +56,19 @@ const FirstBanner = () => {
             )
           })
         }
+				<div className={styles._leftShopContainer}>
+					<h2 className={styles._textTitle}>TÍTULO LARGO</h2>
+					<div className={styles._buttonContainer}>
+						<Button borderColor="white" text="GO TO SHOP"  />
+					</div>
+				</div>
+
+				<div className={styles._rightShopContainer}>
+					<h2 className={styles._textTitle}>BETO COLLECTION</h2>
+					<div className={styles._buttonContainer}>
+						<Button borderColor="white" text="GO TO SHOP"  />
+					</div>
+				</div>
       </div>
     </div>
   )
