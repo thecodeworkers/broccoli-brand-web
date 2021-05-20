@@ -1,0 +1,26 @@
+@import '@styles/index.scss';
+
+._colorContainer {
+    display: flex;
+    margin-right: 15%;
+
+    ._colorCircle {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid $black;
+        position: relative;
+    }
+}
+
+._colorCircleHover {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid $black;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}

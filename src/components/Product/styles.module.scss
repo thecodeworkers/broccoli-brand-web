@@ -1,0 +1,45 @@
+@import '@styles/index.scss';
+
+._container {
+    width: 17rem;
+    height: 27rem;
+}
+
+._productContainer {
+    width: 100%;
+    height: 100%;
+}
+
+._imageProductContainer {
+    height: 70%;
+
+    ._image {
+        width: 100%;
+        height: 100%;
+        background-image: url("https://picsum.photos/200/300");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+._specsContainer {
+    height: 30%;
+    border: 1px solid $black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    ._specs {
+        margin-left: 10%;
+        font-family: $roboto;
+        font-size: $roboto18;
+    }
+}
+
+._colorSelector {
+    display: flex;
+}
+
+._productNameContainer, ._colorSelector {
+    margin-bottom: .7rem;
+}
