@@ -21,3 +21,9 @@
 ._buttonContainer {
     width: 17rem;
 }
+
+@include responsive(xl) {
+    ._buttonContainer {
+        width: 15rem;
+    }
+}

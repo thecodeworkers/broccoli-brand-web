@@ -12,6 +12,7 @@
 
 ._imageProductContainer {
     height: 70%;
+    position: relative;
 
     ._image {
         width: 100%;
@@ -19,6 +20,27 @@
         background-image: url("https://picsum.photos/200/300");
         background-size: cover;
         background-repeat: no-repeat;
+    }
+
+    ._addToCart {
+        display: none;
+    }
+
+    &:hover {
+        ._addToCart {
+            cursor: pointer;
+            position: absolute;
+            bottom: 0;
+            background-color: white;
+            width: 99.3%;
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            height: 12%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }
 
@@ -42,4 +64,15 @@
 
 ._productNameContainer, ._colorSelector {
     margin-bottom: .7rem;
+}
+
+._addToCartText {
+    font-family: $roboto;
+    font-size: $roboto18;
+}
+
+@include responsive(xl) {
+    ._container {
+        width: 15rem;
+    }
 }

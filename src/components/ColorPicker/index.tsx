@@ -6,8 +6,7 @@ const ColorPicker = ({ color }) => {
     <>
         <div className={styles._colorContainer}>
           <div className={[styles._colorCircle, '_background'].join(" ")}></div>
-          {/* <div className={styles._colorCircleHover}>
-          </div> */}
+          <div className={styles._colorCircleHover}></div>
         </div>
         <style jsx>{`
         ._background {

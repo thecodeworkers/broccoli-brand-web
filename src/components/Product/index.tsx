@@ -8,6 +8,9 @@ const Product = () => {
         <section className={styles._productContainer}>
             <div className={styles._imageProductContainer}>
                 <div className={styles._image}></div>
+                <div className={styles._addToCart}>
+                    <p className={styles._addToCartText}>ADD TO CART</p>
+                </div>
             </div>
             <div className={styles._specsContainer}>
                 <div className={styles._specs}>
