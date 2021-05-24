@@ -1,10 +1,18 @@
-import React from 'react';
+import React from 'react'
+import Head from 'next/head'
+import { FirstBanner } from './elements'
+import { Navbar, Footer } from '@components'
 
 const AboutUs = () => {
 
   return (
     <div >
-      <h1>About</h1>
+        <Head>
+        <title>Broccoli</title>
+        </Head>
+        <Navbar />
+        <FirstBanner />
+        <Footer />
     </div>
   )
 }
