@@ -1,0 +1,43 @@
+@import '@styles/index.scss';
+
+._content {
+    display: flex;
+    height: 70vh;
+}
+
+._socialImageContainer {
+    height: inherit;
+    width: 50%;
+}
+
+._imageContainer {
+    width: 100%;
+    height: 100%;
+    background-image: url("https://picsum.photos/id/1006/700/700");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+._socialInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin-left: 3%;
+    margin-right: 5%;
+    font-family: $roboto;
+}
+
+._socialTitle {
+    font-size: $roboto44;
+}
+
+._socialDescription {
+    font-size: $roboto18;
+    margin: 2rem 0;
+}
+
+._buttonContainer {
+    width: 250px;
+}
