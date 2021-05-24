@@ -1,5 +1,5 @@
 import styles from './styles.module.scss'
-// import { ContactForm } from '@components'
+import { ContactForm } from '@components'
 
 const Contact = () => {
 
@@ -7,7 +7,7 @@ const Contact = () => {
     <>
         <section className={styles._content}>
             <div className={styles._contactFormContainer}>
-              {/* <ContactForm /> */}
+              <ContactForm />
             </div>
             <div className={styles._imageContactContainer}>
                 <div className={styles._imageContact}></div>
