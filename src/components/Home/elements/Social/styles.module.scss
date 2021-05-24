@@ -24,9 +24,12 @@
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    margin-left: 3%;
-    margin-right: 5%;
     font-family: $roboto;
+}
+
+._socialContainer {
+    margin-left: 3rem;
+    margin-right: 6rem;
 }
 
 ._socialTitle {
