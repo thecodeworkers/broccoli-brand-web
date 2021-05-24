@@ -50,7 +50,7 @@ const FirstBanner = () => {
           Array.from(Array(newArray?.length).keys()).map((index) => {
             const currentClass = index + 1;
             return (
-              <div className={newArray[index].className} id={currentClass.toString()} key={index}>
+              <div className={[newArray[index].className, styles._imageContainer].join(" ")} id={currentClass.toString()} key={index}>
                 <img src={newArray[index]?.image?.mediaItemUrl} className={styles._img}></img>
               </div>
             )

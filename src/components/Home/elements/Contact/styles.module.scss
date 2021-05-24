@@ -1,0 +1,25 @@
+@import '@styles/index.scss';
+
+._content {
+    display: flex;
+}
+
+._contactFormContainer {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+._imageContactContainer {
+    width: 50%;
+}
+
+._imageContact {
+    background-image: url("../../../../../public/images/backgrounds/Drole_de_monsieur_camp.png");
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
