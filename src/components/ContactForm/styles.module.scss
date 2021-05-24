@@ -1,0 +1,102 @@
+
+@import '@styles/index.scss';
+
+._content {
+    width: 100%;
+    margin: auto 10%;
+    padding: 8% 0;
+    font-family: $roboto;
+}
+
+._formTitleContainer {
+    ._formTitle {
+        text-align: center;
+        font-size: $roboto32;
+    }
+}
+
+._formContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+._formContainer {
+    width: 45%;
+    font-size: $roboto18;
+
+    &:last-child {
+        width: 100%;
+    }
+}
+
+._inputForm {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid $gray;
+    width: 100%;
+}
+
+._labelForm {
+    color: $tundora;
+    margin: 10% 0;
+}
+
+._labelMessage {
+    margin: 5% 0;
+}
+
+._selectForm {
+    width: 100%;
+}
+
+._buttonContainer {
+    width: 250px;
+    margin: 5% auto 0 auto;
+}
+
+._customSelect {
+  position: relative;
+  display: block;
+  border: 1px solid $black;
+  max-width: 400px;
+  min-width: 180px;
+  margin: 0 auto;
+  z-index: 10;
+  font-size: $roboto18;
+  
+  select {
+    border: none;
+    outline: none;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 3%;
+    font-size: 14px;
+  }
+  
+  &:after {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    content: url('../../../public/images/backgrounds/arrow.svg');
+    // content: '\2039';
+    text-align: center;
+    color: $black;
+    font-size: 18px;
+    border-left: 1px solid $black;
+    font-weight: 700;
+    z-index: -1;
+  }
+}
