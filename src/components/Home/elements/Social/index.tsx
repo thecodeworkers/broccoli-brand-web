@@ -5,7 +5,7 @@ import { Button } from '@components'
 const Social = () => {
 
   return (
-    <section className={styles._content}>
+    <section className={styles._socialContent}>
         <div className={styles._socialImageContainer}>
             <div className={styles._imageContainer}></div>
         </div>
