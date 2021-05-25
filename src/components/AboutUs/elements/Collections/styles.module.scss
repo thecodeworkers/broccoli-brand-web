@@ -1,0 +1,33 @@
+@import '@styles/index.scss';
+
+._collectionContent {
+    width: 90%;
+    margin: 3% auto;
+    max-width: 75rem;
+}
+
+._collectionContainer {
+    display: flex;
+    margin-bottom: 3%;
+    font-family: $roboto;
+
+    ._collectionTitleContainer {
+        width: 50%;
+        font-size: $roboto24;
+    }
+
+    ._collectionDescriptionContainer {
+        width: 50%;
+        font-size: $roboto16;
+        align-self: center;
+    }
+}
+
+._productsContainer {
+    display: flex;
+}
+
+._collectionDescription {
+    text-align: center;
+    line-height: 1rem;
+}
