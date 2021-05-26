@@ -1,19 +1,21 @@
 import React from 'react'
 import Head from 'next/head'
-import { FirstBanner, Contact } from './elements'
+import { FirstBanner, Contact, Brands, Sponsors } from './elements'
 import { Navbar, Footer } from '@components'
 
 const AboutUs = () => {
 
   return (
     <div >
-        <Head>
+      <Head>
         <title>Broccoli</title>
-        </Head>
-        <Navbar />
-        <FirstBanner />
-        <Contact />
-        <Footer />
+      </Head>
+      <Navbar />
+      <FirstBanner />
+      <Brands />
+      <Sponsors />
+      <Contact />
+      <Footer />
     </div>
   )
 }

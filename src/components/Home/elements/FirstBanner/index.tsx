@@ -5,19 +5,19 @@ import { Button } from '@components'
 const FirstBanner = () => {
 
   let data = [
-		{
-			className: '',
-			image: {
-				mediaItemUrl: 'https://picsum.photos/id/1005/1360/768'
-			}
-		},
-		{
-			className: '',
-			image: {
-				mediaItemUrl: 'https://picsum.photos/id/1012/1360/768'
-			}
-		}
-	]
+    {
+      className: '',
+      image: {
+        mediaItemUrl: 'https://picsum.photos/id/1005/1360/768'
+      }
+    },
+    {
+      className: '',
+      image: {
+        mediaItemUrl: 'https://picsum.photos/id/1012/1360/768'
+      }
+    }
+  ]
 
   const [currentIndex, setcurrentIndex] = useState(1);
   const [newArray, setNewArray] = useState(data)
@@ -56,19 +56,19 @@ const FirstBanner = () => {
             )
           })
         }
-				<div className={styles._leftShopContainer}>
-					<h2 className={styles._textTitle}>TÍTULO LARGO</h2>
-					<div className={styles._buttonContainer}>
-						<Button borderColor="white" text="GO TO SHOP"  />
-					</div>
-				</div>
+        <div className={styles._leftShopContainer}>
+          <h2 className={styles._textTitle}>TÍTULO LARGO</h2>
+          <div className={styles._buttonContainer}>
+            <Button borderColor="white" text="GO TO SHOP" />
+          </div>
+        </div>
 
-				<div className={styles._rightShopContainer}>
-					<h2 className={styles._textTitle}>BETO COLLECTION</h2>
-					<div className={styles._buttonContainer}>
-						<Button borderColor="white" text="GO TO SHOP"  />
-					</div>
-				</div>
+        <div className={styles._rightShopContainer}>
+          <h2 className={styles._textTitle}>BETO COLLECTION</h2>
+          <div className={styles._buttonContainer}>
+            <Button borderColor="white" text="GO TO SHOP" />
+          </div>
+        </div>
       </div>
     </div>
   )

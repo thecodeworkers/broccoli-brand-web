@@ -5,12 +5,8 @@ import { wrapper } from '@store'
 import { AboutUs } from '@components'
 
 const AboutUsPage = () => {
-
- /*  const { page: { aboutPage: { about } } } = useSelector((state: any) => state) */
-
-  return (
-    <AboutUs />
-  )
+  /*  const { page: { aboutPage: { about } } } = useSelector((state: any) => state) */
+  return <AboutUs />
 }
 
 /* export const getServerSideProps = wrapper.getServerSideProps(

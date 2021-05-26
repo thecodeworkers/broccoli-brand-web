@@ -6,11 +6,7 @@ import { Home } from '@components'
 
 const HomePage = () => {
   // const { page: { homePage: { home } } } = useSelector((state: any) => state)
-  return (
-    <div>
-      <Home />
-    </div>
-  )
+  return <Home />
 }
 
 // export const getStaticProps = wrapper.getStaticProps(
