@@ -9,7 +9,7 @@ const Footer = () => {
          <div className={[styles._footerSection, styles._section11].join(" ")}>
             <div className={styles._textContainer}>
                <p className={styles._whiteText}><strong>LOCATION</strong></p>
-               <p className={styles._whiteText}>puebla 403, suite 213, colonia roma norte delegación cuauhtémoc,código postal 06700 ciudad de méxico</p>
+               <p className={[styles._whiteText, styles._marginRight].join(" ")}>puebla 403, suite 213, colonia roma norte delegación cuauhtémoc,código postal 06700 ciudad de méxico</p>
             </div>
          </div>
          <div className={[styles._footerSection, styles._section11].join(" ")}>
