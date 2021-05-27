@@ -1,8 +1,8 @@
 import styles from './styles.module.scss'
 
-const Button = ({ borderColor = 'white', text, colorText = 'white' }) => {
+const Button = ({ borderColor = 'white', text, colorText = 'white', link = '' }) => {
   return (
-    <>
+    <a href={link}>
       <div className={[styles._container, '_main'].join(" ")}>
         <p className={[styles._buttonText, '_textColor'].join(" ")}>{text}</p>
       </div>
@@ -14,7 +14,7 @@ const Button = ({ borderColor = 'white', text, colorText = 'white' }) => {
             color: ${colorText};
         }
         `}</style>
-    </>
+    </a>
   )
 }
 

@@ -1,57 +1,55 @@
 import { Button } from '@components'
 import styles from './styles.module.scss'
 
-const ContactForm = () => {
-
+const ContactForm = ({ data }) => {
+  
   return (
     <>
       <section className={styles._content}>
         <div>
           <div className={styles._formTitleContainer}>
-            <h2 className={styles._formTitle}>CONTACT US</h2>
+            <h2 className={styles._formTitle}>{data.title}</h2>
           </div>
           <div className={styles._formContent}>
             <div className={styles._formContainer}>
-              <p className={styles._labelForm}>First and Last Name</p>
+              <p className={styles._labelForm}>{data.name}</p>
               <input type="text" className={styles._inputForm} />
             </div>
             <div className={styles._formContainer}>
-              <p className={styles._labelForm}>Email</p>
+              <p className={styles._labelForm}>{data.email}</p>
               <input type="text" className={styles._inputForm} />
             </div>
             <div className={styles._formContainer}>
-              <p className={styles._labelForm}>Phone</p>
+              <p className={styles._labelForm}>{data.phone}</p>
               <input type="text" className={styles._inputForm} />
             </div>
             <div className={styles._formContainer}>
-              <p className={styles._labelForm}>Order Number</p>
+              <p className={styles._labelForm}>{data.orderNumber}</p>
               <input type="text" className={styles._inputForm} />
             </div>
             <div className={styles._formContainer}>
-              <p className={styles._labelForm}>Category</p>
+              <p className={styles._labelForm}>{data.category.title}</p>
               <label htmlFor="category" className={styles._customSelect}>
-                <select name="category" id="category" defaultValue="CUSTOMER SERVICE" className={styles._selectForm}>
-                  <option value="">CUSTOMER SERVICE</option>
-                  <option value="">CUSTOMER SERVICE</option>
+                <select name="category" id="category" defaultValue={data.category.fields[0].text} className={styles._selectForm}>
+                  {data.category.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
                 </select>
               </label>
             </div>
             <div className={styles._formContainer}>
-              <p className={styles._labelForm}>Subject</p>
+              <p className={styles._labelForm}>{data.subject.title}</p>
               <label htmlFor="subject" className={styles._customSelect}>
-                <select name="subject" id="subject" defaultValue="ORDER INQUIRY" className={styles._selectForm}>
-                  <option value="">ORDER INQUIRY</option>
-                  <option value="">CUSTOMER SERVICE</option>
+                <select name="subject" id="subject" defaultValue={data.subject.fields[0].text} className={styles._selectForm}>
+                  {data.subject.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
                 </select>
               </label>
             </div>
             <div className={styles._formContainer}>
-              <p className={styles._labelMessage}>Message</p>
+              <p className={styles._labelMessage}>{data.message}</p>
               <input type="text" className={styles._inputForm} />
             </div>
           </div>
           <div className={styles._buttonContainer}>
-            <Button text='ENVIAR' borderColor='black' colorText='black' />
+            <Button text={data.textButton} borderColor='black' colorText='black' />
           </div>
         </div>
       </section>

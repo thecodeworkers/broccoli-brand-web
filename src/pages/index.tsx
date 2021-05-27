@@ -1,16 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-// import { wrapper } from '@store'
-// import { getPages } from '@store/actions'
+import { wrapper } from '@store'
+import { getResources } from '@store/actions'
 import { Home } from '@components'
 
 const HomePage = () => {
-  // const { page: { homePage: { home } } } = useSelector((state: any) => state)
-  return <Home />
+  const { page: { homePage: { home } } } = useSelector((state: any) => state)
+  return <Home data={home} />
 }
 
-// export const getStaticProps = wrapper.getStaticProps(
-//   ({ store }) => store.dispatch(getPages('homePage'))
-// )
+export const getStaticProps = wrapper.getStaticProps(
+  ({ store }) => store.dispatch(getResources())
+)
 
 export default HomePage
