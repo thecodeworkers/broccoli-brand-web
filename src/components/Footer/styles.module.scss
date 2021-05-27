@@ -96,12 +96,12 @@
 }
 
 ._textFormContainer {
-  margin: 10% 0 10% 15%;
+  margin: 7% 0 7% 15%;
 }
 
 ._formContainer {
   margin-top: 2%;
-  height: 35px;
+  height: 2.5rem;
 
   input {
     width: 50%;
@@ -127,9 +127,13 @@
 }
 
 ._textContainer {
-  margin: 10% 15%;
+  margin: 7% 15%;
 }
 
 ._marginBottom {
   margin-bottom: 5%;
+}
+
+._marginRight {
+  width: 15rem;
 }
