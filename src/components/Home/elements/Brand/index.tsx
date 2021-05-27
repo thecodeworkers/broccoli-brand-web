@@ -22,8 +22,12 @@ const Brand = () => {
 	return (
 		<section className={styles._brandContent}>
 			<div className={styles._horizontalScroll}>
-				<img id="element" style={{transform: `translate(-${pos}px)`}} src="images/backgrounds/Banner_animado1.png" alt="" />
-				<img style={{transform: `translate(calc(-3000px + ${pos}px))`}} src="images/backgrounds/Banner_animado2.png" alt="" />
+				<div className={styles._imageContainer}>
+					<img id="element" style={{transform: `translate(-${pos}px)`}} src="images/backgrounds/Banner_animado1.png" alt="" />
+				</div>
+				<div className={styles._imageContainer}>
+					<img style={{transform: `translate(calc(-3000px + ${pos}px))`}} src="images/backgrounds/Banner_animado2.png" alt="" />
+				</div>
 			</div>
 			<style jsx>
 			{`
