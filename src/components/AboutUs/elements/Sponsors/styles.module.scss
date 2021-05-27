@@ -2,10 +2,12 @@
 
 ._content {
   width: 100%;
-  margin: 3% auto;
+  margin:auto;
 }
 
 ._headerContainer{
+  width: 90%;
+  margin: auto;
   display: flex;
   justify-content: space-between;
 }
@@ -27,5 +29,4 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1%;
-  margin-bottom: 3%;
 }

@@ -29,13 +29,14 @@
 
   &:hover {
     ._sponsorDetail {
+      overflow: hidden;
       position: absolute;
       bottom: 0;
       background-color: white;
-      width: calc(100% - 2px);
+      width: calc(94% - 2px);
       border: 1px solid $black;
       height: 35%;
-      padding: 1rem 0;
+      padding: 0 3%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -60,10 +61,4 @@
 ._Text {
   font-family: $roboto;
   font-size: $roboto18;
-}
-
-@include responsive(xl) {
-  ._container {
-    width: 15rem;
-  }
 }
