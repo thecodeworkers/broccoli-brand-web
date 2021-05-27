@@ -1,0 +1,19 @@
+@import '@styles/index.scss';
+
+._firstBanner {
+    background-image: url("../../../../../public/images/backgrounds/Banner_animado1.png");
+    width: 100%;
+    height: 17rem;
+    background-position: initial;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+._secondBanner {
+    background-image: url("../../../../../public/images/backgrounds/Banner_animado2.png");
+    width: 100%;
+    height: 17rem;
+    background-position: initial;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
