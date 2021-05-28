@@ -1,1 +1,1 @@
-export const fallbackUrl: string = 'https://cryptobuyer-admin.thecodeworkers.com/index.php?graphql'
+export const fallbackUrl: string = 'https://broccoli-dev-admin.thecodeworkers.com/index.php?graphql'

@@ -3,8 +3,8 @@ import { GET_PAGES } from './action-types'
 
 const initialState = {
   currentPage: '',
-  currentData: '',
-  welcomePage: {}
+  homePage: {},
+  aboutPage: {}
 }
 
 const pageReducer = (state = initialState, { type, payload }: AnyAction) => {

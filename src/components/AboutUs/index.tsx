@@ -3,18 +3,18 @@ import Head from 'next/head'
 import { FirstBanner, Contact, Shop, Sponsors } from './elements'
 import { Navbar, Footer } from '@components'
 
-const AboutUs = () => {
+const AboutUs = ({ data }) => {
 
-  return (
+  return !data ? null : (
     <div >
       <Head>
         <title>Broccoli</title>
       </Head>
       <Navbar />
-      <FirstBanner />
-      <Shop />
-      <Sponsors />
-      <Contact />
+      <FirstBanner data={data.mainBanner} />
+      <Shop data={data.shop} />
+      <Sponsors data={data.sponsors} />
+      <Contact data={data.contact} />
       <Footer />
     </div>
   )

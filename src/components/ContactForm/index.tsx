@@ -2,8 +2,8 @@ import { Button } from '@components'
 import styles from './styles.module.scss'
 
 const ContactForm = ({ data }) => {
-  
-  return (
+
+  return !data ? null : (
     <>
       <section className={styles._content}>
         <div>

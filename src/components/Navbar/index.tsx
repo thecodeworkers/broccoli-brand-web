@@ -2,8 +2,19 @@ import React from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components';
 import { World, Coin, Bag, User, Pipe } from '@images/svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeLanguage } from '@store/actions';
 
 const Navbar = () => {
+
+  const dispatch = useDispatch()
+  const { resource } = useSelector((state) => state)
+
+  const changeLang = (event) => {
+    console.log(event.target.value)
+    dispatch(changeLanguage(event.target.value))
+  }
+
   return (
     <>
       <section className={styles._container}>
@@ -14,7 +25,12 @@ const Navbar = () => {
           <div className={styles._topSections}>
             <div className={styles._topSection}>
               <World />
-              <div className={styles._topText}>Idioma</div>
+              <label htmlFor="language" className={styles._customSelect}>
+                <select name="language" id="language" defaultValue={resource.language} onChange={changeLang} placeholder={'Idioma'} className={styles._topText}>
+                  <option value='ES'>Espanol</option>
+                  <option value='EN'>English</option>
+                </select>
+              </label>
             </div>
             <div className={styles._topSection}>
               <Coin />

@@ -16,10 +16,7 @@ generalPage: page(id: "${generalId}") {
       email
       socialMedia {
         link
-        icon {
-          mediaItemUrl
-          slug
-        }
+        icon
       }
     }
   }

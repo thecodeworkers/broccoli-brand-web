@@ -1,17 +1,15 @@
 import styles from './styles.module.scss'
 import Sponsor from './Sponsor'
 
-const Sponsors = () => {
+const Sponsors = ({ data }) => {
 
   return (
     <div className={styles._content}>
       <div className={styles._headerContainer}>
-        <h2 className={styles._productsTitle}>MAIN TITLE</h2>
+        <h2 className={styles._productsTitle}>{data.title}</h2>
       </div>
       <div className={styles._productContainer}>
-        <Sponsor  />
-        <Sponsor  />
-        <Sponsor  />
+        {data?.sponsor?.map((spon, item) => <Sponsor key={item} data={spon} />)}
       </div>
     </div>
   )

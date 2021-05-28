@@ -1,39 +1,32 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { Instagram, Whatsapp, Twitter } from '@images/svg';
+import { useSelector } from 'react-redux';
+import { createMarkup } from '@utils';
 
 const Footer = () => {
-
-  return (
+  const { resource: { general: { general } } } = useSelector((state: any) => state)
+  return general ? (
     <section className={styles._footerContainer}>
-      <div className={[styles._footerSection, styles._section11].join(" ")}>
-        <div className={styles._textContainer}>
-          <p className={styles._whiteText}><strong>LOCATION</strong></p>
-          <p className={styles._whiteText}>puebla 403, suite 213, colonia roma norte delegación cuauhtémoc,código postal 06700 ciudad de méxico</p>
+      <div className={[styles._footerSection, styles._section11, styles._styleText].join(" ")}>
+        <div className={styles._textContainer} dangerouslySetInnerHTML={createMarkup(general.location)}>
         </div>
       </div>
-      <div className={[styles._footerSection, styles._section11].join(" ")}>
-        <div className={styles._textContainer}>
-          <p className={styles._whiteText}><strong>PHONES</strong></p>
-          <p className={styles._whiteText}>MX.          <strong>+52 56 1689 9488</strong></p>
+      <div className={[styles._footerSection, styles._section11, styles._styleText].join(" ")}>
+        <div className={styles._textContainer} dangerouslySetInnerHTML={createMarkup(general.phones)}>
         </div>
       </div>
-      <div className={[styles._footerSection, styles._section13].join(" ")}>
-        <div className={styles._textContainer}>
-          <p className={styles._whiteText}><strong>HORARIOS (DE ATENCIÓN)</strong></p>
-          <p className={styles._whiteText}>Lunes - Sábado</p>
-          <p className={styles._whiteText}>10AM - 5PM</p>
+      <div className={[styles._footerSection, styles._section13, styles._styleText].join(" ")}>
+        <div className={styles._textContainer} dangerouslySetInnerHTML={createMarkup(general.schedules)}>
         </div>
       </div>
-      <div className={[styles._footerSection, styles._section11].join(" ")}>
-        <div className={styles._textContainer}>
-          <p className={styles._whiteText}><strong>Email</strong></p>
-          <p className={styles._whiteText}>ecommerce@brocolibrand.com</p>
+      <div className={[styles._footerSection, styles._section11, styles._styleText].join(" ")}>
+        <div className={styles._textContainer} dangerouslySetInnerHTML={createMarkup(general.email)}>
         </div>
       </div>
       <div className={[styles._footerSection, styles._section11].join(" ")}>
         <div className={styles._textFormContainer}>
-          <p className={styles._whiteText}><strong>JOIN OUR MAILING LIST AND RECEIVE UPDATES</strong></p>
+          <div className={styles._styleText} dangerouslySetInnerHTML={createMarkup(general.newsletter)}></div>
           <div className={styles._formContainer}>
             <input type="text" placeholder="Enter email to suscribe" />
             <button className={styles._formButton}>SUSCRIBE</button>
@@ -42,8 +35,8 @@ const Footer = () => {
       </div>
       <div className={[styles._footerSection, styles._section13].join(" ")}>
         <div className={styles._textContainer}>
-          <p className={[styles._grayText, styles._marginBottom].join(" ")}>Política de privacidad</p>
-          <p className={styles._grayText}>Términos y condiciones </p>
+          <p className={[styles._grayText, styles._marginBottom].join(" ")}>{general.clauses.politicTitle}</p>
+          <p className={styles._grayText}>{general.clauses.termsTitle}</p>
         </div>
       </div>
       <div className={[styles._footerSection, styles._bottomSection].join(" ")}>
@@ -55,7 +48,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={[styles._footerSection, styles._bottomSocial].join(" ")}>
-        <div className={styles._iconMargin}><Instagram /></div>
+        <div className={styles._iconMargin}><a href={general.socialMedia[0].link}><Instagram /></a></div>
         <div className={styles._iconMargin}><Twitter /></div>
         <div className={styles._iconMargin}><Whatsapp /></div>
       </div>
@@ -77,7 +70,7 @@ const Footer = () => {
         </div>
       </div>
     </section>
-  )
+  ) : null
 }
 
 export default Footer;

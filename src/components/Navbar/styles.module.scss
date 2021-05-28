@@ -72,7 +72,14 @@
   font-family: $roboto;
   color: $tundora;
   font-size: $roboto16;
+  margin: 0;
   margin-left: 0.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  &::-ms-expand {
+    display: none;
+  }
 }
 
 ._rightMargin {
