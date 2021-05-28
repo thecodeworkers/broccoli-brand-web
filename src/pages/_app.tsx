@@ -15,7 +15,7 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
     store.__persistor.persist()
   }, [])
-
+  
   return (
     <>
       <Head>

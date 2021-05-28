@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components';
 import { World, Coin, Bag, User, Pipe } from '@images/svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLanguage } from '@store/actions';
+import { changeLanguage, setLoader } from '@store/actions';
 import { useRouter } from 'next/router';
 
 const Navbar = () => {
@@ -15,8 +15,13 @@ const Navbar = () => {
 
   const changeLang = (event) => dispatch(changeLanguage(event.target.value))
 
-  const navigation = (route) => router.push(route)
-  
+  const navigation = (route, loader = false) => {
+    if (router.pathname != route) {
+      if (loader) dispatch(setLoader(true))
+      router.push(route)
+    }
+  }
+
   return (
     <>
       <section className={styles._container}>
@@ -54,7 +59,7 @@ const Navbar = () => {
           <div className={styles._bottomSectionsContainer}>
             <div className={styles._bottomSections}>
               {general?.navigationBar?.navigation?.map((nav, index) => (
-                <div onClick={() => navigation(nav.link)} key={index} className={styles._bottomSection}>
+                <div onClick={() => navigation(nav.link, true)} key={index} className={styles._bottomSection}>
                   <p className={styles._bottomText}>{nav.text}</p>
                 </div>
               ))}

@@ -25,10 +25,3 @@ export const scrollTo = (ref: any) => {
 }
 
 export const createMarkup = (text) => { return {__html: text}; }
-
-export const navigation = (route, loader = false) => {
-  if(useRouter().pathname != route) {
-    if(loader) useDispatch()(setLoader(true))
-    useRouter().push(route)
-  }
-}
