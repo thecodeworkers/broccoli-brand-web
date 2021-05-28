@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import { FirstBanner, Contact, Shop, Sponsors } from './elements'
+import { FirstBanner, Contact, Shop, Sponsors, Brand } from './elements'
 import { Navbar, Footer } from '@components'
 
 const AboutUs = () => {
@@ -12,6 +12,7 @@ const AboutUs = () => {
       </Head>
       <Navbar />
       <FirstBanner />
+      <Brand />
       <Shop />
       <Sponsors />
       <Contact />
