@@ -3,8 +3,11 @@
 ._container {
   width: 33.3%;
   height: 45rem;
-  border: 1px solid $black;
+  border-left: 1px solid $black;
   border-bottom: 2px solid $black;
+  &:last-child{
+    border-right: 1px solid $black;
+  }
 }
 
 ._sponsorContainer {
@@ -36,7 +39,7 @@
       text-align: center;
       background-color: white;
       width: calc(84% - 2px);
-      border: 1px solid $black;
+      border-top: 1px solid $black;
       height: 35%;
       padding: 0 8%;
       display: flex;
