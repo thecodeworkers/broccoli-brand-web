@@ -8,7 +8,7 @@ const Brand = ({ data }) => {
   useEffect(() => {
     const handleUserScroll = () => {
       let scroll = window.scrollY
-      setPos(scroll)
+      if(scroll > 300) setPos(scroll - 300)
     };
 
     window.addEventListener('scroll', handleUserScroll);
