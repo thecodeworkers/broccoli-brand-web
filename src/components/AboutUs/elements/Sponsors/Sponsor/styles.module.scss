@@ -32,11 +32,12 @@
       overflow: hidden;
       position: absolute;
       bottom: 0;
+      text-align: center;
       background-color: white;
-      width: calc(94% - 2px);
+      width: calc(84% - 2px);
       border: 1px solid $black;
       height: 35%;
-      padding: 0 3%;
+      padding: 0 8%;
       display: flex;
       justify-content: center;
       align-items: center;
