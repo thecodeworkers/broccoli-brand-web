@@ -1,11 +1,11 @@
 import styles from './styles.module.scss'
 import { Product, Button } from '@components'
 
-const Outstanding = () => {
+const Outstanding = ({data}) => {
 
   return (
     <div className={styles._content}>
-      <h2 className={styles._outstandingTitle}>DESTACADOS</h2>
+      <h2 className={styles._outstandingTitle}>{data.title}</h2>
       <div className={styles._productContainer}>
         <div className={styles._product}><Product /></div>
         <div className={styles._product}><Product /></div>
@@ -13,7 +13,7 @@ const Outstanding = () => {
         <div className={styles._product}><Product /></div>
       </div>
       <div className={styles._buttonContainer}>
-        <Button text="VIEW MORE" borderColor='black' colorText='black' blackHover={true} />
+        <Button blackHover={true} text={data.textButton} borderColor='black' colorText='black' link={data.linkButton} />
       </div>
     </div>
   )

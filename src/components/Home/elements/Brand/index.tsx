@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styles from './styles.module.scss'
 
-const Brand = () => {
+const Brand = ({data}) => {
 
 	const [pos, setPos] = useState(0)
 
@@ -28,13 +28,13 @@ const Brand = () => {
 			<style jsx>
 			{`
 			._firstBrand {
-				background-image: url('images/backgrounds/Banner_animado1.png');
+				background-image: url('${data.topImage.mediaItemUrl}');
 				background-repeat: repeat-x;
 				background-size: contain;
 				height: 30vh;
 			}
 			._secondBrand {
-				background-image: url('images/backgrounds/Banner_animado2.png');
+				background-image: url('${data.bottomImage.mediaItemUrl}');
 				background-repeat: repeat-x;
 				background-size: contain;
 				height: 30vh;

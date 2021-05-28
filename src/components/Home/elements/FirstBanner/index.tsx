@@ -2,25 +2,10 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.scss'
 import { Button } from '@components'
 
-const FirstBanner = () => {
-
-  let data = [
-    {
-      className: '',
-      image: {
-        mediaItemUrl: 'https://picsum.photos/id/1005/1360/768'
-      }
-    },
-    {
-      className: '',
-      image: {
-        mediaItemUrl: 'https://picsum.photos/id/1012/1360/768'
-      }
-    }
-  ]
-
-  const [currentIndex, setcurrentIndex] = useState(1);
-  const [newArray, setNewArray] = useState(data)
+const FirstBanner = ({ data }) => {
+  
+  const [currentIndex, setcurrentIndex] = useState(0);
+  const [newArray, setNewArray] = useState(data.banner)
 
   let interval;
 
@@ -32,6 +17,7 @@ const FirstBanner = () => {
   }, [currentIndex])
 
   const changeImage = (index, stylus) => {
+
     newArray.map((res, mapIndex) => { newArray[mapIndex].className = styles._hidden })
     newArray[index].className = stylus
 
@@ -57,16 +43,16 @@ const FirstBanner = () => {
           })
         }
         <div className={styles._leftShopContainer}>
-          <h2 className={styles._textTitle}>TÍTULO LARGO</h2>
+          <h2 className={styles._textTitle}>{data.firstTitleButton}</h2>
           <div className={styles._buttonContainer}>
-            <Button borderColor="white" text="GO TO SHOP" />
+            <Button borderColor="white" text={data.firstTextButton} link={data.firstButtonLink} />
           </div>
         </div>
 
         <div className={styles._rightShopContainer}>
-          <h2 className={styles._textTitle}>BETO COLLECTION</h2>
+          <h2 className={styles._textTitle}>{data.secondTitleButton}</h2>
           <div className={styles._buttonContainer}>
-            <Button borderColor="white" text="GO TO SHOP" />
+            <Button borderColor="white" text={data.secondTextButton} link={data.secondButtonLink} />
           </div>
         </div>
       </div>
