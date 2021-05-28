@@ -49,7 +49,7 @@ const ContactForm = ({ data }) => {
             </div>
           </div>
           <div className={styles._buttonContainer}>
-            <Button text={data.textButton} borderColor='black' colorText='black' />
+            <Button text={data.textButton} borderColor='black' colorText='black' blackHover={true} />
           </div>
         </div>
       </section>

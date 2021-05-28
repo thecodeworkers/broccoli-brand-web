@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import { FirstBanner, Contact, Shop, Sponsors } from './elements'
+import { FirstBanner, Contact, Shop, Sponsors, Brand } from './elements'
 import { Navbar, Footer } from '@components'
 
 const AboutUs = ({ data }) => {
@@ -14,6 +14,7 @@ const AboutUs = ({ data }) => {
       <FirstBanner data={data.mainBanner} />
       <Shop data={data.shop} />
       <Sponsors data={data.sponsors} />
+      <Brand />
       <Contact data={data.contact} />
       <Footer />
     </div>

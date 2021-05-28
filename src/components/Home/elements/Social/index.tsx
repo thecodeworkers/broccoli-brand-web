@@ -19,7 +19,7 @@ const Social = ({ data }) => {
               </p>
             </div>
             <div className={styles._buttonContainer}>
-              <Button text={data.textButton} colorText="black" borderColor="black" link={data.linkButton} />
+              <Button text={data.textButton} colorText="black" borderColor="black" link={data.linkButton} blackHover={true} />
             </div>
           </div>
         </div>
