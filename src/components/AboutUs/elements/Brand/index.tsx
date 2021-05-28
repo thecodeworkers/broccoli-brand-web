@@ -5,11 +5,14 @@ const Brand = () => {
 
 	const [pos, setPos] = useState(0)
 
-	useEffect(() => {
-		window.addEventListener("scroll", () => {
-			let scroll = window.scrollY
-			setPos(scroll)
-		});
+  useEffect(() => {
+    const handleUserScroll = () => {
+      let scroll = window.scrollY
+      setPos(scroll)
+    };
+
+		window.addEventListener('scroll', handleUserScroll);
+    return () => window.removeEventListener('scroll', handleUserScroll);
 	})
 
 	return (
