@@ -12,7 +12,7 @@ const Home = ({ data }) => {
       <Navbar />
       <FirstBanner data={data?.bannerPrincipal} />
       <Outstanding data={data?.outstanding} />
-      <Brand />
+      <Brand data={data?.brand} />
       <Social data={data?.webPromotion} />
       <Contact data={data?.contact} />
       <Footer />

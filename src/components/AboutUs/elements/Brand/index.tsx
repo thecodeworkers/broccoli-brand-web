@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 
-const Brand = () => {
+const Brand = ({ data }) => {
 
-	const [pos, setPos] = useState(0)
+  const [pos, setPos] = useState(0)
 
   useEffect(() => {
     const handleUserScroll = () => {
@@ -11,27 +11,27 @@ const Brand = () => {
       setPos(scroll)
     };
 
-		window.addEventListener('scroll', handleUserScroll);
+    window.addEventListener('scroll', handleUserScroll);
     return () => window.removeEventListener('scroll', handleUserScroll);
-	})
+  })
 
-	return (
-		<section className={styles._principalBrandContent}>
-				<div className={styles._imageContainer} style={{transform: `translate(calc(-${pos}px))`}}>
-					<div className='_firstBrand' ></div>
-				</div>
-			<style jsx>
-			{`
-			._firstBrand {
-				background-image: url('images/backgrounds/Banner_animado3.png');
-				background-repeat: repeat-x;
-				background-size: contain;
-				height: 30vh;
-			}
-			`}
-			</style>
-		</section>
-	)
+  return (
+    <section className={styles._principalBrandContent}>
+      <div className={styles._imageContainer} style={{ transform: `translate(calc(-${pos}px))` }}>
+        <div className='_firstBrand' ></div>
+      </div>
+      <style jsx>
+        {`
+			    ._firstBrand {
+				    background-image: url('${data.mediaItemUrl}');
+				    background-repeat: repeat-x;
+				    background-size: contain;
+				    height: 30vh;
+			    }
+			  `}
+      </style>
+    </section>
+  )
 }
 
 export default Brand
