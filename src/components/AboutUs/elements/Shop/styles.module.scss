@@ -3,12 +3,24 @@
 ._content {
   width: 90%;
   margin: 3% auto;
-  max-width: 75rem;
 }
 
-._outstandingTitle {
+._headerContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
+._productsTitle {
   font-family: $roboto;
   font-size: $roboto44;
+  font-weight: normal;
+}
+
+._productsText {
+  width: 43rem;
+  text-align: center;
+  font-family: $roboto;
+  font-size: $roboto16;
 }
 
 ._productContainer {
@@ -16,6 +28,12 @@
   justify-content: space-between;
   margin-top: 1%;
   margin-bottom: 3%;
+}
+
+._product{
+  width: 33.3% !important;
+  height: 35rem !important;
+  border: 1px solid black;
 }
 
 ._buttonContainer {

@@ -1,0 +1,65 @@
+@import '@styles/index.scss';
+
+._container {
+  width: 33.3%;
+  height: 45rem;
+  border: 1px solid $black;
+}
+
+._sponsorContainer {
+  width: 100%;
+  height: 100%;
+}
+
+._imageSponsorContainer {
+  height: 90%;
+  position: relative;
+
+  ._image {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://picsum.photos/200/300');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  ._sponsorDetail {
+    display: none;
+  }
+
+  &:hover {
+    ._sponsorDetail {
+      overflow: hidden;
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      background-color: white;
+      width: calc(84% - 2px);
+      border: 1px solid $black;
+      height: 35%;
+      padding: 0 8%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+._specsContainer {
+  height: 10%;
+  border-bottom: 1px solid $black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ._specs {
+    font-family: $roboto;
+    font-size: $roboto18;
+    text-align: center;
+  }
+}
+
+._Text {
+  font-family: $roboto;
+  font-size: $roboto18;
+}

@@ -1,108 +1,108 @@
 @import '@styles/index.scss';
 
 ._container {
-    margin: auto;
+  margin: auto;
 }
 
 ._topContainer {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 4rem;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
 }
 
 ._logoContainer {
-    width: 15%;
-    margin-left: 1rem;
+  width: 15%;
+  margin-left: 1rem;
 }
 
 ._searchContainer {
-    position:relative;
-    height: 100%;
-    width: 20%;
-    
-    ._input {
-        height: -webkit-fill-available;
-        font-family: $roboto;
-        margin:0;
-        width: 100%;
-        border: 3px solid $black;
-    }
+  position: relative;
+  height: 100%;
+  width: 20%;
 
-    ._inputImg {
-        position:absolute;
-        bottom: 0;
-        top: 0;
-        right: 7%;
-        width: 15px;
-        height: inherit;
-    }
+  ._input {
+    height: -webkit-fill-available;
+    font-family: $roboto;
+    margin: 0;
+    width: 100%;
+    border: 3px solid $black;
+  }
+
+  ._inputImg {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 7%;
+    width: 15px;
+    height: inherit;
+  }
 }
 
 ._bottomContainer {
-    background-color: $black;
+  background-color: $black;
 }
 
 ._bottomSectionsContainer {
-    height: 2.5rem;
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  height: 2.5rem;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 ._topSections {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 85%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 85%;
 
-    ._topSection {
-        display: flex;
-        align-items: center;
-        margin-left: 3rem;
-        cursor: pointer;
-    }
+  ._topSection {
+    display: flex;
+    align-items: center;
+    margin-left: 3rem;
+    cursor: pointer;
+  }
 }
 
 ._topText {
-    font-family: $roboto;
-    color: $tundora;
-    font-size: $roboto16;
-    margin-left: 0.5rem;
+  font-family: $roboto;
+  color: $tundora;
+  font-size: $roboto16;
+  margin-left: 0.5rem;
 }
 
 ._rightMargin {
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 ._bottomSections {
-    height: inherit;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  width: 60%;
+
+  ._bottomSection {
     display: flex;
     align-items: center;
-    width: 60%;
+    height: inherit;
+    margin-right: 1.5rem;
+    cursor: pointer;
 
-    ._bottomSection {
-        display: flex;
-        align-items: center;
-        height: inherit;
-        margin-right: 1.5rem;
-        cursor: pointer;
-
-        &:hover {
-            border: 1.5px solid $white;
-            border-top: 2px;
-        }
+    &:hover {
+      border: 1.5px solid $white;
+      border-top: 2px;
     }
+  }
 }
 
 ._bottomText {
-    font-family: $roboto;
-    color: $white;
-    font-size: $roboto16;
-    margin-bottom: 0;
-    padding: 0 1rem;
+  font-family: $roboto;
+  color: $white;
+  font-size: $roboto16;
+  margin-bottom: 0;
+  padding: 0 1rem;
 }

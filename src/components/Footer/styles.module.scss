@@ -1,140 +1,139 @@
 @import '@styles/index.scss';
 
-._footerContainer{
-	background-color: $codGray;
- 	min-height: 200px;
-	color: $white;
-	display: flex;
-    flex-wrap: wrap;
-	justify-content: center;
+._footerContainer {
+  background-color: $codGray;
+  min-height: 200px;
+  color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-
 ._footerSection {
-    width: 33.2%;
+  width: 33.2%;
 }
 
 ._whiteText {
-    font-family: $roboto;
-    font-size: $roboto16;
-    color: $white;
-    margin: 0%;
-    padding-bottom: 1%;
+  font-family: $roboto;
+  font-size: $roboto16;
+  color: $white;
+  margin: 0%;
+  padding-bottom: 1%;
 }
 
 ._bottomSection {
-    align-self: center;
+  align-self: center;
 
-    ._bottomItem {
-        display: flex;
-        margin: 3% 0% 3% 15%;
-        
-        ._textMargin {
-            margin-right: 13%;
-        }
+  ._bottomItem {
+    display: flex;
+    margin: 3% 0% 3% 15%;
+
+    ._textMargin {
+      margin-right: 13%;
     }
+  }
 }
 
 ._bottomSocial {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    ._iconMargin {
-        margin-right: 10%;
-        cursor: pointer;
-    }
+  ._iconMargin {
+    margin-right: 10%;
+    cursor: pointer;
+  }
 
-    ._iconMargin:last-child {
-        margin-right: 0%;
-    }
+  ._iconMargin:last-child {
+    margin-right: 0%;
+  }
 }
 
-._bottomCopy {  
-    ._bottomCopyItem {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 3% 5% 3% 15%;
-    }
+._bottomCopy {
+  ._bottomCopyItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3% 5% 3% 15%;
+  }
 
-    ._copy {
-        width: 60%;
-    }
+  ._copy {
+    width: 60%;
+  }
 
-    ._logos {
-        width: 40%;
-        display: flex;
+  ._logos {
+    width: 40%;
+    display: flex;
 
-        ._logo {
-            margin-right: 15%;
-        }
+    ._logo {
+      margin-right: 15%;
     }
+  }
 }
 
 ._grayText {
-    font-family: $roboto;
-    font-size: $roboto16;
-    color: $boulder;
+  font-family: $roboto;
+  font-size: $roboto16;
+  color: $boulder;
 }
 
 ._noMargin {
-    margin: 0%;
+  margin: 0%;
 }
 
 ._section11 {
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid $white;
-    border-bottom: 1px solid $white;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $white;
+  border-bottom: 1px solid $white;
 }
 
 ._section13 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom:  1px solid $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid $white;
 }
 
 ._textFormContainer {
-    margin: 7% 0 7% 15%;
+  margin: 7% 0 7% 15%;
 }
 
 ._formContainer {
-    margin-top: 2%;
-    height: 2.5rem;
+  margin-top: 2%;
+  height: 2.5rem;
 
-    input {
-        width: 50%;
-        border: 2px solid white;
-        height: -webkit-fill-available;
-        background: $codGray;
-        padding: 1% 5%;
-        font-family: $roboto;
-        font-size: $roboto16;
-        color: $white;
-    }
+  input {
+    width: 50%;
+    border: 2px solid white;
+    height: -webkit-fill-available;
+    background: $codGray;
+    padding: 1% 5%;
+    font-family: $roboto;
+    font-size: $roboto16;
+    color: $white;
+  }
 
-    ._formButton {
-        font-family: $roboto;
-        font-size: $roboto16;
-        width: 30%;
-        height: 100%;
-        background-color: $white;
-        color: $black;
-        border: none;
-        cursor: pointer;
-    }
+  ._formButton {
+    font-family: $roboto;
+    font-size: $roboto16;
+    width: 30%;
+    height: 100%;
+    background-color: $white;
+    color: $black;
+    border: none;
+    cursor: pointer;
+  }
 }
 
 ._textContainer {
-    margin: 7% 15%;
+  margin: 7% 15%;
 }
 
 ._marginBottom {
-    margin-bottom: 5%;
+  margin-bottom: 5%;
 }
 
 ._marginRight {
-    width: 15rem;
+  width: 15rem;
 }

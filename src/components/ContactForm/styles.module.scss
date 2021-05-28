@@ -1,59 +1,58 @@
-
 @import '@styles/index.scss';
 
 ._content {
-    width: 100%;
-    margin: auto 10%;
-    padding: 8% 0;
-    font-family: $roboto;
+  width: 100%;
+  margin: auto 10%;
+  padding: 8% 0;
+  font-family: $roboto;
 }
 
 ._formTitleContainer {
-    ._formTitle {
-        text-align: center;
-        font-size: $roboto32;
-    }
+  ._formTitle {
+    text-align: center;
+    font-size: $roboto32;
+  }
 }
 
 ._formContent {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 ._formContainer {
-    width: 45%;
-    font-size: $roboto18;
+  width: 45%;
+  font-size: $roboto18;
 
-    &:last-child {
-        width: 100%;
-    }
+  &:last-child {
+    width: 100%;
+  }
 }
 
 ._inputForm {
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-    border-bottom: 1px solid $gray;
-    width: 100%;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px solid $gray;
+  width: 100%;
 }
 
 ._labelForm {
-    color: $tundora;
-    margin: 10% 0;
+  color: $tundora;
+  margin: 10% 0;
 }
 
 ._labelMessage {
-    margin: 5% 0;
+  margin: 5% 0;
 }
 
 ._selectForm {
-    width: 100%;
+  width: 100%;
 }
 
 ._buttonContainer {
-    width: 250px;
-    margin: 5% auto 0 auto;
+  width: 250px;
+  margin: 5% auto 0 auto;
 }
 
 ._customSelect {
@@ -66,7 +65,7 @@
   z-index: 10;
   font-size: $roboto18;
   height: 2.5rem;
-  
+
   select {
     border: none;
     outline: none;
@@ -82,7 +81,7 @@
     font-size: 14px;
     height: -webkit-fill-available;
   }
-  
+
   &:after {
     position: absolute;
     display: flex;

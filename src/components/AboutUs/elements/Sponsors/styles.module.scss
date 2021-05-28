@@ -1,0 +1,32 @@
+@import '@styles/index.scss';
+
+._content {
+  width: 100%;
+  margin:auto;
+}
+
+._headerContainer{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+._productsTitle {
+  font-family: $roboto;
+  font-size: $roboto44;
+  font-weight: normal;
+}
+
+._productsText {
+  width: 43rem;
+  text-align: center;
+  font-family: $roboto;
+  font-size: $roboto16;
+}
+
+._productContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1%;
+}
