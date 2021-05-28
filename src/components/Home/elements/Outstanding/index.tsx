@@ -13,7 +13,7 @@ const Outstanding = () => {
         <Product />
       </div>
       <div className={styles._buttonContainer}>
-        <Button text="VIEW MORE" borderColor='black' colorText='black' />
+        <Button text="VIEW MORE" borderColor='black' colorText='black' blackHover={true} />
       </div>
     </div>
   )

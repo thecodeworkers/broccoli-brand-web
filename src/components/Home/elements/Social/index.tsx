@@ -24,7 +24,7 @@ const Social = () => {
                     </p>
           </div>
           <div className={styles._buttonContainer}>
-            <Button text="FOLLOW US" colorText="black" borderColor="black" />
+            <Button text="FOLLOW US" colorText="black" borderColor="black" blackHover={true} />
           </div>
         </div>
       </div>
