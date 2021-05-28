@@ -15,11 +15,8 @@ const Navbar = () => {
 
   const changeLang = (event) => dispatch(changeLanguage(event.target.value))
 
-  const navigation = (route) => {
-    router.push(route)
-    console.log('route')
-  }
-
+  const navigation = (route) => router.push(route)
+  
   return (
     <>
       <section className={styles._container}>
@@ -31,7 +28,7 @@ const Navbar = () => {
             <div className={styles._topSection}>
               <World />
               <label htmlFor="language" className={styles._customSelect}>
-                <select name="language" id="language" defaultValue={language} onChange={changeLang} placeholder={'Idioma'} className={styles._topText}>
+                <select name="language" id="language" value={language} onChange={changeLang} placeholder={'Idioma'} className={styles._topText}>
                   <option value='ES'>Espanol</option>
                   <option value='EN'>English</option>
                 </select>

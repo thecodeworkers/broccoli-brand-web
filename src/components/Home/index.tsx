@@ -17,7 +17,7 @@ const Home = ({ data }) => {
       <Contact data={data?.contact} />
       <Footer />
     </div>
-  ) : null
+  ) : <div></div>
 }
 
 export default Home

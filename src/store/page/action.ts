@@ -15,6 +15,6 @@ export const getPages: any = (resources) => async (dispatch, getState) => {
   let data = page
 
   data = setResources(data, result, resources);
-  data.currentPage = resources
+  if (!data.consultPages.includes(resources)) data.consultPages.push(resources)
   dispatch(actionObject(GET_PAGES, data))
 }

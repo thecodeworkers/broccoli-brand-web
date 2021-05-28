@@ -3,7 +3,7 @@ import homePageQuery from './homePage'
 import aboutPageQuery from './aboutPage'
 
 const pages = async (resource: any, language) => {
-
+  
   const resources = {
     'homePage': homePageQuery(language),
     'aboutPage': aboutPageQuery(language)

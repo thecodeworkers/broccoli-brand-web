@@ -2,7 +2,7 @@ import { AnyAction } from 'redux'
 import { GET_PAGES } from './action-types'
 
 const initialState = {
-  currentPage: '',
+  consultPages: [],
   homePage: {},
   aboutPage: {}
 }

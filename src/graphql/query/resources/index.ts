@@ -11,7 +11,8 @@ const resource = async (language) => {
   const data: any = await GraphQlClient(query)
 
   return {
-    general: normalized(data?.generalPage?.translation)
+    general: normalized(data?.generalPage?.translation),
+    language: language
   }
 }
 

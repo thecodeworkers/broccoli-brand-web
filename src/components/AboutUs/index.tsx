@@ -5,7 +5,7 @@ import { Navbar, Footer } from '@components'
 
 const AboutUs = ({ data }) => {
 
-  return !data ? null : (
+  return !data ? <div></div> : (
     <div >
       <Head>
         <title>Broccoli</title>
