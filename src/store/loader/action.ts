@@ -1,9 +1,4 @@
-import { LOADER } from './actions-types'
+import { actionObject } from '@utils'
+import { LOADER } from './action-types'
 
-export const setLoader = (show: boolean) => {
-
-  return {
-    type: LOADER,
-    payload: show
-  }
-}
+export const setLoader = (show: boolean) => actionObject(LOADER, show)
