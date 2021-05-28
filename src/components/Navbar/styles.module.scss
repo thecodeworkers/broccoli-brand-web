@@ -103,10 +103,15 @@
     height: inherit;
     margin-right: 1.5rem;
     cursor: pointer;
-
+    border: 1.5px solid transparent;
+    border-top: 2px transparent;
+    border-bottom: 2px transparent;
+    transition: all 0.5s;
     &:hover {
+      transition: all 0.5s;
       border: 1.5px solid $white;
-      border-top: 2px;
+      border-top: 2px transparent;
+      border-bottom: 2px transparent;
     }
   }
 }
