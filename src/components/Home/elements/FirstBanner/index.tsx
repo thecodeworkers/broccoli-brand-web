@@ -45,14 +45,14 @@ const FirstBanner = ({ data }) => {
         <div className={styles._leftShopContainer}>
           <h2 className={styles._textTitle}>{data.firstTitleButton}</h2>
           <div className={styles._buttonContainer}>
-            <Button borderColor="white" text={data.firstTextButton} link={data.firstButtonLink} />
+            <Button borderColor="white" text={data.firstTextButton} link={data.firstButtonLink} blackHover={true} />
           </div>
         </div>
 
         <div className={styles._rightShopContainer}>
           <h2 className={styles._textTitle}>{data.secondTitleButton}</h2>
           <div className={styles._buttonContainer}>
-            <Button borderColor="white" text={data.secondTextButton} link={data.secondButtonLink} />
+            <Button borderColor="white" text={data.secondTextButton} link={data.secondButtonLink} blackHover={true} />
           </div>
         </div>
       </div>
