@@ -3,7 +3,12 @@
 ._content {
   width: 90%;
   margin: 3% auto;
-  max-width: 75rem;
+  // max-width: 75rem;
+}
+
+._product {
+  width: 24%;
+    height: 70vh;
 }
 
 ._outstandingTitle {
@@ -19,11 +24,11 @@
 }
 
 ._buttonContainer {
-  width: 17rem;
+  width: 24%;
 }
 
 @include responsive(xl) {
   ._buttonContainer {
-    width: 15rem;
+    width: 21%;
   }
 }
