@@ -51,7 +51,7 @@ const ContactForm = () => {
             </div>
           </div>
           <div className={styles._buttonContainer}>
-            <Button text='ENVIAR' borderColor='black' colorText='black' />
+            <Button text='ENVIAR' borderColor='black' colorText='black' blackHover={true} />
           </div>
         </div>
       </section>
