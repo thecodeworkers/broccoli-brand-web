@@ -2,8 +2,14 @@ import React from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components';
 import { World, Coin, Bag, User, Pipe } from '@images/svg';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
+  const router = useRouter()
+
+  const navigation = (route) => {
+    router.push(route)
+  }
   return (
     <>
       <section className={styles._container}>
@@ -36,9 +42,9 @@ const Navbar = () => {
           <div className={styles._bottomSectionsContainer}>
             <div className={styles._bottomSections}>
               <div className={styles._bottomSection}>
-                <p className={styles._bottomText}>Home</p>
+                <p className={styles._bottomText} onClick={() => navigation('/')}>Home</p>
               </div>
-              <div className={styles._bottomSection}>
+              <div className={styles._bottomSection} onClick={() => navigation('about-us')}>
                 <p className={styles._bottomText}>About Us</p>
               </div>
               <div className={styles._bottomSection}>

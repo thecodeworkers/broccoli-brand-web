@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import styles from './styles.module.scss'
 
 const Brand = () => {
@@ -6,10 +6,13 @@ const Brand = () => {
 	const [pos, setPos] = useState(0)
 
 	useEffect(() => {
-		window.addEventListener("scroll", () => {
-			let scroll = window.scrollY
-			if(scroll > 700) setPos(scroll)
-		});
+    const handleUserScroll = (event) => {
+      let scroll = window.scrollY
+      if(scroll > 700) setPos(scroll)
+    };
+
+		window.addEventListener('scroll', handleUserScroll);
+    return () => window.removeEventListener('scroll', handleUserScroll);
 	})
 
 	return (
