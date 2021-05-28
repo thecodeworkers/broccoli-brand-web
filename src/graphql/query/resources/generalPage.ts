@@ -3,6 +3,15 @@ const general = (language) => `
 generalPage: page(id: "${generalId}") {
   translation(language: ${language}) {
     general {
+      navigationBar {
+        login
+        register
+        carText
+        navigation {
+          text
+          link
+        }
+      }
       clauses {
         termsTitle
         termsLink

@@ -1,7 +1,6 @@
 import styles from './styles.module.scss'
 
 const Sponsor = ({ data }) => {
-  console.log(data)
   return (
     <>
       <section className={styles._container}>
