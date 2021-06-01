@@ -24,7 +24,7 @@ const ResponsiveMenu = ({ show = 0, method}) => {
 
   return (
     <div className={assignClass()}>
-      <div className={styles._content}>
+      <div className={[styles._content, unfold ? styles._listed : styles._noListed].join(" ")}>
         <section className={styles._internalLinks}>
           <div className={[styles._internalSection, styles._homeSection].join(" ")}>
             <p className={styles._linkText}>HOME</p>

@@ -177,6 +177,16 @@
   display: none;
 }
 
+._listed {
+  overflow-y: scroll;
+  height: 90vh;
+}
+
+._noListed {
+  height: inherit;
+  overflow-y: auto;
+}
+
 ._shoppingContainer {
   width: 100%;
   color: $white;
