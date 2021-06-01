@@ -1,5 +1,9 @@
 @import '@styles/index.scss';
 
+._content {
+  margin-top: 6.5rem;
+}
+
 ._main {
   position: relative;
 }
@@ -54,3 +58,10 @@
 ._buttonContainer {
   width: 250px;
 }
+
+@include responsive(lg) {
+  ._content {
+    margin-top: 0%;
+  }
+}
+
