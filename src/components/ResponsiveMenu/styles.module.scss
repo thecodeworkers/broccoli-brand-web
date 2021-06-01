@@ -74,6 +74,16 @@
       margin-left: 5%;
     }
   }
+
+  ._homeSection {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+._whiteArrow {
+  cursor: pointer;
+  margin-right: 5%;
 }
 
 ._internalSettings {
@@ -155,4 +165,43 @@
 
 ._logo {
   height: 2rem;
+}
+
+._show {
+  @include regularText;
+  display: block;
+  border-bottom: 1px solid $white;
+}
+
+._hide {
+  display: none;
+}
+
+._shoppingContainer {
+  width: 100%;
+  color: $white;
+
+  ._shoppingTitle {
+    background-color: $codGray;
+    padding: 0.7rem 0;
+
+    ._title {
+      width: 85%;
+      margin: auto;
+    }
+  }
+
+  ._shoppingSections {
+    width: 85%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 5rem;
+
+    ._filter {
+      height: 33.2%;
+      width: 25%;
+    }
+  }
 }

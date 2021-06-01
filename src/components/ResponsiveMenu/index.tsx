@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { World, Coin, User } from '@images/svg'
 
 const ResponsiveMenu = ({ show = 0, method}) => {
+
+  const [unfold, setUnfold] = useState(false)
 
   const assignClass = () => {
     if (show === 0) return styles._mainStatic
@@ -10,12 +12,46 @@ const ResponsiveMenu = ({ show = 0, method}) => {
     if (show === 2) return styles._mainOut
   }
 
+  const assignShow = () => {
+    if(unfold) return styles._show
+    return styles._hide
+  }
+
+  const changeUnfold = () => {
+    if(unfold) setUnfold(false)
+    if(!unfold) setUnfold(true)
+  }
+
   return (
     <div className={assignClass()}>
       <div className={styles._content}>
         <section className={styles._internalLinks}>
-          <div className={styles._internalSection}>
+          <div className={[styles._internalSection, styles._homeSection].join(" ")}>
             <p className={styles._linkText}>HOME</p>
+            <img className={styles._whiteArrow} src='images/backgrounds/white-arrow.svg' alt='arrow' onClick={() => changeUnfold()} />
+          </div>
+          <div className={assignShow()}>
+            <div className={styles._shoppingContainer}>
+              <div className={styles._shoppingTitle}>
+                <p className={styles._title}>Categorias</p>
+              </div>
+              <div className={styles._shoppingSections}>
+                <p className={styles._filter}>Pants</p>
+                <p className={styles._filter}>Shorts</p>
+                <p className={styles._filter}>Skirts</p>
+                <p className={styles._filter}>Jackets</p>
+                <p className={styles._filter}>Sweaters</p>
+                <p className={styles._filter}>Socks</p>
+              </div>
+              <div className={styles._shoppingTitle}>
+                <p className={styles._title}>Drops</p>
+              </div>
+              <div className={styles._shoppingSections}>
+                <p className={styles._filter}>Origen</p>
+                <p className={styles._filter}>Destiny</p>
+                <p className={styles._filter}>Tucan</p>
+              </div>
+            </div>
           </div>
           <div className={styles._internalSection}>
             <p className={styles._linkText}>ABOUT US</p>
