@@ -8,5 +8,6 @@ export { default as Twitter } from './twitter'
 export { default as Whatsapp } from './wapp'
 export { default as Menu } from './menu'
 export { default as Search } from './search'
+export { default as Cancel } from './cancel'
 
 
