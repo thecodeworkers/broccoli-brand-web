@@ -1,0 +1,75 @@
+@import '../../../public/styles/index.scss';
+
+@mixin menu {
+  background-color: $white;
+  position: fixed;
+  width: 100%;
+  top: 4rem;
+  z-index: 997;
+  display: flex;
+  justify-content: center;
+}
+
+._mainIn {
+  @include menu;
+  display: block;
+  height: 3rem;
+  width: calc(100% - 14px);
+  border: 7px solid $whiteGray;
+}
+
+._mainOut{
+  @include menu;
+  display: none;
+}
+
+@keyframes menu-in {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes menu-out {
+  from {
+    transform: translateY(0%);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+._searcherContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 2% 5%;
+  height: -webkit-fill-available;
+}
+
+._inputContainer {
+  display: flex;
+  width: 80%;
+
+  ._input {
+    width: -webkit-fill-available;
+    border: none;
+    font-family: $roboto;
+    font-size: $roboto16;
+  }
+}
+
+._xContainer {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+}
+
+._hide {
+  display: none;
+}
