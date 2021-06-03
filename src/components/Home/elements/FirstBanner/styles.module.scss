@@ -63,5 +63,39 @@
   ._content {
     margin-top: 0%;
   }
+
+  ._textTitle {
+    font-size: $roboto26;
+  }
+
+  ._buttonContainer {
+    width: 200px;
+  }
+
+  ._rightShopContainer {
+    right: 17vw;
+  }
+}
+
+@include responsive(md) {
+  ._leftShopContainer {
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  ._rightShopContainer {
+    left: 0;
+    right: 0;
+    bottom: 5vh;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  ._buttonContainer {
+    width: 100%;
+  }
 }
 

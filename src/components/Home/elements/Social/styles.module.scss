@@ -36,3 +36,35 @@
 ._buttonContainer {
   width: 250px;
 }
+
+@include responsive(md) {
+  ._socialContent {
+    flex-direction: column;
+    height: 95vh;
+    
+    ._socialImageContainer {
+      width: 100%;
+    }
+
+    ._socialInfoContainer {
+      width: 100%;
+    }
+  }
+
+  ._socialContainer {
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  ._socialTitle {
+    font-size: $roboto38;
+  }
+
+  ._socialDescription {
+    font-size: $roboto18;
+    margin: 1rem 0;
+  }
+  ._buttonContainer {
+    width: -webkit-fill-available;
+  }
+}

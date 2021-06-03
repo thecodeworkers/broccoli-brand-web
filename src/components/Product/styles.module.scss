@@ -104,6 +104,13 @@
 
 @include responsive(xl) {
   ._container {
-    width: 15rem;
+    width: -webkit-fill-available;
   }
 }
+
+@include responsive(sm) {
+  ._productNameContainer {
+    margin-bottom: 0.3rem;
+  }
+}
+

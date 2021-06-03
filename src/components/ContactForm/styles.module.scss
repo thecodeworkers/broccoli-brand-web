@@ -102,3 +102,24 @@
     z-index: -1;
   }
 }
+
+@include responsive(sm) {
+  ._formContainer {
+    width: 100%;
+  }
+
+  ._formTitleContainer {
+    ._formTitle {
+      text-align: start;
+    }
+  }
+
+  ._labelForm {
+    margin: 5% 0;
+  }
+
+  ._buttonContainer {
+    width: -webkit-fill-available;
+    margin: 8% auto 0 auto;
+  }
+}
