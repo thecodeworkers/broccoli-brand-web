@@ -3,11 +3,13 @@ import styles from './styles.module.scss';
 import { Instagram, Whatsapp, Twitter } from '@images/svg';
 import { useSelector } from 'react-redux';
 import { createMarkup } from '@utils';
+import FooterResponsive from '../FooterResponsive';
 
 const Footer = () => {
   const { resource: { general: { general } } } = useSelector((state: any) => state)
   return general ? (
-    <section className={styles._footerContainer}>
+    <>
+    <footer className={styles._footerContainer}>
       <div className={[styles._footerSection, styles._section11, styles._styleText].join(" ")}>
         <div className={styles._textContainer} dangerouslySetInnerHTML={createMarkup(general.location)}>
         </div>
@@ -69,7 +71,13 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </section>
+    </footer>
+
+      <div className={styles._responsive}>
+        <FooterResponsive data={general} />
+      </div>
+    </>
+
   ) : null
 }
 
