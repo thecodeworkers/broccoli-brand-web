@@ -54,6 +54,10 @@ const Brand = ({data}) => {
 				background-size: contain;
 				height: 30vh;
 			}
+      @media(max-width: 576px) {
+        ._firstBrand, ._secondBrand  {
+          height: 20vh;
+        }
 			`}
 			</style>
 		</section>

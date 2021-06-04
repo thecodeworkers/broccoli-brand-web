@@ -68,3 +68,14 @@
     width: -webkit-fill-available;
   }
 }
+
+@include responsive(sm) {
+  ._socialTitle {
+    font-size: $roboto24;
+    font-weight: 900;
+  }
+
+  ._socialDescription {
+    font-size: $roboto18;
+  }
+}
