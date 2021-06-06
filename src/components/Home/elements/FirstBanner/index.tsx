@@ -6,6 +6,7 @@ const FirstBanner = ({ data }) => {
   
   const [currentIndex, setcurrentIndex] = useState(0);
   const [newArray, setNewArray] = useState(data.banner)
+  const [height, setHeight] = useState(0)
 
   let interval;
 
@@ -31,7 +32,7 @@ const FirstBanner = ({ data }) => {
 
   return (
     <div className={styles._content}>
-      <div className={styles._main}>
+      <div className={[styles._main, '_mainContent'].join(" ")}>
         {
           Array.from(Array(newArray?.length).keys()).map((index) => {
             const currentClass = index + 1;
@@ -51,16 +52,16 @@ const FirstBanner = ({ data }) => {
                         background-image: url(${newArray[index]?.responsiveImage?.mediaItemUrl});
                         background-repeat: no-repeat;
                         background-size:100% 100%;
-                        height: 90vh;
+                        height: 94vh;
                       }
                     }
-                  `}</style>
+                  `}</style>  
                 </div>
               </div>
             )
           })
         }
-        <div className={styles._leftShopContainer}>
+        <div className={[styles._leftShopContainer, '_left'].join(" ")}>
           <h2 className={styles._textTitle}>{data.firstTitleButton}</h2>
           <div className={styles._buttonContainer}>
             <Button borderColor="white" text={data.firstTextButton} link={data.firstButtonLink} blackHover={true} />
