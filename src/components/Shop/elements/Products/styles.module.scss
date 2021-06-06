@@ -1,0 +1,30 @@
+@import '@styles/index.scss';
+
+._mainContent {
+  margin: 9.5rem 5% 3% 0;
+  display: flex;
+}
+
+._sidebarContainer {
+  width: 30%;
+}
+
+._productsContainer {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+  ._productContainer {
+    height: 50vh;
+    width: 23%;
+    margin-bottom: 3%;
+  }
+}
+
+
+@include responsive(lg) {
+  ._mainContent {
+    margin: 3.5rem 5% 3% 0;
+  }
+}

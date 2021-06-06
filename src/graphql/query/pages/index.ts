@@ -1,12 +1,14 @@
 import { GraphQlClient, normalized } from '@utils'
 import homePageQuery from './homePage'
 import aboutPageQuery from './aboutPage'
+import shopPageQuery from './shopPage'
 
 const pages = async (resource: any, language) => {
   
   const resources = {
     'homePage': homePageQuery(language),
-    'aboutPage': aboutPageQuery(language)
+    'aboutPage': aboutPageQuery(language),
+    'shopPage': shopPageQuery(language)
   }
 
   const query = `
@@ -14,6 +16,7 @@ const pages = async (resource: any, language) => {
       ${resources[resource]}
     }
   `
+  
   const result: any = await GraphQlClient(query)
 
   const data = ('translation' in result[resource]) ? result[resource].translation : result[resource]

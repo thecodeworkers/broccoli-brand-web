@@ -1,10 +1,12 @@
 import { GraphQlClient, normalized } from '@utils'
 import generalQuery from './generalPage'
+import productsQuery from './products'
 
 const resource = async (language) => {
   const query = `
     query Resources {
       ${generalQuery(language)}
+      ${productsQuery()}
     }
   `
 
@@ -12,7 +14,8 @@ const resource = async (language) => {
 
   return {
     general: normalized(data?.generalPage?.translation),
-    language: language
+    language: language,
+    products: normalized(data?.products)
   }
 }
 

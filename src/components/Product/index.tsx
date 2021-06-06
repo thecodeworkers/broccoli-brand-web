@@ -1,13 +1,15 @@
 import styles from './styles.module.scss'
 import { ColorPicker } from '@components'
 
-const Product = ({ containerStyles = null, details = true }) => {
+const Product = ({ containerStyles = null, details = true, data = null }) => {
+
+  console.log(data)
 
   return (
     <section className={!containerStyles ? styles._container : `${styles._container} ${containerStyles}`}>
       <section className={styles._productContainer}>
         <div className={!details ? `${styles._imageProductContainer} ${styles._imageNoDetailProductContainer}` : styles._imageProductContainer}>
-          <div className={styles._image}></div>
+          <div className='_image'></div>
           <div className={styles._addToCart}>
             <p className={styles._addToCartText}>ADD TO CART</p>
           </div>
@@ -22,21 +24,33 @@ const Product = ({ containerStyles = null, details = true }) => {
 
             <div className={styles._specs}>
               <div className={styles._productNameContainer}>
-                <p className={styles._productName}>Casupo Jacket</p>
+                <p className={styles._productName}>{data ? data?.name : 'Standard Product'}</p>
               </div>
               <div className={styles._colorSelector}>
-                <ColorPicker color="white" />
-                <ColorPicker color="#AA0594" />
-                <ColorPicker color="#FFE926" />
-                <ColorPicker color="#0F0943" />
+                {
+                  data ? 
+                  data?.attributes?.nodes[0].options.map((color, item) => <ColorPicker key={item} color={color} />) :
+                  <ColorPicker key='1' color='black' />
+                }
               </div>
               <div className={styles._productSizesContainer}>
-                <p className={styles._producSizes}>XS, S, M, L, XL</p>
+                <p className={styles._producSizes}>{ data ? data?.attributes?.nodes[1].options.join(", ") : ' XS, L'}</p>
               </div>
             </div>
           </div>
         ) : null}
       </section>
+      <style jsx>
+        {`
+          ._image {
+            background-image: url(${data ? data.image?.mediaItemUrl : 'https://picsum.photos/200/300'});
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+          }
+        `}
+      </style>
     </section>
   )
 }
