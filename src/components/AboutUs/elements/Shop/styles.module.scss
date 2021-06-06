@@ -1,8 +1,8 @@
-@import '@styles/index.scss';
+  @import '@styles/index.scss';
 
 ._content {
   width: 90%;
-  margin: 3% auto;
+  margin: 3% auto 0 auto;
 }
 
 ._headerContainer{
@@ -21,7 +21,7 @@
   width: 43rem;
   text-align: center;
   font-family: $roboto;
-  font-size: $roboto16;
+  font-size: $roboto18;
 }
 
 ._productContainer {
@@ -34,15 +34,73 @@
 ._product{
   width: 33.3% !important;
   height: 35rem !important;
-  border: 1px solid black;
+  border: 1px solid $black;
 }
 
 ._buttonContainer {
   width: 17rem;
 }
 
+._productReponsiveContainer {
+  display: none;
+}
+
 @include responsive(xl) {
   ._buttonContainer {
     width: 15rem;
+  }
+}
+
+@include responsive(md) {
+  ._headerContainer {
+    flex-wrap: wrap;
+    padding: 3% 0 5% 0;
+
+    ._productsTitle {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 2%;
+    }
+
+    ._productsText {
+      width: 100%;
+    }
+  }
+}
+
+@include responsive(sm) {
+  ._headerContainer {
+    ._productsTitle {
+      font-size: $roboto24;
+    }
+
+    ._productsText {
+      font-size: $roboto16;
+    }
+  }
+
+  ._productContainer {
+    display: none;
+  }
+
+  ._productReponsiveContainer {
+    display: block;
+  }
+  
+  ._responsiveShopContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  ._shopContainer {
+    height: 20vh;
+    width: 48%;
+    margin-bottom: 3%;
+  }
+
+  ._buttonContainer {
+    margin-top: 3%;
+    width: 48%;
   }
 }

@@ -1,5 +1,5 @@
 import styles from './styles.module.scss'
-import { Product } from '@components'
+import { Product, ResponsiveShop, Button } from '@components'
 
 const Shop = ({ data }) => {
 
@@ -14,6 +14,18 @@ const Shop = ({ data }) => {
         <Product containerStyles={styles._product} details={false} />
         <Product containerStyles={styles._product} details={false} />
         <Product containerStyles={styles._product} details={false} />
+      </div>
+
+      <div className={styles._productReponsiveContainer}>
+        <div className={styles._responsiveShopContainer}>
+          <div className={styles._shopContainer}><ResponsiveShop /></div>
+          <div className={styles._shopContainer}><ResponsiveShop /></div>
+          <div className={styles._shopContainer}><ResponsiveShop /></div>
+          <div className={styles._shopContainer}><ResponsiveShop /></div>
+        </div>
+        <div className={styles._buttonContainer}>
+          <Button borderColor='black' text='VIEW MORE' colorText='black' blackHover={true} />
+        </div>
       </div>
     </div>
   )
