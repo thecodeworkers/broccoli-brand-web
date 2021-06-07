@@ -17,6 +17,10 @@ homePage: page(id: "${homeId}") {
             mediaItemUrl
             slug
           }
+          responsiveImage {
+            mediaItemUrl
+            slug
+          }
         }
       }
       brand {

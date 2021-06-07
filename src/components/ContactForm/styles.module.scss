@@ -93,12 +93,39 @@
     width: 50px;
     height: 100%;
     content: url('../../../public/images/backgrounds/arrow.svg');
-    // content: '\2039';
     text-align: center;
     color: $black;
     font-size: 18px;
     border-left: 1px solid $black;
     font-weight: 700;
     z-index: -1;
+  }
+}
+
+@include responsive(sm) {
+  ._formContainer {
+    width: 100%;
+  }
+
+  ._formTitleContainer {
+    ._formTitle {
+      font-size: $roboto24;
+      font-weight: 900;
+      text-align: start;
+    }
+  }
+
+  ._labelForm {
+    font-size: $roboto16;
+    margin: 5% 0;
+  }
+
+  ._buttonContainer {
+    width: -webkit-fill-available;
+    margin: 8% auto 0 auto;
+  }
+
+  ._selectForm {
+    font-size: $roboto20;
   }
 }
