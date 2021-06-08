@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import { BroccoliLogo } from '@images/components';
-import { World, Coin, Bag, User, Pipe } from '@images/svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeLanguage, openModal, setLoader } from '@store/actions';
-import { useRouter } from 'next/router';
+import { BroccoliLogo } from '@images/components'
+import { World, Coin, Bag, User, Pipe } from '@images/svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeLanguage, openModal, setLoader } from '@store/actions'
+import { useRouter } from 'next/router'
+import { NavbarResponsive } from '@components'
 
 const Navbar = () => {
 
@@ -28,7 +29,7 @@ const Navbar = () => {
 
   return (
     <>
-      <section className={styles._container}>
+      <nav className={styles._main}>
         <section className={styles._topContainer}>
           <div className={styles._logoContainer}>
             <BroccoliLogo />
@@ -76,7 +77,11 @@ const Navbar = () => {
             </div>
           </div>
         </section>
-      </section>
+      </nav>
+
+      <div className={styles._responsive}>
+        <NavbarResponsive data={general} />
+      </div>
     </>
   )
 }

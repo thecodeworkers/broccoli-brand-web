@@ -1,8 +1,6 @@
 @import '@styles/index.scss';
 
 ._container {
-  // width: 17rem;
-  // height: 27rem;
   width: 100%;
   height: 100%;
 }
@@ -104,6 +102,25 @@
 
 @include responsive(xl) {
   ._container {
-    width: 15rem;
+    width: -webkit-fill-available;
   }
 }
+
+@include responsive(sm) {
+  ._productName {
+    font-size: $roboto14;
+  }
+
+  ._colorSelector {
+    margin-bottom: 0;
+  }
+
+  ._productNameContainer {
+    margin-bottom: 0;
+  }
+
+  ._producSizes {
+    font-size: $roboto14;
+  }
+}
+

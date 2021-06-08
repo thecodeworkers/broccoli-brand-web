@@ -12,10 +12,12 @@ const Button = ({ borderColor = 'white', text, colorText = 'white', link = '', b
         ._main {
           border-color: ${borderColor};
         }
+        ._main:hover {
+          border-color: ${blackHover ? 'black' : 'white'}
+        }
         ._textColor {
           color: ${colorText};
         }
-        ${blackHover} 
         `}</style>
     </>
   )

@@ -1,7 +1,12 @@
 @import '@styles/index.scss';
 
-._container {
+._main {
   margin: auto;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background: $white;
+  top: 0;
 }
 
 ._topContainer {
@@ -123,4 +128,19 @@
   margin-bottom: 0;
   padding: 0 1rem;
   text-transform: uppercase;
+}
+
+._responsive {
+  display: none;
+}
+
+@include responsive(lg) {
+  ._responsive {
+    display: block;
+    height: 4rem;
+  }
+
+  ._main {
+    display: none;
+  }
 }

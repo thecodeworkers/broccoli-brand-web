@@ -33,3 +33,23 @@
     }
   }
 }
+
+@include responsive(sm) {
+  ._colorContainer {
+    width: 20px;
+    height: 20px;
+
+    ._colorCircle {
+      width: 10px;
+      height: 10px; 
+    }
+    
+    &:hover {
+      ._colorCircleHover {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+

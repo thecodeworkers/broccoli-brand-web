@@ -10,7 +10,6 @@
   width: 50%;
 }
 
-
 ._socialInfoContainer {
   display: flex;
   flex-direction: column;
@@ -35,4 +34,47 @@
 
 ._buttonContainer {
   width: 250px;
+}
+
+@include responsive(md) {
+  ._socialContent {
+    flex-direction: column;
+    height: none;
+    
+    ._socialImageContainer {
+      width: 100%;
+    }
+
+    ._socialInfoContainer {
+      width: 100%;
+    }
+  }
+
+  ._socialContainer {
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  ._socialTitle {
+    font-size: $roboto38;
+  }
+
+  ._socialDescription {
+    font-size: $roboto18;
+    margin: 1rem 0;
+  }
+  ._buttonContainer {
+    width: -webkit-fill-available;
+  }
+}
+
+@include responsive(sm) {
+  ._socialTitle {
+    font-size: $roboto24;
+    font-weight: 900;
+  }
+
+  ._socialDescription {
+    font-size: $roboto18;
+  }
 }

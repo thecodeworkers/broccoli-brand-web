@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 const Brand = ({data}) => {
 
 	const [pos, setPos] = useState(0)
+  const [responsive, setResponsive] = useState('');
 
 	useEffect(() => {
     const handleUserScroll = (event) => {
@@ -15,14 +16,28 @@ const Brand = ({data}) => {
     return () => window.removeEventListener('scroll', handleUserScroll);
 	})
 
+  useEffect(() => {
+    if(window.innerWidth <= 576) setResponsive('576');
+    if(window.innerWidth >576 && window.innerWidth <= 768) setResponsive('768');
+    window.addEventListener('resize', checkWidth);
+
+    return () => window.removeEventListener('resize', checkWidth);
+  }, [responsive]);
+
+  const checkWidth = () => {
+    if(window.matchMedia('(max-width: 576px) and (min-width: 370px)').matches) return setResponsive('576');
+    if(window.matchMedia('(max-width: 991px) and (min-width: 769px)').matches) return setResponsive('769');
+    if(window.matchMedia('(min-width: 992px)').matches) return setResponsive('992');
+  };
+  
 	return (
 		<section className={styles._principalBrandContent}>
 				<div className={styles._imageContainer} style={{transform: `translate(calc(-${pos}px + 300px))`}}>
-					{/* <img id="element" style={{transform: `translate(-${pos}px)`}} src="images/backgrounds/Banner_animado1.png" alt="" /> */}
 					<div className='_firstBrand' ></div>
 				</div>
-				<div className={styles._imageContainer} style={{transform: `translate(calc(${pos}px - 9000px))`}}>
-					{/* <img style={{transform: `translate(calc(-3000px + ${pos}px))`}} src="images/backgrounds/Banner_animado2.png" alt="" /> */}
+				<div className={styles._imageContainer} style={{
+          transform: responsive >= '991' ? `translate(calc(${pos}px - 9000px))` : `translate(calc(${pos}px - 3000px))`
+          }}>
 					<div className='_secondBrand' ></div>
 				</div>
 			<style jsx>
@@ -39,6 +54,10 @@ const Brand = ({data}) => {
 				background-size: contain;
 				height: 30vh;
 			}
+      @media(max-width: 576px) {
+        ._firstBrand, ._secondBrand  {
+          height: 20vh;
+        }
 			`}
 			</style>
 		</section>
