@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 
-const Button = ({ borderColor = 'white', text, colorText = 'white', link = '', blackHover = false, type = "button" }) => {
+const Button = ({ borderColor = 'white', text, colorText = 'white', link = '', blackHover = false, type = null }) => {
   return (
     <>
       <a href={link}>
