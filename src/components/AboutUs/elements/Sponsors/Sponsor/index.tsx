@@ -24,6 +24,7 @@ const Sponsor = ({ data }) => {
             background-image: url('${data?.image?.mediaItemUrl}');
             background-size: cover;
             background-repeat: no-repeat;
+            background-position: center;
           }   
         `}
       </style>

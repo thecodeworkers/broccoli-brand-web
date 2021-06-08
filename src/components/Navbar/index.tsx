@@ -76,7 +76,7 @@ const Navbar = () => {
       </nav>
 
       <div className={styles._responsive}>
-        <NavbarResponsive />
+        <NavbarResponsive data={general} />
       </div>
     </>
   )

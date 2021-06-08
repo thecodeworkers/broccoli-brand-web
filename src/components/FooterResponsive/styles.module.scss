@@ -1,0 +1,96 @@
+@import '@styles/index.scss';
+
+._responsiveContainer {
+  background-color: $codGray;
+  color: $white;
+}
+
+._locationContainer, ._contactContainer, 
+._principalFormContainer {
+  border-bottom: 1px solid $white;
+}
+
+._infoContainer {
+  width: 90%;
+  margin: auto;
+  font-family: $roboto;
+  font-size: $roboto16;
+  padding: 1.5rem 0;
+}
+
+._schedulesContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+._email {
+  margin-bottom: 2.5rem;
+}
+
+._formContainer {
+  margin-top: 2%;
+  height: 2.5rem;
+
+  input {
+    width: 58%;
+    border: 2px solid white;
+    height: -webkit-fill-available;
+    background: $codGray;
+    padding: 1% 5%;
+    font-family: $roboto;
+    font-size: $roboto16;
+    color: $white;
+  }
+
+  ._formButton {
+    font-family: $roboto;
+    font-size: $roboto16;
+    width: 30%;
+    height: 100%;
+    background-color: $white;
+    color: $black;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+._internNavigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+._socialMedia {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  ._iconMargin {
+    margin-right: 10%;
+    cursor: pointer;
+  }
+
+  ._iconMargin:last-child {
+    margin-right: 0%;
+  }
+}
+
+._copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ._copyrightText {
+    color: $boulder;
+  }
+}
+
+._logos {
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+
+  ._logo {
+    margin-right: 15%;
+  }
+}

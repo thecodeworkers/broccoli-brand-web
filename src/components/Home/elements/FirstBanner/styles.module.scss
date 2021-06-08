@@ -17,15 +17,6 @@
   animation: fadeIn 1s ease;
 }
 
-._imageContainer {
-  height: 85vh;
-}
-
-._img {
-  width: 100%;
-  height: inherit;
-}
-
 @keyframes fadeIn {
   0% {
     opacity: 0.7;
@@ -59,9 +50,49 @@
   width: 250px;
 }
 
+@include responsive(xxl) { 
+  ._rightShopContainer {
+    right: 15vw;
+  }
+}
+
 @include responsive(lg) {
   ._content {
     margin-top: 0%;
+  }
+
+  ._textTitle {
+    font-size: $roboto26;
+  }
+
+  ._buttonContainer {
+    width: 200px;
+  }
+
+  ._rightShopContainer {
+    right: 17vw;
+  }
+}
+
+@include responsive(md) {
+  ._leftShopContainer {
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  ._rightShopContainer {
+    left: 0;
+    right: 0;
+    bottom: 5vh;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  ._buttonContainer {
+    width: 100%;
   }
 }
 

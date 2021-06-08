@@ -12,5 +12,16 @@
 }
 
 ._imageContactContainer {
+  display: block;
   width: 50%;
+}
+
+@include responsive(md) {
+  ._imageContactContainer {
+    display: none;
+  }
+
+  ._contactFormContainer {
+    width: 100%;
+  }
 }

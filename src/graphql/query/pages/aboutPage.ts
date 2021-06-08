@@ -7,8 +7,14 @@ aboutPage:page(id: "${aboutId}") {
     id
     aboutUs {
       mainBanner {
-        mediaItemUrl
-        slug
+        image {
+          mediaItemUrl
+          slug
+        }
+        responsiveImage {
+          mediaItemUrl
+          slug
+        }
       }
       brandImage {
         mediaItemUrl

@@ -150,3 +150,22 @@
 ._marginRight {
   width: 15rem;
 }
+
+._responsive {
+  display: none;
+}
+
+@include responsive(md) {
+  ._footerContainer {
+    display: none;
+  }
+
+  ._responsive {
+    display: block;
+    // height: 4rem;
+  }
+
+  ._main {
+    display: none;
+  }
+}
