@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components';
 import { World, Coin, Bag, User, Pipe } from '@images/svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLanguage, setLoader } from '@store/actions';
+import { changeLanguage, openModal, setLoader } from '@store/actions';
 import { useRouter } from 'next/router';
 
 const Navbar = () => {
@@ -20,6 +20,10 @@ const Navbar = () => {
       if (loader) dispatch(setLoader(true))
       router.push(route)
     }
+  }
+
+  const modal = (type) => {
+    dispatch(openModal(type))
   }
 
   return (
@@ -49,9 +53,9 @@ const Navbar = () => {
             </div>
             <div className={styles._topSection}>
               <User />
-              <div className={[styles._topText, styles._rightMargin].join(" ")}>{general?.navigationBar?.login}</div>
+              <div className={[styles._topText, styles._rightMargin].join(" ")} onClick={() => modal('login')}>{general?.navigationBar?.login}</div>
               <Pipe />
-              <div className={styles._topText}>{general?.navigationBar?.register}</div>
+              <div className={styles._topText} onClick={() => modal('register')}>{general?.navigationBar?.register}</div>
             </div>
           </div>
         </section>

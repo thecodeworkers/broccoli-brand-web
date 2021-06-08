@@ -3,6 +3,8 @@ import { SET_LANGUAGE, SET_RESOURCES } from './action-types'
 
 const initialState = {
   general: {},
+  register: {},
+  login: {},
   language: 'ES'
 }
 
