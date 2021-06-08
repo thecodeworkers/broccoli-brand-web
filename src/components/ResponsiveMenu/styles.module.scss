@@ -68,9 +68,11 @@
     color: $white;
     padding: 0.8rem 0%;
 
+
     ._linkText {
       @include regularText;
       margin-left: 5%;
+      cursor: pointer;
     }
   }
 

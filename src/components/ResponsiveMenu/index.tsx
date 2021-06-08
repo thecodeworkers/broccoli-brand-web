@@ -1,10 +1,23 @@
 import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { World, Coin, User } from '@images/svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeLanguage, setLoader } from '@store/actions'
+import { useRouter } from 'next/router'
 
-const ResponsiveMenu = ({ show = 0, method}) => {
+const ResponsiveMenu = ({ show = 0, method, data}) => {
 
   const [unfold, setUnfold] = useState(false)
+
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  const navigation = (route, loader = false) => {
+    if (router.pathname != route) {
+      if (loader) dispatch(setLoader(true))
+      router.push(route)
+    }
+  }
 
   const assignClass = () => {
     if (show === 0) return styles._mainStatic
@@ -26,42 +39,39 @@ const ResponsiveMenu = ({ show = 0, method}) => {
     <div className={assignClass()}>
       <div className={[styles._content, unfold ? styles._listed : styles._noListed].join(" ")}>
         <section className={styles._internalLinks}>
-          <div className={[styles._internalSection, styles._homeSection].join(" ")}>
-            <p className={styles._linkText}>HOME</p>
-            <img className={styles._whiteArrow} src='images/backgrounds/white-arrow.svg' alt='arrow' onClick={() => changeUnfold()} />
-          </div>
-          <div className={assignShow()}>
-            <div className={styles._shoppingContainer}>
-              <div className={styles._shoppingTitle}>
-                <p className={styles._title}>Categorias</p>
+          {data?.navigationBar?.navigation?.map((nav, index) => (
+            <div key={index}>
+              <div onClick={() => navigation(nav.link, true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
+                <p className={styles._linkText}>{nav.text}</p>
+                {index == 0 ? <img className={styles._whiteArrow} src='images/backgrounds/white-arrow.svg' alt='arrow' onClick={() => changeUnfold()} /> : ''}
               </div>
-              <div className={styles._shoppingSections}>
-                <p className={styles._filter}>Pants</p>
-                <p className={styles._filter}>Shorts</p>
-                <p className={styles._filter}>Skirts</p>
-                <p className={styles._filter}>Jackets</p>
-                <p className={styles._filter}>Sweaters</p>
-                <p className={styles._filter}>Socks</p>
-              </div>
-              <div className={styles._shoppingTitle}>
-                <p className={styles._title}>Drops</p>
-              </div>
-              <div className={styles._shoppingSections}>
-                <p className={styles._filter}>Origen</p>
-                <p className={styles._filter}>Destiny</p>
-                <p className={styles._filter}>Tucan</p>
-              </div>
+              {index == 0 ? 
+                <div className={assignShow()}>
+                  <div className={styles._shoppingContainer}>
+                    <div className={styles._shoppingTitle}>
+                      <p className={styles._title}>Categorias</p>
+                    </div>
+                    <div className={styles._shoppingSections}>
+                      <p className={styles._filter}>Pants</p>
+                      <p className={styles._filter}>Shorts</p>
+                      <p className={styles._filter}>Skirts</p>
+                      <p className={styles._filter}>Jackets</p>
+                      <p className={styles._filter}>Sweaters</p>
+                      <p className={styles._filter}>Socks</p>
+                    </div>
+                    <div className={styles._shoppingTitle}>
+                      <p className={styles._title}>Drops</p>
+                    </div>
+                    <div className={styles._shoppingSections}>
+                      <p className={styles._filter}>Origen</p>
+                      <p className={styles._filter}>Destiny</p>
+                      <p className={styles._filter}>Tucan</p>
+                    </div>
+                  </div>
+                </div> : ''
+              }
             </div>
-          </div>
-          <div className={styles._internalSection}>
-            <p className={styles._linkText}>ABOUT US</p>
-          </div>
-          <div className={styles._internalSection}>
-            <p className={styles._linkText}>SHOP</p>
-          </div>
-          <div className={styles._internalSection}>
-            <p className={styles._linkText}>CONTACTO</p>
-          </div>
+          ))}
         </section>
 
         <section className={styles._internalSettings}>
