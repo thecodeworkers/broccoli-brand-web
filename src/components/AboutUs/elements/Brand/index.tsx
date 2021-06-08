@@ -30,6 +30,13 @@ const Brand = ({ data }) => {
 			    }
 			  `}
       </style>
+      <style jsx>
+			{` @media(max-width: 576px) {
+        ._firstBrand  {
+          height: 20vh;
+        }
+			`}
+			</style>
     </section>
   )
 }

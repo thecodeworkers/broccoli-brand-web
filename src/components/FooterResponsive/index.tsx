@@ -57,7 +57,7 @@ const FooterResponsive = (data) => {
             <div className={styles._iconMargin}><Whatsapp /></div>
           </div>
           <div className={styles._copyright}>
-            <p>Copyright © Broccoli Brand</p>
+            <p className={styles._copyrightText}>Copyright © Broccoli Brand</p>
             <div className={styles._logos}>
               <div className={styles._logo}>
                 <a href='https://www.thecodeworkers.com' target='_blank'>

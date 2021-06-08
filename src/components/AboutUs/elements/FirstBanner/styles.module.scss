@@ -1,5 +1,9 @@
 @import '@styles/index.scss';
 
+._content {
+  margin-top: 6.5rem;
+}
+
 ._main {
   position: relative;
   height: 85vh;
@@ -8,4 +12,10 @@
 ._img {
   width: 100%;
   height: inherit;
+}
+
+@include responsive(lg) {
+  ._content {
+    margin-top: 0%;
+  }
 }

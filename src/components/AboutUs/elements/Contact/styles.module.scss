@@ -13,6 +13,7 @@
 
 ._imageContactContainer {
   width: 50%;
+  display: block;
 }
 
 ._imageContact {
@@ -22,4 +23,14 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+@include responsive(md) {
+  ._imageContactContainer {
+    display: none;
+  }
+
+  ._contactFormContainer {
+    width: 100%;
+  }
 }

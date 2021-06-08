@@ -15,7 +15,7 @@
 ._productsTitle {
   font-family: $roboto;
   font-size: $roboto44;
-  font-weight: normal;
+  font-weight: 900;
 }
 
 ._productsText {
@@ -28,5 +28,21 @@
 ._productContainer {
   display: flex;
   justify-content: space-between;
-  margin-top: 1%;
+  margin-top: 3%;
+}
+
+@include responsive(sm) {
+  ._headerContainer {
+    justify-content: center;
+    margin: 2rem auto;
+
+    ._productsTitle {
+      font-size: $roboto24;
+      font-weight: 900;
+    }
+  }
+
+  ._productContainer {
+    flex-wrap: wrap;
+  }
 }

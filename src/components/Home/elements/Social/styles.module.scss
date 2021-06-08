@@ -10,7 +10,6 @@
   width: 50%;
 }
 
-
 ._socialInfoContainer {
   display: flex;
   flex-direction: column;
@@ -40,7 +39,7 @@
 @include responsive(md) {
   ._socialContent {
     flex-direction: column;
-    height: 95vh;
+    height: none;
     
     ._socialImageContainer {
       width: 100%;

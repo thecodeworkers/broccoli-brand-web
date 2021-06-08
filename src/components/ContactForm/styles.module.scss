@@ -1,8 +1,8 @@
 @import '@styles/index.scss';
 
 ._content {
-  width: 100%;
-  margin: auto 10%;
+  width: 90%;
+  margin: auto;
   padding: 8% 0;
   font-family: $roboto;
 }
@@ -60,9 +60,7 @@
   position: relative;
   display: block;
   border: 1px solid $black;
-  max-width: 400px;
   min-width: 180px;
-  margin: 0 auto;
   z-index: 10;
   font-size: $roboto18;
   height: 2.5rem;
