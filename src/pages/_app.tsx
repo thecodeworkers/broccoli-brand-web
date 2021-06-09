@@ -19,8 +19,6 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
     dispatch(setLoader(false))
   }, [])
 
-  console.log(alert)
-
   return (
     <>
       <Head>
