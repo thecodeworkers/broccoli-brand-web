@@ -36,7 +36,6 @@ const Login = () => {
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
             </label>
             <div className={styles._linkBox}>
-              <p className={styles._link} onClick={() => { dispatch(openModal('change')) }}>{login.changePassword}</p>
               <p className={styles._link} onClick={() => { dispatch(openModal('recover')) }}>{login.forgotPassword}</p>
             </div>
             <div className={styles._button}>
