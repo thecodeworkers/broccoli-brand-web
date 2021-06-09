@@ -12,6 +12,25 @@
   align-items: center;
 }
 
+._tooltip {
+  position: absolute;
+  bottom: 4rem;
+  background-color: $black;
+  color: $white;
+  padding: 0.5rem;
+  opacity: 0;
+  transition: all 0.5s;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: $black transparent transparent transparent;
+  }
+}
+
 ._registerContainer {
   width: 40rem;
   height: 40rem;
@@ -35,6 +54,15 @@
   flex-direction: column;
   width: 100%;
   padding: 0;
+  display: block;
+  position: relative;
+
+  &:hover {
+    ._tooltip {
+      display: block;
+      opacity: 1;
+    }
+  }
 }
 
 ._input {
@@ -59,7 +87,7 @@
 }
 
 ._link {
-  width: fit-content  ;
+  width: fit-content;
   font-family: $roboto;
   font-size: $roboto16;
   color: $gray;
@@ -91,17 +119,17 @@
   cursor: pointer;
 }
 
-._inputError{
+._inputError {
   border-color: $warning;
   color: $warning;
 }
 
-._linkBlack{
+._linkBlack {
   color: $black;
   text-decoration: underline $black;
 }
 
-._loginBox{
+._loginBox {
   height: calc(100% - 10rem);
   padding: 5rem 8rem;
 }

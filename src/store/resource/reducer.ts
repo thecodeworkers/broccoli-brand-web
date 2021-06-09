@@ -5,6 +5,7 @@ const initialState = {
   general: {},
   register: {},
   login: {},
+  recover: {},
   language: 'ES'
 }
 

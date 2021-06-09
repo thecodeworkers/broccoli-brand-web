@@ -23,22 +23,32 @@ const Register = () => {
         </div>
         <form onSubmit={formik.handleSubmit}>
           <label className={errors.name && touched.name ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
+            <span className={styles._tooltip}>{register.tooltips?.name}</span>
             {register.name}
             <input id="name" name="name" type="text" className={errors.name && touched.name ? [styles._inputError, styles._input].join(' ') : styles._input}
               onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} />
           </label>
           <label className={errors.email && touched.email ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
+            <span className={styles._tooltip}>{register.tooltips?.email}</span>
             {register.email}
             <input id="email" name="email" type="text" className={errors.email && touched.email ? [styles._inputError, styles._input].join(' ') : styles._input}
               onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} />
           </label>
+          <label className={errors.phone && touched.phone ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
+            <span className={styles._tooltip}>{register.tooltips?.phone}</span>
+            {register.phone}
+            <input id="phone" name="phone" type="text" className={errors.phone && touched.phone ? [styles._inputError, styles._input].join(' ') : styles._input}
+              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.phone} />
+          </label>
           <div className={styles._doubleInput}>
             <label className={errors.password && touched.password ? [styles._inputError, styles._inputBox, styles._inputBoxDouble].join(' ') : [styles._inputBox, styles._inputBoxDouble].join(' ')}>
+              <span className={styles._tooltip}>{register.tooltips?.password}</span>
               {register.password}
               <input id="password" name="password" type="password" className={errors.password && touched.password ? [styles._inputError, styles._input].join(' ') : styles._input}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
             </label>
             <label className={errors.confirmPassword && touched.confirmPassword ? [styles._inputError, styles._inputBox, styles._inputBoxDouble].join(' ') : [styles._inputBox, styles._inputBoxDouble].join(' ')}>
+              <span className={styles._tooltip}>{register.tooltips?.confirmPassword}</span>
               {register.confirmPassword}
               <input id="confirmPassword" name="confirmPassword" type="password" className={errors.confirmPassword && touched.confirmPassword ? [styles._inputError, styles._input].join(' ') : styles._input}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword} />

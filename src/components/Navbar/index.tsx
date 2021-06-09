@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
 import { World, Coin, Bag, User, Pipe } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeLanguage, openModal, setLoader } from '@store/actions'
+import { changeLanguage, logout, openModal, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
 
@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const dispatch = useDispatch()
   const router = useRouter()
-  const { resource: { language, general: generalPage = {} } } = useSelector((state: any) => state)
+  const { resource: { language, general: generalPage = {} }, user } = useSelector((state: any) => state)
   const { general } = generalPage
 
   const changeLang = (event) => dispatch(changeLanguage(event.target.value))
@@ -26,6 +26,8 @@ const Navbar = () => {
   const modal = (type) => {
     dispatch(openModal(type))
   }
+
+  console.log(user)
 
   return (
     <>
@@ -54,9 +56,19 @@ const Navbar = () => {
             </div>
             <div className={styles._topSection}>
               <User />
-              <div className={[styles._topText, styles._rightMargin].join(" ")} onClick={() => modal('login')}>{general?.navigationBar?.login}</div>
-              <Pipe />
-              <div className={styles._topText} onClick={() => modal('register')}>{general?.navigationBar?.register}</div>
+              {user.isAuth ? (
+                <>
+                  <div className={[styles._topText, styles._rightMargin].join(" ")}>{user.user?.email}</div>
+                  <Pipe />
+                  <div className={styles._topText} onClick={() => dispatch(logout())}>{general?.navigationBar?.logout}</div>
+                </>
+              ) : (
+                <>
+                  <div className={[styles._topText, styles._rightMargin].join(" ")} onClick={() => modal('login')}>{general?.navigationBar?.login}</div>
+                  <Pipe />
+                  <div className={styles._topText} onClick={() => modal('register')}>{general?.navigationBar?.register}</div>
+                </>
+              )}
             </div>
           </div>
         </section>

@@ -1,12 +1,14 @@
 import { GraphQlClient, normalized } from '@utils'
 import loginMutation from './loginUser'
 import registerMutation from './registerUser'
+import sendPasswordResetMutation from './sendPasswordResetEmail'
 
 const mutations = async (resource: any, values) => {
 
   const resources = {
     'login': loginMutation,
-    'registerUser': registerMutation
+    'registerCustomer': registerMutation,
+    'sendPasswordResetEmail': sendPasswordResetMutation
   }
 
   const query = `
@@ -15,8 +17,8 @@ const mutations = async (resource: any, values) => {
     }
   `
   const result: any = await GraphQlClient(query)
-
-  return normalized(result)
+  if('message' in result) return result;
+  return normalized(result[resource])
 }
 
 export default mutations

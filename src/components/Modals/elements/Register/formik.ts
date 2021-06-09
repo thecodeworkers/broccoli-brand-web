@@ -8,6 +8,7 @@ export const formikConfig = (dispatch) => (useFormik({
     name: '',
     lastname: '',
     email: '',
+    phone: '',
     password: '',
     confirmPassword: ''
   },
@@ -20,6 +21,9 @@ export const formikConfig = (dispatch) => (useFormik({
     email: Yup.string()
       .required()
       .matches(emailRegex),
+
+    phone: Yup.string()
+      .required(),
 
     password: Yup.string()
       .min(8)
@@ -34,7 +38,6 @@ export const formikConfig = (dispatch) => (useFormik({
   }),
 
   onSubmit: values => {
-    console.log('hola')
     dispatch(signUp(values))
   }
 }))

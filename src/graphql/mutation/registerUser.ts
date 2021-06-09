@@ -1,9 +1,9 @@
 import { authId } from '@utils/pageIds'
 
-const registerUser = ({ email, password, name }) => {
+const registerUser = ({ email, password, name, phone }) => {
   const nameArray = name.split(' ')
   return (`
-      registerUser(
+  registerCustomer(
         input: {
           clientMutationId: "${authId}",
           username: "${email}",
@@ -11,8 +11,11 @@ const registerUser = ({ email, password, name }) => {
           password: "${password}",
           firstName: "${nameArray[0]}",
           lastName: "${nameArray[1] ? nameArray[1] : ''}"
+          billing: { 
+            phone: "${phone}"
+          }
         }) {
-        user {
+        customer {
           jwtAuthToken
           jwtRefreshToken
           email

@@ -11,6 +11,13 @@ registerPage: page(id: "${registerId}") {
       confirmPassword
       login
       buttonText
+      tooltips {
+        name
+        email
+        phone
+        password
+        confirmPassword
+      }
     }
     id
   }

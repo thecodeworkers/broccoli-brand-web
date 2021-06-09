@@ -13,6 +13,10 @@ loginPage: page(id: "${loginId}") {
       changePassword
       forgotPassword
       guest
+      tooltips {
+        email
+        password
+      }
     }
     id
   }

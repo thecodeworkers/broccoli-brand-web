@@ -24,18 +24,20 @@ const Login = () => {
           </div>
           <form onSubmit={formik.handleSubmit}>
             <label className={errors.email && touched.email ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
+              <span className={styles._tooltip}>{login.tooltips?.email}</span>
               {login.email}
               <input id="email" name="email" type="text" className={errors.email && touched.email ? [styles._inputError, styles._input].join(' ') : styles._input}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} />
             </label>
             <label className={errors.password && touched.password ? [styles._inputError, styles._inputBox].join(' ') : [styles._inputBox].join(' ')}>
+              <span className={styles._tooltip}>{login.tooltips?.password}</span>
               {login.password}
               <input id="password" name="password" type="password" className={errors.password && touched.password ? [styles._inputError, styles._input].join(' ') : styles._input}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
             </label>
             <div className={styles._linkBox}>
               <p className={styles._link} onClick={() => { dispatch(openModal('change')) }}>{login.changePassword}</p>
-              <p className={styles._link} onClick={() => { dispatch(openModal('forgot')) }}>{login.forgotPassword}</p>
+              <p className={styles._link} onClick={() => { dispatch(openModal('recover')) }}>{login.forgotPassword}</p>
             </div>
             <div className={styles._button}>
               <Button text={login.buttonText} borderColor='black' colorText='black' blackHover={true} type='submit' />
