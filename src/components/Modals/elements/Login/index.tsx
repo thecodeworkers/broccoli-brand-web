@@ -1,5 +1,5 @@
 import { Button } from '@components'
-import { closeModal, openModal } from '@store/actions'
+import { closeModal, guestUser, openModal } from '@store/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import styles from './styles.module.scss'
@@ -43,7 +43,7 @@ const Login = () => {
               <Button text={login.buttonText} borderColor='black' colorText='black' blackHover={true} type='submit' />
             </div>
             <div className={styles._linkBox}>
-              <p className={[styles._link, styles._linkBlack].join(' ')}>{login.guest}</p>
+              <p className={[styles._link, styles._linkBlack].join(' ')} onClick={() => { dispatch(guestUser()) }}>{login.guest}</p>
               <p className={[styles._link, styles._linkBlack].join(' ')} onClick={() => { dispatch(openModal('register')) }}>{login.createAccount}</p>
             </div>
           </form>

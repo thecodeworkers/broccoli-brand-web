@@ -8,9 +8,12 @@ const Alert = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       dispatch(setAlert('', false, 'success'))
-    }, 5000)
+    }, 10000)
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [])
 
   return (

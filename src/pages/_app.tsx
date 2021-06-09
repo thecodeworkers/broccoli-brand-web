@@ -5,7 +5,7 @@ import { wrapper } from '@store'
 import '@styles/globals.scss'
 import Head from 'next/head'
 import { Alert, Loader, Modals } from '@components'
-import { closeModal } from '@store/actions'
+import { closeModal, setLoader } from '@store/actions'
 
 const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
 
@@ -16,6 +16,7 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
     store.__persistor.persist()
     dispatch(closeModal())
+    dispatch(setLoader(false))
   }, [])
 
   console.log(alert)

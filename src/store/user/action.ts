@@ -45,6 +45,11 @@ export const signIn: any = (values) => async (dispatch) => {
   }
 }
 
+export const guestUser: any = () => async (dispatch) => {
+  dispatch(actionObject(SIGN_IN, { ...{ user: { email: 'guest' } }, isAuth: true }));
+  dispatch(closeModal())
+}
+
 export const forgotPassword: any = (values) => async (dispatch) => {
   try {
     dispatch(actionObject(LOADER, true))
@@ -59,7 +64,7 @@ export const forgotPassword: any = (values) => async (dispatch) => {
     dispatch(actionObject(LOADER, false))
     if (error.message === 'Invalid username.') return dispatch(setAlert('Usuario invalido', true, 'warning'))
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
-    
+
   }
 }
 
