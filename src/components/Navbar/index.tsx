@@ -27,8 +27,6 @@ const Navbar = () => {
     dispatch(openModal(type))
   }
 
-  console.log(user)
-
   return (
     <>
       <nav className={styles._main}>
