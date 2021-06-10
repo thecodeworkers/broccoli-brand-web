@@ -7,6 +7,7 @@ generalPage: page(id: "${generalId}") {
         login
         register
         carText
+        logout
         navigation {
           text
           link
