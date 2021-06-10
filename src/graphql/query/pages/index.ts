@@ -1,4 +1,4 @@
-import { GraphQlClient, normalized } from '@utils'
+import { GraphQlClient, normalized, normalizedArray } from '@utils'
 import homePageQuery from './homePage'
 import aboutPageQuery from './aboutPage'
 import shopPageQuery from './shopPage'
@@ -23,7 +23,7 @@ const pages = async (resource: any, language, id: string = '') => {
 
   const data = ('translation' in result[resource]) ? result[resource].translation : result[resource]
 
-  const returnData = 'nodes' in result[resource] ? normalized(result[resource].nodes) : normalized(data)
+  const returnData = 'nodes' in data ? normalizedArray(data.nodes) : normalized(data)
 
   return (result) ? returnData : {}
 }
