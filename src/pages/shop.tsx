@@ -6,9 +6,7 @@ import { Shop } from '@components'
 
 const ShopPage = () => {
   const { page: { shopPage: { shop } } } = useSelector((state: any) => state)
-  console.log(shop)
   return <Shop data={shop} />
-  // return <Shop />
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
