@@ -1,0 +1,39 @@
+@import '@styles/index.scss';
+
+@mixin separation {
+  padding: 10px 15px;
+}
+
+._container {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  width: 100%;
+  justify-content: center;
+}
+
+._numberContainer {
+  @include separation;
+  display: flex;
+  align-items: center;
+  border: 1px solid $black;
+  height: -webkit-fill-available;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+._number {
+  font-size: $roboto22;
+  font-family: $roboto;
+  font-weight: 400;
+}
+
+._arrowContainer {
+  @include separation;
+  display: flex;
+  height: -webkit-fill-available;
+  align-items: center;
+  margin: 0 5%;
+  border: 1px solid $black;
+  cursor: pointer;
+}

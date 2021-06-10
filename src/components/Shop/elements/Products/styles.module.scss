@@ -1,0 +1,108 @@
+@import '@styles/index.scss';
+
+._mainContent {
+  margin: 9.5rem 5% 3% 0;
+  display: flex;
+}
+
+._productsContainer {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  
+  ._productContainer {
+    display: flex;
+    flex-wrap: wrap;
+
+    ._item {
+      width: 24%;
+      height: 25rem;
+      margin-bottom: 3%;
+      margin-left: 1%;
+    }
+  }
+}
+
+._paginationContainer {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  margin: 5% 0 2% 0;
+}
+
+._customSelect {
+  position: relative;
+  display: flex;
+  border: 1px solid $black;
+  width: 100%;
+  z-index: 10;
+  font-size: $roboto18;
+  height: 2.5rem;
+  align-items: center;
+  cursor: pointer;
+
+  select {
+    border: none;
+    outline: none;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 3%;
+    font-size: 14px;
+    height: -webkit-fill-available;
+  }
+
+  &:after {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    content: url('../../../../../public/images/backgrounds/arrow.svg');
+    text-align: center;
+    color: $black;
+    font-size: 18px;
+    border-left: 1px solid $black;
+    font-weight: 700;
+    z-index: -1;
+  }
+
+  ._customSelectText {
+    font-family: $roboto;
+    padding-left: 15%;
+  }
+}
+
+._sortByContainer {
+  width: 17%;
+  align-self: flex-end;
+  margin-bottom: 5%;
+}
+
+._colorFilter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+._noProductsText {
+  font-family: $roboto;
+  font-size: $roboto44;
+  color: $boulder;
+  text-align: center;
+  width: 100%;
+}
+
+@include responsive(lg) {
+  ._mainContent {
+    margin: 3.5rem 5% 3% 0;
+  }
+}

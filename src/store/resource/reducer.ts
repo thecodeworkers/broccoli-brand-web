@@ -3,10 +3,11 @@ import { SET_LANGUAGE, SET_RESOURCES } from './action-types'
 
 const initialState = {
   general: {},
+  language: 'ES',
+  products: {},
   register: {},
   login: {},
   recover: {},
-  language: 'ES'
 }
 
 const resourceReducer = (state = initialState, { type, payload }: AnyAction) => {
