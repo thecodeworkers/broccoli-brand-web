@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import { Navbar, Footer } from '@components'
-import { Products } from './elements'
 
 const Shop = ({ data }) => {
   return data ? (
@@ -10,7 +9,7 @@ const Shop = ({ data }) => {
         <title>Broccoli</title>
       </Head>
       <Navbar />
-      <Products data={data} />
+      <h1>Individual</h1>
       <Footer />
     </div>
   ) : <div></div>

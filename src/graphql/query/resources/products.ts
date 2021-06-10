@@ -1,6 +1,7 @@
 const products = () => `
 products(first: 10000000) {
   nodes {
+    id
     name
     slug
     status
