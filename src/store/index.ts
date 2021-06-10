@@ -30,7 +30,7 @@ const bindMiddleware = (middleware) => {
 
 const reducer = (state, action) => {
   let reconcileState = {}
-  if (action.type == '__NEXT_REDUX_WRAPPER_HYDRATE__') reconcileState = reconcile(state)
+  if (action.type == '__NEXT_REDUX_WRAPPER_HYDRATE__') reconcileState = reconcile(state, action.payload)
   if (action.type === HYDRATE) return { ...state, ...action.payload, ...reconcileState }
   return reducers(state, action)
 }

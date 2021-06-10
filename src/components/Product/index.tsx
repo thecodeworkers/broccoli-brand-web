@@ -3,8 +3,6 @@ import { ColorPicker } from '@components'
 
 const Product = ({ containerStyles = null, details = true, data = null }) => {
 
-  console.log(data)
-
   return (
     <section className={!containerStyles ? styles._container : `${styles._container} ${containerStyles}`}>
       <section className={styles._productContainer}>
