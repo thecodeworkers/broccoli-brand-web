@@ -32,6 +32,10 @@ const reconcile = (state, payload) => {
         if ('general' in currentResource.general)
           trueState = { ...trueState, resource: currentResource }
         break
+      case 'user':
+        const currentUser = state[key]
+        trueState = { ...trueState, user: currentUser }
+        break
       default:
         break;
     }
