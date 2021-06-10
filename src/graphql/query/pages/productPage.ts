@@ -1,23 +1,30 @@
 const product = (id) => `
-productPage:simpleProduct(id: "${id}") {
+productPage:product(id: "${id}") {
+  id
   name
-  regularPrice
   description
   shortDescription
-  price
+  sku
+  slug
   image {
     mediaItemUrl
-  }
-  galleryImages {
-    nodes {
-      mediaItemUrl
-    }
   }
   attributes {
     nodes {
       name
       options
     }
+  }
+  ... on SimpleProduct {
+    id
+    name
+    galleryImages {
+      nodes {
+        mediaItemUrl
+      }
+    }
+    price
+    regularPrice
   }
 }
 `
