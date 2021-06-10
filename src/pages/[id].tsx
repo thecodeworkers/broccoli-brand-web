@@ -5,9 +5,8 @@ import { getPages } from '@store/actions'
 import { Individual } from '@components'
 
 const IndividualProduct = () => {
-  const state = useSelector((state: any) => state)
-  console.log(state)
-  return <Individual data={{}} />
+  const { page: { productPage: shop } } = useSelector((state: any) => state)
+  return <Individual data={shop} />
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(

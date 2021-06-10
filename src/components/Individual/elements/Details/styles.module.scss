@@ -1,0 +1,47 @@
+@import '@styles/index.scss';
+
+._content {
+  margin-top: 6.5rem;
+}
+
+._detailsContainter {
+  display: flex;
+  height: 85vh;
+}
+
+._leftContainer {
+  width: 50%;
+}
+
+._rightContainer {
+  width: 50%;
+  margin: 10% 0px;
+}
+
+._buttonContainer {
+  width: 200px;
+}
+
+._boxContainer {
+  border-top: 1px solid $black;
+  border-bottom: 1px solid $black;
+  display: flex;
+
+  :last-child {
+    border-left: 1px solid $black;
+  }
+}
+
+._half {
+  width: 50%;
+}
+
+._colorsContainer {
+  display: flex;
+}
+
+@include responsive(lg) {
+  ._content {
+    margin-top: 0%;
+  }
+}
