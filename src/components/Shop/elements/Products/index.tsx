@@ -8,7 +8,7 @@ import Recents from '../Recents'
 
 const perPage = 12
 
-const Products = () => {
+const Products = ({ data }) => {
 
   const [page, setPage] = useState(1)
 
@@ -42,13 +42,13 @@ const Products = () => {
           <div className={styles._paginationContainer}>
             {
               products?.nodes?.length ? (
-                <Pagination color='#707070' currentPage={page} items={products.nodes} perPage={perPage} changePage={setPage}/>
+                <Pagination currentPage={page} items={products.nodes} perPage={perPage} changePage={setPage}/>
               ) : null
             }
           </div>
         </div>
       </section>
-      <Recents />
+      <Recents data={data} />
     </>
   )
 }

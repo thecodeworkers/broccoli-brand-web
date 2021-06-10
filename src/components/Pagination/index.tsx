@@ -3,7 +3,7 @@ import { useState } from 'react'
 import styles from './styles.module.scss'
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons'
 
-const Pagination = ({ items, perPage, changePage, currentPage, color = '#707070', activeColor = '#262833' }) => {
+const Pagination = ({ items, perPage, changePage, currentPage, color = '#707070', activeColor = '#000000' }) => {
   const [firstPage, setFirstPage] = useState(1)
 
   const totalItems = items.length
