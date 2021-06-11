@@ -54,8 +54,9 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
       <style jsx>
         {`
           ._image {
-            background-image: url(${data ? data.image?.mediaItemUrl : 'https://picsum.photos/200/300'});
+            background-image: url(${data ? data.image?.mediaItemUrl : 'images/backgrounds/Pic_not_available.png'});
             background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             width: 100%;
             height: 100%;
