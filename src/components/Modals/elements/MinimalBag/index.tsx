@@ -6,7 +6,7 @@ import styles from './styles.module.scss'
 
 const MinimalBag = () => {
 
-  const { resource: { checkout: { checkout = { bag: {} } }, cart, general: generalPage = {} } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {} }, cart: { cart } } = useSelector((state: any) => state)
   const { bag } = checkout
   const { general } = generalPage
   const dispatch = useDispatch()
@@ -14,8 +14,6 @@ const MinimalBag = () => {
   const modal = (type) => {
     dispatch(openModal(type))
   }
-
-  console.log(cart)
 
   return (
     <div className={styles._main}>
@@ -34,7 +32,7 @@ const MinimalBag = () => {
             <div className={styles._tableContainer}>
               {(cart?.contents?.itemCount) ? <></> :
                 <>
-                  <h2 className={styles._title}>No Items In Cart</h2>
+                  <h2 className={[styles._title, styles._titleEmpty].join(' ')}>{bag?.noItems}</h2>
                 </>
               }
             </div>

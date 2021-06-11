@@ -7,9 +7,26 @@ const loginUser = ({ email, password }) => {
         username: "${email}",
         password: "${password}"
       } ) {
-        authToken
-        user {
+        customer {
+          username
+          sessionToken
+          jwtAuthToken
+          displayName
+          firstName
           email
+          lastName
+          id
+          orders(first: 1000000) {
+            nodes {
+              id
+              orderNumber
+              total
+              subtotal
+              status
+              shippingTotal
+            }
+          }
+          totalSpent
         }
       }
   `)

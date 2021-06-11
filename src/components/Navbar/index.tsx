@@ -56,7 +56,7 @@ const Navbar = () => {
               <User />
               {user.isAuth ? (
                 <>
-                  <div className={[styles._topText, styles._rightMargin].join(" ")}>{user.user?.email}</div>
+                  <div className={[styles._topText, styles._rightMargin].join(" ")}>hi! {user.user?.firstName}</div>
                   <Pipe />
                   <div className={styles._topText} onClick={() => dispatch(logout())}>{general?.navigationBar?.logout}</div>
                 </>

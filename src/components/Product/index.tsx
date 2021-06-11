@@ -1,14 +1,19 @@
 import styles from './styles.module.scss'
 import { ColorPicker } from '@components'
+import { useDispatch } from 'react-redux'
+import { addToCar } from '@store/actions'
 
 const Product = ({ containerStyles = null, details = true, data = null }) => {
+  
+  const dispatch = useDispatch()
+  const add = () => { if (data) dispatch(addToCar(data?.databaseId, 1)) }
 
   return (
     <section className={!containerStyles ? styles._container : `${styles._container} ${containerStyles}`}>
       <section className={styles._productContainer}>
         <div className={!details ? `${styles._imageProductContainer} ${styles._imageNoDetailProductContainer}` : styles._imageProductContainer}>
           <div className='_image'></div>
-          <div className={styles._addToCart}>
+          <div className={styles._addToCart} onClick={add}>
             <p className={styles._addToCartText}>ADD TO CART</p>
           </div>
           {!details ? (
@@ -26,13 +31,13 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
               </div>
               <div className={styles._colorSelector}>
                 {
-                  data ? 
-                  data?.attributes?.nodes[0].options.map((color, item) => <ColorPicker key={item} color={color} />) :
-                  <ColorPicker key='1' color='black' />
+                  data ?
+                    data?.attributes?.nodes[0].options.map((color, item) => <ColorPicker key={item} color={color} />) :
+                    <ColorPicker key='1' color='black' />
                 }
               </div>
               <div className={styles._productSizesContainer}>
-                <p className={styles._producSizes}>{ data ? data?.attributes?.nodes[1].options.join(", ") : ' XS, L'}</p>
+                <p className={styles._producSizes}>{data ? data?.attributes?.nodes[1].options.join(", ") : ' XS, L'}</p>
               </div>
             </div>
           </div>
