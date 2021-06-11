@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Product } from '@components'
 import styles from './styles.module.scss'
 
-const Related = () => {
+const Related = ({ data }) => {
+
+  const [gallery, setGallery] = useState([])
+  
+  useEffect(() => {
+    const imagesArray = data?.nodes?.slice(0,4);
+    setGallery(imagesArray)
+  }, [data])
     
   return (
     <>
@@ -12,10 +19,14 @@ const Related = () => {
         </div>
         <div className={styles._productsContainer}>
           <div className={styles._products}>
-            <div className={styles._product}><Product /></div>
-            <div className={styles._product}><Product /></div>
-            <div className={styles._product}><Product /></div>
-            <div className={styles._product}><Product /></div>
+            { 
+              data?.nodes?.length > 0 ? 
+              gallery?.map((product, index) => {
+                return (
+                  <div className={styles._product}><Product key={index} data={product} /></div>
+                )
+              }) : <h2 className={styles._noProductsText}>No products</h2>
+            }
           </div>
         </div>
       </div>

@@ -20,11 +20,23 @@
 ._products {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   width: 100%;
 
   ._product {
     height: 75vh;
+    margin-right: 1%;
     width: 24%;
   }
+
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+._noProductsText {
+  font-family: $roboto;
+  font-size: $roboto44;
+  color: $boulder;
+  text-align: center;
+  width: 100%;
 }

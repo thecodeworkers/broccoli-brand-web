@@ -14,7 +14,7 @@ const Shop = ({ data }) => {
       <Gallery data={data} />
       <Colors />
       <CompleteLook />
-      <Related />
+      <Related  data={data.crossSell} />
       <Footer />
     </div>
   ) : <div></div>

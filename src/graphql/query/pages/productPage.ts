@@ -18,13 +18,29 @@ productPage:product(id: "${id}") {
   ... on SimpleProduct {
     id
     name
+    price
+    regularPrice
     galleryImages {
       nodes {
         mediaItemUrl
       }
     }
-    price
-    regularPrice
+    crossSell {
+      nodes {
+        id
+        name
+        attributes {
+          nodes {
+            id
+            name
+            options
+          }
+        }
+        image {
+          mediaItemUrl
+        }
+      }
+    }
   }
 }
 `
