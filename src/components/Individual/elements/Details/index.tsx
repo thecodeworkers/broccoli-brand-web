@@ -22,7 +22,9 @@ const Details = ({ data }) => {
                 <div className={styles._half}>
                   <h2 className={styles._price}>{data.price}</h2>
                 </div>
-                <div className={styles._half} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
+                <div className={styles._half}>
+                  <div  className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
+                </div>
               </div>
 
               <div className={styles._colorsContainer}>
@@ -34,8 +36,8 @@ const Details = ({ data }) => {
                     </div>
                     <div className={styles._circlesContainer}>
                       {data?.attributes?.nodes[0].options.map((item, index) => (
-                        <div className={styles._circle} key={index}>
-                          <ColorPicker key={index} color={item} />
+                        <div key={index} className={styles._circle}>
+                          <ColorPicker color={item} />
                         </div>
                       ))}
                     </div>
@@ -86,7 +88,7 @@ const Details = ({ data }) => {
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
-        height: 85vh;
+        height: 100%;
       }
     `}</style>
     </>

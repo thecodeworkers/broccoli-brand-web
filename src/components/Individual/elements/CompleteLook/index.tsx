@@ -25,7 +25,7 @@ const Colors = () => {
         background-image: url('images/backgrounds/Pic_not_available.png');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: cover;
+        background-size: 100% 100%;
         border: 1px solid black;
         height: 75vh;
         width: 30%;

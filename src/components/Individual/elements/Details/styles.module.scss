@@ -6,7 +6,7 @@
 
 ._detailsContainter {
   display: flex;
-  height: 85vh;
+  height: calc(100vh - 6.5rem);
 }
 
 ._leftContainer {
@@ -28,7 +28,7 @@
       color: $black;
       text-transform: uppercase;
       font-family: $roboto;
-      font-size: $roboto26;
+      font-size: $roboto32;
     }
   }
 }
@@ -68,7 +68,7 @@
   font-size: $roboto26;
   font-weight: 700;
   width: 60%;
-  margin: 3% auto;
+  margin: 6% auto;
 }
 
 ._colorsContainer {
@@ -180,7 +180,7 @@
 
 ._lastButtonContainer {
   display: flex;
-  margin: 10% auto;
+  margin: 5% auto;
   justify-content: center;
 }
 

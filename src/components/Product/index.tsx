@@ -55,7 +55,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
         {`
           ._image {
             background-image: url(${data ? data.image?.mediaItemUrl : 'images/backgrounds/Pic_not_available.png'});
-            background-size: cover;
+            background-size: 100% 100%;
             background-position: center;
             background-repeat: no-repeat;
             width: 100%;
