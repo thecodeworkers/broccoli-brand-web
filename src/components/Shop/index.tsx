@@ -14,16 +14,6 @@ const Shop = ({ data }) => {
       <Footer />
     </div>
   ) : <div></div>
-  // return (
-  //   <div>
-  //     <Head>
-  //       <title>Broccoli</title>
-  //     </Head>
-  //     <Navbar />
-  //     <Products />
-  //     <Footer />
-  //   </div>
-  // )
 }
 
 export default Shop
