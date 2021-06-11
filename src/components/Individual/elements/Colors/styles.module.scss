@@ -1,0 +1,20 @@
+@import '@styles/index.scss';
+
+._content {
+  width: 90%;
+  margin: auto;
+}
+
+._title {
+  margin: 3% auto;
+  color: $black;
+  text-transform: uppercase;
+  font-family: $roboto;
+  font-size: $roboto24;
+}
+
+._slideContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

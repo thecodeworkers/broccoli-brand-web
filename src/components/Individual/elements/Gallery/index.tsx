@@ -3,7 +3,6 @@ import { createMarkup } from '@utils';
 import styles from './styles.module.scss'
 
 const Gallery = ({ data }) => {
-  console.log(data)
 
   const [gallery, setGallery] = useState([])
   
