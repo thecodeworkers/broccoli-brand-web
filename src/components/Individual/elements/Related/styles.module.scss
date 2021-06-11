@@ -1,0 +1,30 @@
+@import '@styles/index.scss';
+
+._content {
+  width: 90%;
+  margin: 0 auto 3% auto;
+}
+
+._title {
+  margin: 3% auto;
+  color: $black;
+  text-transform: uppercase;
+  font-family: $roboto;
+  font-size: $roboto24;
+}
+
+._productsContainer {
+  display: flex;
+}
+
+._products {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+
+  ._product {
+    height: 75vh;
+    width: 24%;
+  }
+}
