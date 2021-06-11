@@ -6,6 +6,8 @@ const initialState = {
   register: {},
   login: {},
   recover: {},
+  checkout: {},
+  cart:{},
   language: 'ES'
 }
 

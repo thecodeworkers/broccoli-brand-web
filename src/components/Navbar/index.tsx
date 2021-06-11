@@ -48,7 +48,7 @@ const Navbar = () => {
               <Coin />
               <div className={styles._topText}>Dólares</div>
             </div>
-            <div className={styles._topSection}>
+            <div className={styles._topSection} onClick={() => modal('bag')}>
               <Bag />
               <div className={styles._topText}>{general?.navigationBar?.carText}</div>
             </div>
