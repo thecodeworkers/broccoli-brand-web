@@ -1,0 +1,30 @@
+@import '@styles/index.scss';
+
+._recentlyContainer {
+  width: 90%;
+  margin: auto;
+
+  ._recentlyContent {
+    display: flex;
+    justify-content: space-between;
+
+    ._recentlyProductContainer {
+      width: 15.5%;
+      height: 13rem;
+      margin-bottom: 3%;
+      border: 1px solid $black;
+    }
+  }
+}
+
+._recentlyTitleContainer {
+  margin-bottom: 2%;
+
+  .recentlyTitle {
+    text-transform: uppercase;
+    font-family: $roboto;
+    font-size: $roboto24;
+    color: $black;
+    font-weight: 800;
+  }
+}

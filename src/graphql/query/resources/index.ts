@@ -1,5 +1,6 @@
 import { GraphQlClient, normalized } from '@utils'
 import generalQuery from './generalPage'
+import productsQuery from './products'
 import registerQuery from './registerPage'
 import loginQuery from './loginPage'
 import recoverQuery from './recoverPage'
@@ -10,6 +11,7 @@ const resource = async (language, isAuth) => {
   const query = `
     query Resources {
       ${generalQuery(language)}
+      ${productsQuery()}
       ${registerQuery(language)}
       ${loginQuery(language)}
       ${recoverQuery(language)}
@@ -22,6 +24,7 @@ const resource = async (language, isAuth) => {
 
   return {
     general: normalized(data?.generalPage?.translation),
+    products: normalized(data?.products),
     register: normalized(data?.registerPage?.translation),
     login: normalized(data?.loginPage?.translation),
     recover: normalized(data?.recoverPage?.translation),

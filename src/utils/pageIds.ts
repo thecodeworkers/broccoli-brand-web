@@ -1,6 +1,7 @@
 export const homeId = 'cG9zdDoxNg=='
 export const aboutId = 'cG9zdDoxOA=='
 export const generalId = 'cG9zdDo4Nw=='
+export const shopId = 'cG9zdDoyNDg='
 export const registerId = 'cG9zdDoyMDI='
 export const loginId = 'cG9zdDoyMzc='
 export const recoverId = 'cG9zdDoyNjQ='

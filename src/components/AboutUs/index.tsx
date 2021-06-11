@@ -4,7 +4,7 @@ import { FirstBanner, Contact, Shop, Sponsors, Brand } from './elements'
 import { Navbar, Footer } from '@components'
 
 const AboutUs = ({ data }) => {
-  return !data ? <div></div> : (
+  return data ? (
     <div >
       <Head>
         <title>Broccoli</title>
@@ -17,7 +17,7 @@ const AboutUs = ({ data }) => {
       <Contact data={data.contact} />
       <Footer />
     </div>
-  )
+  ) : <div></div>
 }
 
 export default AboutUs;
