@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { Navbar, Footer } from '@components'
-import { Details } from './elements'
+import { Details, Gallery } from './elements'
 
 const Shop = ({ data }) => {
   return data ? (
@@ -11,6 +11,7 @@ const Shop = ({ data }) => {
       </Head>
       <Navbar />
       <Details data={data} />
+      <Gallery data={data} />
       <Footer />
     </div>
   ) : <div></div>

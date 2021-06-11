@@ -11,11 +11,15 @@
 
 ._leftContainer {
   width: 50%;
+  border-right: 1px solid $black;
 }
 
 ._rightContainer {
   width: 50%;
   margin: 5% 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
   ._productNameContainer {
     ._productName {

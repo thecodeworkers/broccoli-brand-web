@@ -11,7 +11,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
 
   const navigation = (route, loader = false) => {
     if (router.pathname != route) {
-      // if (loader) dispatch(setLoader(true))
+      if (loader) dispatch(setLoader(true))
       router.push(route)
     }
   }
