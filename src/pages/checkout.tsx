@@ -1,16 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { wrapper } from '@store'
-import { getPages } from '@store/actions'
 import { Checkout } from '@components'
 
-const AboutUsPage = () => {
-  const { page: { aboutPage: { aboutUs } } } = useSelector((state: any) => state)
-  return <Checkout data={aboutUs} />
+const CheckoutPage = () => {
+  return <Checkout />
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getPages('aboutPage'))
-)
-
-export default AboutUsPage
+export default CheckoutPage
