@@ -53,6 +53,7 @@
 
 ._bottomContainer {
   background-color: $black;
+  position: relative;
 }
 
 ._bottomSectionsContainer {
@@ -132,6 +133,70 @@
 
 ._responsive {
   display: none;
+}
+
+._categoriesShow {
+  display: block;
+  position: absolute;
+  background-color: $white;
+  top: 100%;
+  width: 100%;
+}
+
+._categoriesContainer {
+  width: 90%;
+  margin: 3% auto;
+  font-family: $roboto;
+  display: flex;
+}
+
+._halfCategories {
+  width: 50%;
+}
+
+._listContainer {
+  display: flex;
+
+  ._listColum {
+    margin-right: 5%;
+    height: 100%;
+    width: 15%;
+  }
+}
+
+._categoriesHide {
+  display: none;
+}
+
+._imageContainer {
+  height: 35vh;
+  width: 25vw;
+}
+
+._imageCategories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  ._imageDescription {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3%;
+    width: 25vw;
+  }
+}
+
+._mainText {
+  font-size: $roboto20;
+  font-weight: 700;
+  margin-bottom: 25%;
+  height: 10%;
+}
+
+._subText {
+  font-size: $roboto19;
+  margin-bottom: 15%;
+  height: 10%;
 }
 
 @include responsive(lg) {

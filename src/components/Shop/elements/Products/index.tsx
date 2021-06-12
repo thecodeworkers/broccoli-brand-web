@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import { useSelector } from 'react-redux'
 import { Product, Pagination } from '@components'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLoader } from '@store/actions'
 import { paginate } from '@utils'
 import Sidebar from '../Sidebar'
 import Recents from '../Recents'
@@ -10,9 +11,14 @@ const perPage = 12
 
 const Products = ({ data }) => {
 
+  const dispatch = useDispatch()
   const [page, setPage] = useState(1)
 
   const { resource: { products } } = useSelector((state: any) => state)
+
+  useEffect(() => {
+    dispatch(setLoader(false))
+  }, [])
   
   return (
     <>

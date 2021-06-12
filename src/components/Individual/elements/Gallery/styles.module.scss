@@ -1,0 +1,53 @@
+@import '@styles/index.scss';
+
+._galleryContainter {
+  display: flex;
+  height: 70vh;
+}
+
+._leftContainer {
+  width: calc(50% - 1px);
+  border-top: 1px solid $black;
+  border-right: 1px solid $black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  ._bigPic {
+    width: 33.3%;
+    height: calc(100% - 1px);
+    border-bottom: 1px solid $black;
+  }
+
+  ._smallPic {
+    width: calc(33.3% - 1px);
+    height: calc(50% - 1px);
+    border-right: 1px solid $black;
+    border-left: 1px solid $black;
+    border-bottom: 1px solid $black;
+  }
+}
+  
+._rightContainer {
+  width: 50%;
+  margin: 5% 0px;
+  font-family: $roboto;
+
+  ._fabricContainer {
+    margin-top: 10%;
+  }
+}
+
+._descriptionTitle {
+  width: 80%;
+  margin: 3% auto;
+  color: $black;
+  text-transform: uppercase;
+  font-size: $roboto26;
+}
+
+._description {
+  width: 80%;
+  margin: 3% auto;
+  font-size: $roboto18;
+}
