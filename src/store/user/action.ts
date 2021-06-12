@@ -19,6 +19,7 @@ export const signUp: any = (values) => async (dispatch) => {
     dispatch(actionObject(SIGN_UP, { ...{ user: data.customer }, isAuth: true }));
     dispatch(setAlert('Creado usuario exitosamente', true, 'success'))
     dispatch(actionObject(LOADER, false))
+    dispatch(getCart())
     dispatch(closeModal())
   } catch (error) {
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))

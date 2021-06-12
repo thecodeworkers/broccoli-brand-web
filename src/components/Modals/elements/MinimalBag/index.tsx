@@ -1,4 +1,4 @@
-import { closeModal, openModal } from '@store/actions'
+import { closeModal, openModal, removeFromCart } from '@store/actions'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@components'
@@ -15,6 +15,11 @@ const MinimalBag = () => {
     dispatch(openModal(type))
   }
 
+  const removeItem = (key) => {
+    dispatch(removeFromCart(key))
+  }
+
+
   return (
     <div className={styles._main}>
       <div className={styles._bagContainer}>
@@ -30,7 +35,25 @@ const MinimalBag = () => {
               </div>
             </div>
             <div className={styles._tableContainer}>
-              {(cart?.contents?.itemCount) ? <></> :
+              {(cart?.contents?.itemCount) ? cart?.contents?.nodes.map((data, index) => {
+                return (
+                  <div className={styles._bagItem} key={index}>
+                    <div className={styles._itemImage}>
+                      <img src={data?.product?.node?.image?.mediaItemUrl} alt={data?.product?.node?.image?.slug} />
+                    </div>
+                    <div className={styles._itemContent}>
+                      <p className={styles._itemName}>{data?.product?.node?.name}</p>
+                      <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label} <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] }}></span></p>
+                      <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label} <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0]}</span></p>
+                      <p className={styles._itemName}> Quantity <span className={styles._data}>{data?.quantity}</span></p>
+                      <p className={styles._price}>{data?.total}</p>
+                      <div className={styles._button}>
+                        <Button text={bag?.remove} borderColor='black' colorText='black' blackHover={true} type='button' onClick={() => removeItem(data?.key)} />
+                      </div>
+                    </div>
+                  </div>
+                )
+              }) :
                 <>
                   <h2 className={[styles._title, styles._titleEmpty].join(' ')}>{bag?.noItems}</h2>
                 </>
@@ -38,7 +61,7 @@ const MinimalBag = () => {
             </div>
             <div className={styles._totalSubmit}>
               <div className={styles._subtotal}>
-                <h2 className={styles._title}>{bag?.total}</h2>
+                <h2 className={styles._title}>{bag?.subtotal}</h2>
                 <h2 className={styles._title}>{cart?.contentsTotal}</h2>
               </div>
               <Button text={bag?.checkoutButton} borderColor='black' colorText='black' blackHover={true} type='button' />
@@ -51,7 +74,7 @@ const MinimalBag = () => {
           </div>
         )}
       </div>
-    </div>
+    </div >
   )
 }
 

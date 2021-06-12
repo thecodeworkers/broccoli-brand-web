@@ -12,6 +12,8 @@ checkoutPage: page(id: "${checkoutId}") {
           cantidad
         }
         total
+        subtotal
+        remove
         checkoutButton
         noItems
       }

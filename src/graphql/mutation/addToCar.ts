@@ -3,7 +3,7 @@ import { authId } from '@utils/pageIds'
 
 const addToCart = ({ product, quantity }) => {
   return (`
-    addToCart(input: {productId: ${product}, quantity: ${quantity}, clientMutationId: "${authId}"}) {
+  addCartItems(input: { items: {productId: ${product}, quantity: ${quantity}}, clientMutationId: "${authId}"}) {
       ${cart()}
     }
   `)

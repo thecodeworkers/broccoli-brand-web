@@ -7,8 +7,8 @@ import { getCart } from '@store/actions'
 
 export const getResources: any = () => async (dispatch, getState) => {
   dispatch(actionObject(LOADER, true))
-  const { resource: { language }, page, user: { isAuth } } = getState()
-  const allResources = await resources(language, isAuth)
+  const { resource: { language }, page, user: { user: { jwtAuthToken } } } = getState()
+  const allResources = await resources(language, jwtAuthToken)
   const result: any = await pages('homePage', language)
   page['homePage'] = result;
   if (!page.consultPages.includes('homePage')) page.consultPages.push('homePage');
@@ -21,9 +21,9 @@ export const getResources: any = () => async (dispatch, getState) => {
 
 export const changeLanguage: any = (language) => async (dispatch, getState) => {
   dispatch(actionObject(LOADER, true))
-  const { page, user: { isAuth } } = getState()
+  const { page, user: { user: { jwtAuthToken } } } = getState()
 
-  const allResources: any = await resources(language, isAuth);
+  const allResources: any = await resources(language, jwtAuthToken);
 
   for (let pag of page.consultPages) {
     const result: any = await pages(pag, language)

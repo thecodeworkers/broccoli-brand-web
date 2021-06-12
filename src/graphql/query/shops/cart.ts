@@ -24,8 +24,9 @@ cart {
   contents(first: 1000000) {
     itemCount
     nodes {
+      key
       product {
-        node {
+        node { 
           name
           slug
           status
