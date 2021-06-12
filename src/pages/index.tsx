@@ -10,7 +10,7 @@ const HomePage = () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps(
-  ({ store }) => store.dispatch(getResources())
+  ({ store }) => store.dispatch(getResources('homePage'))
 )
 
 export default HomePage
