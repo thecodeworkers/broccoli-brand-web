@@ -6,6 +6,7 @@ products(first: 10000000) {
     slug
     status
     type
+    databaseId
     image {
       mediaItemUrl
     }

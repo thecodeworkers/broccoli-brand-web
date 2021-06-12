@@ -1,5 +1,6 @@
 import { mutations } from '@graphql';
 import { setAlert } from '@store/alert/action';
+import { getCart } from '@store/cart/action';
 import { LOADER } from '@store/loader/action-types';
 import { closeModal } from '@store/modal/action';
 import { actionObject } from '@utils'
@@ -18,6 +19,7 @@ export const signUp: any = (values) => async (dispatch) => {
     dispatch(actionObject(SIGN_UP, { ...{ user: data.customer }, isAuth: true }));
     dispatch(setAlert('Creado usuario exitosamente', true, 'success'))
     dispatch(actionObject(LOADER, false))
+    dispatch(getCart())
     dispatch(closeModal())
   } catch (error) {
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
@@ -33,8 +35,9 @@ export const signIn: any = (values) => async (dispatch) => {
 
     if (data.message) throw new Error(data.message);
 
-    dispatch(actionObject(SIGN_IN, { ...data, isAuth: true }));
+    dispatch(actionObject(SIGN_IN, { ...{ user: data.customer }, isAuth: true }));
     dispatch(setAlert('Inicio de sesion Exitoso', true, 'success'))
+    dispatch(getCart())
     dispatch(actionObject(LOADER, false))
     dispatch(closeModal())
   } catch (error) {
@@ -69,4 +72,7 @@ export const forgotPassword: any = (values) => async (dispatch) => {
 }
 
 
-export const logout = () => actionObject(LOGOUT)
+export const logout = () => async (dispatch) => {
+  dispatch(getCart())
+  dispatch(actionObject(LOGOUT))
+}

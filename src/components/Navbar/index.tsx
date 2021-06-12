@@ -49,7 +49,7 @@ const Navbar = () => {
               <Coin />
               <div className={styles._topText}>Dólares</div>
             </div>
-            <div className={styles._topSection}>
+            <div className={styles._topSection} onClick={() => modal('bag')}>
               <Bag />
               <div className={styles._topText}>{general?.navigationBar?.carText}</div>
             </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
               <User />
               {user.isAuth ? (
                 <>
-                  <div className={[styles._topText, styles._rightMargin].join(" ")}>{user.user?.email}</div>
+                  <div className={[styles._topText, styles._rightMargin].join(" ")}>hi! {user.user?.firstName}</div>
                   <Pipe />
                   <div className={styles._topText} onClick={() => dispatch(logout())}>{general?.navigationBar?.logout}</div>
                 </>
