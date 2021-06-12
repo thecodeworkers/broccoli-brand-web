@@ -2,13 +2,15 @@ import { GraphQlClient, normalized, normalizedArray } from '@utils'
 import homePageQuery from './homePage'
 import aboutPageQuery from './aboutPage'
 import shopPageQuery from './shopPage'
+import productQuery from './productPage'
 
-const pages = async (resource: any, language) => {
+const pages = async (resource: any, language, id: string = '') => {
   
   const resources = {
     'homePage': homePageQuery(language),
     'aboutPage': aboutPageQuery(language),
-    'shopPage': shopPageQuery(language)
+    'shopPage': shopPageQuery(language),
+    'productPage': productQuery(id)
   }
 
   const query = `

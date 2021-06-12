@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { Navbar, Footer } from '@components'
-import { Products } from './elements'
+import { Details, Gallery, Colors, CompleteLook, Related } from './elements'
 
 const Shop = ({ data }) => {
   return data ? (
@@ -10,7 +10,11 @@ const Shop = ({ data }) => {
         <title>Broccoli</title>
       </Head>
       <Navbar />
-      <Products data={data} />
+      <Details data={data} />
+      <Gallery data={data} />
+      <Colors />
+      <CompleteLook />
+      <Related  data={data.crossSell} />
       <Footer />
     </div>
   ) : <div></div>
