@@ -12,6 +12,16 @@ generalPage: page(id: "${generalId}") {
           text
           link
         }
+        dropdownMenu {
+          columnList {
+            list
+          }
+          image {
+            mediaItemUrl
+          }
+          year
+          collection
+        }
       }
       clauses {
         termsTitle
