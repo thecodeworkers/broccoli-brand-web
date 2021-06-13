@@ -108,15 +108,42 @@ const Navbar = () => {
           </section>
           <div className={styles._bottomSectionsContainer}>
             <div className={styles._bottomSections}>
-              {general?.navigationBar?.navigation?.map((nav, index) => (
-                <div onClick={() => navigation(nav.link, true)} key={index} 
-                  className={styles._bottomSection}
-                  onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                  onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
-                >
-                  <p className={styles._bottomText}>{nav.text}</p>
-                </div>
-              ))}
+              {general?.navigationBar?.navigation?.map((nav, index) => {
+                if(index != 3) {
+                  return (
+                    <div onClick={() => navigation(nav.link, true)} key={index} 
+                      className={styles._bottomSection}
+                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
+                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
+                    >
+                      <p className={styles._bottomText}>{nav.text}</p>
+                    </div>
+                  )
+                }
+
+                if(router.pathname == 'about-us' || router.pathname == '/') {
+                  return (
+                    <a key={index} href={nav.link}
+                      className={styles._bottomSection}
+                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
+                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
+                    >
+                      <p className={styles._bottomText}>{nav.text}</p>
+                    </a>
+                  )
+                } else {
+                  return (
+                    <div key={index} onClick={() => navigation('/#contact', true)}
+                      className={styles._bottomSection}
+                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
+                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
+                    >
+                      <p className={styles._bottomText}>{nav.text}</p>
+                    </div>
+                  )
+                }
+
+              })}
             </div>
             <div className={styles._searchContainer}>
               <div className={styles._inputContainer}>

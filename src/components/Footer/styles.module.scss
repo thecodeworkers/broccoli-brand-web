@@ -18,9 +18,11 @@
 
   ._bottomItem {
     display: flex;
+    align-items: center;
     margin: 3% 0% 3% 15%;
 
     ._textMargin {
+      cursor: pointer;
       margin-right: 13%;
     }
   }
