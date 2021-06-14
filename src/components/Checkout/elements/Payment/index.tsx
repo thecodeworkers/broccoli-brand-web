@@ -33,17 +33,17 @@ const Payment = () => {
                   <p className={styles._selectLabel}>{payment?.chooseMethod}</p>
                   <div className={styles._radioBox}>
                     <label className={formik.values.method === 'AMERICAN' ? [styles._radioLabel, styles._radioChecked].join(' ') : styles._radioLabel}>
-                      <input id="method" name="method" type="radio" className={errors.method && touched.method ? [styles._inputError, styles._radio].join(' ') : styles._radio}
+                      <input name="method" type="radio" className={errors.method && touched.method ? [styles._inputError, styles._radio].join(' ') : styles._radio}
                         onChange={formik.handleChange} onBlur={formik.handleBlur} value={'AMERICAN'} />
                       <American width='4rem' height='4rem' />
                     </label>
                     <label className={formik.values.method === 'MASTERCARD' ? [styles._radioLabel, styles._radioChecked].join(' ') : styles._radioLabel}>
-                      <input id="method" name="method" type="radio" className={errors.method && touched.method ? [styles._inputError, styles._radio].join(' ') : styles._radio}
+                      <input name="method" type="radio" className={errors.method && touched.method ? [styles._inputError, styles._radio].join(' ') : styles._radio}
                         onChange={formik.handleChange} onBlur={formik.handleBlur} value={'MASTERCARD'} />
                       <Mastercard width='4rem' height='4rem' />
                     </label>
                     <label className={formik.values.method === 'VISA' ? [styles._radioLabel, styles._radioChecked].join(' ') : styles._radioLabel}>
-                      <input id="method" name="method" type="radio" className={errors.method && touched.method ? [styles._inputError, styles._radio].join(' ') : styles._radio}
+                      <input name="method" type="radio" className={errors.method && touched.method ? [styles._inputError, styles._radio].join(' ') : styles._radio}
                         onChange={formik.handleChange} onBlur={formik.handleBlur} value={'VISA'} />
                       <Visa width='4rem' height='4rem' />
                     </label>

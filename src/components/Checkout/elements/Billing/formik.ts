@@ -13,6 +13,7 @@ export const formikConfig = (dispatch) => (useFormik({
     zip: '',
     phone: '',
     addressSelection: '',
+    discountCode: '',
   },
 
   validationSchema: Yup.object({
@@ -35,6 +36,8 @@ export const formikConfig = (dispatch) => (useFormik({
     .required(),
     phone: Yup.string()
     .required(),
+    discountCode: Yup.string()
+      .required(),
   }),
 
   onSubmit: values => {

@@ -33,7 +33,7 @@ const Bag = () => {
           </thead>
           <tbody className={styles._tableBody}>
             {(cart?.contents?.itemCount) ? cart?.contents.nodes.map((data, index) => (
-              <tr className={styles._tableParts}>
+              <tr key={index} className={styles._tableParts}>
                 <td className={styles._dataTable}>
                   <div className={styles._dataBox}>
                     <div className={styles._deleteBox}>

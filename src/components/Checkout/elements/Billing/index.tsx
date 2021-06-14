@@ -103,11 +103,11 @@ const Billing = () => {
             <form>
               <div className={styles._discountBox}>
                 <div className={styles._discountInput}>
-                  <label className={errors.name && touched.name ? [styles._inputError, styles._inputBox, styles._inputDiscount].join(' ') : [styles._inputBox, styles._inputDiscount].join(' ')}>
+                  <label className={errors.discountCode && touched.discountCode ? [styles._inputError, styles._inputBox, styles._inputDiscount].join(' ') : [styles._inputBox, styles._inputDiscount].join(' ')}>
                     <span className={styles._tooltip}>{billingAndSummary?.tooltips?.discountCode}</span>
                     {billingAndSummary?.discountCode}
-                    <input id="name" name="name" type="text" className={errors.name && touched.name ? [styles._inputError, styles._input].join(' ') : styles._input}
-                      onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} />
+                    <input id="discountCode" name="discountCode" type="text" className={errors.discountCode && touched.discountCode ? [styles._inputError, styles._input].join(' ') : styles._input}
+                      onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.discountCode} />
                   </label>
                 </div>
                 <div className={styles._discountButton}>
