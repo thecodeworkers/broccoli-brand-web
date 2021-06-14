@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import { Mastercard, Visa, American } from '@images/svg'
@@ -13,6 +13,10 @@ const Payment = () => {
   const formik = formikConfig(dispatch)
 
   const { errors, touched } = formik
+
+  const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step));
+
+  const date = useRef(new Date()).current
 
   return (
     <div className={styles._main}>
@@ -72,10 +76,9 @@ const Payment = () => {
                       <span className={styles._tooltip}>{payment?.tooltips?.month}</span>
                       <label htmlFor="month" className={errors.month && touched.month ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
                         <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="month" id="month" placeholder={payment?.month} value={formik.values.month} className={styles._selectForm}>
-                          <option value={''}>{'Hola'}</option>
-                          <option value={''}>{'Hola'}</option>
-                          <option value={''}>{'Hola'}</option>
-                          <option value={''}>{'Hola'}</option>
+                          {range(1, 12, 1).map((data, index) => {
+                            return <option value={index + 1}>{index + 1}</option>
+                          })}
                         </select>
                       </label>
                     </div>
@@ -83,10 +86,9 @@ const Payment = () => {
                       <span className={styles._tooltip}>{payment?.tooltips?.year}</span>
                       <label htmlFor="year" className={errors.year && touched.year ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
                         <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="year" id="year" placeholder={payment?.year} value={formik.values.year} className={styles._selectForm}>
-                          <option value={''}>{'Hola'}</option>
-                          <option value={''}>{'Hola'}</option>
-                          <option value={''}>{'Hola'}</option>
-                          <option value={''}>{'Hola'}</option>
+                          {range(1, 20, 1).map((data, index) => {
+                            return <option value={date.getFullYear() + index}>{date.getFullYear() + index}</option>
+                          })}
                         </select>
                       </label>
                     </div>
