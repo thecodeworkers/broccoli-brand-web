@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
-import { World, Coin, Bag, User, Pipe } from '@images/svg'
+import { World, Coin, Bag, User, Pipe, Arrow } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, logout, openModal, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
 import { createMarkup } from '@utils';
-
 const Navbar = () => {
 
   const dispatch = useDispatch()
@@ -60,7 +59,7 @@ const Navbar = () => {
               {user.isAuth ? (
                 <>
                   <div className={styles._dropdownUser} onClick={() => setDown(!down)}>
-                    <div className={[styles._topText, styles._rightMargin].join(" ")}>hi! {user.user?.firstName}</div>
+                    <div className={[styles._topText, styles._rightMargin].join(" ")}>hi! {user.user?.firstName}<span className={styles._arrowUser}><Arrow /></span></div>
                     {down ? (
                       <div className={styles._dropdownUserMenu}>
                         <p className={styles._dropdownUserItem} onClick={() => { modal('changePassword') }}>Change Password</p>

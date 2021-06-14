@@ -77,7 +77,7 @@ const Payment = () => {
                       <label htmlFor="month" className={errors.month && touched.month ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
                         <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="month" id="month" placeholder={payment?.month} value={formik.values.month} className={styles._selectForm}>
                           {range(1, 12, 1).map((data, index) => {
-                            return <option value={index + 1}>{index + 1}</option>
+                            return <option key={index} value={index + 1}>{index + 1}</option>
                           })}
                         </select>
                       </label>
@@ -87,7 +87,7 @@ const Payment = () => {
                       <label htmlFor="year" className={errors.year && touched.year ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
                         <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="year" id="year" placeholder={payment?.year} value={formik.values.year} className={styles._selectForm}>
                           {range(1, 20, 1).map((data, index) => {
-                            return <option value={date.getFullYear() + index}>{date.getFullYear() + index}</option>
+                            return <option key={index} value={date.getFullYear() + index}>{date.getFullYear() + index}</option>
                           })}
                         </select>
                       </label>

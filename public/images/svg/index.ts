@@ -12,4 +12,4 @@ export { default as Cancel } from './cancel'
 export { default as American } from './american'
 export { default as Mastercard } from './mastercard'
 export { default as Visa } from './visa'
-
+export { default as Arrow } from './arrow'
