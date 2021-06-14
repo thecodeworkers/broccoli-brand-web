@@ -61,22 +61,27 @@ const Footer = () => {
         <div className={styles._bottomItem}>
           {
             general.navigationBar?.navigation?.map((nav, index) => {
+              if(index != 3) {
+                return (
+                  <div onClick={() => navigation(nav.link, true)} key={index} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                    <p>{nav.text}</p>
+                  </div>
+                )
+              }
+
               if(router.pathname == 'about-us' || router.pathname == '/') {
                 return (
-                  <a href={nav.link} key={index} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                  <a key={index} href={nav.link} className={[styles._whiteText, styles._textMargin].join(" ")}>
                     <p>{nav.text}</p>
                   </a>
                 )
+              } else {
+                return (
+                  <div key={index} onClick={() => navigation('/#contact', true)} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                    <p>{nav.text}</p>
+                  </div>
+                )
               }
-              return (
-                index == 3 ?
-                <div key={index} className={[styles._whiteText, styles._textMargin].join(" ")} onClick={() => navigation('/#contact', true)}>
-                  <p>{nav.text}</p>
-                </div> :
-                <a href={nav.link} key={index} className={[styles._whiteText, styles._textMargin].join(" ")}>
-                  <p>{nav.text}</p>
-                </a>
-              )
             })
           }
         </div>
