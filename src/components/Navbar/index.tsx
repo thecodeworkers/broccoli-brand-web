@@ -29,7 +29,7 @@ const Navbar = () => {
     dispatch(openModal(type))
   }
 
-  return (
+  return general ? (
     <>
       <nav className={styles._main}>
         <section className={styles._topContainer}>
@@ -145,7 +145,7 @@ const Navbar = () => {
         `}
       </style>
     </>
-  )
+  ) : null
 }
 
 export default Navbar
