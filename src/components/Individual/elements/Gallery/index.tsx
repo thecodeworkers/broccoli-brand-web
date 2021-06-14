@@ -23,7 +23,7 @@ const Gallery = ({ data }) => {
               <div key={index} className={[`_banner${index}`, (index == 0 || index == 3) ? styles._bigPic : styles._smallPic].join(" ")}>
                 <style jsx>{`
                   ._banner${index} {
-                    background-image: url('${item.mediaItemUrl}');
+                    background-image: url('${item?.mediaItemUrl}');
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
