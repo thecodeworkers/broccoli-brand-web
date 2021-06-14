@@ -13,7 +13,7 @@ const Button = ({ borderColor = 'white', text, colorText = 'white', link = null,
           border-color: ${borderColor};
         }
         ._main:hover {
-          border-color: ${blackHover ? 'black' : 'white'}
+          border-color: ${'black'}
         }
         ._textColor {
           color: ${colorText};

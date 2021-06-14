@@ -5,6 +5,7 @@ import registerQuery from './registerPage'
 import loginQuery from './loginPage'
 import recoverQuery from './recoverPage'
 import checkoutQuery from './checkoutPage'
+import changeQuery from './changePage'
 
 const resource = async (language, auth = null, wcAuth = null) => {
   const query = `
@@ -15,6 +16,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
       ${loginQuery(language)}
       ${recoverQuery(language)}
       ${checkoutQuery(language)}
+      ${changeQuery(language)}
     }
   `
 
@@ -27,6 +29,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
     login: normalized(data?.loginPage?.translation),
     recover: normalized(data?.recoverPage?.translation),
     checkout: normalized(data?.checkoutPage?.translation),
+    change: normalized(data?.changePage?.translation),
     language: language
   }
 }
