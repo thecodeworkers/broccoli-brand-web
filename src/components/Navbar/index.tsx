@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, logout, openModal, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
+import { createMarkup } from '@utils';
 
 const Navbar = () => {
 
@@ -76,21 +77,11 @@ const Navbar = () => {
             <div className={styles._categoriesContainer}>
               <div className={styles._halfCategories}>
                 <div className={styles._listContainer}>
-                  <div className={styles._listColum}>
-                    <h4 className={styles._mainText}>CATEGORIES</h4>
-                    <p className={styles._subText}>Pants</p>
-                    <p className={styles._subText}>Shorts</p>
-                    <p className={styles._subText}>Skirts</p>
-                    <p className={styles._subText}>Jackets</p>
-                    <p className={styles._subText}>Sweaters</p>
-                    <p className={styles._subText}>Socks</p>
-                  </div>
-                  <div className={styles._listColum}>
-                    <h4 className={styles._mainText}>DROPS</h4>
-                    <p className={styles._subText}>Origen</p>
-                    <p className={styles._subText}>Destiny</p>
-                    <p className={styles._subText}>Tucan</p>
-                  </div>
+                  {general?.navigationBar?.dropdownMenu.columnList.map((item, index) => (
+                    <div className={styles._listColum} key={index}>
+                      <div dangerouslySetInnerHTML={createMarkup(item.list)}></div>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className={styles._halfCategories}>
@@ -99,8 +90,8 @@ const Navbar = () => {
                     <div className='_image'></div>
                   </div>
                   <div className={styles._imageDescription}>
-                    <p className={styles._subText}>2020</p>
-                    <p className={styles._subText}>COLECCION ORIGEN</p>
+                    <p className={styles._subText}>{general?.navigationBar?.dropdownMenu?.year}</p>
+                    <p className={styles._subText}>{general?.navigationBar?.dropdownMenu?.collection}</p>
                   </div>
                 </div>
               </div>
@@ -134,7 +125,7 @@ const Navbar = () => {
       <style jsx>
         {`
           ._image {
-            background-image: url('https://picsum.photos/200/300');
+            background-image: url(${general?.navigationBar?.dropdownMenu?.image?.mediaItemUrl});
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
