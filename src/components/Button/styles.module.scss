@@ -28,3 +28,16 @@
       color: $white;
     }
 }
+
+._whiteHover{
+  background-color: $black;
+}
+
+._whiteHover:hover {
+  background-color: $white;
+  border-color: 1px solid $black;
+
+    ._buttonText {
+      color: $black;
+    }
+}

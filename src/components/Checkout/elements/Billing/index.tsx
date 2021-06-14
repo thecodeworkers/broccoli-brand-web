@@ -124,7 +124,7 @@ const Billing = () => {
               <p className={styles._informationText}>{billingAndSummary?.payAccept}</p>
               <div className={styles._buttonBox}>
                 <div className={styles._discountButton}>
-                  <Button text={billingAndSummary?.payButton} borderColor='black' colorText='black' blackHover={true} type='submit' />
+                  <Button text={billingAndSummary?.payButton} borderColor='white' colorText='white' type='submit' />
                 </div>
                 <p className={styles._payTime}>
                   You have 0h to cancel this order
