@@ -220,3 +220,41 @@
     display: none;
   }
 }
+
+._dropdownUser{
+  position: relative;
+}
+
+._dropdownUserMenu{
+  margin-top: 0.5rem;
+  position: absolute;
+  z-index: 10;
+  background-color: $boxGray;
+  max-width: 10rem;
+  animation: down 1s;
+  overflow: hidden;
+  right: 0px;
+}
+
+._dropdownUserItem{
+  font-family: $roboto;
+  font-size: $roboto14;
+  color: $black;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: all 0.5s;
+  &:hover{
+    background-color: $black;
+    color: $white
+  }
+}
+
+@keyframes down {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

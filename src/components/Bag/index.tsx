@@ -73,7 +73,7 @@ const Bag = () => {
               <tr className={styles._tableParts}>
                 <td colSpan={4}>
                   <div className={styles._noItemBox}>
-                    <p className={styles._noItemText}>No Items In Cart</p>
+                    <p className={styles._noItemText}>{bag?.noItems}</p>
                   </div>
                 </td>
               </tr>

@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Login, Recover, Register, MinimalBag } from './elements'
+import { Login, Recover, Register, MinimalBag, Change } from './elements'
 
 const Modals = () => {
   const { modal } = useSelector((state: any) => state)
@@ -14,6 +14,8 @@ const Modals = () => {
       return <Recover />
     case 'bag':
       return <MinimalBag />
+    case 'changePassword':
+      return <Change />
     default:
       return null
   }

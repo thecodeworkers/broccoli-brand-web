@@ -48,6 +48,27 @@ export const signIn: any = (values) => async (dispatch) => {
   }
 }
 
+export const changePassword: any = (values) => async (dispatch, getState) => {
+  try {
+    dispatch(actionObject(LOADER, true))
+    const { user: { user: { sessionToken, jwtAuthToken } } } = getState()
+
+    const data: any = await mutations('updateCustomer', values, sessionToken, jwtAuthToken);
+
+    if (data.message) throw new Error(data.message);
+
+    dispatch(actionObject(SIGN_IN, { ...{ user: data.customer }, isAuth: true }));
+    dispatch(setAlert('Cambio de contrasena con exito', true, 'success'))
+    dispatch(getCart())
+    dispatch(actionObject(LOADER, false))
+    dispatch(closeModal())
+  } catch (error) {
+    dispatch(actionObject(LOADER, false))
+    dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
+
+  }
+}
+
 export const guestUser: any = () => async (dispatch) => {
   dispatch(actionObject(SIGN_IN, { ...{ user: { email: 'guest' } }, isAuth: true }));
   dispatch(closeModal())
