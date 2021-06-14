@@ -35,7 +35,7 @@ cart {
             id
             name
             salePrice(format: RAW)
-            price(format: RAW)
+            price
           }
           attributes(first: 100000) {
             nodes {

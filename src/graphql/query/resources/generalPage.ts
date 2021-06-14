@@ -25,8 +25,10 @@ generalPage: page(id: "${generalId}") {
       location
       email
       socialMedia {
+        icon {
+          mediaItemUrl
+        }
         link
-        icon
       }
     }
   }
