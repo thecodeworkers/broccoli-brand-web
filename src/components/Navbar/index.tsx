@@ -15,8 +15,6 @@ const Navbar = () => {
   const { resource: { language, general: generalPage = {} }, user } = useSelector((state: any) => state)
   const { general } = generalPage
 
-  console.log(generalPage)
-
   const [showCat, setShowCat] = useState(false)
   const changeLang = (event) => dispatch(changeLanguage(event.target.value))
 
