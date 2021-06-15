@@ -31,7 +31,7 @@ export const getCurrentLang = req => {
       "$1"
     );
   
-    return currentCookie
+    return currentCookie ? currentCookie : 'ES'
 
   } catch {
     return 'ES'
@@ -41,5 +41,6 @@ export const getCurrentLang = req => {
 export const dispatchPage = (props, pageName) => {
   const { store, req } = props
   const lang = getCurrentLang(req)
+  
   return store.dispatch(getResources(pageName, lang))
 }
