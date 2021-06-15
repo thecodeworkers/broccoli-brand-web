@@ -16,7 +16,15 @@ const Navbar = () => {
   const { general } = generalPage
 
   const [showCat, setShowCat] = useState(false)
-  const changeLang = (event) => dispatch(changeLanguage(event.target.value))
+
+  const changeLang = (event) => {
+    const lang = event.target.value
+    dispatch(changeLanguage(lang))
+
+    if (typeof window !== 'undefined') {
+      document.cookie = `lang=${lang}`
+    }
+  }
 
   const navigation = (route, loader = false) => {
     if (router.pathname != route) {

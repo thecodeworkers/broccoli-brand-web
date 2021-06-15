@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { wrapper } from '@store'  
-import { getResources } from '@store/actions'
+import { wrapper } from '@store'
+import { dispatchPage } from '@utils'
 import { Shop } from '@components'
 
 const ShopPage = () => {
@@ -10,7 +10,7 @@ const ShopPage = () => {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getResources('shopPage'))
+  props => dispatchPage(props, 'shopPage')
 )
 
 export default ShopPage
