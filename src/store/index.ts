@@ -45,7 +45,10 @@ const makeStore: any = ({ isServer }) => {
   const persistConfig = {
     key: 'broccoliBrandRoot',
     storage,
-    blacklist: ['loader']
+    blacklist: [
+      'loader',
+      'page'
+    ]
   }
 
   const persistedReducer = persistReducer(persistConfig, reducer)
