@@ -57,7 +57,7 @@ const Details = ({ data }) => {
                   <div className={styles._sizes}>
                     <div className={styles._textContent}>
                       <p className={styles._colorText}>SIZES*</p>
-                      <span>Select one color</span>
+                      <span>Select one size</span>
                     </div>
                     <div className={styles._checkboxContainer}>
                       {data?.attributes?.nodes[1].options.map((item, index) => (

@@ -23,7 +23,7 @@ const Related = ({ data }) => {
               data?.nodes?.length > 0 ? 
               gallery?.map((product, index) => {
                 return (
-                  <div className={styles._product}><Product key={index} data={product} /></div>
+                  <div className={styles._product} key={index}><Product data={product} /></div>
                 )
               }) : <h2 className={styles._noProductsText}>No products</h2>
             }
