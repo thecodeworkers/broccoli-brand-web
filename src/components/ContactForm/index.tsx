@@ -35,7 +35,7 @@ const ContactForm = ({ data }) => {
               </div>
               <div className={styles._formContainer}>
                 <span className={styles._tooltip}>{data?.tooltips?.orderNumber}</span>
-                <p className={errors.orderNumber ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm} className={styles._labelForm}>{data.orderNumber}</p>
+                <p className={errors.orderNumber ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm} >{data.orderNumber}</p>
                 <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.orderNumber} name='orderNumber' type="text" className={errors.orderNumber ? [styles._inputError, styles._inputForm].join(' ') : styles._inputForm} />
               </div>
               <div className={styles._formContainer}>
