@@ -61,7 +61,7 @@ const Details = ({ data }) => {
                     </div>
                     <div className={styles._checkboxContainer}>
                       {data?.attributes?.nodes[1].options.map((item, index) => (
-                        <div key={index}>
+                        <div key={index} className={styles._individualCheck}>
                           <label className={styles._labelFilter}>
                           <input type='checkbox' className={styles._checkbox} id='choice1-1' name='choice1' />
                           <span className={styles._filterText}>{item}</span>
@@ -89,6 +89,14 @@ const Details = ({ data }) => {
         background-position: center;
         background-size: 100% 100%;
         height: 100%;
+      }
+      @media(max-width: 576px) {
+        ._img {
+          background-image: url(${data?.image?.mediaItemUrl});
+          background-repeat: no-repeat;
+          background-size:100% 100%;
+          
+        }
       }
     `}</style>
     </>

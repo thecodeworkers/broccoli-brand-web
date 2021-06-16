@@ -20,16 +20,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
 
-  ._productNameContainer {
-    ._productName {
-      width: 80%;
-      margin: 3% auto;
-      color: $black;
-      text-transform: uppercase;
-      font-family: $roboto;
-      font-size: $roboto32;
-    }
+._productNameContainer {
+  ._productName {
+    width: 80%;
+    margin: 3% auto;
+    color: $black;
+    text-transform: uppercase;
+    font-family: $roboto;
+    font-size: $roboto32;
   }
 }
 
@@ -66,7 +66,7 @@
   text-transform: uppercase;
   font-family: $roboto;
   font-size: $roboto26;
-  font-weight: 700;
+  font-weight: 900;
   width: 60%;
   margin: 6% auto;
 }
@@ -188,4 +188,111 @@
   ._content {
     margin-top: 0%;
   }
+}
+
+@include responsive(md) {
+  ._detailsContainter {
+    flex-wrap: wrap;
+  }
+
+  ._leftContainer, ._rightContainer {
+    width: 100%;
+  }
+
+  ._productNameContainer {
+    ._productName {
+      width: 90%;
+      margin: auto;
+    }
+  }
+
+  ._boxContainer {
+    border: none;
+    flex-wrap: wrap;
+  }
+
+  ._half:first-child {
+    border: none;
+  }
+
+  ._half {
+    width: 100%;
+
+    ._price {
+      width: 90%;
+      margin: auto;
+    }
+
+    ._circlesContainer {
+      margin-top: 2%;
+      margin-bottom: 5%;
+      p {
+        width: 90%;
+        margin: auto;
+        font-size: $roboto16;
+      }
+    }
+  }
+  
+  ._colorsContainer {
+    border-top: 1px solid $black;
+    border-bottom: 0;
+    
+    ._typeColors {
+      margin: 5% 0;
+      width: 100%;
+
+      ._components {
+        width: 90%;
+        margin: auto;
+      }
+    }
+  
+    ._buttonContainer {
+      display: none;
+    }
+  }
+
+  ._sizesContainer {
+    ._sizesContent {
+      margin-bottom: 5%;
+      width: 100%;
+
+      ._sizes {
+        width: 90%;
+        margin: auto;
+      }
+    }
+  }
+
+  ._checkboxContainer {
+    justify-content: flex-start;
+  }
+
+  ._individualCheck {
+    margin-right: 10%;
+  }
+  
+
+  ._textContent {
+    justify-content: flex-start;
+    margin-bottom: 2%;
+
+    ._colorText {
+      margin-right: 5%;
+    }
+  }
+
+  ._lastButtonContainer {
+    width: 90%;
+    margin: 5% auto 0 auto;
+
+    ._buttonContainer {
+      width: 100%;
+    }
+  }
+}
+
+@include responsive(sm) {
+
 }
