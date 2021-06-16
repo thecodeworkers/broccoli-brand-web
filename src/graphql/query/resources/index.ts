@@ -1,4 +1,4 @@
-import { GraphQlClient, normalized } from '@utils'
+import { GraphQlClient, normalized, normalizedArray } from '@utils'
 import generalQuery from './generalPage'
 import productsQuery from './products'
 import registerQuery from './registerPage'
@@ -24,7 +24,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
 
   return {
     general: normalized(data?.generalPage?.translation),
-    products: normalized(data?.products),
+    products: normalizedArray(data?.products?.nodes),
     register: normalized(data?.registerPage?.translation),
     login: normalized(data?.loginPage?.translation),
     recover: normalized(data?.recoverPage?.translation),

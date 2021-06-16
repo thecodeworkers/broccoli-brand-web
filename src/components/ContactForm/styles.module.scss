@@ -38,6 +38,7 @@
   border-bottom: 1px solid $gray;
   width: -webkit-fill-available;
   padding: 2% 3%;
+  width: 94%;
 }
 
 ._labelForm {
@@ -128,4 +129,9 @@
   ._selectForm {
     font-size: $roboto20;
   }
+}
+
+._inputError{
+  color: $warning;
+  border-color: $warning;
 }

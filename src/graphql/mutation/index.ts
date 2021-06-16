@@ -5,6 +5,7 @@ import sendPasswordResetMutation from './sendPasswordResetEmail'
 import addToCarMutation from './addToCar'
 import removeFromCartMutation from './removeItem'
 import changePassword from './changePassword'
+import sendEmail from './sendEmail'
 
 const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
 
@@ -14,7 +15,8 @@ const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
     'sendPasswordResetEmail': sendPasswordResetMutation,
     'addCartItems': addToCarMutation,
     'removeItemsFromCart': removeFromCartMutation,
-    'updateCustomer': changePassword
+    'updateCustomer': changePassword,
+    'sendEmail': sendEmail
   }
 
   const query = `
