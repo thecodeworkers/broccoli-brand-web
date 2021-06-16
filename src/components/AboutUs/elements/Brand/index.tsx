@@ -23,7 +23,7 @@ const Brand = ({ data }) => {
       <style jsx>
         {`
 			    ._firstBrand {
-				    background-image: url('${data.mediaItemUrl}');
+				    background-image: url('${data?.mediaItemUrl}');
 				    background-repeat: repeat-x;
 				    background-size: contain;
 				    height: 30vh;

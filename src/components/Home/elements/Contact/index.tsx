@@ -15,7 +15,7 @@ const Contact = ({ data }) => {
       <style jsx>
         {`
           ._imageContact {
-            background-image: url('${data.image.mediaItemUrl}');
+            background-image: url('${data?.image?.mediaItemUrl}');
             width: 100%;
             height: 100%;
             background-position: center;

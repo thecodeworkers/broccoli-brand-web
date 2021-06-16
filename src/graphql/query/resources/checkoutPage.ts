@@ -5,46 +5,60 @@ checkoutPage: page(id: "${checkoutId}") {
     checkout {
       bag {
         bagTitle
+        checkoutButton
         items
+        noItems
+        remove
+        subtotal
         table {
-          price
-          orderSummary
           cantidad
+          orderSummary
+          price
         }
         total
-        subtotal
-        remove
-        checkoutButton
-        noItems
       }
       billingAndSummary {
-        billingTitle
-        default
-        alternative
+        totalItems
+        taxesFees
+        taxesDescription
+        summaryTitle
         shipping
         payButton
         payAccept
         orderTotal
         discountCode
+        billingTitle
+        default
         applyButton
-        summaryTitle
-        taxesDescription
-        totalItems
-        taxesFees
+        alternative
+        tooltips {
+          discountCode
+        }
       }
       deliveryAddressAndShipping {
-        shippingTitle
         taxesTitle
+        shippingTitle
         delivery {
           address
-          aptSuiteEtc
           city
+          aptSuiteEtc
           country
           email
-          nameLastname
           phone
+          nameLastname
           postalCode
           titleDelivery
+          tooltips {
+            zip
+            secondAddress
+            phone
+            nameLastname
+            fieldGroupName
+            email
+            country
+            city
+            address
+          }
         }
       }
       payment {
@@ -57,6 +71,13 @@ checkoutPage: page(id: "${checkoutId}") {
         expiryDate
         chooseMethod
         cardNumber
+        tooltips {
+          year
+          securityCode
+          nameCard
+          month
+          cardNumber
+        }
       }
     }
   }

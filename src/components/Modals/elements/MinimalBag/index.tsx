@@ -1,8 +1,9 @@
-import { closeModal, openModal, removeFromCart } from '@store/actions'
+import { closeModal, openModal, removeFromCart, setLoader } from '@store/actions'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@components'
 import styles from './styles.module.scss'
+import { useRouter } from 'next/router'
 
 const MinimalBag = () => {
 
@@ -10,6 +11,7 @@ const MinimalBag = () => {
   const { bag } = checkout
   const { general } = generalPage
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const modal = (type) => {
     dispatch(openModal(type))
@@ -17,6 +19,13 @@ const MinimalBag = () => {
 
   const removeItem = (key) => {
     dispatch(removeFromCart(key))
+  }
+
+  const navigation = (route, loader = false) => {
+    if (router.pathname != route) {
+      if (loader) dispatch(setLoader(true))
+      router.push(route)
+    }
   }
 
 
@@ -64,7 +73,7 @@ const MinimalBag = () => {
                 <h2 className={styles._title}>{bag?.subtotal}</h2>
                 <h2 className={styles._title}>{cart?.contentsTotal}</h2>
               </div>
-              <Button text={bag?.checkoutButton} borderColor='black' colorText='black' blackHover={true} type='button' />
+              <Button text={bag?.checkoutButton} borderColor='black' colorText='black' blackHover={true} type='button' onClick={() => navigation('checkout', true)} />
             </div>
           </div>) : (
           <div className={styles._tableContainer}>

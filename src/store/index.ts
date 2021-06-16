@@ -40,11 +40,15 @@ const makeStore: any = ({ isServer }) => {
   if (isServer) return createStoreHook(reducer)
 
   const { persistStore, persistReducer } = require('redux-persist')
-  const storage = typeof window !== "undefined" ? createWebStorage("local") : createNoopStorage()
+  const storage = typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage()
 
   const persistConfig = {
     key: 'broccoliBrandRoot',
-    storage
+    storage,
+    blacklist: [
+      'loader',
+      'page'
+    ]
   }
 
   const persistedReducer = persistReducer(persistConfig, reducer)

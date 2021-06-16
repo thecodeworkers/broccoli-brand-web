@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
-import { World, Coin, Bag, User, Pipe } from '@images/svg'
+import { World, Coin, Bag, User, Pipe, Arrow } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, logout, openModal, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
@@ -12,12 +12,21 @@ const Navbar = ({ reference }: any = '' ) => {
 
   const dispatch = useDispatch()
   const router = useRouter()
+  const [down, setDown] = useState(false)
   const { resource: { language, general: generalPage = {} }, user } = useSelector((state: any) => state)
   const { general } = generalPage
   const [path, setPath] = useState<any>()
 
   const [showCat, setShowCat] = useState(false)
-  const changeLang = (event) => dispatch(changeLanguage(event.target.value))
+
+  const changeLang = (event) => {
+    const lang = event.target.value
+    dispatch(changeLanguage(lang))
+
+    if (typeof window !== 'undefined') {
+      document.cookie = `lang=${lang}`
+    }
+  }
 
   const navigation = (route, loader = false) => {
     if (router.pathname != route) {
@@ -34,7 +43,7 @@ const Navbar = ({ reference }: any = '' ) => {
     setPath(router.pathname)
   }, [router.pathname])
 
-  return (
+  return general ? (
     <>
       <nav className={styles._main}>
         <section className={styles._topContainer}>
@@ -63,7 +72,17 @@ const Navbar = ({ reference }: any = '' ) => {
               <User />
               {user.isAuth ? (
                 <>
-                  <div className={[styles._topText, styles._rightMargin].join(" ")}>hi! {user.user?.firstName}</div>
+                  <div className={styles._dropdownUser} onClick={() => setDown(!down)}>
+                    <div className={[styles._topText, styles._rightMargin].join(" ")}>hi! {user.user?.firstName}<span className={styles._arrowUser}><Arrow /></span></div>
+                    {down ? (
+                      <div className={styles._dropdownUserMenu}>
+                        <p className={styles._dropdownUserItem} onClick={() => { modal('changePassword') }}>Change Password</p>
+                        <p className={styles._dropdownUserItem}>Profile</p>
+                      </div>
+                    ) : null}
+
+                  </div>
+
                   <Pipe />
                   <div className={styles._topText} onClick={() => dispatch(logout())}>{general?.navigationBar?.logout}</div>
                 </>
@@ -82,7 +101,7 @@ const Navbar = ({ reference }: any = '' ) => {
             <div className={styles._categoriesContainer}>
               <div className={styles._halfCategories}>
                 <div className={styles._listContainer}>
-                  {general?.navigationBar?.dropdownMenu.columnList.map((item, index) => (
+                  {general?.navigationBar?.dropdownMenu?.columnList.map((item, index) => (
                     <div className={styles._listColum} key={index}>
                       <div dangerouslySetInnerHTML={createMarkup(item.list)}></div>
                     </div>
@@ -166,7 +185,7 @@ const Navbar = ({ reference }: any = '' ) => {
         `}
       </style>
     </>
-  )
+  ) : null
 }
 
 export default Navbar

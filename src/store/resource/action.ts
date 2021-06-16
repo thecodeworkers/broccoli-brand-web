@@ -5,11 +5,12 @@ import { GET_PAGES } from '@store/page/action-types'
 import { LOADER } from '@store/loader/action-types'
 import { getCart } from '@store/actions'
 
-export const getResources: any = (pageType) => async (dispatch, getState) => {
+export const getResources: any = (pageType, lang = 'ES') => async (dispatch, getState) => {
   dispatch(actionObject(LOADER, true))
-  const { resource: { language }, page, user: { user: { jwtAuthToken } } } = getState()
-  const allResources = await resources(language, jwtAuthToken)
-  const result: any = await pages(pageType, language)
+  const { page, user: { user: { jwtAuthToken } } } = getState()
+  
+  const allResources = await resources(lang, jwtAuthToken)
+  const result: any = await pages(pageType, lang)
   page[pageType] = result;
   if (!page.consultPages.includes(pageType)) page.consultPages.push(pageType);
 

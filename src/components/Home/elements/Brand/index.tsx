@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 
 const Brand = ({data}) => {
@@ -43,13 +43,13 @@ const Brand = ({data}) => {
 			<style jsx>
 			{`
 			._firstBrand {
-				background-image: url('${data.topImage.mediaItemUrl}');
+				background-image: url('${data.topImage?.mediaItemUrl}');
 				background-repeat: repeat-x;
 				background-size: contain;
 				height: 30vh;
 			}
 			._secondBrand {
-				background-image: url('${data.bottomImage.mediaItemUrl}');
+				background-image: url('${data.bottomImage?.mediaItemUrl}');
 				background-repeat: repeat-x;
 				background-size: contain;
 				height: 30vh;

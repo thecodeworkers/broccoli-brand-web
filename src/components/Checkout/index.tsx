@@ -1,10 +1,19 @@
 import React from 'react'
-import { Bag } from '@components'
-import styles from './styles.module.scss'
+import Head from 'next/head'
+import { Navbar, Footer, Bag } from '@components'
+import { Billing, Payment, Shipping } from './elements'
 
 const Checkout = () => (
-  <div className={styles._main}>
+  <div>
+    <Head>
+      <title>Broccoli</title>
+    </Head>
+    <Navbar />
     <Bag />
+    <Shipping />
+    <Payment />
+    <Billing />
+    <Footer />
   </div>
 )
 

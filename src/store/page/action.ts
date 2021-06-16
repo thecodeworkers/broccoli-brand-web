@@ -8,9 +8,9 @@ const setResources = (data, page, resources) => {
   return data;
 }
 
-export const getPages: any = (resources, id = '') => async (dispatch, getState) => {
-  const { resource: { language } } = getState()
-  const result: any = await pages(resources, language, id)
+export const getPages: any = (resources, id = '', lang) => async (dispatch, getState) => {
+  // const { resource: { language } } = getState()
+  const result: any = await pages(resources, lang, id)
   const { page } = getState()
   let data = page
 

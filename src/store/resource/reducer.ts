@@ -8,6 +8,7 @@ const initialState = {
   login: {},
   recover: {},
   checkout: {},
+  change: {},
   language: 'ES'
 }
 

@@ -1,6 +1,4 @@
-import { useRouter } from 'next/router'
-import { setLoader } from '../store/actions'
-import { useDispatch } from 'react-redux'
+import { getResources } from '../store/actions'
 
 export const normalizedArray = response => response ? response : []
 
@@ -24,3 +22,24 @@ export const scrolling = (ref: any, number: number = null): void => {
 }
 
 export const createMarkup = (text) => { return {__html: text}; }
+
+export const getCurrentLang = req => {
+  try {
+    const currentCookie = req.headers.cookie.replace(
+      /(?:(?:^|.*;\s*)lang\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  
+    return currentCookie ? currentCookie : 'ES'
+
+  } catch {
+    return 'ES'
+  }
+}
+
+export const dispatchPage = (props, pageName) => {
+  const { store, req } = props
+  const lang = getCurrentLang(req)
+  
+  return store.dispatch(getResources(pageName, lang))
+}
