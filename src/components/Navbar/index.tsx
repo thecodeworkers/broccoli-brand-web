@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
 import { World, Coin, Bag, User, Pipe, Arrow } from '@images/svg'
@@ -6,14 +6,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, logout, openModal, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
-import { createMarkup } from '@utils';
-const Navbar = () => {
+import { createMarkup, scrolling } from '@utils';
+
+const Navbar = ({ reference }: any = '' ) => {
 
   const dispatch = useDispatch()
   const router = useRouter()
   const [down, setDown] = useState(false)
   const { resource: { language, general: generalPage = {} }, user } = useSelector((state: any) => state)
   const { general } = generalPage
+  const [path, setPath] = useState<any>()
 
   const [showCat, setShowCat] = useState(false)
 
@@ -36,6 +38,10 @@ const Navbar = () => {
   const modal = (type) => {
     dispatch(openModal(type))
   }
+
+  useEffect(() => {
+    setPath(router.pathname)
+  }, [router.pathname])
 
   return general ? (
     <>
@@ -117,15 +123,41 @@ const Navbar = () => {
           </section>
           <div className={styles._bottomSectionsContainer}>
             <div className={styles._bottomSections}>
-              {general?.navigationBar?.navigation?.map((nav, index) => (
-                <div onClick={() => navigation(nav.link, true)} key={index}
-                  className={styles._bottomSection}
-                  onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                  onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
-                >
-                  <p className={styles._bottomText}>{nav.text}</p>
-                </div>
-              ))}
+              {general?.navigationBar?.navigation?.map((nav, index) => {
+                if(index != 3) {
+                  return (
+                    <div onClick={() => navigation(nav.link, true)} key={index} 
+                      className={styles._bottomSection}
+                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
+                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
+                    >
+                      <p className={styles._bottomText}>{nav.text}</p>
+                    </div>
+                  )
+                }
+
+                if(path == '/about-us' || path == '/') {
+                  return (
+                    <a key={index} onClick={() => scrolling(reference, 100)} 
+                      className={styles._bottomSection}
+                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
+                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
+                    >
+                      <p className={styles._bottomText}>{nav.text}</p>
+                    </a>
+                  )
+                } else {
+                  return (
+                    <div key={index} onClick={() => navigation('/#contact-us', true)}
+                      className={styles._bottomSection}
+                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
+                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
+                    >
+                      <p className={styles._bottomText}>{nav.text}</p>
+                    </div>
+                  )
+                }
+              })}
             </div>
             <div className={styles._searchContainer}>
               <div className={styles._inputContainer}>

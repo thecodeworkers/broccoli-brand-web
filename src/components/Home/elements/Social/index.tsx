@@ -18,7 +18,7 @@ const Social = ({ data }) => {
               <p className={styles._socialDescription}>{data.description}
               </p>
             </div>
-            <div className={styles._buttonContainer}>
+            <div className={styles._buttonContainer} id='contact-us'>
               <Button text={data.textButton} colorText="black" borderColor="black" link={data.linkButton} blackHover={true} />
             </div>
           </div>
