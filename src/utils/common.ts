@@ -12,16 +12,15 @@ export const paginate = (items: Array<any>, page_number: number = 1, page_size: 
   return items?.slice((page_number - 1) * page_size, page_number * page_size);
 }
 
-export const scrolling = (reference) => {
-
-  if(reference) {
-    const target = reference.current;
-    window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
-  }
-}
-
 export const scrollTo = (ref: any) => {
   window.scrollTo({ top: ref.offsetTop, behavior: 'smooth' });
+}
+
+export const scrolling = (ref: any, number: number = null): void => {
+  if(ref) {
+    const target = ref.current;
+    window.scrollTo({ top: !number ? target.offsetTop : target.offsetTop - number, behavior: 'smooth' });
+  } 
 }
 
 export const createMarkup = (text) => { return {__html: text}; }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
 import { World, Coin, Bag, User, Pipe } from '@images/svg'
@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, logout, openModal, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
-import { createMarkup } from '@utils';
+import { createMarkup, scrolling } from '@utils';
 
-const Navbar = () => {
+const Navbar = ({ reference }: any = '' ) => {
 
   const dispatch = useDispatch()
   const router = useRouter()
   const { resource: { language, general: generalPage = {} }, user } = useSelector((state: any) => state)
   const { general } = generalPage
+  const [path, setPath] = useState<any>()
 
   const [showCat, setShowCat] = useState(false)
   const changeLang = (event) => dispatch(changeLanguage(event.target.value))
@@ -28,6 +29,10 @@ const Navbar = () => {
   const modal = (type) => {
     dispatch(openModal(type))
   }
+
+  useEffect(() => {
+    setPath(router.pathname)
+  }, [router.pathname])
 
   return (
     <>
@@ -112,9 +117,9 @@ const Navbar = () => {
                   )
                 }
 
-                if(router.pathname == 'about-us' || router.pathname == '/') {
+                if(path == '/about-us' || path == '/') {
                   return (
-                    <a key={index} href={nav.link}
+                    <a key={index} onClick={() => scrolling(reference, 100)} 
                       className={styles._bottomSection}
                       onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
                       onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
@@ -124,7 +129,7 @@ const Navbar = () => {
                   )
                 } else {
                   return (
-                    <div key={index} onClick={() => navigation('/#contact', true)}
+                    <div key={index} onClick={() => navigation('/#contact-us', true)}
                       className={styles._bottomSection}
                       onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
                       onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
@@ -133,7 +138,6 @@ const Navbar = () => {
                     </div>
                   )
                 }
-
               })}
             </div>
             <div className={styles._searchContainer}>

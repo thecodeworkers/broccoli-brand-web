@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { createMarkup } from '@utils';
+import { createMarkup, scrolling } from '@utils';
 import FooterResponsive from '../FooterResponsive';
 import { useRouter } from 'next/router';
 import { setLoader } from '@store/actions'
 
-
-const Footer = () => {
+const Footer = ({reference}: any = '') => {
   const { resource: { general: { general } } } = useSelector((state: any) => state)
   const router = useRouter();
   const dispatch = useDispatch()
@@ -69,15 +68,15 @@ const Footer = () => {
                 )
               }
 
-              if(router.pathname == 'about-us' || router.pathname == '/') {
+              if(router.pathname == '/about-us' || router.pathname == '/') {
                 return (
-                  <a key={index} href={nav.link} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                  <a key={index} onClick={() => scrolling(reference, 100)} className={[styles._whiteText, styles._textMargin].join(" ")}>
                     <p>{nav.text}</p>
                   </a>
                 )
               } else {
                 return (
-                  <div key={index} onClick={() => navigation('/#contact', true)} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                  <div key={index} onClick={() => navigation('/#contact-us', true)} className={[styles._whiteText, styles._textMargin].join(" ")}>
                     <p>{nav.text}</p>
                   </div>
                 )
