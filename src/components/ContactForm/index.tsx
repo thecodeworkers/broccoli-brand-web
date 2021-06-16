@@ -6,7 +6,7 @@ import styles from './styles.module.scss'
 const ContactForm = ({ data }) => {
 
   const dispatch = useDispatch()
-  const formik = formikConfig(dispatch)
+  const formik = formikConfig(dispatch, { subject: data?.subject?.fields[0]?.text, category: data?.category?.fields[0]?.text })
   const { errors, touched } = formik
 
   return !data ? null : (
@@ -41,7 +41,7 @@ const ContactForm = ({ data }) => {
               <div className={styles._formContainer}>
                 <p className={errors.category && touched.category ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.category.title}</p>
                 <label htmlFor="category" className={styles._customSelect}>
-                  <select name="category" id="category" value={formik.values.category} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm}>
+                  <select name="category" defaultValue={data.category.fields[0].text} id="category" value={formik.values.category} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm}>
                     {data.category.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
                   </select>
                 </label>
@@ -49,7 +49,7 @@ const ContactForm = ({ data }) => {
               <div className={styles._formContainer}>
                 <p className={errors.subject && touched.subject ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.subject.title}</p>
                 <label htmlFor="subject" className={styles._customSelect}>
-                  <select name="subject" id="subject" value={formik.values.subject} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm}>
+                  <select name="subject" defaultValue={data.subject.fields[0].text} id="subject" value={formik.values.subject} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm}>
                     {data.subject.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
                   </select>
                 </label>

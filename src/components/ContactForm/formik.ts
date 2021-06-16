@@ -3,15 +3,15 @@ import { emailRegex, onlyLettersRegex } from '@utils/regex'
 import { sendMail } from '@store/actions'
 import * as Yup from 'yup'
 
-export const formikConfig = dispatch => (useFormik({
+export const formikConfig = (dispatch, def: any = null) => (useFormik({
   initialValues: {
-    name: '',
-    email: '',
-    phone: '',
-    orderNumber: '',
-    category: '',
-    subject: '',
-    message: ''
+    name: (def) ? def.name : '',
+    email: (def) ? def.email : '',
+    phone: (def) ? def.phone : '',
+    orderNumber: (def) ? def.orderNumber : '',
+    category: (def) ? def.category : '',
+    subject: (def) ? def.subject : '',
+    message: (def) ? def.message : ''
   },
 
   validationSchema: Yup.object({
