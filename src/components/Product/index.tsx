@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { setLoader } from '@store/actions'
 
 const Product = ({ containerStyles = null, details = true, data = null }) => {
-  
+
   const dispatch = useDispatch()
   const add = () => { if (data) dispatch(addToCar(data?.databaseId, 1)) }
 
@@ -28,7 +28,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
             <p className={styles._addToCartText}>ADD TO CART</p>
           </div>
           {!details ? (
-            <div className={styles._viewMore} >
+            <div className={styles._viewMore} onClick={() => navigation(data.id, true)}>
               <p className={styles._addToCartText}>VIEW MORE</p>
             </div>
           ) : null}

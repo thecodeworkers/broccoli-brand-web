@@ -1,5 +1,5 @@
 import { SET_RESOURCES } from './action-types'
-import { actionObject, orderBy } from '../../utils'
+import { actionObject, filter, orderBy } from '../../utils'
 import { pages, resources } from '../../graphql/query'
 import { GET_PAGES } from '@store/page/action-types'
 import { LOADER } from '@store/loader/action-types'
@@ -13,6 +13,7 @@ export const getResources: any = (pageType, lang = 'ES') => async (dispatch, get
 
   const allResources = await resources(lang, jwtAuthToken)
   allResources['outstanding'] = orderBy(allResources.products, 'totalSales', 'asc').slice(0, 4)
+  allResources['collection'] = filter(allResources.products, true, 'outstandingCollection', ['productData']).slice(0, 3)
   const result: any = await pages(pageType, lang)
   page[pageType] = result;
   if (!page.consultPages.includes(pageType)) page.consultPages.push(pageType);

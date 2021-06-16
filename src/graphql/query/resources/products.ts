@@ -7,6 +7,9 @@ products(first: 10000000) {
     status
     type
     databaseId
+    productData{
+      outstandingCollection
+    }
     image {
       mediaItemUrl
     }

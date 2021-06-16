@@ -1,8 +1,11 @@
 import styles from './styles.module.scss'
 import { Product, ResponsiveShop, Button } from '@components'
+import { useSelector } from 'react-redux'
 
 const Shop = ({ data }) => {
 
+  const { resource: { collection } } = useSelector((state: any) => state)
+  
   return (
     <div className={styles._content}>
       <div className={styles._headerContainer}>
@@ -11,9 +14,9 @@ const Shop = ({ data }) => {
       </div>
 
       <div className={styles._productContainer}>
-        <Product containerStyles={styles._product} details={false} />
-        <Product containerStyles={styles._product} details={false} />
-        <Product containerStyles={styles._product} details={false} />
+        {collection.map((collect, index) => (
+          <Product containerStyles={styles._product} data={collect} key={index} details={false} />
+        ))}
       </div>
 
       <div className={styles._productReponsiveContainer}>
