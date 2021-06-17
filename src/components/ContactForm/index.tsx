@@ -1,7 +1,13 @@
 import { Button } from '@components'
+import { useDispatch } from 'react-redux'
+import { formikConfig } from './formik'
 import styles from './styles.module.scss'
 
 const ContactForm = ({ data }) => {
+
+  const dispatch = useDispatch()
+  const formik = formikConfig(dispatch, { subject: data?.subject?.fields[0]?.text, category: data?.category?.fields[0]?.text })
+  const { errors, touched } = formik
 
   return !data ? null : (
     <>
@@ -10,47 +16,53 @@ const ContactForm = ({ data }) => {
           <div className={styles._formTitleContainer}>
             <h2 className={styles._formTitle}>{data.title}</h2>
           </div>
-          <div className={styles._formContent}>
-            <div className={styles._formContainer}>
-              <p className={styles._labelForm}>{data.name}</p>
-              <input type="text" className={styles._inputForm} />
+          <form onSubmit={formik.handleSubmit}>
+            <div className={styles._formContent}>
+              <div className={styles._formContainer}>
+                <span className={styles._tooltip}>{data?.tooltips?.name}</span>
+                <p className={errors.name && touched.name ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.name}</p>
+                <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} name='name' type="text" className={errors.name && touched.name ? [styles._inputError, styles._inputForm].join(' ') : styles._inputForm} />
+              </div>
+              <div className={styles._formContainer}>
+                <span className={styles._tooltip}>{data?.tooltips?.email}</span>
+                <p className={errors.email && touched.email ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.email}</p>
+                <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} name='email' type="text" className={errors.email && touched.email ? [styles._inputError, styles._inputForm].join(' ') : styles._inputForm} />
+              </div>
+              <div className={styles._formContainer}>
+                <span className={styles._tooltip}>{data?.tooltips?.phone}</span>
+                <p className={errors.phone && touched.phone ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.phone}</p>
+                <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.phone} name='phone' type="text" className={errors.phone && touched.phone ? [styles._inputError, styles._inputForm].join(' ') : styles._inputForm} />
+              </div>
+              <div className={styles._formContainer}>
+                <span className={styles._tooltip}>{data?.tooltips?.orderNumber}</span>
+                <p className={errors.orderNumber ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm} >{data.orderNumber}</p>
+                <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.orderNumber} name='orderNumber' type="text" className={errors.orderNumber ? [styles._inputError, styles._inputForm].join(' ') : styles._inputForm} />
+              </div>
+              <div className={styles._formContainer}>
+                <p className={errors.category && touched.category ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.category.title}</p>
+                <label htmlFor="category" className={styles._customSelect}>
+                  <select name="category" defaultValue={data.category.fields[0].text} id="category" value={formik.values.category} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm}>
+                    {data.category.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
+                  </select>
+                </label>
+              </div>
+              <div className={styles._formContainer}>
+                <p className={errors.subject && touched.subject ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.subject.title}</p>
+                <label htmlFor="subject" className={styles._customSelect}>
+                  <select name="subject" defaultValue={data.subject.fields[0].text} id="subject" value={formik.values.subject} onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm}>
+                    {data.subject.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
+                  </select>
+                </label>
+              </div>
+              <div className={styles._formContainer}>
+                <p className={errors.message && touched.message ? [styles._inputError, styles._labelMessage].join(' ') : styles._labelMessage}>{data.message}</p>
+                <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.message} name='message' type="text" className={errors.message && touched.message ? [styles._inputError, styles._inputForm].join(' ') : styles._inputForm} />
+              </div>
             </div>
-            <div className={styles._formContainer}>
-              <p className={styles._labelForm}>{data.email}</p>
-              <input type="text" className={styles._inputForm} />
+            <div className={styles._buttonContainer}>
+              <Button text={data.textButton} borderColor='black' colorText='black' blackHover={true} type='submit' />
             </div>
-            <div className={styles._formContainer}>
-              <p className={styles._labelForm}>{data.phone}</p>
-              <input type="text" className={styles._inputForm} />
-            </div>
-            <div className={styles._formContainer}>
-              <p className={styles._labelForm}>{data.orderNumber}</p>
-              <input type="text" className={styles._inputForm} />
-            </div>
-            <div className={styles._formContainer}>
-              <p className={styles._labelForm}>{data.category.title}</p>
-              <label htmlFor="category" className={styles._customSelect}>
-                <select name="category" id="category" defaultValue={data.category.fields[0].text} className={styles._selectForm}>
-                  {data.category.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
-                </select>
-              </label>
-            </div>
-            <div className={styles._formContainer}>
-              <p className={styles._labelForm}>{data.subject.title}</p>
-              <label htmlFor="subject" className={styles._customSelect}>
-                <select name="subject" id="subject" defaultValue={data.subject.fields[0].text} className={styles._selectForm}>
-                  {data.subject.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
-                </select>
-              </label>
-            </div>
-            <div className={styles._formContainer}>
-              <p className={styles._labelMessage}>{data.message}</p>
-              <input type="text" className={styles._inputForm} />
-            </div>
-          </div>
-          <div className={styles._buttonContainer}>
-            <Button text={data.textButton} borderColor='black' colorText='black' blackHover={true} />
-          </div>
+          </form>
         </div>
       </section>
     </>

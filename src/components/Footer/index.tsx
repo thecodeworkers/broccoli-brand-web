@@ -1,12 +1,23 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { Instagram, Whatsapp, Twitter } from '@images/svg';
-import { useSelector } from 'react-redux';
-import { createMarkup } from '@utils';
+import { useSelector, useDispatch } from 'react-redux';
+import { createMarkup, scrolling } from '@utils';
 import FooterResponsive from '../FooterResponsive';
+import { useRouter } from 'next/router';
+import { setLoader } from '@store/actions'
 
-const Footer = () => {
+const Footer = ({reference}: any = '') => {
   const { resource: { general: { general } } } = useSelector((state: any) => state)
+  const router = useRouter();
+  const dispatch = useDispatch()
+
+  const navigation = (route, loader = false) => {
+    if (router.pathname != route) {
+      if (loader) dispatch(setLoader(true))
+      router.push(route)
+    }
+  }
+
   return general ? (
     <>
     <footer className={styles._footerContainer}>
@@ -37,22 +48,51 @@ const Footer = () => {
       </div>
       <div className={[styles._footerSection, styles._section13].join(" ")}>
         <div className={styles._textContainer}>
-          <p className={[styles._grayText, styles._marginBottom].join(" ")}>{general.clauses.politicTitle}</p>
-          <p className={styles._grayText}>{general.clauses.termsTitle}</p>
+          <a href={general.clauses.termsLink}>
+            <p className={[styles._grayText, styles._marginBottom].join(" ")}>{general.clauses.politicTitle}</p>
+          </a>
+          <a href={general.clauses.politicLink}>
+            <p className={styles._grayText}>{general.clauses.termsTitle}</p>
+          </a>
         </div>
       </div>
       <div className={[styles._footerSection, styles._bottomSection].join(" ")}>
         <div className={styles._bottomItem}>
-          <p className={[styles._whiteText, styles._textMargin].join(" ")}>Home</p>
-          <p className={[styles._whiteText, styles._textMargin].join(" ")}>About Us</p>
-          <p className={[styles._whiteText, styles._textMargin].join(" ")}>Shop</p>
-          <p className={[styles._whiteText, styles._textMargin].join(" ")}>Contacto</p>
+          {
+            general.navigationBar?.navigation?.map((nav, index) => {
+              if(index != 3) {
+                return (
+                  <div onClick={() => navigation(nav.link, true)} key={index} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                    <p>{nav.text}</p>
+                  </div>
+                )
+              }
+
+              if(router.pathname == '/about-us' || router.pathname == '/') {
+                return (
+                  <a key={index} onClick={() => scrolling(reference, 100)} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                    <p>{nav.text}</p>
+                  </a>
+                )
+              } else {
+                return (
+                  <div key={index} onClick={() => navigation('/#contact-us', true)} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                    <p>{nav.text}</p>
+                  </div>
+                )
+              }
+            })
+          }
         </div>
       </div>
       <div className={[styles._footerSection, styles._bottomSocial].join(" ")}>
-        <div className={styles._iconMargin}><a href={general.socialMedia[0].link}><Instagram /></a></div>
-        <div className={styles._iconMargin}><Twitter /></div>
-        <div className={styles._iconMargin}><Whatsapp /></div>
+        {
+          general.socialMedia?.map((item, index) => (
+            <div key={index} className={styles._iconMargin}>
+              <a href={item.link} target='_blank'><img src={item?.icon?.mediaItemUrl} /></a>
+            </div>
+          ))
+        }
       </div>
       <div className={[styles._footerSection, styles._bottomCopy].join(" ")}>
         <div className={styles._bottomCopyItem}>

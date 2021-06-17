@@ -5,7 +5,6 @@ import shopPageQuery from './shopPage'
 import productQuery from './productPage'
 
 const pages = async (resource: any, language, id: string = '') => {
-  
   const resources = {
     'homePage': homePageQuery(language),
     'aboutPage': aboutPageQuery(language),

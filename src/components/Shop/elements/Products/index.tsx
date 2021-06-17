@@ -15,7 +15,6 @@ const Products = ({ data }) => {
   const [page, setPage] = useState(1)
 
   const { resource: { products } } = useSelector((state: any) => state)
-
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
@@ -34,8 +33,8 @@ const Products = ({ data }) => {
           </div>
           <div className={styles._productContainer}>
             {
-              products?.nodes?.length ?
-              paginate(products?.nodes, page, perPage).map((product, index) => {
+              products.length ?
+              paginate(products, page, perPage).map((product, index) => {
                 index++
                 return (
                   <div key={index} className={[styles[`_item${index}`], styles._item].join(" ")}>
@@ -47,8 +46,8 @@ const Products = ({ data }) => {
           </div>
           <div className={styles._paginationContainer}>
             {
-              products?.nodes?.length ? (
-                <Pagination currentPage={page} items={products.nodes} perPage={perPage} changePage={setPage}/>
+              products?.length ? (
+                <Pagination currentPage={page} items={products} perPage={perPage} changePage={setPage}/>
               ) : null
             }
           </div>
