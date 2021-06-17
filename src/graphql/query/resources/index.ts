@@ -23,7 +23,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
   `
 
   const data: any = await GraphQlClient(query, {}, auth, wcAuth)
-
+  console.log(data)
   return {
     general: normalized(data?.generalPage?.translation),
     products: normalizedArray(data?.products?.nodes),
