@@ -16,6 +16,11 @@ products(first: 10000000) {
         options
       }
     }
+    ... on SimpleProduct {
+      price
+      stockQuantity
+      totalSales
+    }
   }
 }
 `
