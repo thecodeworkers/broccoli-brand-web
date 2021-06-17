@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { createMarkup } from '@utils';
 import { ColorPicker, Button } from '@components'
 import styles from './styles.module.scss'
+import { useDispatch } from 'react-redux';
+import { addToCar } from '@store/actions';
 
 const Details = ({ data }) => {
-    
+  const dispatch = useDispatch()
+  const addProduct = () => {
+    if (data) dispatch(addToCar(data?.databaseId, 1));
+  }
   return (
     <>
       <div className={styles._content}>
@@ -23,7 +28,7 @@ const Details = ({ data }) => {
                   <h2 className={styles._price}>{data.price}</h2>
                 </div>
                 <div className={styles._half}>
-                  <div  className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
+                  <div className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
                 </div>
               </div>
 
@@ -43,7 +48,7 @@ const Details = ({ data }) => {
                     </div>
                   </div>
                 </div>
-                <div className={styles._buttonContainer}>
+                <div className={styles._buttonContainer} >
                   <div className={styles._buttonContent}>
                     <div className={styles._button}>
                       <Button borderColor='black' colorText='black' text='VIEW ALL COLORS' blackHover={true} />
@@ -63,8 +68,8 @@ const Details = ({ data }) => {
                       {data?.attributes?.nodes[1].options.map((item, index) => (
                         <div key={index}>
                           <label className={styles._labelFilter}>
-                          <input type='checkbox' className={styles._checkbox} id='choice1-1' name='choice1' />
-                          <span className={styles._filterText}>{item}</span>
+                            <input type='checkbox' className={styles._checkbox} id='choice1-1' name='choice1' />
+                            <span className={styles._filterText}>{item}</span>
                           </label>
                         </div>
                       ))}
@@ -73,10 +78,10 @@ const Details = ({ data }) => {
                 </div>
               </div>
             </div>
-            
+
             <div className={styles._lastButtonContainer}>
               <div className={styles._buttonContainer}>
-                <Button borderColor='black' colorText='black' text='ADD TO CART' blackHover={true} />
+                <Button borderColor='black' colorText='black' text='ADD TO CART' blackHover={true} onClick={addProduct} />
               </div>
             </div>
           </div>

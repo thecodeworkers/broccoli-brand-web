@@ -6,6 +6,7 @@ productPage:product(id: "${id}") {
   shortDescription
   sku
   slug
+  databaseId
   image {
     mediaItemUrl
   }

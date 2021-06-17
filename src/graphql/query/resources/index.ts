@@ -6,6 +6,7 @@ import loginQuery from './loginPage'
 import recoverQuery from './recoverPage'
 import checkoutQuery from './checkoutPage'
 import changeQuery from './changePage'
+import productCategories from './productCategories'
 
 const resource = async (language, auth = null, wcAuth = null) => {
   const query = `
@@ -17,6 +18,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
       ${recoverQuery(language)}
       ${checkoutQuery(language)}
       ${changeQuery(language)}
+      ${productCategories(language)}
     }
   `
 
@@ -30,6 +32,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
     recover: normalized(data?.recoverPage?.translation),
     checkout: normalized(data?.checkoutPage?.translation),
     change: normalized(data?.changePage?.translation),
+    productCategories: normalizedArray(data?.productCategories?.nodes),
     language: language
   }
 }

@@ -17,14 +17,18 @@ const pages = async (resource: any, language, id: string = '') => {
       ${resources[resource]}
     }
   `
-  
   const result: any = await GraphQlClient(query)
 
-  const data = ('translation' in result[resource]) ? result[resource].translation : result[resource]
+  if (result[resource]) {
 
-  const returnData = 'nodes' in data ? normalizedArray(data.nodes) : normalized(data)
+    const data = ('translation' in result[resource]) ? result[resource].translation : result[resource]
 
-  return (result) ? returnData : {}
+    const returnData = 'nodes' in data ? normalizedArray(data.nodes) : normalized(data)
+
+    return returnData
+  }
+  return {}
+
 }
 
 export default pages
