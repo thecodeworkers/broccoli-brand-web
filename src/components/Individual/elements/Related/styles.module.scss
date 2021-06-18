@@ -6,7 +6,7 @@
 }
 
 ._title {
-  margin: 3% auto;
+  margin: 0 auto 3% auto;
   color: $black;
   text-transform: uppercase;
   font-family: $roboto;
@@ -31,7 +31,6 @@
       margin-right: 0px;
     }
   }
-
 }
 
 ._noProductsText {
@@ -40,4 +39,35 @@
   color: $boulder;
   text-align: center;
   width: 100%;
+}
+
+@include responsive(md) {
+  ._products {
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > ._product {
+      width: 48%;
+      margin: 0 0 5% 0;
+    }
+  }
+}
+
+@include responsive(sm) {
+  ._titleContainer {
+    margin: 10% 0;
+  }
+
+  ._title {
+    text-align: center;
+  }
+
+  ._productsContainer {
+    margin: 0 0 15% 0;
+  }
+  ._products {
+    > ._product {
+      height: 35vh;
+    }
+  }
 }

@@ -37,6 +37,17 @@ const Colors = () => {
         height: 50vh;
         width: 24%;
       }
+      @media(max-width: 768px) {
+        ._img, ._standard {
+          width: 48%;
+          margin: 0 0 5% 0;
+        }
+      }
+      @media(max-width: 576px) {
+        ._img, ._standard {
+          height: 25vh;
+        }
+      }
     `}</style>
     </>
   )

@@ -51,3 +51,30 @@
   margin: 3% auto;
   font-size: $roboto18;
 }
+
+@include responsive(sm) {
+  ._galleryContainter {
+    height: 100%;
+  }
+
+  ._leftContainer {
+    display: none;
+  }
+
+  ._rightContainer {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  ._descriptionTitle {
+    width: 90%;
+    margin: auto;
+    font-weight: 900;
+  }
+
+  ._description {
+    width: 90%;
+    margin: 5% auto 0 auto;
+    font-size: $roboto16;
+  }
+}
