@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createMarkup } from '@utils';
 import { ColorPicker, Button } from '@components'
 import styles from './styles.module.scss'
 
 const Details = ({ data }) => {
+
+  const [gallery, setGallery] = useState([])
+  
+  useEffect(() => {
+    console.log(data)
+    const imagesArray = data?.galleryImages?.nodes.slice(0,4);
+    for (let index = imagesArray?.length; index < 4; index++) imagesArray.push({mediaItemUrl: 'images/backgrounds/Pic_not_available.png'})
+
+    setGallery(imagesArray)
+  }, [data])
     
   return (
     <>
@@ -11,6 +21,40 @@ const Details = ({ data }) => {
         <section className={styles._detailsContainter}>
           <div className={styles._leftContainer}>
             <div className='_img'></div>
+            <style jsx>{`
+            ._img {
+              background-image: url(${data?.image?.mediaItemUrl});
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 100% 100%;
+              height: 100%;
+            }
+            @media(max-width: 576px) {
+              ._img {
+                background-image: url(${data?.image?.mediaItemUrl});
+                background-repeat: no-repeat;
+                background-size:100% 100%;
+                height: 45vh;
+              }
+            }
+          `}</style>
+          </div>
+          <div className={styles._gallerySection}>
+          {
+            gallery?.map((item, index) => {
+            return (
+              <div key={index} className={[`_banner${index}`, (index == 0 || index == 3) ? styles._bigPic : styles._smallPic].join(" ")}>
+                <style jsx>{`
+                  ._banner${index} {
+                    background-image: url('${item?.mediaItemUrl}');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                  }
+                  `}</style>  
+              </div>
+            )
+          })}
           </div>
           <div className={styles._rightContainer}>
             <div>
@@ -23,7 +67,7 @@ const Details = ({ data }) => {
                   <h2 className={styles._price}>{data.price}</h2>
                 </div>
                 <div className={styles._half}>
-                  <div  className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
+                  <div id={styles._shortDescription} className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
                 </div>
               </div>
 
@@ -32,7 +76,7 @@ const Details = ({ data }) => {
                   <div className={styles._components}>
                     <div className={styles._textContent}>
                       <p className={styles._colorText}>COLORS*</p>
-                      <span>Select one color</span>
+                      <span className={styles._span}>Select one color</span>
                     </div>
                     <div className={styles._circlesContainer}>
                       {data?.attributes?.nodes[0].options.map((item, index) => (
@@ -57,7 +101,7 @@ const Details = ({ data }) => {
                   <div className={styles._sizes}>
                     <div className={styles._textContent}>
                       <p className={styles._colorText}>SIZES*</p>
-                      <span>Select one size</span>
+                      <span className={styles._span}>Select one size</span>
                     </div>
                     <div className={styles._checkboxContainer}>
                       {data?.attributes?.nodes[1].options.map((item, index) => (
@@ -82,23 +126,6 @@ const Details = ({ data }) => {
           </div>
         </section>
       </div>
-      <style jsx>{`
-      ._img {
-        background-image: url(${data?.image?.mediaItemUrl});
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 100% 100%;
-        height: 100%;
-      }
-      @media(max-width: 576px) {
-        ._img {
-          background-image: url(${data?.image?.mediaItemUrl});
-          background-repeat: no-repeat;
-          background-size:100% 100%;
-          
-        }
-      }
-    `}</style>
     </>
   )
 }

@@ -52,7 +52,7 @@
   font-size: $roboto18;
 }
 
-@include responsive(md) {
+@include responsive(sm) {
   ._galleryContainter {
     height: 100%;
   }
