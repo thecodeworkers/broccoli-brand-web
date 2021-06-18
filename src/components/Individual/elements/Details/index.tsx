@@ -8,7 +8,6 @@ const Details = ({ data }) => {
   const [gallery, setGallery] = useState([])
   
   useEffect(() => {
-    console.log(data)
     const imagesArray = data?.galleryImages?.nodes.slice(0,4);
     for (let index = imagesArray?.length; index < 4; index++) imagesArray.push({mediaItemUrl: 'images/backgrounds/Pic_not_available.png'})
 
