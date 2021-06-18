@@ -10,7 +10,9 @@ const HomePage = () => {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  props => dispatchPage(props, 'homePage')
+  props => { 
+    return dispatchPage(props, 'homePage')
+  }
 )
 
 export default HomePage

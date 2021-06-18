@@ -13,7 +13,7 @@ const IndividualProduct = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   ({ store, params, req }) => {
     const currentLang = getCurrentLang(req)
-    store.dispatch(getPages('productPage', params.id, currentLang))
+    return store.dispatch(getPages('productPage', params.id, currentLang))
   }
 )
 
