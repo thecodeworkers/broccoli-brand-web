@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import { Product, Pagination } from '@components'
+import { Product, Pagination, Recents, Button } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoader } from '@store/actions'
 import { paginate } from '@utils'
 import Sidebar from '../Sidebar'
-import Recents from '../Recents'
 
 const perPage = 12
 
@@ -18,6 +17,8 @@ const Products = ({ data }) => {
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
+
+  console.log(data)
   
   return (
     <>
@@ -53,7 +54,22 @@ const Products = ({ data }) => {
           </div>
         </div>
       </section>
-      <Recents data={data} />
+      <section className={styles._recentlyContainer}>
+        <div className={styles._recentlyTitleContainer}> 
+          <h3 className={styles.recentlyTitle}>{ data?.recentlyTitle }</h3>
+        </div>
+        <div className={styles._recentsContainer}>
+          <Recents data={data} />
+          <Recents data={data} />
+          <Recents data={data} />
+          <Recents data={data} />
+          <Recents data={data} />
+          <Recents data={data} />
+          <div className={styles._buttonContainer}>
+            <Button borderColor="black" colorText='black' text='VIEW MORE' link='#' blackHover={true} />
+          </div>
+        </div>
+      </section>
     </>
   )
 }
