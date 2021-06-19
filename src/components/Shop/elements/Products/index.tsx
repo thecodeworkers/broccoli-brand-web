@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import { Product, Pagination } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
-import { orderProducts, setLoader } from '@store/actions'
+import { orderProducts, setLoader, setShop } from '@store/actions'
 import { paginate } from '@utils'
 import Sidebar from '../Sidebar'
 import Recents from '../Recents'
@@ -14,10 +14,15 @@ const Products = ({ data }) => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
 
+
   const { shop: { shop, filter }, resource: { products } } = useSelector((state: any) => state)
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
+
+  useEffect(() => {
+    dispatch(setShop())
+  }, [products])
 
   const sortBy = (select) => {
     const value = select.target.value
@@ -49,23 +54,13 @@ const Products = ({ data }) => {
                       <Product key={index} data={product} />
                     </div>
                   )
-                }) : products.length && (!filter.attributes.length && !filter.categories.length) ?
-                  paginate(products, page, perPage).map((product, index) => {
-                    index++
-                    return (
-                      <div key={index} className={[styles[`_item${index}`], styles._item].join(" ")}>
-                        <Product key={index} data={product} />
-                      </div>
-                    )
-                  }) : <h2 className={styles._noProductsText}>No products</h2>
+                }) : <h2 className={styles._noProductsText}>No products</h2>
             }
           </div>
           <div className={styles._paginationContainer}>
             {
               shop?.length ? (
                 <Pagination currentPage={page} items={shop} perPage={perPage} changePage={setPage} />
-              ) : products?.length && (!filter.attributes.length && !filter.categories.length) ? (
-                <Pagination currentPage={page} items={products} perPage={perPage} changePage={setPage} />
               ) : null
             }
           </div>

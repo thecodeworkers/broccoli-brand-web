@@ -14,17 +14,23 @@ export const getCart: any = () => async (dispatch, getState) => {
 
 export const addToCar: any = (product: any, quantity: any) => async (dispatch, getState) => {
   try {
-    dispatch(actionObject(LOADER, true))
+
 
     const { user } = getState()
 
-    const data: any = (user.isAuth) ? await mutations('addCartItems', { product, quantity }, user?.user?.jwtAuthToken, user?.user?.sessionToken) : {}
+    if (user?.user?.isAuth) {
+      dispatch(actionObject(LOADER, true))
 
-    if (data.message) throw new Error(data.message);
+      const data: any = await mutations('addCartItems', { product, quantity }, user?.user?.jwtAuthToken, user?.user?.sessionToken)
 
-    dispatch(actionObject(ADD_TO_CART, data))
-    dispatch(setAlert('Producto agregado exitosamente', true, 'success'))
-    dispatch(actionObject(LOADER, false))
+      if (data.message) throw new Error(data.message);
+
+      dispatch(actionObject(ADD_TO_CART, data))
+      dispatch(setAlert('Producto agregado exitosamente', true, 'success'))
+      dispatch(actionObject(LOADER, false))
+    }
+
+    if (!user?.user?.isAuth) dispatch(setAlert('Inicie sesion antes de continuar', true, 'warning'))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
