@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './styles.module.scss'
 import { Bag } from '@images/svg'
-import { Button } from '@components'
 
 const Recents = ({ data }) => {
 

@@ -1,9 +1,9 @@
 import styles from './styles.module.scss'
 import { ColorPicker } from '@components'
 import { useDispatch } from 'react-redux'
-import { addToCar } from '@store/actions'
+import { addToCar, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
-import { setLoader } from '@store/actions'
+import { Bag } from '@images/svg'
 
 const Product = ({ containerStyles = null, details = true, data = null }) => {
   
@@ -35,7 +35,6 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
         </div>
         {details ? (
           <div className={styles._specsContainer}>
-
             <div className={styles._specs}>
               <div className={styles._productNameContainer}>
                 <p className={styles._productName}>{data ? data?.name : 'Standard Product'}</p>
@@ -51,6 +50,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
                 <p className={styles._producSizes}>{data ? data?.attributes?.nodes[1].options.join(", ") : ' XS, L'}</p>
               </div>
             </div>
+            <div className={styles._bag}><Bag width='15' height='15' fill='black' /></div> 
           </div>
         ) : null}
       </section>

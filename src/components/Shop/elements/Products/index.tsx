@@ -18,12 +18,12 @@ const Products = ({ data }) => {
     dispatch(setLoader(false))
   }, [])
 
-  console.log(data)
-  
   return (
     <>
       <section className={styles._mainContent}>
-        <Sidebar />
+        <div className={styles._sidebarContent}>
+          <Sidebar />
+        </div>
         <div className={styles._productsContainer}>
           <div className={styles._sortByContainer}>
             <label htmlFor="sort" className={styles._customSelect}>

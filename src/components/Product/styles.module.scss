@@ -14,7 +14,7 @@
   height: 70%;
   position: relative;
 
-  ._addToCart {
+  ._viewMore, ._addToCart {
     display: none;
   }
 
@@ -33,10 +33,6 @@
       justify-content: center;
       align-items: center;
     }
-  }
-
-  ._viewMore {
-    display: none;
   }
 
   &:hover {
@@ -70,6 +66,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  ._bag {
+    display: none;
+  }
 
   ._specs {
     margin-left: 10%;
@@ -107,12 +107,31 @@
     margin-bottom: 0;
   }
 
+  ._specsContainer {
+    position: relative;
+    
+    ._bag {
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      display: block;
+    }
+  }
+
   ._productNameContainer {
     margin-bottom: 0;
   }
 
   ._producSizes {
     font-size: $roboto14;
+  }
+
+  ._imageProductContainer {    
+    &:hover {
+      ._addToCart {
+        display: none;
+      }
+    }
   }
 }
 
