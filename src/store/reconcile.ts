@@ -13,6 +13,10 @@ const reconcile = (state, payload) => {
         const currentUser = state[key]
         trueState = { ...trueState, user: currentUser }
         break
+      case 'shop':
+        const currentShop = state[key]
+        trueState = { ...trueState, user: currentShop }
+        break
       case 'cart':
         const currentCart = state[key]
         trueState = { ...trueState, cart: currentCart }

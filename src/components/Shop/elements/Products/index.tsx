@@ -14,11 +14,11 @@ const Products = ({ data }) => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
 
-  const { resource: { products } } = useSelector((state: any) => state)
+  const { shop: { shop } } = useSelector((state: any) => state)
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
-  
+
   return (
     <>
       <section className={styles._mainContent}>
@@ -27,27 +27,30 @@ const Products = ({ data }) => {
           <div className={styles._sortByContainer}>
             <label htmlFor="sort" className={styles._customSelect}>
               <select name="sort" id="sort" className={styles._selectForm}>
-                <option value='SORT BY'>SORT BY</option>
+                {Object.keys(data?.sortBy).map((item, key) => (
+                  <option value={item} key={key}>{data?.sortBy[item]}</option>
+                ))}
+
               </select>
             </label>
           </div>
           <div className={styles._productContainer}>
             {
-              products.length ?
-              paginate(products, page, perPage).map((product, index) => {
-                index++
-                return (
-                  <div key={index} className={[styles[`_item${index}`], styles._item].join(" ")}>
-                    <Product key={index} data={product} />
-                  </div>
-                )
-              }) : <h2 className={styles._noProductsText}>No products</h2>
+              shop.length ?
+                paginate(shop, page, perPage).map((product, index) => {
+                  index++
+                  return (
+                    <div key={index} className={[styles[`_item${index}`], styles._item].join(" ")}>
+                      <Product key={index} data={product} />
+                    </div>
+                  )
+                }) : <h2 className={styles._noProductsText}>No products</h2>
             }
           </div>
           <div className={styles._paginationContainer}>
             {
-              products?.length ? (
-                <Pagination currentPage={page} items={products} perPage={perPage} changePage={setPage}/>
+              shop?.length ? (
+                <Pagination currentPage={page} items={shop} perPage={perPage} changePage={setPage} />
               ) : null
             }
           </div>

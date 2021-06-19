@@ -13,6 +13,7 @@ const Related = ({ data }) => {
     
   return (
     <>
+    { data?.nodes?.length > 0 ? 
       <div className={styles._content}>
         <div className={styles._titleContainer}>
           <h1 className={styles._title}>YOU MAY ALSO LIKE</h1>
@@ -20,16 +21,14 @@ const Related = ({ data }) => {
         <div className={styles._productsContainer}>
           <div className={styles._products}>
             { 
-              data?.nodes?.length > 0 ? 
               gallery?.map((product, index) => {
-                return (
-                  <div className={styles._product}><Product key={index} data={product} /></div>
-                )
-              }) : <h2 className={styles._noProductsText}>No products</h2>
+                return ( <div className={styles._product} key={index}><Product data={product} /></div> )
+              }) 
             }
           </div>
         </div>
-      </div>
+      </div> :  '' 
+    }
     </>
   )
 }

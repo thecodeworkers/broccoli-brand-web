@@ -7,6 +7,13 @@ products(first: 10000000) {
     status
     type
     databaseId
+    productCategories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
     productData{
       outstandingCollection
     }

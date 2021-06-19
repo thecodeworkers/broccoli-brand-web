@@ -6,6 +6,7 @@ attributes {
       id
       title
       atData {
+        showOptions
         item {
           name
           slug

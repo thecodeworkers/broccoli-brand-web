@@ -11,6 +11,7 @@ const initialState = {
   change: {},
   outstanding: [],
   collection: [],
+  attributes: [],
   language: 'ES'
 }
 

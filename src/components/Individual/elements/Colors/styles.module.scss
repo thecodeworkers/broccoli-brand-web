@@ -18,3 +18,20 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+@include responsive(md) {
+  ._slideContainer {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+@include responsive(sm) {
+  ._titleContainer {
+    margin: 5% 0;
+  }
+
+  ._title {
+    text-align: center;
+  }
+}

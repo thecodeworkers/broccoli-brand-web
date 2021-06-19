@@ -5,9 +5,9 @@ import { mutations, shops } from '@graphql'
 import { setAlert } from '@store/alert/action'
 
 export const getCart: any = () => async (dispatch, getState) => {
-  const { user: { isAuth, user: { sessionToken, jwtAuthToken } } } = getState()
+  const { user } = getState()
 
-  const shop = await shops(isAuth, jwtAuthToken, sessionToken)
+  const shop = await shops(user.isAuth, user?.user?.jwtAuthToken, user?.user?.sessionToken)
 
   dispatch(actionObject(GET_CART, shop))
 }
@@ -16,9 +16,9 @@ export const addToCar: any = (product: any, quantity: any) => async (dispatch, g
   try {
     dispatch(actionObject(LOADER, true))
 
-    const { user: { isAuth, user: { sessionToken, jwtAuthToken } } } = getState()
+    const { user } = getState()
 
-    const data: any = (isAuth) ? await mutations('addCartItems', { product, quantity }, jwtAuthToken, sessionToken) : {}
+    const data: any = (user.isAuth) ? await mutations('addCartItems', { product, quantity }, user?.user?.jwtAuthToken, user?.user?.sessionToken) : {}
 
     if (data.message) throw new Error(data.message);
 
