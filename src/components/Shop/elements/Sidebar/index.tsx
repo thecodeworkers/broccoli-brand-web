@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <>
       <aside className={styles._sidebarContainer}>
-        {attributes.map((data, index) => (
+        {attributes?.map((data, index) => (
           <div className={styles._genderContainer} key={index}>
 
             <div className={styles._customSelect} onClick={() => { showItem(index) }}>
@@ -50,7 +50,7 @@ const Sidebar = () => {
             <p className={styles._customSelectText}>{shop.categories}</p>
           </div>
           <div className={[styles._vertical, unfold['cat'] === 'cat' ? styles._show : styles._hide].join(" ")}>
-            {productCategories.map((cat, index) => (
+            {productCategories?.map((cat, index) => (
               <label key={index} className={styles._labelFilter}>
                 <input type='checkbox' onChange={(check) => { setFilter(check.target.checked, 'categories', cat.translation.slug) }} className={styles._checkbox} id='choice1-1' name='choice1' />
                 <span className={styles._filterText}>{cat.translation.name}</span>
