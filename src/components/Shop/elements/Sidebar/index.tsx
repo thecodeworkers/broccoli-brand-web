@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ColorPicker } from '@components'
 import styles from './styles.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setProductFilter } from '@store/shop/action'
 
 const Sidebar = () => {
+
+  useEffect(() => {
+    dispatch(setProductFilter({ attributes: [], categories: [] }))
+  }, [])
   const dispatch = useDispatch()
   const [unfold, setUnfold] = useState({})
-  const { resource: { attributes, productCategories }, shop: { filter }, page: { shopPage: {shop} } } = useSelector((state: any) => state)
+  const { resource: { attributes, productCategories }, shop: { filter }, page: { shopPage: { shop } } } = useSelector((state: any) => state)
 
   const showItem = (item) => {
     if (Object.keys(unfold).includes(item.toString()) && unfold[item] === item) return setUnfold((old) => ({ ...old, [item]: false }))
@@ -36,7 +40,7 @@ const Sidebar = () => {
                   <input type='checkbox' onChange={(check) => { setFilter(check.target.checked, 'attributes', item.slug) }} className={styles._checkbox} id='choice1-1' name='choice1' />
                   <span className={styles._filterText}>{item.name}</span>
                 </label>) :
-                (<ColorPicker onClick={(check) => { setFilter(check, 'attributes', item.slug) }}  key={indexItem} color={item.slug} />)
+                (<ColorPicker onClick={(check) => { setFilter(check, 'attributes', item.slug) }} key={indexItem} color={item.slug} />)
               ))}
             </div>
           </div>

@@ -14,7 +14,7 @@ const Products = ({ data }) => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
 
-  const { shop: { shop } } = useSelector((state: any) => state)
+  const { shop: { shop, filter }, resource: { products } } = useSelector((state: any) => state)
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
@@ -49,13 +49,23 @@ const Products = ({ data }) => {
                       <Product key={index} data={product} />
                     </div>
                   )
-                }) : <h2 className={styles._noProductsText}>No products</h2>
+                }) : products.length && (!filter.attributes.length && !filter.categories.length) ?
+                  paginate(products, page, perPage).map((product, index) => {
+                    index++
+                    return (
+                      <div key={index} className={[styles[`_item${index}`], styles._item].join(" ")}>
+                        <Product key={index} data={product} />
+                      </div>
+                    )
+                  }) : <h2 className={styles._noProductsText}>No products</h2>
             }
           </div>
           <div className={styles._paginationContainer}>
             {
               shop?.length ? (
                 <Pagination currentPage={page} items={shop} perPage={perPage} changePage={setPage} />
+              ) : products?.length && (!filter.attributes.length && !filter.categories.length) ? (
+                <Pagination currentPage={page} items={products} perPage={perPage} changePage={setPage} />
               ) : null
             }
           </div>

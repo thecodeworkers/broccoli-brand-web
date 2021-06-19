@@ -7,6 +7,7 @@ import { getCart } from '@store/actions'
 import { mutations } from '@graphql'
 import { setAlert } from '@store/alert/action'
 import { SET_FILTER } from '@store/shop/action-types'
+import { setProductFilter } from '@store/shop/action'
 
 const dataResources = (data) => {
   data['outstanding'] = orderBy(data.products, 'totalSales', 'asc').slice(0, 4)
@@ -28,11 +29,9 @@ export const getResources: any = (pageType, lang = 'ES') => async (dispatch, get
   page[pageType] = result
 
   if (!page.consultPages.includes(pageType)) page.consultPages.push(pageType)
-
   dispatch(getCart())
   dispatch(actionObject(SET_RESOURCES, dataResources(allResources)))
   dispatch(actionObject(GET_PAGES, page))
-  dispatch(actionObject(SET_FILTER, { filter: shopFilter, shop: allResources.products }))
   dispatch(actionObject(LOADER, false))
 }
 
