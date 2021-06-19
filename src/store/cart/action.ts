@@ -18,7 +18,7 @@ export const addToCar: any = (product: any, quantity: any) => async (dispatch, g
 
     const { user } = getState()
 
-    if (user?.user?.isAuth) {
+    if (user?.isAuth) {
       dispatch(actionObject(LOADER, true))
 
       const data: any = await mutations('addCartItems', { product, quantity }, user?.user?.jwtAuthToken, user?.user?.sessionToken)
@@ -30,7 +30,7 @@ export const addToCar: any = (product: any, quantity: any) => async (dispatch, g
       dispatch(actionObject(LOADER, false))
     }
 
-    if (!user?.user?.isAuth) dispatch(setAlert('Inicie sesion antes de continuar', true, 'warning'))
+    if (!user?.isAuth) dispatch(setAlert('Inicie sesion antes de continuar', true, 'warning'))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
