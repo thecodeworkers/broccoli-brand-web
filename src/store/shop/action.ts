@@ -13,6 +13,7 @@ export const setProductFilter: any = (values) => async (dispatch, getState) => {
     dispatch(actionObject(SET_FILTER, { filter: values, shop: productFilter(products, values, 'slug') }))
     dispatch(actionObject(LOADER, false))
   } catch (error) {
+    console.log(error)
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
     dispatch(actionObject(LOADER, false))
   }

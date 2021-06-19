@@ -13,7 +13,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
   const query = `
     query Resources {
       ${generalQuery(language)}
-      ${productsQuery()}
+      ${productsQuery(language)}
       ${registerQuery(language)}
       ${loginQuery(language)}
       ${recoverQuery(language)}

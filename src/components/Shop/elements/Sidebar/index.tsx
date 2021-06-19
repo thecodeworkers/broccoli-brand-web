@@ -36,7 +36,7 @@ const Sidebar = () => {
                   <input type='checkbox' onChange={(check) => { setFilter(check.target.checked, 'attributes', item.slug) }} className={styles._checkbox} id='choice1-1' name='choice1' />
                   <span className={styles._filterText}>{item.name}</span>
                 </label>) :
-                (<ColorPicker key={indexItem} color={item.slug} />)
+                (<ColorPicker onClick={(check) => { setFilter(check, 'attributes', item.slug) }}  key={indexItem} color={item.slug} />)
               ))}
             </div>
           </div>
@@ -48,7 +48,7 @@ const Sidebar = () => {
           <div className={[styles._vertical, unfold['cat'] === 'cat' ? styles._show : styles._hide].join(" ")}>
             {productCategories.map((cat, index) => (
               <label key={index} className={styles._labelFilter}>
-                <input type='checkbox' onChange={(check) => { setFilter(check.target.checked, 'attributes', cat.translation.slug) }} className={styles._checkbox} id='choice1-1' name='choice1' />
+                <input type='checkbox' onChange={(check) => { setFilter(check.target.checked, 'categories', cat.translation.slug) }} className={styles._checkbox} id='choice1-1' name='choice1' />
                 <span className={styles._filterText}>{cat.translation.name}</span>
               </label>
             ))}

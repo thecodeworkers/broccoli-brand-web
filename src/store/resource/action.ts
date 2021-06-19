@@ -1,5 +1,5 @@
 import { SET_RESOURCES } from './action-types'
-import { actionObject, filter, orderBy, productFilter, simplifyArray } from '../../utils'
+import { actionObject, filter, orderBy, simplifyArray } from '../../utils'
 import { pages, resources } from '../../graphql/query'
 import { GET_PAGES } from '@store/page/action-types'
 import { LOADER } from '@store/loader/action-types'
@@ -17,7 +17,7 @@ const dataResources = (data) => {
 }
 
 export const getResources: any = (pageType, lang = 'ES') => async (dispatch, getState) => {
-  
+
   dispatch(actionObject(LOADER, true))
 
   const { page, user, shop: { filter: shopFilter } } = getState()
@@ -32,14 +32,14 @@ export const getResources: any = (pageType, lang = 'ES') => async (dispatch, get
   dispatch(getCart())
   dispatch(actionObject(SET_RESOURCES, dataResources(allResources)))
   dispatch(actionObject(GET_PAGES, page))
-  dispatch(actionObject(SET_FILTER, { filter: shopFilter, shop: productFilter(allResources.products, shopFilter, 'slug') }))
+  dispatch(actionObject(SET_FILTER, { filter: shopFilter, shop: allResources.products }))
   dispatch(actionObject(LOADER, false))
 }
 
 export const changeLanguage: any = (language) => async (dispatch, getState) => {
-  
+
   dispatch(actionObject(LOADER, true))
-  
+
   const { page, user } = getState()
 
   const allResources: any = await resources(language, user?.user?.jwtAuthToken);
@@ -48,7 +48,7 @@ export const changeLanguage: any = (language) => async (dispatch, getState) => {
     const result: any = await pages(pag, language)
     page[pag] = result;
   }
-  
+
   dispatch(getCart())
   dispatch(actionObject(SET_RESOURCES, dataResources(allResources)));
   dispatch(actionObject(GET_PAGES, page))

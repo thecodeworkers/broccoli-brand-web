@@ -64,12 +64,12 @@ export const productFilter = (nodes: Array<any>, comparison, key) => {
   const nodeFilter = (node) => {
     let validation = true
     let validFilter = false
-    for (let type in comparison) {
+    for (let type of Object.keys(comparison)) {
       let select = getData(node, type)
       for (let value of select) {
         if (type === 'categories') {
           for (let compare of comparison[type]) {
-            if (value.translation[key] === compare) {
+            if (value.translations[0].translation[key] === compare) {
               validFilter = true
               break;
             }
@@ -86,8 +86,8 @@ export const productFilter = (nodes: Array<any>, comparison, key) => {
           }
         }
       }
-      return validation && validFilter
     }
+    return validation && validFilter
   }
-  return (comparison.attributes.length || comparison.attributes.length) ? nodes.filter(nodeFilter) : nodes
+  return (comparison.attributes.length || comparison.categories.length) ? nodes.filter(nodeFilter) : nodes
 }

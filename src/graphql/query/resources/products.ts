@@ -1,4 +1,4 @@
-const products = () => `
+const products = (language) => `
 products(first: 10000000) {
   nodes {
     id
@@ -10,9 +10,13 @@ products(first: 10000000) {
     date
     productCategories {
       nodes {
-        id
-        name
-        slug
+        translations {
+          translation(language: ${language}) {
+            id
+            name
+            slug
+          }
+        }
       }
     }
     productData{
