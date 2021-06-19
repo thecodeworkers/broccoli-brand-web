@@ -6,6 +6,17 @@ productPage:product(id: "${id}") {
   shortDescription
   sku
   slug
+  databaseId
+  productData{
+    outstandingCollection
+  }
+  productCategories {
+    nodes {
+      id
+      name
+      slug
+    }
+  }
   image {
     mediaItemUrl
   }

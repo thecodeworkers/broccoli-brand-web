@@ -1,42 +1,58 @@
 import { SET_RESOURCES } from './action-types'
-import { actionObject, orderBy } from '../../utils'
+import { actionObject, filter, orderBy, simplifyArray } from '../../utils'
 import { pages, resources } from '../../graphql/query'
 import { GET_PAGES } from '@store/page/action-types'
 import { LOADER } from '@store/loader/action-types'
 import { getCart } from '@store/actions'
 import { mutations } from '@graphql'
 import { setAlert } from '@store/alert/action'
+import { SET_FILTER } from '@store/shop/action-types'
+import { setProductFilter } from '@store/shop/action'
+
+const dataResources = (data) => {
+  data['outstanding'] = orderBy(data.products, 'totalSales', 'asc').slice(0, 4)
+  data['collection'] = filter(data.products, true, 'outstandingCollection', ['productData']).slice(0, 3)
+  data['attributes'] = simplifyArray(data.attributes)
+  data['productCategories'] = simplifyArray(data.productCategories)
+  return data
+}
 
 export const getResources: any = (pageType, lang = 'ES') => async (dispatch, getState) => {
+
   dispatch(actionObject(LOADER, true))
-  const { page, user: { user: { jwtAuthToken } } } = getState()
 
-  const allResources = await resources(lang, jwtAuthToken)
-  allResources['outstanding'] = orderBy(allResources.products, 'totalSales', 'asc').slice(0, 4)
+  const { page, user, shop: { filter: shopFilter } } = getState()
+
+  const allResources = await resources(lang, user?.user?.jwtAuthToken)
+
   const result: any = await pages(pageType, lang)
-  page[pageType] = result;
-  if (!page.consultPages.includes(pageType)) page.consultPages.push(pageType);
+  page[pageType] = result
 
+  if (!page.consultPages.includes(pageType)) page.consultPages.push(pageType)
   dispatch(getCart())
-  dispatch(actionObject(SET_RESOURCES, allResources))
+  dispatch(actionObject(SET_RESOURCES, dataResources(allResources)))
   dispatch(actionObject(GET_PAGES, page))
   dispatch(actionObject(LOADER, false))
 }
 
 export const changeLanguage: any = (language) => async (dispatch, getState) => {
-  dispatch(actionObject(LOADER, true))
-  const { page, user: { user: { jwtAuthToken } } } = getState()
 
-  const allResources: any = await resources(language, jwtAuthToken);
+  dispatch(actionObject(LOADER, true))
+
+  const { page, user } = getState()
+
+  const allResources: any = await resources(language, user?.user?.jwtAuthToken);
 
   for (let pag of page.consultPages) {
     const result: any = await pages(pag, language)
     page[pag] = result;
   }
+
   dispatch(getCart())
-  dispatch(actionObject(SET_RESOURCES, allResources));
+  dispatch(actionObject(SET_RESOURCES, dataResources(allResources)));
   dispatch(actionObject(GET_PAGES, page))
   dispatch(actionObject(LOADER, false))
+
 }
 
 export const sendMail: any = (values) => async (dispatch) => {

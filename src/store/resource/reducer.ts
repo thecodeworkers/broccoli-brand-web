@@ -9,7 +9,9 @@ const initialState = {
   recover: {},
   checkout: {},
   change: {},
-  outstanding: {},
+  outstanding: [],
+  collection: [],
+  attributes: [],
   language: 'ES'
 }
 

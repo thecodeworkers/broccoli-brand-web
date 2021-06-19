@@ -2,13 +2,24 @@ const _getDeep = (data, deep) => {
   if (typeof deep === 'string') {
     data = data[deep];
   }
+
   if (Array.isArray(deep)) {
-    for (let layer in deep) {
-      data = data[layer]
+    for (let layer of deep) {
       data = data[layer]
     }
   }
   return data
+}
+
+const getData = (data, type) => {
+  switch (type) {
+    case 'attributes':
+      return data['attributes']['nodes']
+    case 'categories':
+      return data['productCategories']['nodes']
+    default:
+      return _getDeep(data, type)
+  }
 }
 
 export const orderBy = (array, key, type = 'desc', deep = null) => {
@@ -24,7 +35,6 @@ export const orderBy = (array, key, type = 'desc', deep = null) => {
   })
 }
 
-
 export const filter = (nodes: Array<any>, comparison, key, deep) => {
 
   const nodeFilter = (node) => {
@@ -36,4 +46,48 @@ export const filter = (nodes: Array<any>, comparison, key, deep) => {
   }
 
   return (filter) ? nodes.filter(nodeFilter) : nodes
+}
+
+export const simplifyArray = (array) => {
+  let indexes = []
+  return array.filter((item) => {
+    const id = item?.translation?.id
+    if (!indexes.includes(id)) {
+      indexes.push(id)
+      return true
+    }
+  })
+}
+
+export const productFilter = (nodes: Array<any>, comparison, key) => {
+
+  const nodeFilter = (node) => {
+    let validation = true
+    let validFilter = false
+    for (let type of Object.keys(comparison)) {
+      let select = getData(node, type)
+      for (let value of select) {
+        if (type === 'categories') {
+          for (let compare of comparison[type]) {
+            if (value.translations[0].translation[key] === compare) {
+              validFilter = true
+              break;
+            }
+          }
+        }
+        if (type === 'attributes') {
+          for (let compare of comparison[type]) {
+            for (let option of value.options) {
+              if (option.toLowerCase() === compare.toLowerCase()) {
+                validFilter = true;
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+    return validation && validFilter
+  }
+  return (comparison.attributes.length || comparison.categories.length) ? nodes.filter(nodeFilter) : nodes
 }
