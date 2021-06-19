@@ -56,10 +56,11 @@
   ._customSelectText {
     font-family: $roboto;
     padding-left: 15%;
+    text-transform: uppercase;
   }
 }
 
-._genderFilter, ._categoriesFilter {
+._vertical {
   display: flex;
   flex-direction: column;
 }
@@ -92,7 +93,7 @@
   margin-left: 5%;
 }
 
-._sizesFilter {
+._horizontal {
   display: flex;
   justify-content: space-between;
   width: 50%;

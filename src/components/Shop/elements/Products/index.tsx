@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import { Product, Pagination, Recents, Button } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLoader } from '@store/actions'
+import { orderProducts, setLoader, setShop } from '@store/actions'
 import { paginate } from '@utils'
 import Sidebar from '../Sidebar'
 
@@ -13,10 +13,20 @@ const Products = ({ data }) => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
 
-  const { resource: { products } } = useSelector((state: any) => state)
+
+  const { shop: { shop, filter }, resource: { products } } = useSelector((state: any) => state)
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
+
+  useEffect(() => {
+    dispatch(setShop())
+  }, [products])
+
+  const sortBy = (select) => {
+    const value = select.target.value
+    dispatch(orderProducts(value))
+  }
 
   return (
     <>
@@ -27,28 +37,31 @@ const Products = ({ data }) => {
         <div className={styles._productsContainer}>
           <div className={styles._sortByContainer}>
             <label htmlFor="sort" className={styles._customSelect}>
-              <select name="sort" id="sort" className={styles._selectForm}>
-                <option value='SORT BY'>SORT BY</option>
+              <select name="sort" id="sort" onChange={sortBy} className={styles._selectForm}>
+                {Object.keys(data?.sortBy).map((item, key) => (
+                  <option value={item} key={key}>{data?.sortBy[item]}</option>
+                ))}
+
               </select>
             </label>
           </div>
           <div className={styles._productContainer}>
             {
-              products.length ?
-              paginate(products, page, perPage).map((product, index) => {
-                index++
-                return (
-                  <div key={index} className={[styles[`_item${index}`], styles._item].join(" ")}>
-                    <Product key={index} data={product} />
-                  </div>
-                )
-              }) : <h2 className={styles._noProductsText}>No products</h2>
+              shop.length ?
+                paginate(shop, page, perPage).map((product, index) => {
+                  index++
+                  return (
+                    <div key={index} className={[styles[`_item${index}`], styles._item].join(" ")}>
+                      <Product key={index} data={product} />
+                    </div>
+                  )
+                }) : <h2 className={styles._noProductsText}>No products</h2>
             }
           </div>
           <div className={styles._paginationContainer}>
             {
-              products?.length ? (
-                <Pagination currentPage={page} items={products} perPage={perPage} changePage={setPage}/>
+              shop?.length ? (
+                <Pagination currentPage={page} items={shop} perPage={perPage} changePage={setPage} />
               ) : null
             }
           </div>

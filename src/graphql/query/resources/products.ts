@@ -1,4 +1,4 @@
-const products = () => `
+const products = (language) => `
 products(first: 10000000) {
   nodes {
     id
@@ -7,6 +7,21 @@ products(first: 10000000) {
     status
     type
     databaseId
+    date
+    productCategories {
+      nodes {
+        translations {
+          translation(language: ${language}) {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+    productData{
+      outstandingCollection
+    }
     image {
       mediaItemUrl
     }
