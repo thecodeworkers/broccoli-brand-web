@@ -12,7 +12,7 @@ const ColorPicker = ({ color, onClick = null }) => {
     <>
       <div className={styles._colorContainer} onClick={setData}>
         <div className={[styles._colorCircle, '_background'].join(" ")}></div>
-        <div className={styles._colorCircleHover}></div>
+        <div className={check ? [styles._colorCircleHover, styles._selected].join(" ") : styles._colorCircleHover}></div>
       </div>
       <style jsx>{`
         ._background {
