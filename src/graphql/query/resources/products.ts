@@ -7,6 +7,7 @@ products(first: 10000000) {
     status
     type
     databaseId
+    date
     productCategories {
       nodes {
         id

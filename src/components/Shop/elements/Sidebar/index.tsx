@@ -7,7 +7,7 @@ import { setProductFilter } from '@store/shop/action'
 const Sidebar = () => {
   const dispatch = useDispatch()
   const [unfold, setUnfold] = useState({})
-  const { resource: { attributes, productCategories }, shop: { filter } } = useSelector((state: any) => state)
+  const { resource: { attributes, productCategories }, shop: { filter }, page: { shopPage: {shop} } } = useSelector((state: any) => state)
 
   const showItem = (item) => {
     if (Object.keys(unfold).includes(item.toString()) && unfold[item] === item) return setUnfold((old) => ({ ...old, [item]: false }))
@@ -43,7 +43,7 @@ const Sidebar = () => {
         ))}
         <div className={styles._sizesContainer}>
           <div className={styles._customSelect} onClick={() => { showItem('cat') }}>
-            <p className={styles._customSelectText}>CATEGORIES</p>
+            <p className={styles._customSelectText}>{shop.categories}</p>
           </div>
           <div className={[styles._vertical, unfold['cat'] === 'cat' ? styles._show : styles._hide].join(" ")}>
             {productCategories.map((cat, index) => (

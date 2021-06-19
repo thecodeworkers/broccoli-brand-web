@@ -6,6 +6,7 @@ shopPage:page(id: "${shopId}") {
   translation(language: ${language}) {
     shop {
       recentlyTitle
+      categories
       sortBy {
         orderBy
         new

@@ -20,7 +20,7 @@ export const getResources: any = (pageType, lang = 'ES') => async (dispatch, get
   
   dispatch(actionObject(LOADER, true))
 
-  const { page, user, shop: { filter } } = getState()
+  const { page, user, shop: { filter: shopFilter } } = getState()
 
   const allResources = await resources(lang, user?.user?.jwtAuthToken)
 
@@ -32,7 +32,7 @@ export const getResources: any = (pageType, lang = 'ES') => async (dispatch, get
   dispatch(getCart())
   dispatch(actionObject(SET_RESOURCES, dataResources(allResources)))
   dispatch(actionObject(GET_PAGES, page))
-  dispatch(actionObject(SET_FILTER, { filter: filter, shop: productFilter(allResources.products, filter, 'slug') }))
+  dispatch(actionObject(SET_FILTER, { filter: shopFilter, shop: productFilter(allResources.products, shopFilter, 'slug') }))
   dispatch(actionObject(LOADER, false))
 }
 

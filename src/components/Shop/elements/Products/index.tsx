@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import { Product, Pagination } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLoader } from '@store/actions'
+import { orderProducts, setLoader } from '@store/actions'
 import { paginate } from '@utils'
 import Sidebar from '../Sidebar'
 import Recents from '../Recents'
@@ -19,6 +19,11 @@ const Products = ({ data }) => {
     dispatch(setLoader(false))
   }, [])
 
+  const sortBy = (select) => {
+    const value = select.target.value
+    dispatch(orderProducts(value))
+  }
+
   return (
     <>
       <section className={styles._mainContent}>
@@ -26,7 +31,7 @@ const Products = ({ data }) => {
         <div className={styles._productsContainer}>
           <div className={styles._sortByContainer}>
             <label htmlFor="sort" className={styles._customSelect}>
-              <select name="sort" id="sort" className={styles._selectForm}>
+              <select name="sort" id="sort" onChange={sortBy} className={styles._selectForm}>
                 {Object.keys(data?.sortBy).map((item, key) => (
                   <option value={item} key={key}>{data?.sortBy[item]}</option>
                 ))}
