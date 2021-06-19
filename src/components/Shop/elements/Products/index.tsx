@@ -12,6 +12,7 @@ const Products = ({ data }) => {
 
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
+  const [showFilter, setShowFilter] = useState(false)
 
 
   const { shop: { shop, filter }, resource: { products } } = useSelector((state: any) => state)
@@ -28,11 +29,22 @@ const Products = ({ data }) => {
     dispatch(orderProducts(value))
   }
 
+  const manageFilter = () => {
+    if(showFilter) return setShowFilter(false)
+    return setShowFilter(true)
+  }
+
   return (
     <>
       <section className={styles._mainContent}>
         <div className={styles._sidebarContent}>
-          <Sidebar />
+          <div className={styles._filterButton} onClick={() => manageFilter()}>
+            <div className={styles._grayBar}></div>
+            <p className={styles._grayBarText}>FILTERS</p>
+          </div>
+          <div className={showFilter ? styles._show : styles._hide}>
+            <Sidebar />
+          </div>
         </div>
         <div className={styles._productsContainer}>
           <div className={styles._sortByContainer}>
@@ -41,7 +53,6 @@ const Products = ({ data }) => {
                 {Object.keys(data?.sortBy).map((item, key) => (
                   <option value={item} key={key}>{data?.sortBy[item]}</option>
                 ))}
-
               </select>
             </label>
           </div>

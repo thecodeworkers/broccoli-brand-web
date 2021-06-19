@@ -46,7 +46,7 @@ const Sidebar = () => {
           </div>
         ))}
         <div className={styles._sizesContainer}>
-          <div className={styles._customSelect} onClick={() => { showItem('cat') }}>
+          <div className={[styles._customSelect, styles._categoryLine].join(" ")} onClick={() => { showItem('cat') }}>
             <p className={styles._customSelectText}>{shop.categories}</p>
           </div>
           <div className={[styles._vertical, unfold['cat'] === 'cat' ? styles._show : styles._hide].join(" ")}>
