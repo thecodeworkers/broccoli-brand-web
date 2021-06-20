@@ -1,5 +1,6 @@
 import { removeFromCart } from '@store/actions'
 import { useDispatch, useSelector } from 'react-redux'
+import { BagResponsive } from '@components'
 import styles from './styles.module.scss'
 
 const Bag = () => {
@@ -22,19 +23,19 @@ const Bag = () => {
         </div>
       </div>
       <div className={styles._tableContainer}>
-        <table className={styles._table}>
-          <thead className={styles._tableParts}>
-            <tr>
-              <th className={styles._tableTitle}>{bag?.table?.orderSummary}</th>
-              <th className={styles._tableTitle}>{bag?.table?.cantidad}</th>
-              <th className={styles._tableTitle}>{bag?.table?.price}</th>
-              <th className={styles._tableTitle}>{bag?.total}</th>
-            </tr>
-          </thead>
-          <tbody className={styles._tableBody}>
+        <section className={styles._titleTablesContainer}>
+          <div className={styles._titleTables}>
+            <div className={[styles._tableTitle, styles._orderSummary].join(" ")}>{bag?.table?.orderSummary}</div>
+            <div className={styles._tableTitle}>{bag?.table?.cantidad}</div>
+            <div className={styles._tableTitle}>{bag?.table?.price}</div>
+            <div className={styles._tableTitle}>{bag?.total}</div>
+          </div>
+        </section>
+        <section className={styles._table}>
+          <section className={styles._tableBody}>
             {(cart?.contents?.itemCount) ? cart?.contents.nodes.map((data, index) => (
-              <tr key={index} className={styles._tableParts}>
-                <td className={styles._dataTable}>
+              <div key={index} className={styles._tableRow}>
+                <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
                     <div className={styles._deleteBox}>
                       <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}>X</p>
@@ -45,59 +46,56 @@ const Bag = () => {
                       </div>
                       <div className={styles._itemContent}>
                         <p className={styles._itemName}>{data?.product?.node?.name}</p>
-                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label} <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] }}></span></p>
-                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label} <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0]}</span></p>
+                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label}: <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] }}></span></p>
+                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label}: <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0]}</span></p>
                       </div>
                     </div>
                   </div>
-                </td>
-                <td className={styles._dataTable}>
+                </div>
+                <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
                     <p className={[styles._dataText, styles._quantityButton].join(' ')}>-</p>
                     <p className={styles._dataText} >{data?.quantity}</p>
                     <p className={[styles._dataText, styles._quantityButton].join(' ')} >+</p>
                   </div>
-                </td>
-                <td className={styles._dataTable}>
+                </div>
+                <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
                     <p className={styles._dataText}>{data?.product?.node?.price}</p>
                   </div>
-                </td>
-                <td className={styles._dataTable}>
+                </div>
+                <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
                     <p className={styles._dataText}>{data?.total}</p>
                   </div>
-                </td>
-              </tr>
+                </div>
+              </div>
             )) :
-              <tr className={styles._tableParts}>
-                <td colSpan={4}>
+              <div className={styles._tableParts}>
+                <div>
                   <div className={styles._noItemBox}>
                     <p className={styles._noItemText}>{bag?.noItems}</p>
                   </div>
-                </td>
-              </tr>
+                </div>
+              </div>
             }
-          </tbody>
-          <tfoot className={styles._tableParts}>
-            <tr>
-              <td colSpan={2}>
-                <div className={styles._footerBox}>
-                  <p className={styles._footerText}>
-                    {cart?.contents?.itemCount} {bag?.items}
-                  </p>
-                </div>
-              </td>
-              <td colSpan={2}>
-                <div className={styles._footerBox}>
-                  <p className={styles._footerText}>
-                    {bag?.total} {cart?.contentsTotal}
-                  </p>
-                </div>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+          </section>
+          <section className={styles._tableFooter}>
+            <div className={styles._leftFooter}>
+              <p className={styles._footerText}>
+                {cart?.contents?.itemCount} {bag?.items}
+              </p>
+            </div>
+            <div className={styles._rightFooter}>
+              <p className={styles._footerText}>
+                {bag?.total} {cart?.contentsTotal}
+              </p>
+            </div>
+          </section>
+        </section>
+      </div>
+      <div className={styles._responsive}>
+        <BagResponsive bag={bag} general={general} cart={cart} />
       </div>
     </div>
   )
