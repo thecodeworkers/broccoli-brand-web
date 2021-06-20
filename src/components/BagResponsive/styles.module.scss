@@ -18,6 +18,7 @@
 
 ._tableRow {
   display: flex;
+  margin-bottom: 10%;
 }
 
 ._itemImage {
@@ -137,5 +138,25 @@
   &:hover {
     background-color: $black;
     color: $white;
+  }
+}
+
+._bottomContent {
+  width: 90%;
+  margin: auto;
+  margin-top: 15%;
+}
+
+._bottomFooter {
+  display: flex;
+  width: 100%;
+  text-align: end;
+  padding-right: 10%;
+  justify-content: space-between;
+
+  ._footerText {
+    font-family: $roboto;
+    font-size: $roboto24;
+    font-weight: 700;
   }
 }

@@ -79,6 +79,12 @@ const BagResponsive = ({ bag, general, cart}) => {
           </div>
           }
         </div>
+        <section className={styles._bottomContent}>
+          <div className={styles._bottomFooter}>
+            <p className={styles._footerText}>{bag?.subtotal} </p>
+            <p className={styles._footerText}>{cart?.contentsTotal}</p>
+          </div>
+        </section>
       </section>
     </>
   )

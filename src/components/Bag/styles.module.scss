@@ -290,3 +290,9 @@
     // height: 4rem;
   }
 }
+
+@include responsive(sm) {
+  ._main {
+    margin-bottom: 1rem;
+  }
+}

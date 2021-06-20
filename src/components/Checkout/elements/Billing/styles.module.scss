@@ -391,4 +391,11 @@
       font-size: $roboto32;
     }
   }
+
+}
+
+@include responsive(md) {
+  ._shippingTitleBox { 
+    margin-top: 5%;
+  }
 }

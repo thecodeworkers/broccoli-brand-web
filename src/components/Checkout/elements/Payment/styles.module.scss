@@ -282,6 +282,7 @@
 
   ._secureTitle {
     justify-content: center;
+    margin-top: 5%;
   }
 
   ._secureContainer {
@@ -319,11 +320,17 @@
     }
 
     ._input[name=securityCode] {
-      width: 100%;
+      width: -webkit-fill-available;
     }
   }
 
   ._input {
     margin-top: 10%;
+  }
+}
+
+@include responsive(sm) {
+  ._main {
+    margin-bottom: 2rem;
   }
 }

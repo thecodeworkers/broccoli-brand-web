@@ -269,6 +269,7 @@
 @include responsive(md) {
   ._main {
     flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
 
   ._addressBox, ._formBox {
@@ -304,7 +305,7 @@
   }
 
   ._shippingTitleBox {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
   }
 
   ._selectBox {
@@ -350,4 +351,10 @@
     }
   }
 
+}
+
+@include responsive(sm) {
+  ._shippingTitleBox {
+    margin-top: 5%;
+  }
 }
