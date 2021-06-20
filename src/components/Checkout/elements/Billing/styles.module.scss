@@ -281,3 +281,85 @@
     }
   }
 }
+
+@include responsive(md) {
+  ._main {
+    flex-wrap: wrap;
+  }
+
+  ._addressBox {
+    width: 100%;
+  }
+
+  ._formBox {
+    padding: 0%;
+    width: 100%;
+  }
+
+  ._input {
+    margin-top: 10%;
+    width: -webkit-fill-available;
+  }
+
+  ._discountButton {
+    padding: 0%;
+  }
+
+  ._discountInput {
+    padding-right: 0%;
+  }
+
+  ._informationText._totalBilling {
+    display: flex;
+    flex-wrap: wrap;
+    ._billingAndSummary {
+      width: 100%;
+    }
+  }
+
+  ._selectionBox {
+    width: 100%;
+    padding: 0%;
+  }
+
+  ._buttonBox {
+    margin-top: 5%;
+  }
+
+  ._discountBox {
+    flex-wrap: wrap;
+  }
+
+  ._discountInput, ._discountButton {
+    width: 100%;
+  }
+
+  ._payTime {
+    display: none;
+  }
+
+  ._informationText {
+    font-size: $roboto17;
+  }
+
+  ._radioLabelTax {
+    padding-left: 5%;
+  }
+
+  ._radioLabelTax::before {
+    margin-right: 1rem;
+  }
+
+  ._selectBox {
+    flex-wrap: wrap;
+
+    ._selectLabel {
+      margin: 5% 0% 10% 0%;
+      width: 100%;
+    }
+
+    ._customSelect {
+      width: 100%;
+    }
+  }
+}

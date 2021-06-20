@@ -119,7 +119,9 @@ const Billing = () => {
               <p className={styles._informationText}>{billingAndSummary?.totalItems} <span>{cart?.contentsTotal}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.shipping} <span>{cart?.shippingTotal}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.taxesFees} <span>{cart?.totalTax}</span></p>
-              <p className={[styles._informationText, styles._totalBilling].join(' ')}>{billingAndSummary?.orderTotal} <span>{cart?.total}</span></p>
+              <p className={[styles._informationText, styles._totalBilling].join(' ')}>
+                <p className={styles._billingAndSummary}>{billingAndSummary?.orderTotal} </p>
+                <span>{cart?.total}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.taxesDescription}</p>
               <p className={styles._informationText}>{billingAndSummary?.payAccept}</p>
               <div className={styles._buttonBox}>
