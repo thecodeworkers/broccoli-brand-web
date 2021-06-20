@@ -294,7 +294,13 @@
         width: 48%;
         height: 30vh;
         margin-bottom: 5%;
+        margin-left: 0;
       }
     }
+  }
+
+  ._paginationContainer {
+    width: 100%;
+    margin: 10% auto;
   }
 }

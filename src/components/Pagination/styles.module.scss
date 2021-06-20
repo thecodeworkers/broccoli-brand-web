@@ -37,3 +37,13 @@
   border: 1px solid $black;
   cursor: pointer;
 }
+
+@include responsive(sm) {
+  ._container {
+    justify-content: space-between;
+  }
+
+  ._arrowContainer {
+    margin: 0;
+  }
+}

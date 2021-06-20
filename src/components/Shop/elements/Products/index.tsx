@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import { Product, Pagination, Recents, Button } from '@components'
+import { Product, OwnPagination, Recents, Button } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
 import { orderProducts, setLoader, setShop } from '@store/actions'
 import { paginate } from '@utils'
@@ -72,7 +72,7 @@ const Products = ({ data }) => {
           <div className={styles._paginationContainer}>
             {
               shop?.length ? (
-                <Pagination currentPage={page} items={shop} perPage={perPage} changePage={setPage} />
+                <OwnPagination currentPage={page} items={shop} perPage={perPage} changePage={setPage} />
               ) : null
             }
           </div>
