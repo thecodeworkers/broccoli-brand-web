@@ -97,6 +97,7 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 ._shippingTitle {
@@ -125,7 +126,9 @@
   padding-left: 5%;
 }
 
-
+._shippingBox {
+  font-family: $roboto;
+}
 
 ._informationText{
   font-family: $roboto;
@@ -289,6 +292,7 @@
 
   ._addressBox {
     width: 100%;
+    padding-right: 0%;
   }
 
   ._formBox {
@@ -323,7 +327,7 @@
   }
 
   ._buttonBox {
-    margin-top: 5%;
+    margin-top: 10%;
   }
 
   ._discountBox {
@@ -336,10 +340,6 @@
 
   ._payTime {
     display: none;
-  }
-
-  ._informationText {
-    font-size: $roboto17;
   }
 
   ._radioLabelTax {
@@ -360,6 +360,27 @@
 
     ._customSelect {
       width: 100%;
+    }
+  }
+
+  ._shippingBox {
+    ._formBox ._billingAndSummary {
+      font-size: $roboto17;
+      margin-bottom: 5%;
+    }
+  
+    ._formBox:last-child {
+      font-size: $roboto17;
+    }
+  }
+
+  ._informationBox {
+    ._informationText {
+      font-size: $roboto17;
+    }
+
+    ._totalBilling {
+      font-size: $roboto32;
     }
   }
 }
