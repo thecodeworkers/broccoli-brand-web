@@ -1,10 +1,11 @@
 import styles from './styles.module.scss'
 import { Product, Button } from '@components'
 import { useSelector } from 'react-redux'
+import resource from '@graphql/query/resources'
 
 const Outstanding = ({ data }) => {
 
-  const { resource: { outstanding: products } } = useSelector((state: any) => state)
+  const { resource: { outstanding: products }} = useSelector((state: any) => state)
 
   return (
     <div className={styles._content}>

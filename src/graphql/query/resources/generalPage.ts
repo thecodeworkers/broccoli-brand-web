@@ -3,6 +3,10 @@ const general = (language) => `
 generalPage: page(id: "${generalId}") {
   translation(language: ${language}) {
     general {
+      generalText {
+        addToCartText
+        viewMoreText
+      }
       navigationBar {
         login
         register
