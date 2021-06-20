@@ -47,7 +47,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
                 }
               </div>
               <div className={styles._productSizesContainer}>
-                <p className={styles._producSizes}>{data ? data?.attributes?.nodes[1].options.join(", ") : ' XS, L'}</p>
+                <p className={styles._producSizes}>{data.price ? data?.price : ' -'}</p>
               </div>
             </div>
             <div className={styles._bag}><Bag width='15' height='15' fill='black' /></div> 
