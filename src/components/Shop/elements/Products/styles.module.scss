@@ -299,6 +299,12 @@
     }
   }
 
+  ._customSelect {
+    &:after {
+      width: 30%;
+    }
+  }
+
   ._paginationContainer {
     width: 100%;
     margin: 10% auto;
