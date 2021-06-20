@@ -104,6 +104,7 @@
   font-size: $robotoBold20;
   font-weight: $weight900;
   color: $white;
+  text-transform: uppercase;
 }
 
 ._formBox {
@@ -263,4 +264,90 @@
 ._shippingContent{
   width: 90%;
   padding: 0 5%;
+}
+
+@include responsive(md) {
+  ._main {
+    flex-wrap: wrap;
+  }
+
+  ._addressBox, ._formBox {
+    width: 100%;
+    padding: 0%;
+
+    ._input {
+      margin-top: 10%;
+    }
+  }
+
+  ._formBox {
+    ._selectBox {
+      flex-wrap: wrap;
+
+      ._selectLabel {
+        width: 100%;
+        margin-bottom: 10%;
+      }
+
+      ._customSelect {
+        width: 100%;
+
+        select {
+          padding: 0% 0% 0% 5%;
+        }
+
+        &::after {
+          width: 6rem;
+        }
+      }
+    }
+  }
+
+  ._shippingTitleBox {
+    margin-bottom: 10%;
+  }
+
+  ._selectBox {
+    width: 100%;
+  }
+  
+  ._selectionBox {
+    width: 100%;
+    padding: 0%;
+  }
+
+  ._radioBox {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+    ._radioLabel {
+      width: 100%;
+      justify-content: flex-start;
+      margin-bottom: 5%;
+      font-size: $roboto17;
+    }
+
+    ._radioLabel::before {
+      margin-right: 1rem;
+    }
+  }
+
+  ._shippingContent {
+    display: flex;
+    flex-wrap: wrap;
+
+    ._radioLabelTax {
+      width: 100%;
+      font-size: $roboto17;
+    }
+
+    ._radioLabelTax::before {
+      margin-right: 1rem;
+    }
+    
+    ._simpleText {
+      width: 90%;
+    }
+  }
+
 }

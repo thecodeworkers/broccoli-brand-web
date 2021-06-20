@@ -301,10 +301,10 @@
       
       select {
         padding: 0% 10%;
+      }
 
-        &::after {
-          width: 6rem;
-        }
+      ._customSelect::after {
+        width: 6rem;
       }
     }
   }
