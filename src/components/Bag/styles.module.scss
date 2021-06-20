@@ -1,9 +1,11 @@
 @import '@styles/index.scss';
 
 ._main {
-  position: relative;
-  margin-top: 6.5rem;
-  margin-bottom: 3rem;
+  // position: relative;
+  // margin-top: 6.5rem;
+  // margin-bottom: 3rem;
+  width: 90%;
+  margin: 6.5rem auto 3rem auto;
 }
 
 ._titleContainer {
@@ -11,8 +13,8 @@
 }
 
 ._titleBox {
-  width: 90%;
-  padding: 0% 5%;
+  // width: 90%;
+  padding-top: 3%;
 }
 
 ._title {
@@ -31,18 +33,28 @@
 }
 
 ._tableContainer {
-  width: 90%;
-  padding: 0% 5%;
+  width: 100%;
+  padding-top: 3%;
 }
 
 ._table {
   width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // flex-wrap: wrap;
 }
 
 ._tableTitle {
   font-family: $roboto;
   font-size: $robotoBold20;
   font-weight: $weight900;
+  width: 25%;
+  text-align: center;
+}
+
+._titleTables {
+  display: flex;
+  border-bottom: 2px solid $gray;
 }
 
 ._dataText {
@@ -73,9 +85,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 21rem;
-  height: 10rem;
-  overflow: hidden;
+  // width: 21rem;
+  // height: 10rem;
+  // overflow: hidden;
   margin: 0.5rem 0px;
 }
 
@@ -93,7 +105,7 @@
 }
 
 ._itemContent {
-  height: 16rem;
+  // height: 16rem;
   width: 65%;
   padding: 0% 5%;
   display: flex;
@@ -111,10 +123,7 @@
   font-family: $roboto;
   font-size: $robotoBold20;
   text-transform: uppercase;
-}
-
-._dataTable {
-  min-height: 21rem;
+  text-align: initial;
 }
 
 ._dataBox {
@@ -122,9 +131,9 @@
   align-items: center;
   justify-content: center;
 }
-._data {
-  margin-left: 5%;
-}
+// ._data {
+//   margin-left: 5%;
+// }
 
 ._price {
   display: block;
@@ -146,7 +155,7 @@
 }
 
 ._noItemBox {
-  height: 13rem;
+  // height: 13rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -159,11 +168,11 @@
   font-weight: $weight900;
 }
 
-._footerBox {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
+// ._footerBox {
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+// }
 
 ._footerText {
   font-family: $roboto;
@@ -173,18 +182,36 @@
 }
 
 ._tableBody {
-  overflow: auto;
   width: 100%;
-  max-height: 35rem;
-  table-layout: fixed;
-  display: block;
+  // overflow: auto;
+  // width: 100%;
+  // max-height: 35rem;
+  // table-layout: fixed;
+  // display: block;
 }
 
-._tableParts {
-  display: table;
+._tableRow {
+  display: flex;
+  margin: 2% 0%;
+  // justify-content: space-between;
+}
+
+._titleTablesContainer {
   width: 100%;
-  table-layout: fixed;
-  min-width: 85rem;
+
+  // display: table;
+  // width: 100%;
+  // table-layout: fixed;
+  // min-width: 85rem;
+}
+
+._dataTable {
+  text-align: center;
+  width: 25%;
+}
+
+._orderSummary {
+  text-align: start;
 }
 
 ._deleteBox {
@@ -210,5 +237,62 @@
   &:hover {
     background-color: $black;
     color: $white;
+  }
+}
+
+._tableFooter {
+  width: 100%;
+  display: flex;
+}
+
+._leftFooter, ._rightFooter {
+  width: 50%;
+  text-align: end;
+  padding-right: 10%;
+}
+
+._responsive {
+  display: none;
+}
+
+@include responsive(lg) {
+  
+  ._tableTitle {
+    width: 21%;
+  }
+  
+  ._tableTitle._orderSummary {
+    width: 35%;
+  }
+
+  ._dataTable {
+    width: 35%;
+  }
+}
+
+@include responsive(md) {
+  ._main {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  ._titleContainer {
+    width: 90%;
+    margin: auto;
+  }
+
+  ._tableContainer  {
+    display: none;
+  }
+
+  ._responsive {
+    display: block;
+    // height: 4rem;
+  }
+}
+
+@include responsive(sm) {
+  ._main {
+    margin-bottom: 1rem;
   }
 }
