@@ -18,8 +18,6 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
       router.push(route)
     }
   }
-  
-  console.log(data)
 
   return (
     <section className={!containerStyles ? styles._container : `${styles._container} ${containerStyles}`}>
