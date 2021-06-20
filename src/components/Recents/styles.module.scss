@@ -1,0 +1,58 @@
+@import '@styles/index.scss';
+
+@mixin boxHover {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  background-color: $white;
+  width: 100%;
+  border-top: 1px solid $black;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._recentlyContent {
+  width: 15.5%;
+  height: 10rem;
+  border: 1px solid $black;
+  position: relative;
+  font-family: $roboto;
+  font-size: $roboto18;
+  
+  &:hover {
+    ._addToCart, ._viewMore {
+      @include boxHover;
+    }
+  
+    ._addToCart {
+      bottom: 2rem;
+    }
+  }
+  
+  ._viewMore, ._bag, ._addToCart {
+    display: none;
+  }
+}
+
+@include responsive(md) {
+  ._recentlyContent {
+    width: 48%;
+    margin-bottom: 3%;
+
+    &:hover {
+      ._addToCart, ._viewMore {
+        display: none;
+      }
+    }
+
+    ._bag {
+      display: block;
+      position: absolute;
+      cursor: pointer;
+      bottom: 5%;
+      right: 10%;
+    }
+  }
+}
