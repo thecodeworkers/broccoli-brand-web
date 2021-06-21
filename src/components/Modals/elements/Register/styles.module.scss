@@ -153,14 +153,20 @@
     background-color: transparent;
   }
 
+  ._title {
+    font-size: $roboto24;
+    margin: 10% 0;
+  }
+
   ._registerContainer {
     width: 100%;
-    height: 70vh;
+    height: 75vh;
+    padding: 5% 10%;
   }
 
   ._inputBox {
     width: 100%;
-    margin: 1rem 0%;
+    margin: 5% 0%;
   }
 
   ._doubleInput {
@@ -173,5 +179,9 @@
     ._pass {
       margin: 0.5rem 0% 0% 0%;
     }
+  }
+
+  ._button {
+    margin-top: 15%;
   }
 }

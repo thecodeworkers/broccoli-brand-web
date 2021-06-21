@@ -136,3 +136,37 @@
   height: calc(100% - 10rem);
   padding: 5rem 8rem;
 }
+
+@include responsive(sm) {
+
+  ._main {
+    height: 100%;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    background-color: transparent;
+  }
+
+  ._title {
+    font-size: $roboto24;
+    margin: 20% 0;
+  }
+
+  ._registerContainer {
+    width: 100%;
+    height: 75vh;
+    padding: 5% 10%;
+  }
+
+  ._loginBox {
+    padding: 0%;
+  }
+
+  ._button {
+    margin-top: 15%;
+  }
+}

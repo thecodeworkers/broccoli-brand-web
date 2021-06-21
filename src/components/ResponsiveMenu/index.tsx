@@ -4,10 +4,12 @@ import { World, Coin, User } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, setLoader, openModal, logout } from '@store/actions'
 import { useRouter } from 'next/router'
-import { createMarkup, scrolling } from '@utils';
+import { createMarkup, scrolling } from '@utils'
 
 const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   const [unfold, setUnfold] = useState(false)
+
+  const {user: {isAuth} } = useSelector((state: any) => state)
 
   const dispatch = useDispatch()
   const router = useRouter()
@@ -120,12 +122,21 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
               <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => modal('register')}>{data?.navigationBar?.register}</p>
             </div>
           </div>
-          <div className={styles._settingsContainer}>
-            <div className={styles._iconSettings}>
-              <div className={styles._invisibleIcon}></div>
-              <p className={[styles._redText, styles._pointer].join(" ")} onClick={() => dispatch(logout())}>{data?.navigationBar?.logout}</p>
+          {
+            isAuth ? 
+            <div className={styles._settingsContainer}>
+              <div className={styles._iconSettings}>
+                <div className={styles._invisibleIcon}></div>
+                <p className={[styles._redText, styles._pointer].join(" ")} onClick={() => dispatch(logout())}>{data?.navigationBar?.logout}</p>
+              </div>
+            </div> : 
+            <div className={styles._settingsContainer}>
+              <div className={styles._iconSettings}>
+                <div className={styles._invisibleIcon}></div>
+                <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => modal('login')}>{data?.navigationBar?.login}</p>
+              </div>
             </div>
-          </div>
+          }
         </section>
 
         <section className={styles._internalCopyright}>

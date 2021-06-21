@@ -96,4 +96,5 @@ export const forgotPassword: any = (values) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch(getCart())
   dispatch(actionObject(LOGOUT))
+  dispatch(setAlert('Deslogueado exitosamente', true, 'success'))
 }
