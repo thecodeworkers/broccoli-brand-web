@@ -10,7 +10,7 @@ const RecentView = ({ data }) => {
   return (
     <section className={styles._recentlyContainer} >
       <div className={styles._recentlyTitleContainer}>
-        <h3 className={styles.recentlyTitle}>{data?.recentlyTitle}</h3>
+        <h3 className={styles.recentlyTitle}>{data?.historyNavigation}</h3>
       </div>
       <div className={styles._recentsContainer}>
         {[...recent, ...new Array(6)].splice(0, 6).map((rec, index) => (

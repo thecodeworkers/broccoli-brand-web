@@ -5,6 +5,7 @@ import shopPageQuery from './shopPage'
 import productQuery from './productPage'
 import guest from './guest'
 import profilePageQuery from './profilePage'
+import userPageQuery from './userPage'
 
 const pages = async (resource: any, language, id: string = '') => {
   const resources = {
@@ -14,6 +15,7 @@ const pages = async (resource: any, language, id: string = '') => {
     'productPage': productQuery(id),
     'customer': guest(),
     'profilePage': profilePageQuery(language),
+    'userPage': userPageQuery(language)
   }
 
   const query = `

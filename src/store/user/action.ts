@@ -126,3 +126,17 @@ export const checkoutForm = (value) => async (dispatch, getState) => {
 export const checkoutReset = () => async (dispatch) => {
   dispatch(actionObject(SET_CHECKOUT, { shipping: { isValid: false }, billing: { isValid: false }, payment: { isValid: false } }))
 }
+
+export const editUser = () => async (dispatch, getState) => {
+  const { user: { user: { sessionToken, jwtAuthToken }, checkout } } = getState()
+
+  const data: any = await mutations('updateCustomer', checkout, sessionToken, jwtAuthToken);
+
+  if (data.message) throw new Error(data.message);
+
+  dispatch(actionObject(SIGN_IN, { ...{ user: data.customer }, isAuth: true }));
+  dispatch(setAlert('Cambio de datos del usuario con exito', true, 'success'))
+  dispatch(getCart())
+  dispatch(actionObject(LOADER, false))
+  dispatch(closeModal())
+}

@@ -1,0 +1,25 @@
+@import '@styles/index.scss';
+
+._titleBox{
+  width: 90%;
+  padding: 0 5%;
+  margin-top: 9.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  text-align: start;
+}
+
+._title {
+  font-family: $roboto;
+  font-size: $robotoBold32;
+  text-align: start;
+  margin-bottom: 0;
+  font-weight: $weight900;
+}
+._subTitle {
+  font-family: $roboto;
+  font-size: $robotoBold20;
+  text-align: start;
+  margin-bottom: 0;
+  font-weight: $weight900;
+}

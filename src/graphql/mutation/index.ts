@@ -26,7 +26,7 @@ const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
       ${resources[resource](values)}
     }
   `
-
+  
   const result: any = await GraphQlClient(query, {}, auth, wcAuth)
   if ('message' in result) return result;
   return normalized(result[resource])

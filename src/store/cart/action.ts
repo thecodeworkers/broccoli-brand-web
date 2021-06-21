@@ -18,7 +18,6 @@ export const addToCar: any = (product: any, quantity: any) => async (dispatch, g
     if (user?.isAuth) {
       dispatch(actionObject(LOADER, true))
 
-      console.log(user?.user?.sessionToken)
       const data: any = await mutations('addCartItems', { product, quantity }, user?.user?.jwtAuthToken, user?.user?.sessionToken)
 
       if (data.message) throw new Error(data.message);

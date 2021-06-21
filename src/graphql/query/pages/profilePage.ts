@@ -8,9 +8,12 @@ profilePage:page(id: "${profileId}") {
     profile {
       checkoutButton
       editBillingButton
+      alsoLike
+      historyNavigation
       orders {
         title
         table {
+          searchPlaceholder
           search
           order
           hour
