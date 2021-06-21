@@ -216,3 +216,41 @@
     }
   }
 }
+
+._shoppingContent {
+  margin-bottom: 5%;
+  ._categories {
+    
+    > h2 {
+      text-transform: capitalize;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      font-size: $roboto16;
+      width: 85%;
+      margin: auto;
+      font-weight: 700;
+      padding: 0 8%;
+      background-color: $codGray;
+    }
+
+    > p {
+      padding: 1% 8%;
+      font-size: $roboto16;
+      width: 20%;
+    }
+  }
+}
+
+._pointer {
+  cursor: pointer;
+}
+
+._selectLang {
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  background-color: $white;
+}

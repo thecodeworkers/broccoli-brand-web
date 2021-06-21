@@ -41,10 +41,10 @@ const Register = () => {
               onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.phone} />
           </label>
           <div className={styles._doubleInput}>
-            <label className={errors.password && touched.password ? [styles._inputError, styles._inputBox, styles._inputBoxDouble].join(' ') : [styles._inputBox, styles._inputBoxDouble].join(' ')}>
+            <label className={errors.password && touched.password ? [styles._inputError, styles._inputBox, styles._inputBoxDouble, styles._inputPass].join(' ') : [styles._inputBox, styles._inputBoxDouble, styles._inputPass].join(' ')}>
               <span className={styles._tooltip}>{register.tooltips?.password}</span>
               {register.password}
-              <input id="password" name="password" type="password" className={errors.password && touched.password ? [styles._inputError, styles._input].join(' ') : styles._input}
+              <input id="password" name="password" type="password" className={errors.password && touched.password ? [styles._inputError, styles._input, styles._pass].join(' ') : [styles._input, styles._pass].join(" ")}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
             </label>
             <label className={errors.confirmPassword && touched.confirmPassword ? [styles._inputError, styles._inputBox, styles._inputBoxDouble].join(' ') : [styles._inputBox, styles._inputBoxDouble].join(' ')}>
