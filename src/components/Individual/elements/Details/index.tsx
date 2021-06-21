@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { createMarkup } from '@utils';
+import { createMarkup, scrolling } from '@utils';
 import { ColorPicker, Button } from '@components'
 import styles from './styles.module.scss'
 import { useDispatch } from 'react-redux';
 import { addToCar } from '@store/actions';
 
-const Details = ({ data, texts }) => {
+const Details = ({ data, texts, reference }) => {
   const dispatch = useDispatch()
   const addProduct = () => {
     if (data) dispatch(addToCar(data?.databaseId, 1));
   }
-  
+
   const [gallery, setGallery] = useState([])
   
   useEffect(() => {
@@ -94,7 +94,7 @@ const Details = ({ data, texts }) => {
                 </div>
                 <div className={styles._buttonContainer} >
                   <div className={styles._buttonContent}>
-                    <div className={styles._button}>
+                    <div className={styles._button} onClick={() => scrolling(reference, 100)} >
                       <Button borderColor='black' colorText='black' text='VIEW ALL COLORS' blackHover={true} />
                     </div>
                   </div>
