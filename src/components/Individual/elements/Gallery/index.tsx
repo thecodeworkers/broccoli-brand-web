@@ -13,8 +13,6 @@ const Gallery = ({ data }) => {
     setGallery(imagesArray)
   }, [data])
 
-  console.log(data)
-
   return (
     <>
       <section className={styles._galleryContainter}>
@@ -37,12 +35,8 @@ const Gallery = ({ data }) => {
         </div>
         <div className={styles._rightContainer}>
           <div className={styles._descriptionContainer}>
-            {/* <h1 className={styles._descriptionTitle}>DESCRIPTION</h1> */}
             <div className={styles._description} dangerouslySetInnerHTML={createMarkup(data.description)}></div>
           </div>
-          {/* <div className={styles._fabricContainer}>
-            <h1 className={styles._descriptionTitle}>THE FABRIC</h1>
-          </div> */}
         </div>
       </section>
     </>

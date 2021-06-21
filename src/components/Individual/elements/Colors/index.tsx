@@ -1,10 +1,24 @@
-import React  from 'react'
+import React, { useState, useEffect}  from 'react'
 import styles from './styles.module.scss'
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 const Colors = ({ data, title }) => {
+
+  const [gallery, setGallery] = useState([])
+
+  useEffect(() => {
+    if(data?.length < 4) {
+      const imagesArray = data?.slice(0,4);
+      for (let index = imagesArray?.length; index < 4; index++) imagesArray.push({image: {mediaItemUrl: 'images/backgrounds/Pic_not_available.png'}})
+      return setGallery(imagesArray)
+    }
+
+    return setGallery(data)
+
+  }, [data])
+
   const settings = {
     dots:false,
     slidesToShow:4,
@@ -39,9 +53,8 @@ const Colors = ({ data, title }) => {
     ]
   }
 
-
   const renderSlides = () =>
-    data?.map((item, index) => (
+    gallery?.map((item, index) => (
       <div className={styles._slideContainer} key={index}>
         <div className='_img'></div>
         <style jsx>{`
@@ -74,6 +87,8 @@ const Colors = ({ data, title }) => {
     
   return (
     <>
+    {
+      data?.length ? 
       <div className={styles._content}>
         <div className={styles._titleContainer}>
           <h1 className={styles._title}>{title}</h1>
@@ -81,7 +96,8 @@ const Colors = ({ data, title }) => {
         <Slider {...settings}>
           {renderSlides()}
         </Slider>
-      </div>
+      </div> : ''
+    }
     </>
   )
 }
