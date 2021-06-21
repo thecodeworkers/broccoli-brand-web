@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 const Recents = ({ data }) => {
 
   const { shop: { recent } } = useSelector((state: any) => state)
-
+  console.log(recent)
   return recent.length ? (
     <>
       <section className={styles._recentlyContainer}>

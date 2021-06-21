@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
 import { createMarkup, scrolling } from '@utils';
 
-const Navbar = ({ reference }: any = '' ) => {
+const Navbar = ({ reference }: any = '') => {
 
   const dispatch = useDispatch()
   const router = useRouter()
@@ -77,7 +77,7 @@ const Navbar = ({ reference }: any = '' ) => {
                     {down ? (
                       <div className={styles._dropdownUserMenu}>
                         <p className={styles._dropdownUserItem} onClick={() => { modal('changePassword') }}>Change Password</p>
-                        <p className={styles._dropdownUserItem}>Profile</p>
+                        <p className={styles._dropdownUserItem} onClick={() => { navigation('profile', true) }}>Profile</p>
                       </div>
                     ) : null}
 
@@ -124,9 +124,9 @@ const Navbar = ({ reference }: any = '' ) => {
           <div className={styles._bottomSectionsContainer}>
             <div className={styles._bottomSections}>
               {general?.navigationBar?.navigation?.map((nav, index) => {
-                if(index != 3) {
+                if (index != 3) {
                   return (
-                    <div onClick={() => navigation(nav.link, true)} key={index} 
+                    <div onClick={() => navigation(nav.link, true)} key={index}
                       className={styles._bottomSection}
                       onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
                       onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
@@ -136,9 +136,9 @@ const Navbar = ({ reference }: any = '' ) => {
                   )
                 }
 
-                if(path == '/about-us' || path == '/') {
+                if (path == '/about-us' || path == '/') {
                   return (
-                    <a key={index} onClick={() => scrolling(reference, 100)} 
+                    <a key={index} onClick={() => scrolling(reference, 100)}
                       className={styles._bottomSection}
                       onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
                       onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}

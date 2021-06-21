@@ -1,5 +1,5 @@
-import { Button } from '@components'
-import { closeModal, guestUser, openModal } from '@store/actions'
+import { checkoutForm } from '@store/actions'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import styles from './styles.module.scss'
@@ -13,6 +13,10 @@ const Shipping = () => {
   const formik = formikConfig(dispatch)
 
   const { errors, touched } = formik
+
+  useEffect(() => {
+    if (formik.isValid && !Object.keys(errors).length) dispatch(checkoutForm({ 'shipping': { ...formik.values, isValid: formik.isValid } }))
+  }, [formik.isValid])
 
   return (
     <div className={styles._main}>
@@ -41,7 +45,7 @@ const Shipping = () => {
                 {deliveryAddressAndShipping?.delivery?.country}
               </label>
               <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
-                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="countryShipping" value={formik.values.country} className={styles._selectForm}>
+                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="countryShipping" defaultValue={formik.values.country} className={styles._selectForm}>
                   <option value={'Venezuela'}>{'Venezuela'}</option>
                   <option value={'Mexico'}>{'Mexico'}</option>
                   <option value={'Estados Unidos'}>{'Estados Unidos'}</option>

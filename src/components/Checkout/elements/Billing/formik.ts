@@ -36,8 +36,7 @@ export const formikConfig = (dispatch) => (useFormik({
     .required(),
     phone: Yup.string()
     .required(),
-    discountCode: Yup.string()
-      .required(),
+    discountCode: Yup.string(),
   }),
 
   onSubmit: values => {

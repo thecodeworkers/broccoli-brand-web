@@ -1,12 +1,10 @@
-import { mutations } from '@graphql';
+import { mutations, pages } from '@graphql';
 import { setAlert } from '@store/alert/action';
 import { getCart } from '@store/cart/action';
 import { LOADER } from '@store/loader/action-types';
 import { closeModal } from '@store/modal/action';
 import { actionObject } from '@utils'
-import { FORGOT_PASSWORD, LOGOUT, SIGN_IN, SIGN_UP } from './action-types'
-
-
+import { FORGOT_PASSWORD, LOGOUT, SET_CHECKOUT, SIGN_IN, SIGN_UP } from './action-types'
 
 export const signUp: any = (values) => async (dispatch) => {
   try {
@@ -48,6 +46,31 @@ export const signIn: any = (values) => async (dispatch) => {
   }
 }
 
+export const guestUser: any = () => async (dispatch, getState) => {
+  try {
+    dispatch(actionObject(LOADER, true))
+
+    const { resource: { language } } = getState()
+
+    const data: any = await pages('customer', language);
+
+    if (data.message) throw new Error(data.message);
+    console.log(data)
+    dispatch(actionObject(SIGN_IN, { ...{ user: { ...data, ...{ username: 'guest', firstName: 'guest' } } }, isAuth: true }));
+    dispatch(setAlert('Bienvenido Invitado', true, 'success'))
+    dispatch(getCart())
+    dispatch(actionObject(LOADER, false))
+    dispatch(closeModal())
+  } catch (error) {
+    console.log(error)
+    dispatch(actionObject(LOADER, false))
+    dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
+
+  }
+
+
+}
+
 export const changePassword: any = (values) => async (dispatch, getState) => {
   try {
     dispatch(actionObject(LOADER, true))
@@ -69,10 +92,6 @@ export const changePassword: any = (values) => async (dispatch, getState) => {
   }
 }
 
-export const guestUser: any = () => async (dispatch) => {
-  dispatch(actionObject(SIGN_IN, { ...{ user: { email: 'guest' } }, isAuth: true }));
-  dispatch(closeModal())
-}
 
 export const forgotPassword: any = (values) => async (dispatch) => {
   try {
@@ -92,8 +111,18 @@ export const forgotPassword: any = (values) => async (dispatch) => {
   }
 }
 
-
 export const logout = () => async (dispatch) => {
-  dispatch(getCart())
   dispatch(actionObject(LOGOUT))
+  dispatch(getCart())
+  dispatch(actionObject(LOADER, false))
+  dispatch(closeModal())
+}
+
+export const checkoutForm = (value) => async (dispatch, getState) => {
+  const { user: { checkout } } = getState()
+  dispatch(actionObject(SET_CHECKOUT, { ...checkout, ...value }))
+}
+
+export const checkoutReset = () => async (dispatch) => {
+  dispatch(actionObject(SET_CHECKOUT, { shipping: { isValid: false }, billing: { isValid: false }, payment: { isValid: false } }))
 }

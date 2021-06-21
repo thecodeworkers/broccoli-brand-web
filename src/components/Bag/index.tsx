@@ -1,6 +1,7 @@
 import { removeFromCart } from '@store/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './styles.module.scss'
+import { TrashCan } from '@images/icons'
 
 const Bag = () => {
 
@@ -37,7 +38,7 @@ const Bag = () => {
                 <td className={styles._dataTable}>
                   <div className={styles._dataBox}>
                     <div className={styles._deleteBox}>
-                      <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}>X</p>
+                      <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}><TrashCan /></p>
                     </div>
                     <div className={styles._bagItem} key={index}>
                       <div className={styles._itemImage}>

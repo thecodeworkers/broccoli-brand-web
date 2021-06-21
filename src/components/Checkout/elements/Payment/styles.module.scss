@@ -51,7 +51,7 @@
 }
 
 ._input {
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   width: 98%;
   border: none;
   border-bottom: 1px solid $black;
@@ -91,12 +91,19 @@
   width: 40.5%;
   padding: 0 2.5%;
   padding-right: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ._rightSide {
   width: 40.5%;
   padding: 0 2.5%;
   padding-left: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
 }
 
 ._formContainer {
@@ -232,4 +239,9 @@
       }
     }
   }
+}
+
+._cardContainer{
+  width: 100%;
+  height: 1rem;
 }

@@ -60,7 +60,6 @@ export const orderProducts: any = (value) => async (dispatch, getState) => {
 export const recentlyView = (data) => async (dispatch, getState) => {
   dispatch(actionObject(LOADER, true))
   const { shop: { recent } } = getState()
-
   let recents = recent;
   if (recents.length >= 6) recents.shift()
   recents.push(data)

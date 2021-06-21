@@ -200,15 +200,11 @@
   align-items: center;
   justify-content: center;
   font-size: $roboto20;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
   font-family: $roboto;
-  border: 1px solid $black;
   margin-right: 0.5rem;
   cursor: pointer;
   transition: all 0.5s;
-  &:hover {
-    background-color: $black;
-    color: $white;
-  }
+  padding: 0.25rem;
 }
