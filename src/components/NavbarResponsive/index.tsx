@@ -4,7 +4,7 @@ import { BroccoliLogo } from '@images/components'
 import { Menu, Bag, User, Search } from '@images/svg'
 import { ResponsiveMenu, ResponsiveSearch } from '@components'
 
-const NavbarResponsive = ({ data }) => {
+const NavbarResponsive = ({ data, language, reference }) => {
 
   const [ show, setShow ] = useState(0)
   const [ showSearch, setSearch ] = useState(false)
@@ -40,7 +40,7 @@ const NavbarResponsive = ({ data }) => {
 
     <ResponsiveSearch show={showSearch} method={resetShow}/>
 
-    <ResponsiveMenu show={show} method={resetShow} data={data} />
+    <ResponsiveMenu show={show} method={resetShow} data={data} language={language} reference={reference} />
     </>
   )
 }

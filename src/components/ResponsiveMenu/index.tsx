@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { World, Coin, User } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeLanguage, setLoader } from '@store/actions'
+import { changeLanguage, setLoader, openModal, logout } from '@store/actions'
 import { useRouter } from 'next/router'
+import { createMarkup, scrolling } from '@utils'
+import { useEffect } from 'react'
 
-const ResponsiveMenu = ({ show = 0, method, data}) => {
-
+const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   const [unfold, setUnfold] = useState(false)
+
+  const {user: {isAuth} } = useSelector((state: any) => state)
 
   const dispatch = useDispatch()
   const router = useRouter()
@@ -25,6 +28,10 @@ const ResponsiveMenu = ({ show = 0, method, data}) => {
     if (show === 2) return styles._mainOut
   }
 
+  const modal = (type) => {
+    dispatch(openModal(type))
+  }
+  
   const assignShow = () => {
     if(unfold) return styles._show
     return styles._hide
@@ -35,11 +42,39 @@ const ResponsiveMenu = ({ show = 0, method, data}) => {
     if(!unfold) setUnfold(true)
   }
 
+  const changeLang = (event) => {
+    const lang = event.target.value
+    dispatch(changeLanguage(lang))
+
+    if (typeof window !== 'undefined') {
+      document.cookie = `lang=${lang}`
+    }
+  }
+
   return (
     <div className={assignClass()}>
       <div className={[styles._content, unfold ? styles._listed : styles._noListed].join(" ")}>
         <section className={styles._internalLinks}>
-          {data?.navigationBar?.navigation?.map((nav, index) => (
+          {data?.navigationBar?.navigation?.map((nav, index) => {
+            if(index == 3) {
+              if(router.pathname == '/about-us' || router.pathname == '/') {
+                return (
+                  <a key={index}>
+                    <div onClick={() => scrolling(reference, 100)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
+                      <p className={styles._linkText}>{nav.text}</p>
+                    </div>
+                  </a>
+                ) 
+              }
+              return (
+              <div key={index}>
+                <div onClick={() => navigation('/#contact-us', true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
+                  <p className={styles._linkText}>{nav.text}</p>
+                </div>
+              </div>
+              )
+            }
+            return (
             <div key={index}>
               <div onClick={() => navigation(nav.link, true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
                 <p className={styles._linkText}>{nav.text}</p>
@@ -48,30 +83,17 @@ const ResponsiveMenu = ({ show = 0, method, data}) => {
               {index == 0 ? 
                 <div className={assignShow()}>
                   <div className={styles._shoppingContainer}>
-                    <div className={styles._shoppingTitle}>
-                      <p className={styles._title}>Categorias</p>
-                    </div>
-                    <div className={styles._shoppingSections}>
-                      <p className={styles._filter}>Pants</p>
-                      <p className={styles._filter}>Shorts</p>
-                      <p className={styles._filter}>Skirts</p>
-                      <p className={styles._filter}>Jackets</p>
-                      <p className={styles._filter}>Sweaters</p>
-                      <p className={styles._filter}>Socks</p>
-                    </div>
-                    <div className={styles._shoppingTitle}>
-                      <p className={styles._title}>Drops</p>
-                    </div>
-                    <div className={styles._shoppingSections}>
-                      <p className={styles._filter}>Origen</p>
-                      <p className={styles._filter}>Destiny</p>
-                      <p className={styles._filter}>Tucan</p>
-                    </div>
+                    {data?.navigationBar?.dropdownMenu?.columnList.map((item, index) => (
+                      <div className={styles._shoppingContent} key={index}>
+                        <div className={styles._categories} dangerouslySetInnerHTML={createMarkup(item.list)}></div>
+                      </div>
+                    ))}
                   </div>
                 </div> : ''
               }
             </div>
-          ))}
+            )
+          })}
         </section>
 
         <section className={styles._internalSettings}>
@@ -80,7 +102,13 @@ const ResponsiveMenu = ({ show = 0, method, data}) => {
               <div className={styles._icon}><World width='16' height='16' /></div>
               <p className={styles._settingText}>Idioma</p>
             </div>
-            <p className={styles._lightText}>ESP</p>
+            <p className={styles._lightText}>
+              <select name="language" id="language" value={language} onChange={changeLang} 
+                className={[styles._selectLang, styles._lightText, styles._pointer].join(" ")}>
+                <option value='ES' className={styles._lightText}>ES</option>
+                <option value='EN' className={styles._lightText}>EN</option>
+              </select>
+            </p>
           </div>
           <div className={styles._settingsContainer}>
             <div className={styles._iconSettings}>
@@ -89,18 +117,32 @@ const ResponsiveMenu = ({ show = 0, method, data}) => {
             </div>
             <p className={styles._lightText}>Cambiar Moneda</p>
           </div>
-          <div className={styles._settingsContainer}>
-            <div className={styles._iconSettings}>
-              <div className={styles._icon}><User width='16' height='16' /></div>
-              <p className={styles._settingText}>Registrarse</p>
+          {
+            !isAuth ?
+            <div className={styles._settingsContainer}>
+              <div className={styles._iconSettings}>
+                <div className={styles._icon}><User width='16' height='16' /></div>
+                <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => { modal('register')}}>
+                    {data?.navigationBar?.register}
+                </p>
+              </div>
+            </div> :''
+          }
+          {
+            isAuth ? 
+            <div className={styles._settingsContainer}>
+              <div className={styles._iconSettings}>
+                <div className={styles._invisibleIcon}></div>
+                <p className={[styles._redText, styles._pointer].join(" ")} onClick={() => dispatch(logout())}>{data?.navigationBar?.logout}</p>
+              </div>
+            </div> : 
+            <div className={styles._settingsContainer}>
+              <div className={styles._iconSettings}>
+                <div className={styles._invisibleIcon}></div>
+                <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => modal('login')}>{data?.navigationBar?.login}</p>
+              </div>
             </div>
-          </div>
-          <div className={styles._settingsContainer}>
-            <div className={styles._iconSettings}>
-              <div className={styles._invisibleIcon}></div>
-              <p className={styles._redText}>Cerrar sesión</p>
-            </div>
-          </div>
+          }
         </section>
 
         <section className={styles._internalCopyright}>

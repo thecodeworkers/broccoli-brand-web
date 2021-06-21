@@ -27,14 +27,22 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
       <section className={styles._productContainer}>
         <div className={!details ? `${styles._imageProductContainer} ${styles._imageNoDetailProductContainer}` : styles._imageProductContainer}>
           <div className='_image' onClick={() => navigation(data.id, true)}></div>
-          <div className={styles._addToCart} onClick={add}>
-            <p className={styles._addToCartText}>{texts?.general?.generalText?.addToCartText}</p>
-          </div>
           {!details ? (
-            <div className={styles._viewMore} onClick={() => navigation(data.id, true)}>
-              <p className={styles._addToCartText}>{texts?.general?.generalText?.viewMoreText}</p>
-            </div>
-          ) : null}
+            <>
+              <div className={styles._addToCartNoDetails} onClick={add}>
+                <p className={styles._addToCartText}>{texts?.general?.generalText?.addToCartText}</p>
+              </div>
+              <div className={styles._viewMore} onClick={() => navigation(data.id, true)}>
+                <p className={styles._addToCartText}>{texts?.general?.generalText?.viewMoreText}</p>
+              </div>
+            </>
+          ) : 
+            <>
+              <div className={styles._addToCart} onClick={add}>
+                <p className={styles._addToCartText}>{texts?.general?.generalText?.addToCartText}</p>
+              </div>
+            </>
+          }
         </div>
         {details ? (
           <div className={styles._specsContainer}>

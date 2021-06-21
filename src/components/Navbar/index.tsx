@@ -170,7 +170,7 @@ const Navbar = ({ reference }: any = '') => {
       </nav>
 
       <div className={styles._responsive}>
-        <NavbarResponsive data={general} />
+        <NavbarResponsive data={general} language={language} reference={reference} />
       </div>
       <style jsx>
         {`

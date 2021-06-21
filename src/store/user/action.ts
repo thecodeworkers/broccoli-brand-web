@@ -113,9 +113,10 @@ export const forgotPassword: any = (values) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   dispatch(actionObject(LOGOUT))
-  dispatch(getCart())
   dispatch(actionObject(LOADER, false))
+  dispatch(getCart())
   dispatch(closeModal())
+  dispatch(setAlert('Cerrado sesion con exito', true, 'success'))
 }
 
 export const checkoutForm = (value) => async (dispatch, getState) => {

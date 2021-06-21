@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 const Shop = ({ data }) => {
 
-  const { resource: { collection } } = useSelector((state: any) => state)
+  const { resource: { collection , general}  } = useSelector((state: any) => state)
   
   return (
     <div className={styles._content}>
@@ -21,13 +21,14 @@ const Shop = ({ data }) => {
 
       <div className={styles._productReponsiveContainer}>
         <div className={styles._responsiveShopContainer}>
-          <div className={styles._shopContainer}><ResponsiveShop /></div>
-          <div className={styles._shopContainer}><ResponsiveShop /></div>
-          <div className={styles._shopContainer}><ResponsiveShop /></div>
-          <div className={styles._shopContainer}><ResponsiveShop /></div>
+          {collection.map((collect, index) => (
+            <div className={styles._shopContainer} key={index} >
+              <ResponsiveShop data={collect} />
+            </div>
+          ))}
         </div>
         <div className={styles._buttonContainer}>
-          <Button borderColor='black' text='VIEW MORE' colorText='black' blackHover={true} />
+          <Button borderColor='black' text={general?.general?.generalText?.viewMoreText} colorText='black' blackHover={true} />
         </div>
       </div>
     </div>
