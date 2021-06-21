@@ -9,6 +9,12 @@ productPage:product(id: "${id}") {
   databaseId
   productData{
     outstandingCollection
+    allColors {
+      color
+      image {
+        mediaItemUrl
+      }
+    }
   }
   productCategories {
     nodes {

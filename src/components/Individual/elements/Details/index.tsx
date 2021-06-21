@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { createMarkup } from '@utils';
+import { createMarkup, scrolling } from '@utils';
 import { ColorPicker, Button } from '@components'
 import styles from './styles.module.scss'
 import { useDispatch } from 'react-redux';
 import { addToCar } from '@store/actions';
 
-const Details = ({ data }) => {
+const Details = ({ data, texts, reference }) => {
   const dispatch = useDispatch()
   const addProduct = () => {
     if (data) dispatch(addToCar(data?.databaseId, 1));
@@ -64,12 +64,12 @@ const Details = ({ data }) => {
           <div className={styles._rightContainer}>
             <div>
               <div className={styles._productNameContainer}>
-                <h1 className={styles._productName}>{data.name}</h1>
+                <h1 className={styles._productName}>{data?.name}</h1>
               </div>
 
               <div className={styles._boxContainer}>
                 <div className={styles._half}>
-                  <h2 className={styles._price}>{data.price}</h2>
+                  <h2 className={styles._price}>{data?.price}</h2>
                 </div>
                 <div className={styles._half}>
                   <div id={styles._shortDescription} className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
@@ -80,8 +80,8 @@ const Details = ({ data }) => {
                 <div className={styles._typeColors}>
                   <div className={styles._components}>
                     <div className={styles._textContent}>
-                      <p className={styles._colorText}>COLORS*</p>
-                      <span className={styles._span}>Select one color</span>
+                      <p className={styles._colorText}>{texts?.individual?.colors}*</p>
+                      <span className={styles._span}>{texts?.individual?.selectColor}</span>
                     </div>
                     <div className={styles._circlesContainer}>
                       {data?.attributes?.nodes[0].options.map((item, index) => (
@@ -94,7 +94,7 @@ const Details = ({ data }) => {
                 </div>
                 <div className={styles._buttonContainer} >
                   <div className={styles._buttonContent}>
-                    <div className={styles._button}>
+                    <div className={styles._button} onClick={() => scrolling(reference, 100)} >
                       <Button borderColor='black' colorText='black' text='VIEW ALL COLORS' blackHover={true} />
                     </div>
                   </div>
@@ -105,9 +105,9 @@ const Details = ({ data }) => {
                 <div className={styles._sizesContent}>
                   <div className={styles._sizes}>
                     <div className={styles._textContent}>
-                      <p className={styles._colorText}>SIZES*</p>
-                      <span className={styles._span}>Select one size</span>
-                    </div>
+                      <p className={styles._colorText}>{texts?.individual?.sizes}*</p>
+                      <span className={styles._span}>{texts?.individual?.selectSize}</span>
+                    </div>  
                     <div className={styles._checkboxContainer}>
                       {data?.attributes?.nodes[1].options.map((item, index) => (
                         <div key={index} className={styles._individualCheck}>
@@ -125,7 +125,7 @@ const Details = ({ data }) => {
 
             <div className={styles._lastButtonContainer}>
               <div className={styles._buttonContainer}>
-                <Button borderColor='black' colorText='black' text='ADD TO CART' blackHover={true} onClick={addProduct} />
+                <Button borderColor='black' colorText='black' text={texts?.addToCartText} blackHover={true} onClick={addProduct} />
               </div>
             </div>
           </div>
