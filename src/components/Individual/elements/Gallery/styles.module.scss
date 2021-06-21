@@ -38,6 +38,23 @@
   }
 }
 
+._descriptionContainer {
+  > h1, h2, h3, h4 {
+    width: 80%;
+    margin: 0% auto 3% 0%;
+    color: $black;
+    text-transform: uppercase;
+    font-size: $roboto26;
+    font-weight: 700;
+  }
+
+  > p {
+    width: 80%;
+    margin: 3% auto;
+    font-size: $roboto18;
+  }
+}
+
 ._descriptionTitle {
   width: 80%;
   margin: 3% auto;
@@ -49,7 +66,7 @@
 ._description {
   width: 80%;
   margin: 3% auto;
-  font-size: $roboto18;
+  // font-size: $roboto18;
 }
 
 @include responsive(sm) {

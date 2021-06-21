@@ -21,7 +21,7 @@ const Shop = ({ data }) => {
       </Head>
       <Navbar />
       <Details data={data} texts={general?.generalText} />
-      <Gallery data={data} texts={general?.generalText} />
+      <Gallery data={data} />
       <Colors data={data?.productData?.allColors} title={general?.generalText?.individual?.allColorsText} />
       <CompleteLook data={data.upsell} title={general?.generalText?.individual?.completeLookText} />
       <Related data={data.crossSell} title={general?.generalText?.individual?.alsoLikeText} />

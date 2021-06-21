@@ -10,9 +10,7 @@ const Details = ({ data, texts }) => {
   const addProduct = () => {
     if (data) dispatch(addToCar(data?.databaseId, 1));
   }
-
-  console.log(texts)
-
+  
   const [gallery, setGallery] = useState([])
   
   useEffect(() => {

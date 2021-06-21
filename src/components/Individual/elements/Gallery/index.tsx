@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { createMarkup } from '@utils';
 import styles from './styles.module.scss'
 
-const Gallery = ({ data, texts }) => {
+const Gallery = ({ data }) => {
 
   const [gallery, setGallery] = useState([])
   
@@ -12,6 +12,8 @@ const Gallery = ({ data, texts }) => {
 
     setGallery(imagesArray)
   }, [data])
+
+  console.log(data)
 
   return (
     <>
@@ -35,12 +37,12 @@ const Gallery = ({ data, texts }) => {
         </div>
         <div className={styles._rightContainer}>
           <div className={styles._descriptionContainer}>
-            <h1 className={styles._descriptionTitle}>DESCRIPTION</h1>
+            {/* <h1 className={styles._descriptionTitle}>DESCRIPTION</h1> */}
             <div className={styles._description} dangerouslySetInnerHTML={createMarkup(data.description)}></div>
           </div>
-          <div className={styles._fabricContainer}>
+          {/* <div className={styles._fabricContainer}>
             <h1 className={styles._descriptionTitle}>THE FABRIC</h1>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
