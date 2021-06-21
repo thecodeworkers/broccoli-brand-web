@@ -6,6 +6,11 @@ generalPage: page(id: "${generalId}") {
       generalText {
         addToCartText
         viewMoreText
+        individual {
+          allColorsText
+          alsoLikeText
+          completeLookText
+        }
       }
       navigationBar {
         login
