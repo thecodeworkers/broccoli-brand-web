@@ -10,6 +10,10 @@ generalPage: page(id: "${generalId}") {
           allColorsText
           alsoLikeText
           completeLookText
+          selectColor
+          selectSize
+          sizes
+          colors
         }
       }
       navigationBar {

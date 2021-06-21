@@ -10,8 +10,6 @@ const Shop = ({ data }) => {
 
   const { resource: { general: { general } } } = useSelector((state: any) => state)
 
-  console.log(general)
-
   useEffect(() => {
     if (Object.entries(data).length !== 0) dispatch(recentlyView(data))
   }, [data])
@@ -22,8 +20,8 @@ const Shop = ({ data }) => {
         <title>Broccoli</title>
       </Head>
       <Navbar />
-      <Details data={data} />
-      <Gallery data={data} />
+      <Details data={data} texts={general?.generalText} />
+      <Gallery data={data} texts={general?.generalText} />
       <Colors data={data?.productData?.allColors} title={general?.generalText?.individual?.allColorsText} />
       <CompleteLook data={data.upsell} title={general?.generalText?.individual?.completeLookText} />
       <Related data={data.crossSell} title={general?.generalText?.individual?.alsoLikeText} />

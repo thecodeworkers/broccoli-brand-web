@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { createMarkup } from '@utils';
 import styles from './styles.module.scss'
 
-const Gallery = ({ data }) => {
+const Gallery = ({ data, texts }) => {
 
   const [gallery, setGallery] = useState([])
   
