@@ -138,3 +138,27 @@
   border-color: $warning;
   color: $warning;
 }
+
+@include responsive(sm) {
+
+  ._main {
+    height: 100%;
+  }
+
+  ._inputBox {
+    width: 100%;
+    margin: 1rem 0%;
+  }
+
+  ._doubleInput {
+    flex-wrap: wrap;
+
+    ._inputBoxDouble {
+      margin-top: 0%;
+    }
+
+    ._pass {
+      margin: 0.5rem 0% 0% 0%;
+    }
+  }
+}
