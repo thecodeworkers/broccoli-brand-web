@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, setLoader, openModal, logout } from '@store/actions'
 import { useRouter } from 'next/router'
 import { createMarkup, scrolling } from '@utils'
+import { useEffect } from 'react'
 
 const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   const [unfold, setUnfold] = useState(false)
@@ -21,16 +22,16 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
     }
   }
 
-  const modal = (type) => {
-    dispatch(openModal(type))
-  }
-
   const assignClass = () => {
     if (show === 0) return styles._mainStatic
     if (show === 1) return styles._mainIn
     if (show === 2) return styles._mainOut
   }
 
+  const modal = (type) => {
+    dispatch(openModal(type))
+  }
+  
   const assignShow = () => {
     if(unfold) return styles._show
     return styles._hide
@@ -116,12 +117,17 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
             </div>
             <p className={styles._lightText}>Cambiar Moneda</p>
           </div>
-          <div className={styles._settingsContainer}>
-            <div className={styles._iconSettings}>
-              <div className={styles._icon}><User width='16' height='16' /></div>
-              <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => modal('register')}>{data?.navigationBar?.register}</p>
-            </div>
-          </div>
+          {
+            !isAuth ?
+            <div className={styles._settingsContainer}>
+              <div className={styles._iconSettings}>
+                <div className={styles._icon}><User width='16' height='16' /></div>
+                <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => { modal('register')}}>
+                    {data?.navigationBar?.register}
+                </p>
+              </div>
+            </div> :''
+          }
           {
             isAuth ? 
             <div className={styles._settingsContainer}>

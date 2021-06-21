@@ -31,6 +31,10 @@
   }
 }
 
+._noContainer {
+  margin-top: 3%;
+}
+
 @include responsive(md) {
   ._products {
     flex-wrap: wrap;
