@@ -45,6 +45,7 @@ const Payment = () => {
                     onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.nameCard} />
                 </label>
               </div>
+
               <div className={styles._rightSide}>
                 <div className={styles._cardContainer}>
                   <CardElement options={cardOptions} onChange={(event) => setValidCard(event.complete)} />

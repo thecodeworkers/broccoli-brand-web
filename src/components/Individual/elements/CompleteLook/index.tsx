@@ -3,26 +3,31 @@ import { createMarkup } from '@utils';
 import { Product } from '@components'
 import styles from './styles.module.scss'
 
-const Colors = () => {
-    
+const Colors = ({ data }) => {
+
   return (
     <>
-      <div className={styles._content}>
-        <div className={styles._titleContainer}>
-          <h2 className={styles._title}>COMPLETE THE LOOK</h2>
+      {
+        data?.nodes?.length ? 
+        <>
+        <div className={styles._content}>
+          <div className={styles._titleContainer}>
+            <h2 className={styles._title}>COMPLETE THE LOOK</h2>
+          </div>
         </div>
-      </div>
-      <div className={styles._productsContainer}>
-        <div className={styles._products}>
-          <div className='_standard'></div>
-          <div className={styles._product}><Product /></div>
-          <div className={styles._product}><Product /></div>
-          <div className={styles._product}><Product /></div>
+        <div className={styles._productsContainer}>
+          <div className={styles._products}>
+            <div className='_standard'></div>
+            <div className={styles._product}><Product data={data?.nodes[1]} /></div>
+            <div className={styles._product}><Product data={data.nodes[2]} /></div>
+            <div className={styles._product}><Product data={data.nodes[3]} /></div>
+          </div>
         </div>
-      </div>
+        </> : <div className={styles._noContainer}></div>
+      }
       <style jsx>{`
       ._standard {
-        background-image: url('images/backgrounds/Pic_not_available.png');
+        background-image: url(${data?.nodes[0]?.image?.mediaItemUrl});
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -42,7 +47,7 @@ const Colors = () => {
           height: 35vh;
         }
       }
-    `}</style>
+    `}</style> 
     </>
   )
 }

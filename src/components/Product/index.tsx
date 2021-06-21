@@ -4,8 +4,11 @@ import { useDispatch } from 'react-redux'
 import { addToCar, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { Bag } from '@images/svg'
+import { useSelector } from 'react-redux'
 
 const Product = ({ containerStyles = null, details = true, data = null }) => {
+
+  const { resource: { general: texts }} = useSelector((state: any) => state)
 
   const dispatch = useDispatch()
   const add = () => { if (data) dispatch(addToCar(data?.databaseId, 1)) }
@@ -25,11 +28,11 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
         <div className={!details ? `${styles._imageProductContainer} ${styles._imageNoDetailProductContainer}` : styles._imageProductContainer}>
           <div className='_image' onClick={() => navigation(data.id, true)}></div>
           <div className={styles._addToCart} onClick={add}>
-            <p className={styles._addToCartText}>ADD TO CART</p>
+            <p className={styles._addToCartText}>{texts?.general?.generalText?.addToCartText}</p>
           </div>
           {!details ? (
             <div className={styles._viewMore} onClick={() => navigation(data.id, true)}>
-              <p className={styles._addToCartText}>VIEW MORE</p>
+              <p className={styles._addToCartText}>{texts?.general?.generalText?.viewMoreText}</p>
             </div>
           ) : null}
         </div>
@@ -47,7 +50,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
                 }
               </div>
               <div className={styles._productSizesContainer}>
-                <p className={styles._producSizes}>{data.price ? data?.price : ' -'}</p>
+                <p className={styles._producSizes}>{data?.price ? data?.price : ' -'}</p>
               </div>
             </div>
             <div className={styles._bag}><Bag width='15' height='15' fill='black' /></div> 

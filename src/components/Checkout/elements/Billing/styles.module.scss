@@ -97,6 +97,7 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 ._shippingTitle {
@@ -125,7 +126,9 @@
   padding-left: 5%;
 }
 
-
+._shippingBox {
+  font-family: $roboto;
+}
 
 ._informationText{
   font-family: $roboto;
@@ -279,5 +282,120 @@
         background: $white;
       }
     }
+  }
+}
+
+@include responsive(md) {
+  ._main {
+    flex-wrap: wrap;
+  }
+
+  ._addressBox {
+    width: 100%;
+    padding-right: 0%;
+  }
+
+  ._formBox {
+    padding: 0%;
+    width: 100%;
+  }
+
+  ._input {
+    margin-top: 10%;
+    width: -webkit-fill-available;
+  }
+
+  ._discountButton {
+    padding: 0%;
+  }
+
+  ._discountInput {
+    padding-right: 0%;
+  }
+
+  ._informationText._totalBilling {
+    display: flex;
+    flex-wrap: wrap;
+    ._billingAndSummary {
+      width: 100%;
+    }
+  }
+
+  ._selectionBox {
+    width: 100%;
+    padding: 0%;
+  }
+
+  ._buttonBox {
+    margin-top: 10%;
+  }
+
+  ._discountBox {
+    flex-wrap: wrap;
+  }
+
+  ._discountInput, ._discountButton {
+    width: 100%;
+  }
+
+  ._payTime {
+    display: none;
+  }
+
+  ._radioLabelTax {
+    padding-left: 5%;
+  }
+
+  ._radioLabelTax::before {
+    margin-right: 1rem;
+  }
+
+  ._selectBox {
+    flex-wrap: wrap;
+
+    ._selectLabel {
+      margin: 5% 0% 10% 0%;
+      width: 100%;
+    }
+
+    ._customSelect {
+      width: 100%;
+
+      select {
+        padding: 0% 0% 0% 5%;
+      }
+
+      &::after {
+        width: 6rem;
+      }
+    }
+  }
+
+  ._shippingBox {
+    ._formBox ._billingAndSummary {
+      font-size: $roboto17;
+      margin-bottom: 5%;
+    }
+  
+    ._formBox:last-child {
+      font-size: $roboto17;
+    }
+  }
+
+  ._informationBox {
+    ._informationText {
+      font-size: $roboto17;
+    }
+
+    ._totalBilling {
+      font-size: $roboto32;
+    }
+  }
+
+}
+
+@include responsive(md) {
+  ._shippingTitleBox { 
+    margin-top: 5%;
   }
 }

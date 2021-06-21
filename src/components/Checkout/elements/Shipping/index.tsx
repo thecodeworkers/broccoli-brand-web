@@ -123,12 +123,12 @@ const Shipping = () => {
             <label className={formik.values.taxMethod === 'AMERICAN' ? [styles._radioLabelTax, styles._radioChecked].join(' ') : styles._radioLabelTax}>
               <input name="taxMethod" type="radio" className={errors.taxMethod && touched.taxMethod ? [styles._inputError, styles._radio].join(' ') : styles._radio}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={'AMERICAN'} />
-              Prepay $ 000.00 for duties, taxes and fees now to guarantee no additional charges on delivery.
+              <p className={styles._simpleText}>Prepay $ 000.00 for duties, taxes and fees now to guarantee no additional charges on delivery.</p> 
             </label>
             <label className={formik.values.taxMethod === 'MASTERCARD' ? [styles._radioLabelTax, styles._radioChecked].join(' ') : styles._radioLabelTax}>
               <input name="taxMethod" type="radio" className={errors.taxMethod && touched.taxMethod ? [styles._inputError, styles._radio].join(' ') : styles._radio}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={'MASTERCARD'} />
-              I will pay all applicable duties, taxes and fees on delivery.
+              <p className={styles._simpleText}>I will pay all applicable duties, taxes and fees on delivery.</p>
             </label>
           </div>
         </div>
