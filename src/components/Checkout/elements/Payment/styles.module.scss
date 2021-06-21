@@ -61,7 +61,7 @@
 }
 
 ._input {
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   width: 98%;
   border: none;
   border-bottom: 1px solid $black;
@@ -97,7 +97,12 @@
 }
 
 ._leftSide {
-  width: 50%;
+  width: 40.5%;
+  padding: 0 2.5%;
+  padding-right: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ._rightSide {
@@ -107,24 +112,11 @@
 ._paymentContainer {
   width: 88%;
   padding: 0 2.5%;
-  padding-right: 7%;
-
-  ._selectLabel, ._inputBox {
-    font-weight: 700;
-  }
-
-  input[name=securityCode] {
-    width: 60%;
-  }
-}
-
-._secureContainer {
-  padding: 5% 2.5% 0% 2.5%;
-  padding-left: 15%;
-
-  ._inputBox, ._selectLabel {
-    font-weight: 700;
-  }
+  padding-left: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
 }
 
 ._formContainer {
@@ -262,6 +254,10 @@
   }
 }
 
+._cardContainer{
+  width: 100%;
+  height: 1rem;
+}
 @include responsive(md) {
   ._formContainer {
     flex-wrap: wrap;

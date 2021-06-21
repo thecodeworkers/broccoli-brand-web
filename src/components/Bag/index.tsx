@@ -2,10 +2,11 @@ import { removeFromCart } from '@store/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { BagResponsive } from '@components'
 import styles from './styles.module.scss'
+import { TrashCan } from '@images/icons'
 
-const Bag = () => {
+const Bag = ({ cart, info = false }) => {
 
-  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {} }, cart: { cart } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {} } } = useSelector((state: any) => state)
   const { bag } = checkout
   const { general } = generalPage
   const dispatch = useDispatch()
@@ -15,13 +16,13 @@ const Bag = () => {
   }
 
   return (
-    <div className={styles._main}>
-      <div className={styles._titleContainer}>
+    <div className={(!info) ? styles._main : [styles._main, styles._infoMain].join(' ')}>
+      {!info && <div className={styles._titleContainer}>
         <div className={styles._titleBox}>
           <h2 className={styles._title}>{bag?.bagTitle}</h2>
           <p className={styles._itemsTitle}>{cart?.contents?.itemCount} {bag?.items}</p>
         </div>
-      </div>
+      </div>}
       <div className={styles._tableContainer}>
         <section className={styles._titleTablesContainer}>
           <div className={styles._titleTables}>
@@ -37,31 +38,33 @@ const Bag = () => {
               <div key={index} className={styles._tableRow}>
                 <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
-                    <div className={styles._deleteBox}>
-                      <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}>X</p>
-                    </div>
+                    {(data?.key) ? (
+                      <div className={styles._deleteBox}>
+                        <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}><TrashCan /></p>
+                      </div>) : null
+                    }
                     <div className={styles._bagItem} key={index}>
                       <div className={styles._itemImage}>
-                        <img src={data?.product?.node?.image?.mediaItemUrl} alt={data?.product?.node?.image?.slug} />
+                        <img src={data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl} alt={data?.product?.node?.image?.slug || data?.product?.image?.slug} />
                       </div>
                       <div className={styles._itemContent}>
-                        <p className={styles._itemName}>{data?.product?.node?.name}</p>
-                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label}: <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] }}></span></p>
-                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label}: <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0]}</span></p>
+                        <p className={styles._itemName}>{data?.product?.node?.name || data?.product?.name}</p>
+                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label || data?.product?.attributes?.nodes[0]?.label}: <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] || data?.product?.attributes?.nodes[0]?.options[0] }}></span></p>
+                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label || data?.product?.attributes?.nodes[1]?.label}: <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0] || data?.product?.attributes?.nodes[1]?.options[0]}</span></p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
-                    <p className={[styles._dataText, styles._quantityButton].join(' ')}>-</p>
+                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')}>-</p>}
                     <p className={styles._dataText} >{data?.quantity}</p>
-                    <p className={[styles._dataText, styles._quantityButton].join(' ')} >+</p>
+                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')} >+</p>}
                   </div>
                 </div>
                 <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
-                    <p className={styles._dataText}>{data?.product?.node?.price}</p>
+                    <p className={styles._dataText}>{data?.product?.node?.price || data?.product?.price}</p>
                   </div>
                 </div>
                 <div className={styles._dataTable}>

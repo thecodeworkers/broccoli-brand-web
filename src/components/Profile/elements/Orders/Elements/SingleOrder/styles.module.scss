@@ -1,0 +1,309 @@
+@import '@styles/index.scss';
+
+._main {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+._buttonContainer {
+  width: 18rem;
+  margin: 1rem 3rem;
+}
+
+._TitleBox {
+  width: 95%;
+  padding: 0.5rem 2.5%;
+  height: 2rem;
+  background-color: $black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+._Title {
+  font-family: $roboto;
+  font-size: $robotoBold20;
+  font-weight: $weight900;
+  color: $white;
+}
+
+._itemsTitle {
+  font-family: $roboto;
+  font-size: $robotoBold20;
+  font-weight: $weight900;
+}
+
+._tableContainer {
+  width: 100%;
+  border-bottom: 2px solid $gray;
+}
+
+._table {
+  width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // flex-wrap: wrap;
+}
+
+._tableTitle {
+  font-family: $roboto;
+  font-size: $robotoBold20;
+  font-weight: $weight900;
+  width: 33%;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
+}
+
+._statusTitle {
+  width: 22.5%;
+  text-align: end;
+  padding-right: 2.5%;
+}
+._orderTitle {
+  text-align: start;
+}
+._titleTables {
+  display: flex;
+  border-bottom: 2px solid $gray;
+}
+
+._dataText {
+  font-family: $roboto;
+  font-size: $robotoBold20;
+  text-transform: uppercase;
+}
+
+._quantityButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $roboto24;
+  font-family: $roboto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid $black;
+  margin: 0 2rem;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+}
+
+._bagItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 21rem;
+  // height: 10rem;
+  // overflow: hidden;
+  margin: 0.5rem 0px;
+}
+
+._itemImage {
+  width: 25%;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  img {
+    width: auto;
+    height: 100%;
+  }
+}
+
+._itemContent {
+  // height: 16rem;
+  width: 65%;
+  padding: 0% 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+._itemName {
+  display: flex;
+  width: 100%;
+  padding: 2.5% 0%;
+  padding-left: 5%;
+  overflow: hidden;
+  font-family: $roboto;
+  font-size: $robotoBold20;
+  text-transform: uppercase;
+  text-align: initial;
+}
+
+._dataBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+// ._data {
+//   margin-left: 5%;
+// }
+
+._price {
+  display: block;
+  width: 100%;
+  padding: 5% 0%;
+  font-family: $roboto;
+  font-size: $robotoBold20;
+  font-weight: bold;
+}
+
+._color {
+  background-color: white;
+  display: block;
+  border: 1px solid black;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 20rem;
+  margin-left: 5%;
+}
+
+._noItemBox {
+  // height: 13rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+._noItemText {
+  font-family: $roboto;
+  font-size: $robotoBold32;
+  font-weight: $weight900;
+}
+
+// ._footerBox {
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+// }
+
+._footerText {
+  font-family: $roboto;
+  font-size: $robotoBold32;
+  font-weight: $weight900;
+  text-transform: uppercase;
+}
+
+._tableBody {
+  width: 100%;
+  padding: 1rem 0;
+  // overflow: auto;
+  // width: 100%;
+  // max-height: 35rem;
+  // table-layout: fixed;
+  // display: block;
+}
+
+._tableRow {
+  display: flex;
+  margin: 0.5rem 0%;
+  // justify-content: space-between;
+}
+
+._titleTablesContainer {
+  width: 100%;
+
+  // display: table;
+  // width: 100%;
+  // table-layout: fixed;
+  // min-width: 85rem;
+}
+
+._dataTable {
+  text-align: center;
+  width: 33%;
+}
+
+._orderSummary {
+  text-align: start;
+}
+
+._tableFooter {
+  width: 100%;
+  display: flex;
+}
+
+._leftFooter,
+._rightFooter {
+  width: 50%;
+  text-align: end;
+  padding-right: 10%;
+}
+
+._responsive {
+  display: none;
+}
+
+._statusBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._orderBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+._orderText{
+  font-weight: $weight900;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+._dataButton {
+  width: 10rem;
+}
+
+@include responsive(lg) {
+  ._tableTitle {
+    width: 21%;
+  }
+
+  ._tableTitle._orderSummary {
+    width: 35%;
+  }
+
+  ._dataTable {
+    width: 35%;
+  }
+}
+
+@include responsive(md) {
+  ._main {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  ._titleContainer {
+    width: 90%;
+    margin: auto;
+  }
+
+  ._tableContainer {
+    display: none;
+  }
+
+  ._responsive {
+    display: block;
+    // height: 4rem;
+  }
+}
+
+@include responsive(sm) {
+  ._main {
+    margin-bottom: 1rem;
+  }
+}

@@ -24,6 +24,33 @@ const loginUser = ({ email, password }) => {
               subtotal
               status
               shippingTotal
+              date
+              transactionId
+              needsPayment
+              lineItems {
+                nodes {
+                  product {
+                    id
+                    name
+                    image {
+                      mediaItemUrl
+                      slug
+                    }
+                    attributes {
+                      nodes {
+                        label
+                        name
+                        options
+                      }
+                    }
+                    ... on SimpleProduct {
+                      price
+                    }
+                  }
+                  total
+                  quantity
+                }
+              }
             }
           }
           totalSpent

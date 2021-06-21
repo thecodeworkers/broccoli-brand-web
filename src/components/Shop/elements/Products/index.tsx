@@ -15,7 +15,7 @@ const Products = ({ data }) => {
   const [showFilter, setShowFilter] = useState(false)
 
 
-  const { shop: { shop, filter }, resource: { products } } = useSelector((state: any) => state)
+  const { shop: { shop, recent }, resource: { products } } = useSelector((state: any) => state)
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
@@ -30,7 +30,7 @@ const Products = ({ data }) => {
   }
 
   const manageFilter = () => {
-    if(showFilter) return setShowFilter(false)
+    if (showFilter) return setShowFilter(false)
     return setShowFilter(true)
   }
 
@@ -79,16 +79,13 @@ const Products = ({ data }) => {
         </div>
       </section>
       <section className={styles._recentlyContainer}>
-        <div className={styles._recentlyTitleContainer}> 
-          <h3 className={styles.recentlyTitle}>{ data?.recentlyTitle }</h3>
+        <div className={styles._recentlyTitleContainer}>
+          <h3 className={styles.recentlyTitle}>{data?.recentlyTitle}</h3>
         </div>
         <div className={styles._recentsContainer}>
-          <Recents data={data} />
-          <Recents data={data} />
-          <Recents data={data} />
-          <Recents data={data} />
-          <Recents data={data} />
-          <Recents data={data} />
+          {[...recent, ...new Array(6)].splice(0, 6).map((rec, index) => (
+            <Recents data={rec} key={index} />
+          ))}
           <div className={styles._buttonContainer}>
             <Button borderColor="black" colorText='black' text='VIEW MORE' link='#' blackHover={true} />
           </div>
