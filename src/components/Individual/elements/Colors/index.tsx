@@ -66,17 +66,8 @@ const Colors = ({ data, title }) => {
           height: 50vh;
           width: 95%;
         }
-        ._standard {
-          background-image: url('images/backgrounds/Pic_not_available.png');
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-          border: 1px solid black;
-          height: 50vh;
-          width: 24%;
-        }
         @media(max-width: 768px) {
-          ._img, ._standard {
+          ._img {
             width: 95%;
             height: 35vh;
           }
