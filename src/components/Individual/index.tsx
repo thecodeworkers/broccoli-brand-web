@@ -20,7 +20,7 @@ const Shop = ({ data }) => {
       <Details data={data} />
       <Gallery data={data} />
       <Colors />
-      <CompleteLook />
+      <CompleteLook data={data.upsell} />
       <Related data={data.crossSell} />
       <Footer />
     </div>

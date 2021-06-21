@@ -52,6 +52,20 @@ productPage:product(id: "${id}") {
         }
       }
     }
+    upsell {
+      nodes {
+        id
+        name
+        image {
+          mediaItemUrl
+        }
+        attributes {
+          nodes {
+            options
+          }
+        }
+      }
+    }
   }
 }
 `
