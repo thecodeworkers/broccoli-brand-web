@@ -76,7 +76,7 @@ const Orders = ({ data }) => {
               <div className={styles._tableParts}>
                 <div>
                   <div className={styles._noItemBox}>
-                    <p className={styles._noItemText}>{bag?.noItems}</p>
+                    <p className={styles._noItemText}>{data?.noOrders}</p>
                   </div>
                 </div>
               </div>

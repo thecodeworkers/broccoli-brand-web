@@ -21,7 +21,7 @@ const BagResponsive = ({ bag, general, cart}) => {
               <style jsx>{`
                 @media(max-width: 768px) {
                   ._img {
-                    background-image: url(${data?.product?.node?.image?.mediaItemUrl});
+                    background-image: url(${data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl});
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
@@ -30,7 +30,7 @@ const BagResponsive = ({ bag, general, cart}) => {
                 }
                 @media(max-width: 576px) {
                   ._img {
-                    background-image: url(${data?.product?.node?.image?.mediaItemUrl});
+                    background-image: url(${data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl});
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
@@ -41,15 +41,15 @@ const BagResponsive = ({ bag, general, cart}) => {
             </div>
             <div className={styles._content}>
               <div className={styles._productName}>
-                <p>{data?.product?.node?.name}</p>
+                <p>{ data?.product?.node?.name || data?.product?.name }</p>
               </div>
               <div className={styles._colorSection}>
-                <p>{data?.product?.node?.attributes?.nodes[0]?.label}</p>
-                <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] }}></span>
+                <p>{ data?.product?.node?.attributes?.nodes[0]?.label || data?.product?.attributes?.nodes[0]?.label }</p>
+                <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] || data?.product?.attributes?.nodes[0]?.options[0] }}></span>
               </div>
               <div className={styles._sizeSection}>
-                <p>{data?.product?.node?.attributes?.nodes[1]?.label}:</p>
-                <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0]}</span>
+                <p>{ data?.product?.node?.attributes?.nodes[1]?.label || data?.product?.attributes?.nodes[1]?.label}:</p>
+                <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0] || data?.product?.attributes?.nodes[1]?.options[0] }</span>
               </div>
               <div className={styles._bagSection}>
                 <div className={styles._infoContent}>

@@ -26,6 +26,7 @@ checkoutPage: page(id: "${checkoutId}") {
         payButton
         payAccept
         orderTotal
+        discount
         discountCode
         billingTitle
         default

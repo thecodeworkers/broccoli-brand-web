@@ -106,11 +106,8 @@
 }
 
 ._rightSide {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 40.5%;
+  padding: 0 2.5%;
 }
 
 ._paymentContainer {
@@ -131,7 +128,7 @@
 }
 
 ._enableButton{
-  width: 13rem;
+  width: 15rem;
   margin-top: 1rem;
 }
 
@@ -267,6 +264,14 @@
 ._cardContainer {
   width: 100%;
   height: 1rem;
+  border-bottom: 1px solid $black;
+}
+
+._buttonBox{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 @include responsive(md) {
   ._formContainer {

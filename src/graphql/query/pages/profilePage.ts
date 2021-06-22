@@ -10,6 +10,7 @@ profilePage:page(id: "${profileId}") {
       editBillingButton
       alsoLike
       historyNavigation
+      noOrders
       orders {
         title
         table {
