@@ -7,7 +7,11 @@ const loginUser = ({ email, password }) => {
         username: "${email}",
         password: "${password}"
       } ) {
+        user {
+          id
+        }
         customer {
+          jwtRefreshToken
           username
           sessionToken
           jwtAuthToken

@@ -1,13 +1,13 @@
 import { SET_RESOURCES } from './action-types'
-import { actionObject, filter, orderBy, simplifyArray } from '../../utils'
+import { actionObject, exchangeProduct, filter, orderBy, simplifyArray } from '../../utils'
 import { pages, resources } from '../../graphql/query'
 import { GET_PAGES } from '@store/page/action-types'
 import { LOADER } from '@store/loader/action-types'
 import { getCart } from '@store/actions'
 import { mutations } from '@graphql'
 import { setAlert } from '@store/alert/action'
-import { SET_FILTER } from '@store/shop/action-types'
-import { setProductFilter } from '@store/shop/action'
+import { setShop } from '@store/shop/action'
+import { fallbackExchangeApiKey, fallbackExchangeApiUrl } from '@utils/path'
 
 const dataResources = (data) => {
   data['outstanding'] = orderBy(data.products, 'totalSales', 'asc').slice(0, 4)
@@ -52,6 +52,34 @@ export const changeLanguage: any = (language) => async (dispatch, getState) => {
   dispatch(actionObject(SET_RESOURCES, dataResources(allResources)));
   dispatch(actionObject(GET_PAGES, page))
   dispatch(actionObject(LOADER, false))
+
+}
+
+export const changeCurrencies: any = (values) => async (dispatch, getState) => {
+  try {
+    dispatch(actionObject(LOADER, true))
+    const { resource: { currencies } } = getState()
+
+    const selected = filter(currencies, values, 'iso', ['currencies'])
+    const iso = selected[0]?.currencies?.iso
+    const url = `${process.env.EXCHANGE_API_URL || fallbackExchangeApiUrl}${process.env.EXCHANGE_API_KEY || fallbackExchangeApiKey}/latest/USD`
+
+    const exchanges = await (await fetch(url)).json()
+    if (exchanges?.conversion_rates[iso]) {
+      
+      const rate = exchanges?.conversion_rates[iso]
+      const symbol = selected[0]?.currencies?.symbol
+
+      dispatch(actionObject(SET_RESOURCES, { currency: { iso, symbol, exchange: rate } }));
+      dispatch(actionObject(LOADER, false))
+      return
+    }
+    dispatch(actionObject(LOADER, false))
+  } catch (error) {
+    dispatch(actionObject(LOADER, false))
+    dispatch(setAlert('Ha ocurrido un problema', true, 'warning'))
+  }
+
 
 }
 

@@ -45,11 +45,11 @@ const changePassword = ({ id, password, billing = null, shipping = null, account
           username
           sessionToken
           jwtAuthToken
+          jwtRefreshToken
           displayName
           firstName
           email
           lastName
-          id
           orders(first: 1000000) {
             nodes {
               id

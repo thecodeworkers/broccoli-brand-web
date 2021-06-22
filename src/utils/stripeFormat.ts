@@ -19,3 +19,7 @@ export const formatWooCommerceAmount = (amount: string): number => {
   }
   return 0
 }
+
+export const formatCurrency = (currency, price) => {
+  return (currency?.iso === 'USD') ? price : `${currency?.symbol}${(formatWooCommerceAmount(price) * currency?.exchange).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ~ ${price}`
+}

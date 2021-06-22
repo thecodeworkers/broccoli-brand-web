@@ -1,6 +1,6 @@
 import { Button } from '@components'
 import { addCoupon, checkoutForm, processPayment } from '@store/actions'
-import { formatWooCommerceAmount } from '@utils'
+import { formatCurrency, formatWooCommerceAmount } from '@utils'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
@@ -8,7 +8,7 @@ import styles from './styles.module.scss'
 
 const Billing = () => {
 
-  const { resource: { checkout: { checkout = {} } }, cart: { cart }, user: { checkout: userCheckout } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = {} }, currency }, cart: { cart }, user: { checkout: userCheckout } } = useSelector((state: any) => state)
   const { deliveryAddressAndShipping, billingAndSummary } = checkout
 
   const dispatch = useDispatch()
@@ -130,11 +130,11 @@ const Billing = () => {
               </div>
             </form>
             <div className={styles._informationBox}>
-              <p className={styles._informationText}>{billingAndSummary?.totalItems} <span>{cart?.contentsTotal}</span></p>
-              <p className={styles._informationText}>{billingAndSummary?.shipping} <span>{cart?.shippingTotal}</span></p>
-              <p className={styles._informationText}>{billingAndSummary?.taxesFees} <span>{cart?.totalTax}</span></p>
-              <p className={styles._informationText}>{billingAndSummary?.discount} <span>{cart?.discountTotal}</span></p>
-              <p className={[styles._informationText, styles._totalBilling].join(' ')}>{billingAndSummary?.orderTotal} <span>{cart?.total}</span></p>
+              <p className={styles._informationText}>{billingAndSummary?.totalItems} <span>{formatCurrency(currency, cart?.contentsTotal)}</span></p>
+              <p className={styles._informationText}>{billingAndSummary?.shipping} <span>{formatCurrency(currency, cart?.shippingTotal)}</span></p>
+              <p className={styles._informationText}>{billingAndSummary?.taxesFees} <span>{formatCurrency(currency, cart?.totalTax)}</span></p>
+              <p className={styles._informationText}>{billingAndSummary?.discount} <span>{formatCurrency(currency, cart?.discountTotal)}</span></p>
+              <p className={[styles._informationText, styles._totalBilling].join(' ')}>{billingAndSummary?.orderTotal} <span>{formatCurrency(currency, cart?.total)}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.taxesDescription}</p>
               <p className={styles._informationText}>{billingAndSummary?.payAccept}</p>
               <div className={styles._buttonBox}>

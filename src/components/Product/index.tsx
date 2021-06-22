@@ -5,10 +5,11 @@ import { addToCar, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { Bag } from '@images/svg'
 import { useSelector } from 'react-redux'
+import { formatCurrency } from '@utils'
 
 const Product = ({ containerStyles = null, details = true, data = null }) => {
 
-  const { resource: { general: texts }} = useSelector((state: any) => state)
+  const { resource: { general: texts, currency } } = useSelector((state: any) => state)
 
   const dispatch = useDispatch()
   const add = () => { if (data) dispatch(addToCar(data?.databaseId, 1)) }
@@ -36,7 +37,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
                 <p className={styles._addToCartText}>{texts?.general?.generalText?.viewMoreText}</p>
               </div>
             </>
-          ) : 
+          ) :
             <>
               <div className={styles._addToCart} onClick={add}>
                 <p className={styles._addToCartText}>{texts?.general?.generalText?.addToCartText}</p>
@@ -58,10 +59,10 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
                 }
               </div>
               <div className={styles._productSizesContainer}>
-                <p className={styles._producSizes}>{data?.price ? data?.price : data?.attributes?.nodes[1]?.options?.join(", ") }</p>
+                <p className={styles._producSizes}>{data?.price ? formatCurrency(currency,data?.price) : data?.attributes?.nodes[1]?.options?.join(", ")}</p>
               </div>
             </div>
-            <div className={styles._bag}><Bag width='15' height='15' fill='black' /></div> 
+            <div className={styles._bag}><Bag width='15' height='15' fill='black' /></div>
           </div>
         ) : null}
       </section>

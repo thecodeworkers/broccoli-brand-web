@@ -9,6 +9,7 @@ import sendEmail from './sendEmail'
 import checkout from './checkout'
 import Quantity from './updateQuantity'
 import addCoupon from './addCoupon'
+import refreshToken from './refreshToken'
 
 const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
 
@@ -22,7 +23,8 @@ const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
     'sendEmail': sendEmail,
     'checkout': checkout,
     'updateItemQuantities': Quantity,
-    'applyCoupon': addCoupon
+    'applyCoupon': addCoupon,
+    'refreshJwtAuthToken': refreshToken
   }
 
   const query = `
