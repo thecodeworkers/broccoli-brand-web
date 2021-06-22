@@ -254,3 +254,16 @@
   text-overflow: '';
   background-color: $white;
 }
+
+._topText {
+  font-family: $roboto;
+  color: $tundora;
+  font-size: $roboto16;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  &::-ms-expand {
+    display: none;
+  }
+}

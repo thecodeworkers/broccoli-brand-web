@@ -33,10 +33,6 @@ const Navbar = ({ reference }: any = '') => {
   const changeCurrency = (event) => {
     const iso = event.target.value
     dispatch(changeCurrencies(iso))
-
-    if (typeof window !== 'undefined') {
-      document.cookie = `currency=${iso}`
-    }
   }
 
   const search = () => {
