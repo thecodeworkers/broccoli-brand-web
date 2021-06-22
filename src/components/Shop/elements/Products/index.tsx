@@ -79,7 +79,7 @@ const Products = ({ data }) => {
           </div>
         </div>
       </section>
-      <section className={styles._recentlyContainer}>
+      {[...recent].length ? <section className={styles._recentlyContainer}>
         <div className={styles._recentlyTitleContainer}>
           <h3 className={styles.recentlyTitle}>{data?.recentlyTitle}</h3>
         </div>
@@ -91,7 +91,7 @@ const Products = ({ data }) => {
             <Button borderColor="black" colorText='black' text='VIEW MORE' link='#' blackHover={true} />
           </div>
         </div>
-      </section>
+      </section> : null}
     </>
   )
 }

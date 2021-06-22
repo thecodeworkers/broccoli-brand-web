@@ -46,7 +46,7 @@ const Orders = ({ data }) => {
         </section>
         <section className={styles._table}>
           <section className={styles._tableBody}>
-            {orders?.length ? orders?.map((data, index) => (
+            {(orders?.length) ? orders?.map((data, index) => (
               <div key={index} className={styles._tableRow}>
                 <div className={styles._dataTable}>
                   <div className={[styles._dataBox, styles._orderBox].join(" ")}>
