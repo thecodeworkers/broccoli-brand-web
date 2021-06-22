@@ -8,7 +8,7 @@ import { editUser, setLoader } from '@store/actions'
 const Buttonery = ({ data }) => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const { user: { checkout } } = useSelector((state: any) => state)
+  const { user: { checkout }, cart: { cart } } = useSelector((state: any) => state)
 
   const navigation = (route, loader = false) => {
     if (router.pathname != route) {
@@ -24,7 +24,7 @@ const Buttonery = ({ data }) => {
   return data ? (
     <div className={styles._main}>
       <div className={styles._buttonContainer}>
-        <Button text={data?.checkoutButton} borderColor='black' colorText='black' blackHover={true} onClick={() => navigation('checkout', true)} />
+        <Button disabled={!cart?.contents?.itemCount} text={data?.checkoutButton} borderColor='black' colorText='black' blackHover={true} onClick={() => navigation('checkout', true)} />
       </div>
       <div className={styles._buttonContainer}>
         <Button disabled={(!checkout?.billing?.isValid || !checkout?.shipping?.isValid)} text={data?.saveButton} borderColor='black' colorText='black' blackHover={true} onClick={() => editData()} />

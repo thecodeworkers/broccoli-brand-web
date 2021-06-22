@@ -1,4 +1,4 @@
-import { closeModal, openModal, removeFromCart, setLoader } from '@store/actions'
+import { closeModal, openModal, removeFromCart, setLoader, updateQuantity } from '@store/actions'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@components'
@@ -28,6 +28,9 @@ const MinimalBag = () => {
     }
   }
 
+  const modifyQuantity = (product: any, type: any) => {
+    dispatch(updateQuantity(product, type))
+  }
 
   return (
     <div className={styles._main}>
@@ -54,7 +57,11 @@ const MinimalBag = () => {
                       <p className={styles._itemName}>{data?.product?.node?.name}</p>
                       <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label} <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] }}></span></p>
                       <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label} <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0]}</span></p>
-                      <p className={styles._itemName}> Quantity <span className={styles._data}>{data?.quantity}</span></p>
+                      <p className={styles._itemName}> Quantity
+                        <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'minus')}>-</p>
+                        <p className={styles._dataText} >{data?.quantity}</p>
+                        <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'add')}>+</p>
+                      </p>
                       <p className={styles._price}>{data?.total}</p>
                       <div className={styles._button}>
                         <Button text={bag?.remove} borderColor='black' colorText='black' blackHover={true} type='button' onClick={() => removeItem(data?.key)} />
@@ -73,7 +80,7 @@ const MinimalBag = () => {
                 <h2 className={styles._title}>{bag?.subtotal}</h2>
                 <h2 className={styles._title}>{cart?.contentsTotal}</h2>
               </div>
-              <Button text={bag?.checkoutButton} borderColor='black' colorText='black' blackHover={true} type='button' onClick={() => navigation('checkout', true)} />
+              <Button disabled={!cart?.contents?.itemCount} text={bag?.checkoutButton} borderColor='black' colorText='black' blackHover={true} type='button' onClick={() => navigation('checkout', true)} />
             </div>
           </div>) : (
           <div className={styles._tableContainer}>

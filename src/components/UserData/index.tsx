@@ -15,7 +15,7 @@ const UserData = ({ data }) => {
       <Navbar />
       <div className={styles._titleBox}>
         <h2 className={styles._title}>
-          {`${user.firstName} ${user.lastName}`}
+          {`${user.firstName} ${user.lastName || ''}`}
         </h2>
         <h4 className={styles._subTitle}>
           {data?.subtitle}

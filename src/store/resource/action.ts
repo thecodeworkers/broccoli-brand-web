@@ -21,7 +21,7 @@ export const getResources: any = (pageType, lang = 'ES') => async (dispatch, get
 
   dispatch(actionObject(LOADER, true))
 
-  const { page, user, shop: { filter: shopFilter } } = getState()
+  const { page, user } = getState()
 
   const allResources = await resources(lang, user?.user?.jwtAuthToken)
 

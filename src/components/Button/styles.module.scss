@@ -13,11 +13,19 @@
   user-select: none;
   background: transparent;
   &:disabled {
-    background-color: $white;
-    border-color: 1px solid $black;
+    background-color: $simpleGray;
+    border-color: 1px solid $simpleGray;
 
     ._buttonText {
-      color: $black;
+      color: $gray;
+    }
+    &:hover {
+      background-color: $simpleGray;
+      border-color: 1px solid $simpleGray;
+
+      ._buttonText {
+        color: $gray;
+      }
     }
   }
 }

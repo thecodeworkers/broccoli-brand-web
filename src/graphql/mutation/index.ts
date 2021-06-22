@@ -7,6 +7,8 @@ import removeFromCartMutation from './removeItem'
 import changePassword from './changePassword'
 import sendEmail from './sendEmail'
 import checkout from './checkout'
+import Quantity from './updateQuantity'
+import addCoupon from './addCoupon'
 
 const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
 
@@ -18,7 +20,9 @@ const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
     'removeItemsFromCart': removeFromCartMutation,
     'updateCustomer': changePassword,
     'sendEmail': sendEmail,
-    'checkout': checkout
+    'checkout': checkout,
+    'updateItemQuantities': Quantity,
+    'applyCoupon': addCoupon
   }
 
   const query = `

@@ -10,7 +10,7 @@ export const formikConfig = () => (useFormik({
   validationSchema: Yup.object({
     nameCard: Yup.string()
       .required()
-      .matches(onlyLettersRegex)
+      .matches(onlyLettersRegex).min(8)
   }),
 
   onSubmit: values => {

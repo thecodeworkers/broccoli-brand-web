@@ -7,7 +7,7 @@ import { filter, getDate, getHour } from '@utils'
 
 const Orders = ({ data }) => {
 
- 
+
   const { resource: { checkout: { checkout }, general: generalPage = {} }, user: { user } } = useSelector((state: any) => state)
   const { bag = {} } = checkout
 
@@ -46,7 +46,7 @@ const Orders = ({ data }) => {
         </section>
         <section className={styles._table}>
           <section className={styles._tableBody}>
-            {orders.length ? orders.map((data, index) => (
+            {orders?.length ? orders?.map((data, index) => (
               <div key={index} className={styles._tableRow}>
                 <div className={styles._dataTable}>
                   <div className={[styles._dataBox, styles._orderBox].join(" ")}>
@@ -84,14 +84,14 @@ const Orders = ({ data }) => {
           </section>
         </section>
       </div>
-      <div className={styles._searchContainer}>
+      {orders?.length && <div className={styles._searchContainer}>
         <div className={styles._searchBox}>
           <input name='search' className={styles._searchInput} value={search} onChange={(event) => { setSearch(event.target.value) }} placeholder={data?.orders?.table?.searchPlaceholder} />
           <button className={styles._searchButton} onClick={searchOrder} >
             {data?.orders?.table?.search}
           </button>
         </div>
-      </div>
+      </div>}
       <SingleOrder data={data} order={order} />
       {/* <div className={styles._responsive}>
         <BagResponsive bag={bag} general={general} cart={cart} />

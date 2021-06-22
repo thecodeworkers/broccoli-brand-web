@@ -42,6 +42,7 @@ export const filter = (nodes: Array<any>, comparison, key, deep = null) => {
     let validFilter = false
     let select = _getDeep(node, deep)[key]
     validFilter = select === comparison
+    if (typeof select === 'string') validFilter = select.includes(comparison)
     return validation && validFilter
   }
 

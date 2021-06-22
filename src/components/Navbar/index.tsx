@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
 import { World, Coin, Bag, User, Pipe, Arrow } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeLanguage, logout, openModal, setLoader } from '@store/actions'
+import { changeLanguage, logout, openModal, searchProduct, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
 import { createMarkup, scrolling } from '@utils';
@@ -13,9 +13,11 @@ const Navbar = ({ reference }: any = '') => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [down, setDown] = useState(false)
-  const { resource: { language, general: generalPage = {} }, user } = useSelector((state: any) => state)
+  const { resource: { language, general: generalPage = {} }, user, shop: { search: shopSearch } } = useSelector((state: any) => state)
   const { general } = generalPage
   const [path, setPath] = useState<any>()
+
+  const [searchValue, setSearchValue] = useState(shopSearch?.text);
 
   const [showCat, setShowCat] = useState(false)
 
@@ -25,6 +27,15 @@ const Navbar = ({ reference }: any = '') => {
 
     if (typeof window !== 'undefined') {
       document.cookie = `lang=${lang}`
+    }
+  }
+
+  const search = () => {
+    dispatch(searchProduct(searchValue))
+
+    if (router.pathname != 'shop') {
+      dispatch(setLoader(true))
+      router.push('shop')
     }
   }
 
@@ -161,8 +172,8 @@ const Navbar = ({ reference }: any = '') => {
             </div>
             <div className={styles._searchContainer}>
               <div className={styles._inputContainer}>
-                <input type="text" className={styles._input} />
-                <img src='images/backgrounds/search.svg' className={styles._inputImg} />
+                <input type="text" className={styles._input} value={searchValue} onChange={(event) => setSearchValue(event.target.value)} onKeyPress={(event) => { if (event.key === 'Enter') search() }} />
+                <img src='images/backgrounds/search.svg' className={styles._inputImg} onClick={() => search()} />
               </div>
             </div>
           </div>

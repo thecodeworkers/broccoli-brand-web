@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import { Product, OwnPagination, Recents, Button } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
-import { orderProducts, setLoader, setShop } from '@store/actions'
+import { orderProducts, searchProduct, setLoader, setSearch, setShop } from '@store/actions'
 import { paginate } from '@utils'
 import Sidebar from '../Sidebar'
 
@@ -14,14 +14,15 @@ const Products = ({ data }) => {
   const [page, setPage] = useState(1)
   const [showFilter, setShowFilter] = useState(false)
 
+  const { shop: { shop, recent, search }, resource: { products } } = useSelector((state: any) => state)
 
-  const { shop: { shop, recent }, resource: { products } } = useSelector((state: any) => state)
   useEffect(() => {
     dispatch(setLoader(false))
   }, [])
 
   useEffect(() => {
-    dispatch(setShop())
+    if (search?.valid) dispatch(searchProduct(search?.text))
+    if (!search?.valid) dispatch(setShop())
   }, [products])
 
   const sortBy = (select) => {
@@ -83,7 +84,7 @@ const Products = ({ data }) => {
           <h3 className={styles.recentlyTitle}>{data?.recentlyTitle}</h3>
         </div>
         <div className={styles._recentsContainer}>
-          {[...recent, ...new Array(6)].splice(0, 6).map((rec, index) => (
+          {[...recent].splice(0, 6).map((rec, index) => (
             <Recents data={rec} key={index} />
           ))}
           <div className={styles._buttonContainer}>

@@ -1,11 +1,20 @@
 import styles from './styles.module.scss'
 import { Product, Button } from '@components'
-import { useSelector } from 'react-redux'
-import resource from '@graphql/query/resources'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { setLoader } from '@store/actions'
 
 const Outstanding = ({ data }) => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const navigation = (route, loader = false) => {
+    if (router.pathname != route) {
+      if (loader) dispatch(setLoader(true))
+      router.push(route)
+    }
+  }
 
-  const { resource: { outstanding: products }} = useSelector((state: any) => state)
+  const { resource: { outstanding: products } } = useSelector((state: any) => state)
 
   return (
     <div className={styles._content}>
@@ -16,7 +25,7 @@ const Outstanding = ({ data }) => {
         ))}
       </div>
       <div className={styles._buttonContainer}>
-        <Button blackHover={true} text={data.textButton} borderColor='black' colorText='black' link={data.linkButton} />
+        <Button blackHover={true} text={data.textButton} borderColor='black' colorText='black' onClick={() => navigation(data?.linkButton, true)} />
       </div>
     </div >
   )
