@@ -310,13 +310,18 @@
   justify-content: flex-start;
 }
 
-@include responsive(lg) {
-  ._tableTitle {
-    width: 21%;
-  }
+._tableContainerResponsive {
+  display: none;
+  // height: 4rem;
+}
 
+@include responsive(lg) {
   ._tableTitle._orderSummary {
     width: 35%;
+  }
+
+  ._dataButton {
+    width: 5rem;
   }
 
   ._dataTable {
@@ -326,8 +331,12 @@
 
 @include responsive(md) {
   ._main {
-    width: 100%;
-    margin-top: 1rem;
+    // width: 100%;
+    // margin-top: 1rem;
+  }
+
+  ._rowSection {
+    margin-bottom: 13%;
   }
 
   ._titleContainer {
@@ -339,9 +348,41 @@
     display: none;
   }
 
-  ._responsive {
+  ._tableContainerResponsive {
     display: block;
     // height: 4rem;
+  }
+  ._rowResponsiveContainer {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $black;
+    margin: 3% 0%;
+    padding: 1% 0;
+    text-transform: uppercase;
+  }
+
+  ._orderNumber {
+    text-align: right;
+    cursor: pointer;
+    border-bottom: 3px solid $black;
+    width: inherit;
+    padding: 0;
+  }
+
+  ._dataButton {
+    margin-top: 10%;
+    width: 100%;
+    button {
+      text-transform: uppercase;
+    }
+  }
+
+  ._searchBox {
+    width: 100%;
+  }
+
+  ._searchButton {
+    width: 29%;
   }
 }
 
