@@ -41,10 +41,6 @@ const Login = () => {
               <input id="confirmPassword" name="confirmPassword" type="password" className={errors.confirmPassword && touched.password ? [styles._inputError, styles._input].join(' ') : styles._input}
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword} />
             </label>
-            <div className={styles._linkBox}>
-              <p className={styles._link} onClick={() => { dispatch(openModal('login')) }}>{change.login}</p>
-              <p className={styles._link} onClick={() => { dispatch(openModal('register')) }}>{change.createAccount}</p>
-            </div>
             <div className={styles._button}>
               <Button text={change.buttonText} borderColor='black' colorText='black' blackHover={true} type='submit' />
             </div>

@@ -1,11 +1,14 @@
 import { Button } from '@components'
+import { addCoupon, checkoutForm, processPayment } from '@store/actions'
+import { formatWooCommerceAmount } from '@utils'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import styles from './styles.module.scss'
 
 const Billing = () => {
 
-  const { resource: { checkout: { checkout = {} } }, cart: { cart } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = {} } }, cart: { cart }, user: { checkout: userCheckout } } = useSelector((state: any) => state)
   const { deliveryAddressAndShipping, billingAndSummary } = checkout
 
   const dispatch = useDispatch()
@@ -13,6 +16,17 @@ const Billing = () => {
 
   const { errors, touched } = formik
 
+  useEffect(() => {
+    if (formik.isValid && !Object.keys(errors).length) dispatch(checkoutForm({ 'billing': { ...formik.values, isValid: formik.isValid } }))
+  }, [formik.isValid])
+
+  const completeCheckout = () => {
+    dispatch(processPayment())
+  }
+
+  const addC = () => {
+    dispatch(addCoupon(formik.values.discountCode))
+  }
   return (
     <div className={styles._main}>
       <div className={styles._addressBox}>
@@ -47,11 +61,11 @@ const Billing = () => {
             </label>
             <div className={styles._selectBox}>
               <span className={styles._tooltip}>{deliveryAddressAndShipping?.delivery?.tooltips?.country}</span>
-              <label htmlFor="country" className={styles._selectLabel}>
+              <label htmlFor="shippingCountry" className={styles._selectLabel}>
                 {deliveryAddressAndShipping?.delivery?.country}
               </label>
-              <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
-                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="country" value={formik.values.country} className={styles._selectForm}>
+              <label htmlFor="shippingCountry" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
+                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="shippingCountry" defaultValue={'Venezuela'} className={styles._selectForm}>
                   <option value={'Venezuela'}>{'Venezuela'}</option>
                   <option value={'Mexico'}>{'Mexico'}</option>
                   <option value={'Estados Unidos'}>{'Estados Unidos'}</option>
@@ -111,7 +125,7 @@ const Billing = () => {
                   </label>
                 </div>
                 <div className={styles._discountButton}>
-                  <Button text={billingAndSummary?.applyButton} borderColor='black' colorText='black' blackHover={true} type='submit' />
+                  <Button text={billingAndSummary?.applyButton} borderColor='black' colorText='black' blackHover={true} onClick={() => addC()} type={'button'} />
                 </div>
               </div>
             </form>
@@ -119,12 +133,13 @@ const Billing = () => {
               <p className={styles._informationText}>{billingAndSummary?.totalItems} <span>{cart?.contentsTotal}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.shipping} <span>{cart?.shippingTotal}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.taxesFees} <span>{cart?.totalTax}</span></p>
+              <p className={styles._informationText}>{billingAndSummary?.discount} <span>{cart?.discountTotal}</span></p>
               <p className={[styles._informationText, styles._totalBilling].join(' ')}>{billingAndSummary?.orderTotal} <span>{cart?.total}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.taxesDescription}</p>
               <p className={styles._informationText}>{billingAndSummary?.payAccept}</p>
               <div className={styles._buttonBox}>
                 <div className={styles._discountButton}>
-                  <Button text={billingAndSummary?.payButton} borderColor='white' colorText='white' type='submit' />
+                  <Button onClick={completeCheckout} disabled={(!userCheckout?.shipping?.isValid || !userCheckout?.billing?.isValid) || !userCheckout?.payment?.isValid} text={billingAndSummary?.payButton} borderColor='white' colorText='white' />
                 </div>
                 <p className={styles._payTime}>
                   You have 0h to cancel this order

@@ -35,17 +35,18 @@ export const orderBy = (array, key, type = 'desc', deep = null) => {
   })
 }
 
-export const filter = (nodes: Array<any>, comparison, key, deep) => {
+export const filter = (nodes: Array<any>, comparison, key, deep = null) => {
 
   const nodeFilter = (node) => {
     let validation = true
     let validFilter = false
     let select = _getDeep(node, deep)[key]
     validFilter = select === comparison
+    if (typeof select === 'string') validFilter = select.toLowerCase().includes(comparison.toLowerCase())
     return validation && validFilter
   }
 
-  return (filter) ? nodes.filter(nodeFilter) : nodes
+  return (comparison) ? nodes.filter(nodeFilter) : nodes
 }
 
 export const simplifyArray = (array) => {

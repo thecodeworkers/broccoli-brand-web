@@ -29,12 +29,12 @@
   width: 20%;
 
   ._inputContainer {
-    height: -webkit-fill-available;
+    height: 100%;
   }
 
   ._input {
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: auto;
+    width: 88%;
     font-family: $roboto;
     margin: 0;
     border: 3px solid $black;

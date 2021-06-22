@@ -15,13 +15,13 @@ export const scrollTo = (ref: any) => {
 }
 
 export const scrolling = (ref: any, number: number = null): void => {
-  if(ref) {
+  if (ref) {
     const target = ref.current;
     window.scrollTo({ top: !number ? target.offsetTop : target.offsetTop - number, behavior: 'smooth' });
-  } 
+  }
 }
 
-export const createMarkup = (text) => { return {__html: text}; }
+export const createMarkup = (text) => { return { __html: text }; }
 
 export const getCurrentLang = req => {
   try {
@@ -29,7 +29,7 @@ export const getCurrentLang = req => {
       /(?:(?:^|.*;\s*)lang\s*\=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
-  
+
     return currentCookie ? currentCookie : 'ES'
 
   } catch {
@@ -40,6 +40,18 @@ export const getCurrentLang = req => {
 export const dispatchPage = (props, pageName) => {
   const { store, req } = props
   const lang = getCurrentLang(req)
-  
+
   return store.dispatch(getResources(pageName, lang))
+}
+
+export const getDate = (date) => {
+  date = new Date(date)
+  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+}
+
+export const getHour = (date) => {
+  date = new Date(date)
+  const hour = (date.getHours() > 12) ? date.getHours() - 12 : date.getHours()
+  const late = (date.getHours() > 12) ? 'PM' : 'AM'
+  return `${hour}:${date.getMinutes()} ${late}`
 }

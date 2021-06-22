@@ -19,8 +19,8 @@ const Recents = ({ data }) => {
       <style jsx>
         {`
           ._image {
-            background-image: url(${data.image?.mediaItemUrl ? data.image?.mediaItemUrl : 'images/backgrounds/Pic_not_available.png'});
-            background-size: 100% 100%;
+            background-image: url(${data?.image?.mediaItemUrl ? data?.image?.mediaItemUrl : 'images/backgrounds/Pic_not_available.png'});
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             width: 100%;
