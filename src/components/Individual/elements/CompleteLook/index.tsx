@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import { createMarkup } from '@utils';
+import React from 'react'
 import { Product } from '@components'
 import styles from './styles.module.scss'
 
-const Colors = ({ data }) => {
+const Colors = ({ data, title }) => {
 
   return (
     <>
@@ -12,7 +11,7 @@ const Colors = ({ data }) => {
         <>
         <div className={styles._content}>
           <div className={styles._titleContainer}>
-            <h2 className={styles._title}>COMPLETE THE LOOK</h2>
+            <h2 className={styles._title}>{title}</h2>
           </div>
         </div>
         <div className={styles._productsContainer}>

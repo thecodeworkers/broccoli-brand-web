@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Head from 'next/head'
 import { Navbar, Footer } from '@components'
 import { Details, Gallery, Colors, CompleteLook, Related } from './elements'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import { recentlyView } from '@store/actions'
 
 const Shop = ({ data }) => {
   const dispatch = useDispatch()
+  const colors = useRef()
+
+  const { resource: { general: { general } } } = useSelector((state: any) => state)
+
   useEffect(() => {
     if (Object.entries(data).length !== 0) dispatch(recentlyView(data))
   }, [data])
@@ -17,11 +21,13 @@ const Shop = ({ data }) => {
         <title>Broccoli</title>
       </Head>
       <Navbar />
-      <Details data={data} />
+      <Details data={data} texts={general?.generalText} reference={colors} />
       <Gallery data={data} />
-      <Colors />
-      <CompleteLook data={data.upsell} />
-      <Related data={data.crossSell} />
+      <div ref={colors}>
+      <Colors data={data?.productData?.allColors} title={general?.generalText?.individual?.allColorsText} />
+      </div>
+      <CompleteLook data={data.upsell} title={general?.generalText?.individual?.completeLookText} />
+      <Related data={data.crossSell} title={general?.generalText?.individual?.alsoLikeText} />
       <Footer />
     </div>
   ) : <div></div>
