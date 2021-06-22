@@ -46,7 +46,7 @@ const Orders = ({ data }) => {
         </section>
         <section className={styles._table}>
           <section className={styles._tableBody}>
-            {orders.length ? orders.map((data, index) => (
+            {orders?.length ? orders.map((data, index) => (
               <div key={index} className={styles._tableRow}>
                 <div className={styles._dataTable}>
                   <div className={[styles._dataBox, styles._orderBox].join(" ")}>
@@ -83,6 +83,41 @@ const Orders = ({ data }) => {
             }
           </section>
         </section>
+      </div>
+
+      <div className={styles._tableContainerResponsive}>
+        {orders?.length ? orders.map((item, index) => (
+          <section className={styles._rowSection} key={index}>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.order}</p>
+              <p className={[styles._tableTitle, styles._orderNumber].join(' ')} onClick={() => setOrder(data)}>{item?.orderNumber}</p>
+            </div>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.date}</p>
+              <p className={styles._dataText}>{getDate(item?.date)}</p>
+            </div>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.hour}</p>
+              <p className={styles._dataText}>{getHour(item?.date)}</p>
+            </div>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.status}</p>
+              <p className={styles._dataText}>{getProcess(item?.status)}</p>
+            </div>
+            <div className={styles._dataButton}>
+              <Button text={'Cancel'} borderColor="black" blackHover={true} colorText="black" />
+            </div>
+          </section>
+        )) : 
+        <div className={styles._tableParts}>
+          <div>
+            <div className={styles._noItemBox}>
+              <p className={styles._noItemText}>{bag?.noItems}</p>
+            </div>
+          </div>
+        </div>
+        }
+
       </div>
       <div className={styles._searchContainer}>
         <div className={styles._searchBox}>
