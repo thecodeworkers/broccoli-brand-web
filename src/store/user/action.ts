@@ -74,9 +74,9 @@ export const guestUser: any = () => async (dispatch, getState) => {
 export const changePassword: any = (values) => async (dispatch, getState) => {
   try {
     dispatch(actionObject(LOADER, true))
-    const { user: { user: { sessionToken, jwtAuthToken } } } = getState()
+    const { user: { user: { sessionToken, jwtAuthToken, id } } } = getState()
 
-    const data: any = await mutations('updateCustomer', values, sessionToken, jwtAuthToken);
+    const data: any = await mutations('updateCustomer', { ...values, id: id }, sessionToken, jwtAuthToken);
 
     if (data.message) throw new Error(data.message);
 
