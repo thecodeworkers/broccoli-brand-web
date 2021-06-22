@@ -103,7 +103,7 @@ const Bag = ({ cart, info = false }) => {
         </section>
       </div>
       <div className={styles._responsive}>
-        <BagResponsive bag={bag} general={general} cart={cart} />
+        <BagResponsive bag={bag} general={general} cart={cart} currency={currency} />
       </div>
     </div>
   )
