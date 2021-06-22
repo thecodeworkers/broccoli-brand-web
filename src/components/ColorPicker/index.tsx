@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import styles from './styles.module.scss'
 
-const ColorPicker = ({ color, onClick = null }) => {
+const ColorPicker = ({ color, onClick = (tutu) => { } }) => {
   const [check, setChecked] = useState(false);
 
-  const setData = () =>{
+  const setData = () => {
     onClick(!check)
     setChecked(!check)
   }

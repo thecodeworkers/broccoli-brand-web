@@ -67,8 +67,10 @@ const Payment = () => {
               <div className={styles._cardContainer}>
                 <CardElement options={cardOptions} onChange={(event) => setValidCard(event.complete)} />
               </div>
-              <div className={styles._enableButton}>
-                <Button text={billingAndSummary?.applyButton} disabled={!(formik.isValid && validCard) && (!Object.keys(errors).length && touched.nameCard)} borderColor='black' colorText='black' blackHover={true} onClick={() => setData()} />
+              <div className={styles._buttonBox}>
+                <div className={styles._enableButton}>
+                  <Button text={billingAndSummary?.applyButton} disabled={!(formik.isValid && validCard) && (!Object.keys(errors).length && touched.nameCard)} borderColor='black' colorText='black' blackHover={true} onClick={() => setData()} />
+                </div>
               </div>
             </div>
           </div>
