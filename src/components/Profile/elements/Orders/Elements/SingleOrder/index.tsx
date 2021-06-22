@@ -6,6 +6,8 @@ const Orders = ({ data, order }) => {
 
   const [cart, setCart] = useState(null);
 
+  console.log("here")
+
   const buildCart = () => {
     const dataCart = {
       contents: {

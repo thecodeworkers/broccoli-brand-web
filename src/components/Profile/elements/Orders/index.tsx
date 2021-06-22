@@ -90,7 +90,7 @@ const Orders = ({ data }) => {
           <section className={styles._rowSection} key={index}>
             <div className={styles._rowResponsiveContainer}>
               <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.order}</p>
-              <p className={[styles._tableTitle, styles._orderNumber].join(' ')} onClick={() => setOrder(data)}>{item?.orderNumber}</p>
+              <p className={[styles._tableTitle, styles._orderNumber].join(' ')} onClick={() => setOrder(item)}>{item?.orderNumber}</p>
             </div>
             <div className={styles._rowResponsiveContainer}>
               <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.date}</p>
