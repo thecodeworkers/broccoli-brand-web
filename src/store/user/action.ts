@@ -6,6 +6,11 @@ import { closeModal } from '@store/modal/action';
 import { actionObject } from '@utils'
 import { FORGOT_PASSWORD, LOGOUT, SET_CHECKOUT, SIGN_IN, SIGN_UP } from './action-types'
 
+export const refreshAuthToken: any = async (user) => {
+  const data: any = await mutations('refreshJwtAuthToken', { refresh: user.jwtRefreshToken }, user.sessionToken, user.jwtAuthToken);
+  return data['authToken']
+}
+
 export const signUp: any = (values) => async (dispatch) => {
   try {
     dispatch(actionObject(LOADER, true))
@@ -33,7 +38,7 @@ export const signIn: any = (values) => async (dispatch) => {
 
     if (data.message) throw new Error(data.message);
 
-    dispatch(actionObject(SIGN_IN, { ...{ user: data.customer }, isAuth: true }));
+    dispatch(actionObject(SIGN_IN, { ...{ user: { ...data.customer, ...data.user } }, isAuth: true }));
     dispatch(setAlert('Inicio de sesion Exitoso', true, 'success'))
     dispatch(getCart())
     dispatch(actionObject(LOADER, false))
@@ -55,14 +60,13 @@ export const guestUser: any = () => async (dispatch, getState) => {
     const data: any = await pages('customer', language);
 
     if (data.message) throw new Error(data.message);
-    console.log(data)
+
     dispatch(actionObject(SIGN_IN, { ...{ user: { ...data, ...{ username: 'guest', firstName: 'guest' } } }, isAuth: true }));
     dispatch(setAlert('Bienvenido Invitado', true, 'success'))
     dispatch(getCart())
     dispatch(actionObject(LOADER, false))
     dispatch(closeModal())
   } catch (error) {
-    console.log(error)
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
 
@@ -74,18 +78,21 @@ export const guestUser: any = () => async (dispatch, getState) => {
 export const changePassword: any = (values) => async (dispatch, getState) => {
   try {
     dispatch(actionObject(LOADER, true))
-    const { user: { user: { sessionToken, jwtAuthToken } } } = getState()
+    const { user: { user } } = getState()
 
-    const data: any = await mutations('updateCustomer', values, sessionToken, jwtAuthToken);
+    const authToken = await refreshAuthToken(user)
+
+    const data: any = await mutations('updateCustomer', { ...values, id: user?.id }, user?.sessionToken, authToken);
 
     if (data.message) throw new Error(data.message);
 
-    dispatch(actionObject(SIGN_IN, { ...{ user: data.customer }, isAuth: true }));
+    dispatch(actionObject(SIGN_IN, { ...{ user: { ...user, ...data.customer } }, isAuth: true }));
     dispatch(setAlert('Cambio de contrasena con exito', true, 'success'))
     dispatch(getCart())
     dispatch(actionObject(LOADER, false))
     dispatch(closeModal())
   } catch (error) {
+    console.log(error)
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
 

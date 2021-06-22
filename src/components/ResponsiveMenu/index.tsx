@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { World, Coin, User } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeLanguage, setLoader, openModal, logout } from '@store/actions'
+import { changeLanguage, setLoader, openModal, logout, changeCurrencies } from '@store/actions'
 import { useRouter } from 'next/router'
 import { createMarkup, scrolling } from '@utils'
-import { useEffect } from 'react'
 
 const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   const [unfold, setUnfold] = useState(false)
 
-  const {user: {isAuth} } = useSelector((state: any) => state)
+  const { user: { isAuth }, resource: { currency, currencies }, } = useSelector((state: any) => state)
 
   const dispatch = useDispatch()
   const router = useRouter()
@@ -31,15 +30,15 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   const modal = (type) => {
     dispatch(openModal(type))
   }
-  
+
   const assignShow = () => {
-    if(unfold) return styles._show
+    if (unfold) return styles._show
     return styles._hide
   }
 
   const changeUnfold = () => {
-    if(unfold) setUnfold(false)
-    if(!unfold) setUnfold(true)
+    if (unfold) setUnfold(false)
+    if (!unfold) setUnfold(true)
   }
 
   const changeLang = (event) => {
@@ -51,47 +50,52 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
     }
   }
 
+  const changeCurrency = (event) => {
+    const iso = event.target.value
+    dispatch(changeCurrencies(iso))
+  }
+
   return (
     <div className={assignClass()}>
       <div className={[styles._content, unfold ? styles._listed : styles._noListed].join(" ")}>
         <section className={styles._internalLinks}>
           {data?.navigationBar?.navigation?.map((nav, index) => {
-            if(index == 3) {
-              if(router.pathname == '/about-us' || router.pathname == '/') {
+            if (index == 3) {
+              if (router.pathname == '/about-us' || router.pathname == '/') {
                 return (
                   <a key={index}>
                     <div onClick={() => scrolling(reference, 100)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
                       <p className={styles._linkText}>{nav.text}</p>
                     </div>
                   </a>
-                ) 
+                )
               }
               return (
-              <div key={index}>
-                <div onClick={() => navigation('/#contact-us', true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
-                  <p className={styles._linkText}>{nav.text}</p>
+                <div key={index}>
+                  <div onClick={() => navigation('/#contact-us', true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
+                    <p className={styles._linkText}>{nav.text}</p>
+                  </div>
                 </div>
-              </div>
               )
             }
             return (
-            <div key={index}>
-              <div onClick={() => navigation(nav.link, true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
-                <p className={styles._linkText}>{nav.text}</p>
-                {index == 0 ? <img className={styles._whiteArrow} src='images/backgrounds/white-arrow.svg' alt='arrow' onClick={() => changeUnfold()} /> : ''}
+              <div key={index}>
+                <div onClick={() => navigation(nav.link, true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
+                  <p className={styles._linkText}>{nav.text}</p>
+                  {index == 0 ? <img className={styles._whiteArrow} src='images/backgrounds/white-arrow.svg' alt='arrow' onClick={() => changeUnfold()} /> : ''}
+                </div>
+                {index == 0 ?
+                  <div className={assignShow()}>
+                    <div className={styles._shoppingContainer}>
+                      {data?.navigationBar?.dropdownMenu?.columnList.map((item, index) => (
+                        <div className={styles._shoppingContent} key={index}>
+                          <div className={styles._categories} dangerouslySetInnerHTML={createMarkup(item.list)}></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div> : ''
+                }
               </div>
-              {index == 0 ? 
-                <div className={assignShow()}>
-                  <div className={styles._shoppingContainer}>
-                    {data?.navigationBar?.dropdownMenu?.columnList.map((item, index) => (
-                      <div className={styles._shoppingContent} key={index}>
-                        <div className={styles._categories} dangerouslySetInnerHTML={createMarkup(item.list)}></div>
-                      </div>
-                    ))}
-                  </div>
-                </div> : ''
-              }
-            </div>
             )
           })}
         </section>
@@ -103,7 +107,7 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
               <p className={styles._settingText}>Idioma</p>
             </div>
             <p className={styles._lightText}>
-              <select name="language" id="language" value={language} onChange={changeLang} 
+              <select name="language" id="language" value={language} onChange={changeLang}
                 className={[styles._selectLang, styles._lightText, styles._pointer].join(" ")}>
                 <option value='ES' className={styles._lightText}>ES</option>
                 <option value='EN' className={styles._lightText}>EN</option>
@@ -113,35 +117,38 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
           <div className={styles._settingsContainer}>
             <div className={styles._iconSettings}>
               <div className={styles._icon}><Coin width='16' height='16' /></div>
-              <p className={styles._settingText}>Dólares</p>
+              <label htmlFor="currency" className={styles._customSelect}>
+                <select name="currency" id="currency" value={currency?.iso} onChange={changeCurrency} placeholder={'Idioma'} className={styles._topText}>
+                  {currencies?.map((current, index) => (<option key={index} value={current?.currencies?.iso}>{current?.currencies?.name}</option>))}
+                </select>
+              </label>
             </div>
-            <p className={styles._lightText}>Cambiar Moneda</p>
           </div>
           {
             !isAuth ?
-            <div className={styles._settingsContainer}>
-              <div className={styles._iconSettings}>
-                <div className={styles._icon}><User width='16' height='16' /></div>
-                <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => { modal('register')}}>
+              <div className={styles._settingsContainer}>
+                <div className={styles._iconSettings}>
+                  <div className={styles._icon}><User width='16' height='16' /></div>
+                  <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => { modal('register') }}>
                     {data?.navigationBar?.register}
-                </p>
-              </div>
-            </div> :''
+                  </p>
+                </div>
+              </div> : ''
           }
           {
-            isAuth ? 
-            <div className={styles._settingsContainer}>
-              <div className={styles._iconSettings}>
-                <div className={styles._invisibleIcon}></div>
-                <p className={[styles._redText, styles._pointer].join(" ")} onClick={() => dispatch(logout())}>{data?.navigationBar?.logout}</p>
+            isAuth ?
+              <div className={styles._settingsContainer}>
+                <div className={styles._iconSettings}>
+                  <div className={styles._invisibleIcon}></div>
+                  <p className={[styles._redText, styles._pointer].join(" ")} onClick={() => dispatch(logout())}>{data?.navigationBar?.logout}</p>
+                </div>
+              </div> :
+              <div className={styles._settingsContainer}>
+                <div className={styles._iconSettings}>
+                  <div className={styles._invisibleIcon}></div>
+                  <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => modal('login')}>{data?.navigationBar?.login}</p>
+                </div>
               </div>
-            </div> : 
-            <div className={styles._settingsContainer}>
-              <div className={styles._iconSettings}>
-                <div className={styles._invisibleIcon}></div>
-                <p className={[styles._settingText, styles._pointer].join(" ")} onClick={() => modal('login')}>{data?.navigationBar?.login}</p>
-              </div>
-            </div>
           }
         </section>
 

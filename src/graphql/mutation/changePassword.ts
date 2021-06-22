@@ -1,15 +1,16 @@
 import { authId } from '@utils/pageIds'
 
-const changePassword = ({ password, billing = null, shipping = null, account = null }) => {
+const changePassword = ({ id, password, billing = null, shipping = null, account = null }) => {
   const billingName = billing?.name?.split(' ')
   const shippingName = shipping?.name?.split(' ')
-  const nameArray = account?.name.split(' ')
-  
+  const nameArray = account?.name?.split(' ')
+
   return (`
       updateCustomer(input: {
-        clientMutationId: "${authId}", 
+        clientMutationId: "${authId}",
+        id: "${id}", 
         password: "${password}",
-        billing: {
+        ${billing ? `billing: {
           address1: "${billing?.address}", 
           address2: "${billing?.secondAddress}", 
           city: "${billing?.city}", 
@@ -20,8 +21,8 @@ const changePassword = ({ password, billing = null, shipping = null, account = n
           phone: "${billing.phone}", 
           postcode: "${billing.zip}", 
           state: ""
-        },
-        shipping: {
+        },`: ''}
+        ${shipping ? `shipping: {
           address1: "${shipping?.address}", 
           address2: "${shipping?.secondAddress}", 
           city: "${shipping?.city}", 
@@ -33,20 +34,22 @@ const changePassword = ({ password, billing = null, shipping = null, account = n
           phone: "${shipping.phone}", 
           postcode: "${shipping.zip}", 
           state: ""
-        }, 
+        },`: ''}
+        ${account ? `
         email: "${account?.email}", 
         firstName: "${nameArray[0]}",
         lastName: "${nameArray[1] ? nameArray[1] : ''}"
+        `: ''} 
       }) {
         customer {
           username
           sessionToken
           jwtAuthToken
+          jwtRefreshToken
           displayName
           firstName
           email
           lastName
-          id
           orders(first: 1000000) {
             nodes {
               id

@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@components'
 import styles from './styles.module.scss'
 import { useRouter } from 'next/router'
+import { formatCurrency } from '@utils'
 
 const MinimalBag = () => {
 
-  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {} }, cart: { cart } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {}, currency }, cart: { cart } } = useSelector((state: any) => state)
   const { bag } = checkout
   const { general } = generalPage
   const dispatch = useDispatch()
@@ -62,7 +63,7 @@ const MinimalBag = () => {
                         <span className={styles._dataText} >{data?.quantity}</span>
                         <span className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'add')}>+</span>
                       </p>
-                      <p className={styles._price}>{data?.total}</p>
+                      <p className={styles._price}>{formatCurrency(currency, data?.total)}</p>
                       <div className={styles._button}>
                         <Button text={bag?.remove} borderColor='black' colorText='black' blackHover={true} type='button' onClick={() => removeItem(data?.key)} />
                       </div>
@@ -78,7 +79,7 @@ const MinimalBag = () => {
             <div className={styles._totalSubmit}>
               <div className={styles._subtotal}>
                 <h2 className={styles._title}>{bag?.subtotal}</h2>
-                <h2 className={styles._title}>{cart?.contentsTotal}</h2>
+                <h2 className={styles._title}>{formatCurrency(currency, cart?.contentsTotal)}</h2>
               </div>
               <Button disabled={!cart?.contents?.itemCount} text={bag?.checkoutButton} borderColor='black' colorText='black' blackHover={true} type='button' onClick={() => navigation('checkout', true)} />
             </div>

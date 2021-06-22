@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BagResponsive } from '@components'
 import styles from './styles.module.scss'
 import { TrashCan } from '@images/icons'
+import { formatCurrency } from '@utils'
 
 const Bag = ({ cart, info = false }) => {
 
-  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {} } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {}, currency } } = useSelector((state: any) => state)
   const { bag } = checkout
   const { general } = generalPage
   const dispatch = useDispatch()
@@ -68,12 +69,12 @@ const Bag = ({ cart, info = false }) => {
                 </div>
                 <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
-                    <p className={styles._dataText}>{data?.product?.node?.price || data?.product?.price}</p>
+                    <p className={styles._dataText}>{(data?.product?.node?.price) ? formatCurrency(currency, data?.product?.node?.price) : formatCurrency(currency, data?.product?.price)}</p>
                   </div>
                 </div>
                 <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
-                    <p className={styles._dataText}>{data?.total}</p>
+                    <p className={styles._dataText}>{formatCurrency(currency, data?.total)}</p>
                   </div>
                 </div>
               </div>
@@ -95,14 +96,14 @@ const Bag = ({ cart, info = false }) => {
             </div>
             <div className={styles._rightFooter}>
               <p className={styles._footerText}>
-                {bag?.total} {cart?.contentsTotal}
+                {bag?.total} {formatCurrency(currency, cart?.contentsTotal)}
               </p>
             </div>
           </section>
         </section>
       </div>
       <div className={styles._responsive}>
-        <BagResponsive bag={bag} general={general} cart={cart} />
+        <BagResponsive bag={bag} general={general} cart={cart} currency={currency} />
       </div>
     </div>
   )

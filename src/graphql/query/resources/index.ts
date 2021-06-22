@@ -8,6 +8,7 @@ import checkoutQuery from './checkoutPage'
 import changeQuery from './changePage'
 import productCategories from './productCategories'
 import attributes from './attributes'
+import currencies from './currencies'
 
 const resource = async (language, auth = null, wcAuth = null) => {
   const query = `
@@ -21,11 +22,12 @@ const resource = async (language, auth = null, wcAuth = null) => {
       ${changeQuery(language)}
       ${attributes(language)}
       ${productCategories(language)}
+      ${currencies}
     }
   `
 
   const data: any = await GraphQlClient(query, {}, auth, wcAuth)
-  
+
   return {
     general: normalized(data?.generalPage?.translation),
     products: normalizedArray(data?.products?.nodes),
@@ -36,6 +38,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
     change: normalized(data?.changePage?.translation),
     productCategories: normalizedArray(data?.productCategories?.nodes),
     attributes: normalizedArray(data?.attributes?.nodes),
+    currencies: normalizedArray(data?.currencies?.nodes),
     language: language
   }
 }
