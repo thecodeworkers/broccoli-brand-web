@@ -67,7 +67,7 @@ const Orders = ({ data }) => {
                   <div className={[styles._dataBox, styles._statusBox].join(" ")}>
                     <p className={styles._dataText}>{getProcess(data?.status)}</p>
                     <div className={styles._dataButton}>
-                      <Button text={'Cancel'} borderColor="black" blackHover={true} colorText="black" />
+                      <Button text={'CANCEL'} borderColor="black" blackHover={true} colorText="black" />
                     </div>
                   </div>
                 </div>
@@ -84,6 +84,42 @@ const Orders = ({ data }) => {
           </section>
         </section>
       </div>
+
+      <div className={styles._tableContainerResponsive}>
+        {orders?.length ? orders.map((item, index) => (
+          <section className={styles._rowSection} key={index}>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.order}</p>
+              <p className={[styles._tableTitle, styles._orderNumber].join(' ')} onClick={() => setOrder(item)}>{item?.orderNumber}</p>
+            </div>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.date}</p>
+              <p className={styles._dataText}>{getDate(item?.date)}</p>
+            </div>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.hour}</p>
+              <p className={styles._dataText}>{getHour(item?.date)}</p>
+            </div>
+            <div className={styles._rowResponsiveContainer}>
+              <p className={[styles._tableTitle, styles._orderTitle].join(' ')}>{data?.orders?.table?.status}</p>
+              <p className={styles._dataText}>{getProcess(item?.status)}</p>
+            </div>
+            <div className={styles._dataButton}>
+              <Button text={'CANCEL'} borderColor="black" blackHover={true} colorText="black" />
+            </div>
+          </section>
+        )) : 
+        <div className={styles._tableParts}>
+          <div>
+            <div className={styles._noItemBox}>
+              <p className={styles._noItemText}>{bag?.noItems}</p>
+            </div>
+          </div>
+        </div>
+        }
+
+      </div>
+      {/* <div className={styles._searchContainer}> */}
       {orders?.length && <div className={styles._searchContainer}>
         <div className={styles._searchBox}>
           <input name='search' className={styles._searchInput} value={search} onChange={(event) => { setSearch(event.target.value) }} placeholder={data?.orders?.table?.searchPlaceholder} />

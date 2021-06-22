@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { getDate, getHour } from '@utils'
 import { Bag } from '@components'
-const Orders = ({ data, order }) => {
+
+const SingleOrder = ({ data, order }) => {
 
   const [cart, setCart] = useState(null);
 
@@ -62,4 +63,4 @@ const Orders = ({ data, order }) => {
   ) : null
 }
 
-export default Orders
+export default SingleOrder

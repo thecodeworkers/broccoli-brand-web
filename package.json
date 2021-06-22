@@ -26,6 +26,7 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.32.12",
     "slick-carousel": "^1.8.1",
+    "stripe": "^8.156.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {

@@ -7,6 +7,7 @@
 
 ._recentlyTitleContainer {
   margin-bottom: 2%;
+  margin-top: 5%;
 
   .recentlyTitle {
     text-transform: uppercase;
@@ -42,9 +43,17 @@
 
   ._recentsContainer {
     flex-wrap: wrap;
+    justify-content: space-between;
+
+    ._recentlyContent {
+      margin: 0%;
+    }
   }
+
   ._recentlyContent {
-    width: 50%;
+    width: 48%;
+    margin: 0%;
+    margin-left: 0%;
   }
 
   ._buttonContainer {
