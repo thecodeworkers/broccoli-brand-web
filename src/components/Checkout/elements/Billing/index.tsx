@@ -1,5 +1,5 @@
 import { Button } from '@components'
-import { checkoutForm, processPayment } from '@store/actions'
+import { addCoupon, checkoutForm, processPayment } from '@store/actions'
 import { formatWooCommerceAmount } from '@utils'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,6 +22,10 @@ const Billing = () => {
 
   const completeCheckout = () => {
     dispatch(processPayment())
+  }
+
+  const addC = () => {
+    dispatch(addCoupon(formik.values.discountCode))
   }
   return (
     <div className={styles._main}>
@@ -61,7 +65,7 @@ const Billing = () => {
                 {deliveryAddressAndShipping?.delivery?.country}
               </label>
               <label htmlFor="shippingCountry" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
-                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="shippingCountry" defaultValue={formik.values.country} className={styles._selectForm}>
+                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="shippingCountry" defaultValue={'Venezuela'} className={styles._selectForm}>
                   <option value={'Venezuela'}>{'Venezuela'}</option>
                   <option value={'Mexico'}>{'Mexico'}</option>
                   <option value={'Estados Unidos'}>{'Estados Unidos'}</option>
@@ -121,7 +125,7 @@ const Billing = () => {
                   </label>
                 </div>
                 <div className={styles._discountButton}>
-                  <Button text={billingAndSummary?.applyButton} borderColor='black' colorText='black' blackHover={true} type='submit' />
+                  <Button text={billingAndSummary?.applyButton} borderColor='black' colorText='black' blackHover={true} onClick={() => addC()} type={'button'} />
                 </div>
               </div>
             </form>
@@ -129,6 +133,7 @@ const Billing = () => {
               <p className={styles._informationText}>{billingAndSummary?.totalItems} <span>{cart?.contentsTotal}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.shipping} <span>{cart?.shippingTotal}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.taxesFees} <span>{cart?.totalTax}</span></p>
+              <p className={styles._informationText}>{billingAndSummary?.discount} <span>{cart?.discountTotal}</span></p>
               <p className={[styles._informationText, styles._totalBilling].join(' ')}>{billingAndSummary?.orderTotal} <span>{cart?.total}</span></p>
               <p className={styles._informationText}>{billingAndSummary?.taxesDescription}</p>
               <p className={styles._informationText}>{billingAndSummary?.payAccept}</p>

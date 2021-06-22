@@ -45,7 +45,7 @@ const Shipping = () => {
                 {deliveryAddressAndShipping?.delivery?.country}
               </label>
               <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
-                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="countryShipping" defaultValue={formik.values.country} className={styles._selectForm}>
+                <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="countryShipping" defaultValue={'Venezuela'} className={styles._selectForm}>
                   <option value={'Venezuela'}>{'Venezuela'}</option>
                   <option value={'Mexico'}>{'Mexico'}</option>
                   <option value={'Estados Unidos'}>{'Estados Unidos'}</option>

@@ -1,4 +1,4 @@
-import { removeFromCart } from '@store/actions'
+import { removeFromCart, updateQuantity } from '@store/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { BagResponsive } from '@components'
 import styles from './styles.module.scss'
@@ -13,6 +13,10 @@ const Bag = ({ cart, info = false }) => {
 
   const removeItem = (key) => {
     dispatch(removeFromCart(key))
+  }
+
+  const modifyQuantity = (product: any, type: any) => {
+    dispatch(updateQuantity(product, type))
   }
 
   return (
@@ -57,9 +61,9 @@ const Bag = ({ cart, info = false }) => {
                 </div>
                 <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
-                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')}>-</p>}
+                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'minus')}>-</p>}
                     <p className={styles._dataText} >{data?.quantity}</p>
-                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')} >+</p>}
+                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'add')}>+</p>}
                   </div>
                 </div>
                 <div className={styles._dataTable}>

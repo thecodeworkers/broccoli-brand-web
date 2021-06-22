@@ -1,14 +1,27 @@
 import { setAlert } from '@store/alert/action';
 import { LOADER } from '@store/loader/action-types';
-import { actionObject, orderBy, productFilter } from '@utils'
-import { SET_FILTER, RECENT_VIEW } from './action-types'
+import { actionObject, filter, orderBy, productFilter } from '@utils'
+import { SET_FILTER, RECENT_VIEW, SET_SEARCH } from './action-types'
 
 
 export const setShop: any = () => async (dispatch, getState) => {
-  const { resource: { products } } = getState()
+  const { resource: { products }, shop: { search } } = getState()
+  if (!search) dispatch(actionObject(SET_FILTER, { filter: { attributes: [], categories: [] }, shop: products }))
+}
 
-  dispatch(actionObject(SET_FILTER, { filter: { attributes: [], categories: [] }, shop: products }))
+export const setSearch: any = (value) => actionObject(SET_SEARCH, value)
 
+export const searchProduct: any = (value) => async (dispatch, getState) => {
+
+  dispatch(actionObject(LOADER, true))
+  const { resource: { products }, shop: { filter: filterProducts } } = getState()
+
+  let data = productFilter(products, filterProducts, 'slug')
+  data = filter(data, value, 'name')
+
+  dispatch(actionObject(SET_FILTER, { filter: filterProducts, shop: data }))
+  dispatch(actionObject(SET_SEARCH, { valid: true, text: value }))
+  dispatch(actionObject(LOADER, false))
 }
 
 export const setProductFilter: any = (values) => async (dispatch, getState) => {

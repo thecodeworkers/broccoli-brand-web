@@ -19,7 +19,7 @@
 
 ._recentsContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 ._buttonContainer {
@@ -42,9 +42,17 @@
 
   ._recentsContainer {
     flex-wrap: wrap;
+    justify-content: space-between;
+
+    ._recentlyContent {
+      margin: 0%;
+    }
   }
+
   ._recentlyContent {
-    width: 50%;
+    width: 48%;
+    margin: 0%;
+    margin-left: 0%;
   }
 
   ._buttonContainer {

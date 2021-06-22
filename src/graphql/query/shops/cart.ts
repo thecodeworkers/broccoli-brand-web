@@ -36,6 +36,7 @@ cart {
             name
             salePrice(format: RAW)
             price
+            stockQuantity
           }
           attributes(first: 100000) {
             nodes {

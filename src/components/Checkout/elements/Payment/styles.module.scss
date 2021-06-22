@@ -107,6 +107,10 @@
 
 ._rightSide {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 ._paymentContainer {
@@ -122,8 +126,13 @@
 ._formContainer {
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
+}
+
+._enableButton{
+  width: 13rem;
+  margin-top: 1rem;
 }
 
 ._customSelect {
@@ -238,7 +247,8 @@
 }
 
 ._radio {
-  &[type='radio']:checked, &[type='radio']:not(:checked) {
+  &[type='radio']:checked,
+  &[type='radio']:not(:checked) {
     display: none;
     ._radioLabel {
       &::before {
@@ -254,7 +264,7 @@
   }
 }
 
-._cardContainer{
+._cardContainer {
   width: 100%;
   height: 1rem;
 }
@@ -295,7 +305,7 @@
     ._selectBox {
       width: 100%;
       margin: 1rem 0;
-      
+
       select {
         padding: 0% 10%;
       }
@@ -315,7 +325,7 @@
       margin-right: 0.5rem;
     }
 
-    ._input[name=securityCode] {
+    ._input[name='securityCode'] {
       width: -webkit-fill-available;
     }
   }

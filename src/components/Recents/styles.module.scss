@@ -16,11 +16,14 @@
 ._recentlyContent {
   width: 15.5%;
   height: 10rem;
+  margin-left: 1rem;
   border: 1px solid $black;
   position: relative;
   font-family: $roboto;
   font-size: $roboto18;
-  
+  &:first-of-type{
+    margin: 0;
+  }
   &:hover {
     ._addToCart, ._viewMore {
       @include boxHover;
@@ -40,6 +43,7 @@
   ._recentlyContent {
     width: 48%;
     margin-bottom: 3%;
+    margin-left: 0%;
 
     &:hover {
       ._addToCart, ._viewMore {
