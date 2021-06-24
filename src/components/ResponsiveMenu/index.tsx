@@ -5,14 +5,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeLanguage, setLoader, openModal, logout, changeCurrencies } from '@store/actions'
 import { useRouter } from 'next/router'
 import { createMarkup, scrolling } from '@utils'
+import { useEffect } from 'react'
 
 const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   const [unfold, setUnfold] = useState(false)
+  const [display, setDisplay] = useState(false)
 
   const { user: { isAuth }, resource: { currency, currencies }, } = useSelector((state: any) => state)
 
   const dispatch = useDispatch()
   const router = useRouter()
+
+  useEffect(() => {
+    if(show == 1 && display) return setDisplay(false)
+    if(show == 1) return setDisplay(true)
+    if(show == 2 && display) return setDisplay(false)
+    if(show == 2 && !display) return setDisplay(true)
+  }, [show])
 
   const navigation = (route, loader = false) => {
     if (router.pathname != route) {
@@ -21,13 +30,8 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
     }
   }
 
-  const assignClass = () => {
-    if (show === 0) return styles._mainStatic
-    if (show === 1) return styles._mainIn
-    if (show === 2) return styles._mainOut
-  }
-
   const modal = (type) => {
+    setDisplay(false)
     dispatch(openModal(type))
   }
 
@@ -56,7 +60,7 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   }
 
   return (
-    <div className={assignClass()}>
+    <div className={display ? styles._display : styles._hide}>
       <div className={[styles._content, unfold ? styles._listed : styles._noListed].join(" ")}>
         <section className={styles._internalLinks}>
           {data?.navigationBar?.navigation?.map((nav, index) => {
