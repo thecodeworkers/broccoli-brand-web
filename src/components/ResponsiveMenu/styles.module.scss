@@ -60,6 +60,15 @@
   flex-direction: column;
 }
 
+._display {
+  @include menu;
+  display: block;
+}
+
+._hide {
+  display: none;
+}
+
 ._internalLinks {
   background-color: $black;
 
