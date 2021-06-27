@@ -1,6 +1,7 @@
 import { removeFromCart, updateQuantity } from '@store/actions'
 import { formatCurrency } from '@utils'
 import { useDispatch, useSelector } from 'react-redux'
+import { TrashCan } from '@images/icons'
 import styles from './styles.module.scss'
 
 const BagResponsive = ({ bag, general, cart, currency }) => {
@@ -70,7 +71,7 @@ const BagResponsive = ({ bag, general, cart, currency }) => {
                   <p className={styles._dataText}>{(data?.product?.node?.price) ? formatCurrency(currency, data?.product?.node?.price) : formatCurrency(currency, data?.product?.price)}</p>
                 </div>
                 <div className={styles._deleteBox}>
-                  <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}>X</p>
+                  <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}><TrashCan /></p>
                 </div>
               </div>
             </div>

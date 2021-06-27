@@ -242,7 +242,7 @@
 }
 
 ._responsive {
-  display: none;
+  // display: none;
 }
 
 ._statusBox {
@@ -269,7 +269,7 @@
 
 @include responsive(lg) {
   ._tableTitle {
-    width: 21%;
+    width: 35%;
   }
 
   ._tableTitle._orderSummary {
@@ -292,8 +292,12 @@
     margin: auto;
   }
 
+  ._tableTitle {
+    width: 35%;
+  }
+
   ._tableContainer {
-    display: none;
+    // display: none;
   }
 
   ._responsive {
