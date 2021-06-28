@@ -76,7 +76,7 @@ const Details = ({ data, texts, reference }) => {
                   <h2 className={styles._price}>{data?.price}</h2>
                 </div>
                 <div className={styles._half}>
-                  <div id={styles._shortDescription} className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data.shortDescription)}></div>
+                  <div id={styles._shortDescription} className={styles._circlesContainer} dangerouslySetInnerHTML={createMarkup(data?.shortDescription)}></div>
                 </div>
               </div>
 
