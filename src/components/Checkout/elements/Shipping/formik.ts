@@ -7,10 +7,10 @@ export const formikConfig = (dispatch) => (useFormik({
     name: '',
     email: '',
     country: '',
-    address: '',
-    secondAddress: '',
+    address_1: '',
+    address_2: '',
     city: '',
-    zip: '',
+    postcode: '',
     phone: '',
     shippingMethod: '',
     taxMethod: '',
@@ -25,21 +25,22 @@ export const formikConfig = (dispatch) => (useFormik({
       .matches(emailRegex),
     country: Yup.string()
       .required(),
-    address: Yup.string()
+    address_1: Yup.string()
       .required(),
-    secondAddress: Yup.string()
+    address_2: Yup.string()
       .min(8)
       .required(),
     city: Yup.string()
       .required(),
-    zip: Yup.string()
-    .required(),
+    postcode: Yup.string()
+      .min(4)
+      .required(),
     phone: Yup.string()
-    .required(),
+      .required(),
     shippingMethod: Yup.string()
-    .required(),
+      .required(),
     taxMethod: Yup.string()
-    .required(),
+      .required(),
   }),
 
   onSubmit: values => {

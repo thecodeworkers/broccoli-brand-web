@@ -56,8 +56,8 @@ const MinimalBag = () => {
                     </div>
                     <div className={styles._itemContent}>
                       <p className={styles._itemName}>{data?.product?.node?.name}</p>
-                      <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label} <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] }}></span></p>
-                      <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label} <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0]}</span></p>
+                      <p className={styles._itemName}>{data?.variation?.attributes[0]?.name} <span className={styles._color} style={{ backgroundColor: data?.variation?.attributes[0]?.value }}></span></p>
+                      <p className={styles._itemName}>{data?.variation?.attributes[1]?.name} <span className={styles._data}>{data?.variation?.attributes[1]?.value}</span></p>
                       <p className={styles._itemName}> Quantity
                         <span className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'minus')}>-</span>
                         <span className={styles._dataText} >{data?.quantity}</span>

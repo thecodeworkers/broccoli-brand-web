@@ -4,6 +4,7 @@ import { SIGN_UP, SIGN_IN, LOGOUT, SET_CHECKOUT } from './action-types'
 const initialState = {
   isAuth: false,
   user: {},
+  isGuest: false,
   checkout: {
     shipping: {
       isValid: false

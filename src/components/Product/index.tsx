@@ -1,19 +1,20 @@
+import React,{ useState } from 'react'
 import styles from './styles.module.scss'
 import { ColorPicker } from '@components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addToCar, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { Bag } from '@images/svg'
-import { useSelector } from 'react-redux'
 import { formatCurrency } from '@utils'
 
 const Product = ({ containerStyles = null, details = true, data = null }) => {
 
+  const dispatch = useDispatch()
   const { resource: { general: texts, currency } } = useSelector((state: any) => state)
 
-  const dispatch = useDispatch()
-  const add = () => { if (data) dispatch(addToCar(data?.databaseId, 1)) }
+  const [selected, setColor] = useState('')
 
+  const add = () => { if (data) dispatch(addToCar(data, 1, { color: selected || 'white', size: 's' })) }
   const router = useRouter()
 
   const navigation = (route, loader = false) => {
@@ -23,11 +24,13 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
     }
   }
 
+  const setNewColor = (color) => setColor(color)
+
   return (
     <section className={!containerStyles ? styles._container : `${styles._container} ${containerStyles}`}>
       <section className={styles._productContainer}>
         <div className={!details ? `${styles._imageProductContainer} ${styles._imageNoDetailProductContainer}` : styles._imageProductContainer}>
-          <div className='_image' onClick={() => navigation(data.id, true)}></div>
+          <div className='setImage' onClick={() => navigation(data.id, true)}></div>
           {!details ? (
             <>
               <div className={styles._addToCartNoDetails} onClick={add}>
@@ -54,12 +57,12 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
               <div className={styles._colorSelector}>
                 {
                   data ?
-                    data?.attributes?.nodes[0].options.map((color, item) => <ColorPicker key={item} color={color} />) :
+                    data?.attributes?.nodes[0]?.options?.map((color, item) => <ColorPicker checked={color === selected} onClick={(checked) => setNewColor(color)} key={item} color={color} />) :
                     <ColorPicker key='1' color='black' />
                 }
               </div>
               <div className={styles._productSizesContainer}>
-                <p className={styles._producSizes}>{data?.price ? formatCurrency(currency,data?.price) : data?.attributes?.nodes[1]?.options?.join(", ")}</p>
+                <p className={styles._producSizes}>{data?.price ? formatCurrency(currency, data?.price) : data?.attributes?.nodes[1]?.options?.join(", ")}</p>
               </div>
             </div>
             <div className={styles._bag}><Bag width='15' height='15' fill='black' /></div>
@@ -68,7 +71,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
       </section>
       <style jsx>
         {`
-          ._image {
+          .setImage {
             background-image: url(${data ? data.image?.mediaItemUrl : 'images/backgrounds/Pic_not_available.png'});
             background-size: 100% 100%;
             background-position: center;

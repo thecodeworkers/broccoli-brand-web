@@ -36,6 +36,28 @@ products(first: 10000000) {
       stockQuantity
       totalSales
     }
+    ... on VariableProduct {
+      price
+      stockQuantity
+      totalSales
+      variations(first: 100000) {
+        nodes {
+          id
+          databaseId
+          manageStock
+          price
+          stockQuantity
+          name
+          attributes(first: 100000) {
+            nodes {
+              id
+              name
+              value
+            }
+          }
+        }
+      }
+    }
   }
 }
 `

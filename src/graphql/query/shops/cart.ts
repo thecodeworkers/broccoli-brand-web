@@ -6,6 +6,7 @@ cart {
   subtotal
   subtotalTax
   shippingTotal
+  feeTotal
   shippingTax
   discountTax
   discountTotal
@@ -17,6 +18,8 @@ cart {
     rates {
       id
       label
+      instanceId
+      methodId
     }
     supportsShippingCalculator
   }
@@ -38,6 +41,28 @@ cart {
             price
             stockQuantity
           }
+          ... on VariableProduct {
+            price
+            stockQuantity
+            totalSales
+            variations(first: 100000) {
+              nodes {
+                id
+                databaseId
+                manageStock
+                price
+                stockQuantity
+                name
+                attributes(first: 100000) {
+                  nodes {
+                    id
+                    name
+                    value
+                  }
+                }
+              }
+            }
+          }
           attributes(first: 100000) {
             nodes {
               id
@@ -52,6 +77,12 @@ cart {
             mediaItemUrl
             slug
           }
+        }
+      }
+      variation {
+        attributes {
+          name
+          value
         }
       }
       quantity

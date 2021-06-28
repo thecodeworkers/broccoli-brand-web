@@ -2,16 +2,16 @@ import { useFormik } from 'formik'
 import { onlyLettersRegex, emailRegex } from '@utils/regex'
 import * as Yup from 'yup'
 
-export const formikConfig = (dispatch) => (useFormik({
+export const formikConfig = (def = null) => (useFormik({
   initialValues: {
-    name: '',
-    email: '',
-    country: '',
-    address: '',
-    secondAddress: '',
-    city: '',
-    zip: '',
-    phone: '',
+    name: (def?.name) ? def?.name : '',
+    email: (def?.email) ? def?.email : '',
+    country: (def?.country) ? def?.country : '',
+    address_1: (def?.address1) ? def?.address1 : '',
+    address_2: (def?.address2) ? def?.address2 : '',
+    city: (def?.city) ? def?.city : '',
+    postcode: (def?.postcode) ? def?.postcode : '',
+    phone: (def?.phone) ? def?.phone : '',
   },
 
   validationSchema: Yup.object({
@@ -23,17 +23,17 @@ export const formikConfig = (dispatch) => (useFormik({
       .matches(emailRegex),
     country: Yup.string()
       .required(),
-    address: Yup.string()
+    address_1: Yup.string()
       .required(),
-    secondAddress: Yup.string()
+    address_2: Yup.string()
       .min(8)
       .required(),
     city: Yup.string()
       .required(),
-    zip: Yup.string()
-    .required(),
+    postcode: Yup.string()
+      .required(),
     phone: Yup.string()
-    .required(),
+      .required(),
   }),
 
   onSubmit: values => {

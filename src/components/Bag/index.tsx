@@ -50,12 +50,12 @@ const Bag = ({ cart, info = false }) => {
                     }
                     <div className={styles._bagItem} key={index}>
                       <div className={styles._itemImage}>
-                        <img src={data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl} alt={data?.product?.node?.image?.slug || data?.product?.image?.slug} />
+                        <img src={data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl || data?.image?.mediaItemUrl} alt={data?.product?.node?.image?.slug || data?.product?.image?.slug} />
                       </div>
                       <div className={styles._itemContent}>
-                        <p className={styles._itemName}>{data?.product?.node?.name || data?.product?.name}</p>
-                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[0]?.label || data?.product?.attributes?.nodes[0]?.label}: <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] || data?.product?.attributes?.nodes[0]?.options[0] }}></span></p>
-                        <p className={styles._itemName}>{data?.product?.node?.attributes?.nodes[1]?.label || data?.product?.attributes?.nodes[1]?.label}: <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0] || data?.product?.attributes?.nodes[1]?.options[0]}</span></p>
+                        <p className={styles._itemName}>{data?.product?.node?.name || data?.product?.name || data?.name}</p>
+                        <p className={styles._itemName}>{data?.variation?.attributes[0]?.name}: <span className={styles._color} style={{ backgroundColor: data?.variation?.attributes[0]?.value }}></span></p>
+                        <p className={styles._itemName}>{data?.variation?.attributes[1]?.name}: <span className={styles._data}> {data?.variation?.attributes[1]?.value}</span></p>
                       </div>
                     </div>
                   </div>
@@ -69,7 +69,7 @@ const Bag = ({ cart, info = false }) => {
                 </div>
                 <div className={styles._dataTable}>
                   <div className={styles._dataBox}>
-                    <p className={styles._dataText}>{(data?.product?.node?.price) ? formatCurrency(currency, data?.product?.node?.price) : formatCurrency(currency, data?.product?.price)}</p>
+                    <p className={styles._dataText}>{(data?.product?.node?.price) ? formatCurrency(currency, data?.product?.node?.price) : data?.product?.price ? formatCurrency(currency, data?.product?.price) : formatCurrency(currency, data?.price)}</p>
                   </div>
                 </div>
                 <div className={styles._dataTable}>

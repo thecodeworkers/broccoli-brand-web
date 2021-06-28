@@ -3,6 +3,14 @@ const checkout = (language) => `
 checkoutPage: page(id: "${checkoutId}") {
   translation(language: ${language}) {
     checkout {
+      shippingMethods {
+        label
+        slug
+      }
+      fees {
+        amount
+        label
+      }
       bag {
         bagTitle
         checkoutButton

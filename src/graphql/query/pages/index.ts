@@ -6,8 +6,9 @@ import productQuery from './productPage'
 import guest from './guest'
 import profilePageQuery from './profilePage'
 import userPageQuery from './userPage'
+import customer from './customer'
 
-const pages = async (resource: any, language, id: string = '') => {
+const pages = async (resource: any, language, id: string = '', wpAuth = null) => {
   const resources = {
     'homePage': homePageQuery(language),
     'aboutPage': aboutPageQuery(language),
@@ -15,7 +16,8 @@ const pages = async (resource: any, language, id: string = '') => {
     'productPage': productQuery(id),
     'customer': guest(),
     'profilePage': profilePageQuery(language),
-    'userPage': userPageQuery(language)
+    'userPage': userPageQuery(language),
+    'userData': customer(id)
   }
 
   const query = `
@@ -23,7 +25,7 @@ const pages = async (resource: any, language, id: string = '') => {
       ${resources[resource]}
     }
   `
-  const result: any = await GraphQlClient(query)
+  const result: any = await GraphQlClient(query, null, null, wpAuth)
 
   if (result[resource]) {
 

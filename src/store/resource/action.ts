@@ -1,13 +1,13 @@
 import { SET_RESOURCES } from './action-types'
-import { actionObject, exchangeProduct, filter, orderBy, simplifyArray } from '../../utils'
+import { actionObject, exchangeProduct, filter, orderBy, RestClient, simplifyArray } from '../../utils'
 import { pages, resources } from '../../graphql/query'
 import { GET_PAGES } from '@store/page/action-types'
 import { LOADER } from '@store/loader/action-types'
 import { getCart } from '@store/actions'
 import { mutations } from '@graphql'
 import { setAlert } from '@store/alert/action'
-import { setShop } from '@store/shop/action'
 import { fallbackExchangeApiKey, fallbackExchangeApiUrl } from '@utils/path'
+import { SIGN_IN } from '@store/user/action-types'
 
 const dataResources = (data) => {
   data['outstanding'] = orderBy(data.products, 'totalSales', 'asc').slice(0, 4)
@@ -21,10 +21,11 @@ export const getResources: any = (pageType, lang = 'ES') => async (dispatch, get
 
   dispatch(actionObject(LOADER, true))
 
-  const { page, user } = getState()
+  const { page } = getState()
 
-  const allResources = await resources(lang, user?.user?.jwtAuthToken)
-
+  const allResources = await resources(lang)
+  const allCountries = await RestClient('data/countries')
+  allResources['countries'] = allCountries
   const result: any = await pages(pageType, lang)
   page[pageType] = result
 
@@ -39,12 +40,14 @@ export const changeLanguage: any = (language) => async (dispatch, getState) => {
 
   dispatch(actionObject(LOADER, true))
 
-  const { page, user } = getState()
+  const { page } = getState()
 
-  const allResources: any = await resources(language, user?.user?.jwtAuthToken);
+  const allResources: any = await resources(language);
+  const allCountries = await RestClient('data/countries')
+  allResources['countries'] = allCountries
 
   for (let pag of page.consultPages) {
-    const result: any = await pages(pag, language)
+    const result: any = await pages(pag, language, page['id'])
     page[pag] = result;
   }
 
@@ -56,9 +59,10 @@ export const changeLanguage: any = (language) => async (dispatch, getState) => {
 }
 
 export const changeCurrencies: any = (values) => async (dispatch, getState) => {
+
+  const { resource: { currencies, alerts } } = getState()
   try {
     dispatch(actionObject(LOADER, true))
-    const { resource: { currencies } } = getState()
 
     const selected = filter(currencies, values, 'iso', ['currencies'])
     const iso = selected[0]?.currencies?.iso
@@ -66,7 +70,7 @@ export const changeCurrencies: any = (values) => async (dispatch, getState) => {
 
     const exchanges = await (await fetch(url)).json()
     if (exchanges?.conversion_rates[iso]) {
-      
+
       const rate = exchanges?.conversion_rates[iso]
       const symbol = selected[0]?.currencies?.symbol
 
@@ -77,13 +81,14 @@ export const changeCurrencies: any = (values) => async (dispatch, getState) => {
     dispatch(actionObject(LOADER, false))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
-    dispatch(setAlert('Ha ocurrido un problema', true, 'warning'))
+    dispatch(setAlert(alerts?.alerts?.generalError, true, 'warning'))
   }
 
 
 }
 
-export const sendMail: any = (values) => async (dispatch) => {
+export const sendMail: any = (values) => async (dispatch, getState) => {
+  const { resource: { alerts } } = getState()
   try {
     dispatch(actionObject(LOADER, true))
 
@@ -96,11 +101,11 @@ export const sendMail: any = (values) => async (dispatch) => {
 
     if (!data.sent) throw new Error(data);
 
-    dispatch(setAlert('Envio de correo Exitoso', true, 'success'))
+    dispatch(setAlert(alerts?.alerts?.successMailSend, true, 'success'))
     dispatch(actionObject(LOADER, false))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
-    dispatch(setAlert('Correo no enviado', true, 'warning'))
+    dispatch(setAlert(alerts?.alerts?.errorMailSend, true, 'warning'))
 
   }
 }

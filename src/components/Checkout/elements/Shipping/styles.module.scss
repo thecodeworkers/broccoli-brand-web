@@ -183,7 +183,6 @@
   margin-right: 3rem;
 }
 
-
 ._radioBox {
   display: flex;
   margin-top: 2rem;
@@ -194,7 +193,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 30%;
+  width: 44%;
+  padding: 0 2.5%;
   font-family: $roboto;
   font-size: $roboto20;
   &::before {
@@ -245,7 +245,8 @@
 }
 
 ._radio {
-  &[type='radio']:checked, &[type='radio']:not(:checked) {
+  &[type='radio']:checked,
+  &[type='radio']:not(:checked) {
     display: none;
     ._radioLabel {
       &::before {
@@ -261,7 +262,7 @@
   }
 }
 
-._shippingContent{
+._shippingContent {
   width: 90%;
   padding: 0 5%;
 }
@@ -272,7 +273,8 @@
     margin-bottom: 2rem;
   }
 
-  ._addressBox, ._formBox {
+  ._addressBox,
+  ._formBox {
     width: 100%;
     padding: 0%;
 
@@ -311,7 +313,7 @@
   ._selectBox {
     width: 100%;
   }
-  
+
   ._selectionBox {
     width: 100%;
     padding: 0%;
@@ -320,7 +322,7 @@
   ._radioBox {
     flex-wrap: wrap;
     align-items: flex-start;
-    
+
     ._radioLabel {
       width: 100%;
       justify-content: flex-start;
@@ -345,12 +347,11 @@
     ._radioLabelTax::before {
       margin-right: 1rem;
     }
-    
+
     ._simpleText {
       width: 90%;
     }
   }
-
 }
 
 @include responsive(sm) {
