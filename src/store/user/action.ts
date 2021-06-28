@@ -67,8 +67,7 @@ export const updateUserData: any = () => async (dispatch, getState) => {
           nodes: order.lineItems.map(item => {
             item = setCamelCaseKey(item)
             item = { ...item, ...filter(products, item.productId, 'databaseId')[0] }
-            item.variation = (item.variations?.nodes) ? filter(item.variations.nodes, item.variationId, 'databaseId')[0] : null
-            if (item?.variation?.attributes) item.variation.attributes = item.variation.attributes.nodes
+            item.variation = (item?.variations?.nodes) ? filter(item.variations.nodes, item.variationId, 'databaseId')[0] : null
             return item
           })
         }

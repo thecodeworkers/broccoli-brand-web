@@ -20,6 +20,8 @@ const Bag = ({ cart, info = false }) => {
     dispatch(updateQuantity(product, type))
   }
 
+  console.log(cart)
+
   return (
     <div className={(!info) ? styles._main : [styles._main, styles._infoMain].join(' ')}>
       {!info && <div className={styles._titleContainer}>
@@ -54,8 +56,8 @@ const Bag = ({ cart, info = false }) => {
                       </div>
                       <div className={styles._itemContent}>
                         <p className={styles._itemName}>{data?.product?.node?.name || data?.product?.name || data?.name}</p>
-                        <p className={styles._itemName}>{data?.variation?.attributes[0]?.name}: <span className={styles._color} style={{ backgroundColor: data?.variation?.attributes[0]?.value }}></span></p>
-                        <p className={styles._itemName}>{data?.variation?.attributes[1]?.name}: <span className={styles._data}> {data?.variation?.attributes[1]?.value}</span></p>
+                        <p className={styles._itemName}>{(!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[0]?.name : data?.variation?.attributes.nodes[0]?.name}: <span className={styles._color} style={{ backgroundColor: (!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[0]?.value : data?.variation?.attributes.nodes[0]?.value }}></span></p>
+                        <p className={styles._itemName}>{(!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[1]?.name : data?.variation?.attributes.nodes[1]?.name}: <span className={styles._data}> {(!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[1]?.value : data?.variation?.attributes.nodes[1]?.value}</span></p>
                       </div>
                     </div>
                   </div>
