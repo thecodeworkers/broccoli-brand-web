@@ -114,7 +114,7 @@ export const subscribe: any = (value) => async (dispatch, getState) => {
   try {
     dispatch(actionObject(LOADER, true))
     const subs = await RestClient(subscribes, 'POST', value)
-    console.log(subs)
+    if (!subs) throw new Error("error");
     dispatch(setAlert(alerts?.alerts?.successMailSend, true, 'success'))
     dispatch(actionObject(LOADER, false))
   } catch (error) {
