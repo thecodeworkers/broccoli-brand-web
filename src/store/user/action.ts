@@ -29,7 +29,6 @@ export const signUp: any = (values) => async (dispatch, getState) => {
 
 export const signIn: any = (values) => async (dispatch, getState) => {
   const { resource: { alerts } } = getState()
-  console.log(alerts)
   try {
     dispatch(actionObject(LOADER, true))
 
