@@ -134,7 +134,7 @@ const Orders = ({ data }) => {
 
       </div>
       {/* <div className={styles._searchContainer}> */}
-      {orders?.length && <div className={styles._searchContainer}>
+      {(orders?.length) && <div className={styles._searchContainer}>
         <div className={styles._searchBox}>
           <input name='search' className={styles._searchInput} value={search} onChange={(event) => { setSearch(event.target.value) }} placeholder={data?.orders?.table?.searchPlaceholder} />
           <button className={styles._searchButton} onClick={searchOrder} >
