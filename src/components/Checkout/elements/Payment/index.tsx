@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import styles from './styles.module.scss'
-import { checkoutForm, setLoader } from '@store/actions'
+import { checkoutForm, setAlert, setLoader } from '@store/actions'
 import { CardElement, useElements } from '@stripe/react-stripe-js';
 import { cardOptions } from './options'
 import getStripe from '@utils/getStripe'
@@ -11,7 +11,7 @@ import { Button } from '@components'
 
 const Payment = () => {
 
-  const { resource: { checkout: { checkout = {} } } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = {} }, alerts } } = useSelector((state: any) => state)
   const { payment, billingAndSummary } = checkout
 
   const dispatch = useDispatch()
@@ -24,26 +24,39 @@ const Payment = () => {
   const { errors, touched } = formik
 
   const setData = async () => {
-    if (!disabled) {
-      dispatch(setLoader(true))
-      const cardElement = elements.getElement(CardElement)
-      const stripe = await getStripe()
 
-      const { paymentMethod, error } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: cardElement,
-        billing_details: {
-          name: formik.values.nameCard,
-        },
-      })
+    try {
+      if (!disabled) {
+        dispatch(setLoader(true))
 
-      dispatch(checkoutForm({ 'payment': { ...formik.values, isValid: formik.isValid, card: paymentMethod.id } }))
+        const cardElement = elements.getElement(CardElement)
+        const stripe = await getStripe()
+
+        const { paymentMethod, error } = await stripe.createPaymentMethod({
+          type: 'card',
+          card: cardElement,
+          billing_details: {
+            name: formik.values.nameCard,
+          },
+        })
+
+        if (error) throw new Error(error.message);
+
+        dispatch(checkoutForm({ 'payment': { ...formik.values, isValid: formik.isValid, card: paymentMethod.id } }))
+        dispatch(setAlert(alerts?.alerts?.successVerifiedCard, true, 'success'))
+        dispatch(setLoader(false))
+        setDisabled(!disabled)
+        return
+      }
+      dispatch(checkoutForm({ 'payment': { ...formik.values, isValid: false, card: '' } }))
+      setDisabled(!disabled)
+    } catch (error) {
+      console.log(error)
+      dispatch(setAlert(alerts?.alerts?.errorVerifiedCard, true, 'warning'))
       dispatch(setLoader(false))
       setDisabled(!disabled)
-      return
     }
-    dispatch(checkoutForm({ 'payment': { ...formik.values, isValid: false, card: '' } }))
-    setDisabled(!disabled)
+
   }
 
   return (

@@ -13,6 +13,7 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
   const dispatch = useDispatch()
   const store: any = useStore()
 
+
   useEffect(() => {
     store.__persistor.persist()
     dispatch(closeModal())
@@ -27,8 +28,8 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
       {alert.show ? <Alert /> : null}
 
-      { show && <Loader />}
-      { modal.modal ? <Modals /> : null}
+      {show && <Loader />}
+      {modal.modal ? <Modals /> : null}
       <Component {...pageProps} />
     </>
   )

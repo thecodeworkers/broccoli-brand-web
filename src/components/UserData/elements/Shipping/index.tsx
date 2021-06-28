@@ -7,18 +7,40 @@ import styles from './styles.module.scss'
 
 const Shipping = ({ data = null }) => {
 
-  const { resource: { checkout: { checkout = {} } } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = {} }, countries }, user: { user } } = useSelector((state: any) => state)
   const { deliveryAddressAndShipping } = checkout
 
   const dispatch = useDispatch()
-  const formik = formikConfig(dispatch)
+  const formik = formikConfig(user.shipping)
   const formikAccount = formikAccountConfig(dispatch)
 
   const { errors, touched } = formik
 
+  const setDefaultValues = () => {
+    if (user?.shipping) for (let key in user.shipping) {
+      if (key === 'address1') {
+        formik.setFieldValue('address_1', user?.shipping[key])
+        continue;
+      }
+      if (key === 'address2') {
+        formik.setFieldValue('address_2', user?.shipping[key])
+        continue;
+      }
+      if (key === 'firstName') {
+        formik.setFieldValue('name', `${user?.shipping?.firstName}${(user?.shipping?.lastName) ? ' ' + user?.shipping?.lastName : ''}`)
+        continue;
+      }
+      formik.setFieldValue(key, user?.shipping[key])
+    }
+  }
+
   useEffect(() => {
-    if ((formik.isValid && formikAccount.isValid) && (!Object.keys(errors).length && !Object.keys(formikAccount.errors).length)) dispatch(checkoutForm({ 'shipping': { ...formik.values, isValid: formik.isValid }, 'account': { ...formikAccount.values } }))
-  }, [formik.isValid, formikAccount.isValid])
+    setDefaultValues()
+  }, [user?.shipping])
+
+  useEffect(() => {
+    if ((formik.isValid && formikAccount.isValid) && (!Object.keys(errors).length && !Object.keys(formikAccount.errors).length)) dispatch(checkoutForm({ 'shipping': { ...formik.values, isValid: formik.isValid }, ...formikAccount.values }))
+  }, [formik.isValid, formikAccount.isValid, formik.values.address_1, formik.values.address_2, formik.values.city, formik.values.email, formik.values.name, formik.values.phone, formik.values.postcode])
 
   return (
     <div className={styles._main}>
@@ -47,24 +69,23 @@ const Shipping = ({ data = null }) => {
             </label>
             <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
               <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="countryShipping" defaultValue={formik.values.country} className={styles._selectForm}>
-                <option value={'VE'}>{'Venezuela'}</option>
-                <option value={'MX'}>{'Mexico'}</option>
-                <option value={'EEUU'}>{'Estados Unidos'}</option>
-                <option value={'PN'}>{'Panama'}</option>
+                {countries?.length ? countries?.map((country, index) => (
+                  <option key={index} value={country.code}>{country.name}</option>
+                )) : <></>}
               </select>
             </label>
           </div>
-          <label className={errors.address && touched.address ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
+          <label className={errors.address_1 && touched.address_1 ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
             <span className={styles._tooltip}>{deliveryAddressAndShipping?.delivery?.tooltips?.address}</span>
             {deliveryAddressAndShipping?.delivery?.address}
-            <input id="addressShipping" name="address" type="text" className={errors.address && touched.address ? [styles._inputError, styles._input].join(' ') : styles._input}
-              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.address} />
+            <input id="addressShipping" name="address_1" type="text" className={errors.address_1 && touched.address_1 ? [styles._inputError, styles._input].join(' ') : styles._input}
+              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.address_1} />
           </label>
-          <label className={errors.secondAddress && touched.secondAddress ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
+          <label className={errors.address_2 && touched.address_2 ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
             <span className={styles._tooltip}>{deliveryAddressAndShipping?.delivery?.tooltips?.secondAddress}</span>
             {deliveryAddressAndShipping?.delivery?.aptSuiteEtc}
-            <input id="secondAddressShipping" name="secondAddress" type="text" className={errors.secondAddress && touched.secondAddress ? [styles._inputError, styles._input].join(' ') : styles._input}
-              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.secondAddress} />
+            <input id="secondAddressShipping" name="address_2" type="text" className={errors.address_2 && touched.address_2 ? [styles._inputError, styles._input].join(' ') : styles._input}
+              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.address_2} />
           </label>
           <label className={errors.city && touched.city ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
             <span className={styles._tooltip}>{deliveryAddressAndShipping?.delivery?.tooltips?.city}</span>
@@ -72,11 +93,11 @@ const Shipping = ({ data = null }) => {
             <input id="cityShipping" name="city" type="text" className={errors.city && touched.city ? [styles._inputError, styles._input].join(' ') : styles._input}
               onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.city} />
           </label>
-          <label className={errors.zip && touched.zip ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
+          <label className={errors.postcode && touched.postcode ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
             <span className={styles._tooltip}>{deliveryAddressAndShipping?.delivery?.tooltips?.zip}</span>
             {deliveryAddressAndShipping?.delivery?.postalCode}
-            <input id="zipShipping" name="zip" type="text" className={errors.zip && touched.zip ? [styles._inputError, styles._input].join(' ') : styles._input}
-              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.zip} />
+            <input id="zipShipping" name="postcode" type="text" className={errors.postcode && touched.postcode ? [styles._inputError, styles._input].join(' ') : styles._input}
+              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.postcode} />
           </label>
           <label className={errors.phone && touched.phone ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
             <span className={styles._tooltip}>{deliveryAddressAndShipping?.delivery?.tooltips?.phone}</span>

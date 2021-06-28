@@ -10,6 +10,9 @@ import checkout from './checkout'
 import Quantity from './updateQuantity'
 import addCoupon from './addCoupon'
 import refreshToken from './refreshToken'
+import updateShippingMethod from './updateShippingMethod'
+import addFee from './addFee'
+import emptyCart from './emptyCart'
 
 const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
 
@@ -24,7 +27,10 @@ const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
     'checkout': checkout,
     'updateItemQuantities': Quantity,
     'applyCoupon': addCoupon,
-    'refreshJwtAuthToken': refreshToken
+    'refreshJwtAuthToken': refreshToken,
+    'updateShippingMethod': updateShippingMethod,
+    'addFee': addFee,
+    'emptyCart': emptyCart
   }
 
   const query = `

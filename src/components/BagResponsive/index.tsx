@@ -50,12 +50,12 @@ const BagResponsive = ({ bag, general, cart, currency }) => {
                   <p>{data?.product?.node?.name || data?.product?.name}</p>
                 </div>
                 <div className={styles._colorSection}>
-                  <p>{data?.product?.node?.attributes?.nodes[0]?.label || data?.product?.attributes?.nodes[0]?.label}</p>
-                  <span className={styles._color} style={{ backgroundColor: data?.product?.node?.attributes?.nodes[0]?.options[0] || data?.product?.attributes?.nodes[0]?.options[0] }}></span>
+                  <p>{data?.variation?.attributes[0]?.name}</p>
+                  <span className={styles._color} style={{ backgroundColor: data?.variation?.attributes[0]?.value }}></span>
                 </div>
                 <div className={styles._sizeSection}>
-                  <p>{data?.product?.node?.attributes?.nodes[1]?.label || data?.product?.attributes?.nodes[1]?.label}:</p>
-                  <span className={styles._data}>{data?.product?.node?.attributes?.nodes[1]?.options[0] || data?.product?.attributes?.nodes[1]?.options[0]}</span>
+                  <p>{data?.variation?.attributes[1]?.name}:</p>
+                  <span className={styles._data}>{data?.variation?.attributes[1]?.value}</span>
                 </div>
                 <div className={styles._bagSection}>
                   <div className={styles._infoContent}>

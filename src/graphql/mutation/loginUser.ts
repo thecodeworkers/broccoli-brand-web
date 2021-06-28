@@ -13,6 +13,7 @@ const loginUser = ({ email, password }) => {
         customer {
           jwtRefreshToken
           username
+          databaseId
           sessionToken
           jwtAuthToken
           displayName
@@ -50,12 +51,56 @@ const loginUser = ({ email, password }) => {
                     ... on SimpleProduct {
                       price
                     }
+                    ... on VariableProduct {
+                      price
+                      stockQuantity
+                      totalSales
+                      variations(first: 100000) {
+                        nodes {
+                          id
+                          databaseId
+                          manageStock
+                          price
+                          stockQuantity
+                          name
+                          attributes(first: 100000) {
+                            nodes {
+                              id
+                              name
+                              value
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                   total
                   quantity
                 }
               }
             }
+          }
+          billing {
+            address1
+            address2
+            firstName
+            lastName
+            country
+            city
+            email
+            phone
+            postcode
+          }
+          shipping {
+            address1
+            address2
+            city
+            country
+            email
+            firstName
+            lastName
+            phone
+            postcode
           }
           totalSpent
         }

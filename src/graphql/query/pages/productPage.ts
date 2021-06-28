@@ -31,6 +31,63 @@ productPage:product(id: "${id}") {
       name
       options
     }
+  } 
+  ... on VariableProduct {
+    price
+    stockQuantity
+    totalSales
+    variations(first: 100000) {
+      nodes {
+        id
+        databaseId
+        manageStock
+        price
+        stockQuantity
+        name
+        attributes(first: 100000) {
+          nodes {
+            id
+            name
+            value
+          }
+        }
+      }
+    }
+    galleryImages {
+      nodes {
+        mediaItemUrl
+      }
+    }
+    crossSell {
+      nodes {
+        id
+        name
+        attributes {
+          nodes {
+            id
+            name
+            options
+          }
+        }
+        image {
+          mediaItemUrl
+        }
+      }
+    }
+    upsell {
+      nodes {
+        id
+        name
+        image {
+          mediaItemUrl
+        }
+        attributes {
+          nodes {
+            options
+          }
+        }
+      }
+    }
   }
   ... on SimpleProduct {
     id

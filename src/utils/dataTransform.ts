@@ -92,3 +92,25 @@ export const productFilter = (nodes: Array<any>, comparison, key) => {
   }
   return (comparison.attributes.length || comparison.categories.length) ? nodes.filter(nodeFilter) : nodes
 }
+
+export const reduceVariation = (nodes, variation) => {
+
+  const reduceFunc = (prev, next, index) => {
+    let valid = true
+    if (index === 1) {
+      for (let attr of prev.attributes.nodes)
+        for (let variant in variation)
+          if (attr.name.includes(variant))
+            valid = valid && attr.value.toLowerCase() === variation[variant].toLowerCase()
+      if (valid) return prev
+    }
+    for (let attr of next.attributes.nodes) {
+      for (let variant in variation)
+        if (attr.name.includes(variant))
+          valid = valid && attr.value.toLowerCase() === variation[variant].toLowerCase()
+    }
+    return (valid) ? next : prev
+  }
+
+  return (nodes?.length > 1) ? nodes?.reduce(reduceFunc) : nodes[0]
+}

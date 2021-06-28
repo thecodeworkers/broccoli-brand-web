@@ -9,6 +9,7 @@ import changeQuery from './changePage'
 import productCategories from './productCategories'
 import attributes from './attributes'
 import currencies from './currencies'
+import alerts from './alerts'
 
 const resource = async (language, auth = null, wcAuth = null) => {
   const query = `
@@ -22,6 +23,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
       ${changeQuery(language)}
       ${attributes(language)}
       ${productCategories(language)}
+      ${alerts(language)}
       ${currencies}
     }
   `
@@ -39,6 +41,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
     productCategories: normalizedArray(data?.productCategories?.nodes),
     attributes: normalizedArray(data?.attributes?.nodes),
     currencies: normalizedArray(data?.currencies?.nodes),
+    alerts: normalizedArray(data?.alerts?.nodes),
     language: language
   }
 }

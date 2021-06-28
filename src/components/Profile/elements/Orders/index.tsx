@@ -1,25 +1,30 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './styles.module.scss'
 import { Button } from '@components'
 import { SingleOrder } from './Elements'
 import { filter, getDate, getHour } from '@utils'
+import { cancelOrder } from '@store/actions'
 
 const Orders = ({ data }) => {
 
+  const dispatch = useDispatch()
 
   const { resource: { checkout: { checkout }, general: generalPage = {} }, user: { user } } = useSelector((state: any) => state)
   const { bag = {} } = checkout
 
   const [order, setOrder] = useState(null)
-
   const [orders, setOrders] = useState(user?.orders?.nodes)
   const [search, setSearch] = useState('')
 
   const getProcess = (process) => {
-    switch (process) {
-      case "PROCESSING":
+    switch (process.toLowerCase()) {
+      case 'processing':
         return 'In Progress'
+      case 'completed':
+        return 'Completed'
+      case 'cancelled':
+        return 'Cancelled'
       default:
         return 'hola'
     }
@@ -29,6 +34,14 @@ const Orders = ({ data }) => {
     const newOrders = filter(user?.orders?.nodes, search, 'orderNumber');
     setOrders(newOrders)
   }
+
+  const cancelThisOrder = (orderNumber) => {
+    dispatch(cancelOrder(orderNumber))
+  }
+
+  useEffect(() => {
+    setOrders(user?.orders?.nodes)
+  }, [user?.orders?.nodes])
 
   return data ? (
     <div className={styles._main}>
@@ -49,8 +62,8 @@ const Orders = ({ data }) => {
             {(orders?.length) ? orders?.map((data, index) => (
               <div key={index} className={styles._tableRow}>
                 <div className={styles._dataTable}>
-                  <div className={[styles._dataBox, styles._orderBox].join(" ")}>
-                    <p className={[styles._dataText, styles._orderText].join(" ")} onClick={() => setOrder(data)}>{data?.orderNumber}</p>
+                  <div className={[styles._dataBox, styles._orderBox].join(' ')}>
+                    <p className={[styles._dataText, styles._orderText].join(' ')} onClick={() => setOrder(data)}>{data?.orderNumber}</p>
                   </div>
                 </div>
                 <div className={styles._dataTable}>
@@ -64,10 +77,10 @@ const Orders = ({ data }) => {
                   </div>
                 </div>
                 <div className={styles._dataTable}>
-                  <div className={[styles._dataBox, styles._statusBox].join(" ")}>
+                  <div className={[styles._dataBox, styles._statusBox].join(' ')}>
                     <p className={styles._dataText}>{getProcess(data?.status)}</p>
                     <div className={styles._dataButton}>
-                      <Button text={'CANCEL'} borderColor="black" blackHover={true} colorText="black" />
+                      <Button onClick={() => cancelThisOrder(data?.orderNumber)} disabled={data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />
                     </div>
                   </div>
                 </div>
@@ -105,17 +118,17 @@ const Orders = ({ data }) => {
               <p className={styles._dataText}>{getProcess(item?.status)}</p>
             </div>
             <div className={styles._dataButton}>
-              <Button text={'CANCEL'} borderColor="black" blackHover={true} colorText="black" />
+              <Button onClick={() => cancelThisOrder(item?.orderNumber)} disabled={item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />
             </div>
           </section>
-        )) : 
-        <div className={styles._tableParts}>
-          <div>
-            <div className={styles._noItemBox}>
-              <p className={styles._noItemText}>{bag?.noItems}</p>
+        )) :
+          <div className={styles._tableParts}>
+            <div>
+              <div className={styles._noItemBox}>
+                <p className={styles._noItemText}>{bag?.noItems}</p>
+              </div>
             </div>
           </div>
-        </div>
         }
 
       </div>

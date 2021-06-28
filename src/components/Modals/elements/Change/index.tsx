@@ -23,12 +23,6 @@ const Login = () => {
             <h2 className={styles._title}>{change.title}</h2>
           </div>
           <form onSubmit={formik.handleSubmit}>
-            <label className={errors.oldPassword && touched.oldPassword ? [styles._inputError, styles._inputBox].join(' ') : styles._inputBox}>
-              <span className={styles._tooltip}>{change.tooltips?.oldPassword}</span>
-              {change.oldPassword}
-              <input id="oldPassword" name="oldPassword" type="password" className={errors.oldPassword && touched.oldPassword ? [styles._inputError, styles._input].join(' ') : styles._input}
-                onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.oldPassword} />
-            </label>
             <label className={errors.password && touched.password ? [styles._inputError, styles._inputBox].join(' ') : [styles._inputBox].join(' ')}>
               <span className={styles._tooltip}>{change.tooltips?.newPassword}</span>
               {change.newPassword}

@@ -7,19 +7,23 @@ import { addToCar } from '@store/actions';
 
 const Details = ({ data, texts, reference }) => {
   const dispatch = useDispatch()
-  const addProduct = () => {
-    if (data) dispatch(addToCar(data?.databaseId, 1));
-  }
 
   const [gallery, setGallery] = useState([])
-  
-  useEffect(() => {
-    const imagesArray = data?.galleryImages?.nodes.slice(0,4);
-    for (let index = imagesArray?.length; index < 4; index++) imagesArray.push({mediaItemUrl: 'images/backgrounds/Pic_not_available.png'})
+  const [selectedColor, setColor] = useState('')
+  const [selectedSize, setSize] = useState('')
 
+  const addProduct = () => {
+    if (data) dispatch(addToCar(data, 1, { color: selectedColor, size: selectedSize }));
+  }
+
+  useEffect(() => {
+    const imagesArray = data?.galleryImages?.nodes.slice(0, 4);
+    for (let index = imagesArray?.length; index < 4; index++) imagesArray.push({ mediaItemUrl: 'images/backgrounds/Pic_not_available.png' })
     setGallery(imagesArray)
+    setColor(data?.attributes?.nodes[0].options[0])
+    setSize(data?.attributes?.nodes[1].options[0])
   }, [data])
-    
+
   return (
     <>
       <div className={styles._content}>
@@ -45,21 +49,21 @@ const Details = ({ data, texts, reference }) => {
           `}</style>
           </div>
           <div className={styles._gallerySection}>
-          {
-            gallery?.map((item, index) => {
-            return (
-              <div key={index} className={[`_banner${index}`, (index == 0 || index == 3) ? styles._bigPic : styles._smallPic].join(" ")}>
-                <style jsx>{`
+            {
+              gallery?.map((item, index) => {
+                return (
+                  <div key={index} className={[`_banner${index}`, (index == 0 || index == 3) ? styles._bigPic : styles._smallPic].join(" ")}>
+                    <style jsx>{`
                   ._banner${index} {
                     background-image: url('${item?.mediaItemUrl}');
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
                   }
-                  `}</style>  
-              </div>
-            )
-          })}
+                  `}</style>
+                  </div>
+                )
+              })}
           </div>
           <div className={styles._rightContainer}>
             <div>
@@ -86,7 +90,7 @@ const Details = ({ data, texts, reference }) => {
                     <div className={styles._circlesContainer}>
                       {data?.attributes?.nodes[0].options.map((item, index) => (
                         <div key={index} className={styles._circle}>
-                          <ColorPicker color={item} />
+                          <ColorPicker checked={item === selectedColor} onClick={(check) => setColor(item)} color={item} />
                         </div>
                       ))}
                     </div>
@@ -107,12 +111,12 @@ const Details = ({ data, texts, reference }) => {
                     <div className={styles._textContent}>
                       <p className={styles._colorText}>{texts?.individual?.sizes}*</p>
                       <span className={styles._span}>{texts?.individual?.selectSize}</span>
-                    </div>  
+                    </div>
                     <div className={styles._checkboxContainer}>
                       {data?.attributes?.nodes[1].options.map((item, index) => (
                         <div key={index} className={styles._individualCheck}>
                           <label className={styles._labelFilter}>
-                            <input type='checkbox' className={styles._checkbox} id='choice1-1' name='choice1' />
+                            <input type='radio' checked={item === selectedSize} onChange={() => setSize(item)} className={styles._checkbox} id='choice1-1' name='choice1' />
                             <span className={styles._filterText}>{item}</span>
                           </label>
                         </div>

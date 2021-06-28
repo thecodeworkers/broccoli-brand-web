@@ -1,21 +1,32 @@
-import axios from 'axios'
+import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api'
+import { fallbackRestUrl, fallbackWooCommerceApiClient, fallbackWooCommerceApiSecret } from './path'
 
-const RestClient = async (url: string, method: string = 'GET', data: any | null = null, auth: any | null = null) => {
-  const headers = {
-    'Content-Type': 'application/json'
+const RestClient = async (url: string, method: string = 'GET', data: any | null = null) => {
+
+  const wooCommerce = new WooCommerceRestApi({
+    url: process.env.NEXT_PUBLIC_WP_ROOT_API_URL || fallbackRestUrl,
+    consumerKey: process.env.NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_KEY || fallbackWooCommerceApiClient,
+    consumerSecret: process.env.NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_SECRET || fallbackWooCommerceApiSecret,
+    version: 'wc/v3',
+  })
+
+  switch (method) {
+    case 'GET':
+      const get = await wooCommerce.get(url)
+      return get.data
+    case 'POST':
+      const post = await wooCommerce.post(url, data)
+      return post.data
+    case 'PUT':
+      const put = await wooCommerce.put(url, data)
+      return put.data
+    case 'DELETE':
+      const del = await wooCommerce.get(url)
+      return del.data
+    default:
+      return {}
   }
 
-  if(auth) {
-    headers['auth'] = {
-      username: process.env.NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_KEY,
-      password: process.env.NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_SECRET
-    }
-  }
-
-  const objectRequest: any = { method, url, data, headers }
-  const response = await axios(objectRequest)
-
-  return response?.data
 }
 
 export default RestClient

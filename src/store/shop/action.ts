@@ -25,15 +25,16 @@ export const searchProduct: any = (value) => async (dispatch, getState) => {
 }
 
 export const setProductFilter: any = (values) => async (dispatch, getState) => {
+
+  const { resource: { products, alerts } } = getState()
   try {
     dispatch(actionObject(LOADER, true))
 
-    const { resource: { products } } = getState()
 
     dispatch(actionObject(SET_FILTER, { filter: values, shop: productFilter(products, values, 'slug') }))
     dispatch(actionObject(LOADER, false))
   } catch (error) {
-    dispatch(setAlert('Ha ocurrido un error', true, 'warning'))
+    dispatch(setAlert(alerts?.alerts.generalError, true, 'warning'))
     dispatch(actionObject(LOADER, false))
   }
 }

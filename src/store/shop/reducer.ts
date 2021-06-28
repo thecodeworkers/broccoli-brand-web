@@ -21,7 +21,6 @@ const shopReducer = (state = initialState, { type, payload }: AnyAction) => {
     case RECENT_VIEW:
       return { ...state, ...{ recent: payload } }
     case SET_SEARCH:
-      console.log(payload)
       return { ...state, ...{ search: payload } }
     default:
       return state

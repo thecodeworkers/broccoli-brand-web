@@ -1,7 +1,5 @@
 import { authId } from '@utils/pageIds'
 
-
-
 const checkout = ({ billing, shipping }) => {
   const billingName = billing?.name?.split(' ')
   const shippingName = shipping?.name?.split(' ')
@@ -9,58 +7,40 @@ const checkout = ({ billing, shipping }) => {
   return (`
   checkout(input: {
     billing: {
-      address1: "${billing?.address}", 
-      address2: "${billing?.secondAddress}", 
+      address1: "${billing?.address_1}", 
+      address2: "${billing?.address_2}", 
       city: "${billing?.city}", 
-      country: VE, 
+      country: ${billing?.country}, 
       email: "${billing?.email}", 
       firstName: "${billingName[0]}", 
       lastName: "${billingName[1] ? billingName[1] : ''}"
       overwrite: true, 
       phone: "${billing.phone}", 
-      postcode: "${billing.zip}", 
+      postcode: "${billing.postcode}", 
       state: ""
     }, 
     clientMutationId: "${authId}", 
     isPaid: true, 
-    paymentMethod: "paypal", 
+    paymentMethod: "bacs", 
     shipping: {
-      address1: "${shipping?.address}", 
-      address2: "${shipping?.secondAddress}", 
+      address1: "${shipping?.address_1}", 
+      address2: "${shipping?.address_2}", 
       city: "${shipping?.city}", 
-      country: VE, 
+      country: ${shipping.country}, 
       email: "${shipping?.email}", 
       firstName: "${shippingName[0]}", 
       lastName: "${shippingName[1] ? shippingName[1] : ''}"
       overwrite: true, 
       phone: "${shipping.phone}", 
-      postcode: "${shipping.zip}", 
+      postcode: "${shipping.postcode}", 
       state: ""
     }, 
     shipToDifferentAddress: true, 
-    shippingMethod: "flat_rate"
+    shippingMethod: "${shipping.shippingMethod}"
   }) {
     result
-    customer {
-      username
-      sessionToken
-      jwtAuthToken
-      displayName
-      firstName
-      email
-      lastName
-      id
-      orders(first: 1000000) {
-        nodes {
-          id
-          orderNumber
-          total
-          subtotal
-          status
-          shippingTotal
-        }
-      }
-      totalSpent
+    order{
+      orderNumber
     }
   }
   `)

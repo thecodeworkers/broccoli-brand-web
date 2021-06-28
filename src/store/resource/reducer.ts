@@ -18,7 +18,10 @@ const initialState = {
     symbol: '$',
     exchange: '1',
     iso: 'USD'
-  }
+  },
+  countries: [],
+  payment: {},
+  alerts: []
 }
 
 const resourceReducer = (state = initialState, { type, payload }: AnyAction) => {
