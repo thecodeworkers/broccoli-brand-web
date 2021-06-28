@@ -18,8 +18,8 @@ const Colors = ({ data, title }) => {
           <div className={styles._products}>
             <div className='_standard'></div>
             <div className={styles._product}><Product data={data?.nodes[1]} /></div>
-            <div className={styles._product}><Product data={data.nodes[2]} /></div>
-            <div className={styles._product}><Product data={data.nodes[3]} /></div>
+            <div className={styles._product}><Product data={data?.nodes[2]} /></div>
+            <div className={styles._product}><Product data={data?.nodes[3]} /></div>
           </div>
         </div>
         </> : <div className={styles._noContainer}></div>
