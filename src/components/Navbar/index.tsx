@@ -79,7 +79,7 @@ const Navbar = ({ reference }: any = '') => {
             <div className={styles._topSection}>
               <Coin />
               <label htmlFor="currency" className={styles._customSelect}>
-                <select name="currency" id="currency" value={currency?.iso} onChange={changeCurrency} placeholder={'Idioma'} className={styles._topText}>
+                <select name="currency" id="currency" value={currency?.iso} onChange={changeCurrency} placeholder={'Idioma'} className={[styles._topText, styles._currencySelect].join(" ")}>
                   {currencies?.map((data, index) => (<option key={index} value={data?.currencies?.iso}>{data?.currencies?.name}</option>))}
                 </select>
               </label>
