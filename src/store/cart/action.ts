@@ -19,10 +19,14 @@ export const addToCar: any = (product: any, quantity: any, variation: any = null
     if (user?.isAuth) {
       dispatch(actionObject(LOADER, true))
 
-      const variable = reduceVariation(product?.variations?.nodes, variation)
+      let variable = null
 
-      if (!variable.stockQuantity) throw new Error("stock");
+      if (variation) {
+        variable = reduceVariation(product?.variations?.nodes, variation)
+        if (!variable.stockQuantity) throw new Error("stock");
+      }
 
+      if (!variable) variable = product?.variations?.nodes[0]
 
       const data: any = await mutations('addCartItems', { product: product?.databaseId, quantity, variationId: variable?.databaseId }, null, user?.user?.sessionToken)
 
@@ -35,7 +39,6 @@ export const addToCar: any = (product: any, quantity: any, variation: any = null
 
     if (!user?.isAuth) dispatch(setAlert(alerts?.alerts?.loginBeforeContinue, true, 'warning'))
   } catch (error) {
-    console.log(error)
     dispatch(actionObject(LOADER, false))
     if (error.message === 'stock') return dispatch(setAlert(alerts?.alerts?.noStock, true, 'warning'))
 

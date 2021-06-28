@@ -252,7 +252,6 @@ export const editUser = () => async (dispatch, getState) => {
     dispatch(actionObject(LOADER, false))
     dispatch(closeModal())
   } catch (error) {
-    console.log(error)
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert(alerts?.alerts?.errorUpdateUser, true, 'warning'))
   }

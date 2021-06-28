@@ -80,7 +80,8 @@ const Orders = ({ data }) => {
                   <div className={[styles._dataBox, styles._statusBox].join(' ')}>
                     <p className={styles._dataText}>{getProcess(data?.status)}</p>
                     <div className={styles._dataButton}>
-                      <Button onClick={() => cancelThisOrder(data?.orderNumber)} disabled={data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />
+                      {!(data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled') && 
+                      <Button onClick={() => cancelThisOrder(data?.orderNumber)} disabled={data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />}
                     </div>
                   </div>
                 </div>
@@ -118,7 +119,7 @@ const Orders = ({ data }) => {
               <p className={styles._dataText}>{getProcess(item?.status)}</p>
             </div>
             <div className={styles._dataButton}>
-              <Button onClick={() => cancelThisOrder(item?.orderNumber)} disabled={item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />
+            {!(item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled') && <Button onClick={() => cancelThisOrder(item?.orderNumber)} disabled={item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />}
             </div>
           </section>
         )) :
