@@ -24,7 +24,7 @@ const Details = ({ data, texts, reference }) => {
     setSize(data?.attributes?.nodes[1].options[0])
   }, [data])
 
-  return (
+  return data ? (
     <>
       <div className={styles._content}>
         <section className={styles._detailsContainter}>
@@ -136,7 +136,7 @@ const Details = ({ data, texts, reference }) => {
         </section>
       </div>
     </>
-  )
+  ) : null
 }
 
 export default Details

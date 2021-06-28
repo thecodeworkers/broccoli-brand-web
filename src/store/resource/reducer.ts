@@ -13,6 +13,7 @@ const initialState = {
   collection: [],
   attributes: [],
   currencies: [],
+  reset: {},
   language: 'ES',
   currency: {
     symbol: '$',

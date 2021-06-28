@@ -170,10 +170,30 @@ export const forgotPassword: any = (values) => async (dispatch, getState) => {
     if (data.message) throw new Error(data.message);
 
     dispatch(actionObject(FORGOT_PASSWORD));
+    dispatch(setAlert(alerts?.alerts?.successForgotPassword, true, 'success'))
+    dispatch(actionObject(LOADER, false))
+    dispatch(closeModal())
+  } catch (error) {
+    dispatch(actionObject(LOADER, false))
+    if (error.message === 'Invalid username.') return dispatch(setAlert(alerts?.alerts?.invalidUserForgotPassword, true, 'warning'))
+    dispatch(setAlert(alerts?.alerts?.errorForgotPassword, true, 'warning'))
+
+  }
+}
+
+export const restorePassword: any = (values) => async (dispatch, getState) => {
+  const { resource: { alerts } } = getState()
+  try {
+    dispatch(actionObject(LOADER, true))
+    const data: any = await mutations('resetUserPassword', values);
+    if (data.message) throw new Error(data.message);
+
+    dispatch(actionObject(FORGOT_PASSWORD));
     dispatch(setAlert(alerts?.alerts?.successChangePassword, true, 'success'))
     dispatch(actionObject(LOADER, false))
     dispatch(closeModal())
   } catch (error) {
+    console.log(error)
     dispatch(actionObject(LOADER, false))
     if (error.message === 'Invalid username.') return dispatch(setAlert(alerts?.alerts?.invalidUserForgotPassword, true, 'warning'))
     dispatch(setAlert(alerts?.alerts?.errorChangePassword, true, 'warning'))

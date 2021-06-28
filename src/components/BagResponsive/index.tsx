@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { TrashCan } from '@images/icons'
 import styles from './styles.module.scss'
 
-const BagResponsive = ({ bag, general, cart, currency }) => {
+const BagResponsive = ({ bag, info, cart, currency }) => {
 
   const dispatch = useDispatch()
 
@@ -27,7 +27,7 @@ const BagResponsive = ({ bag, general, cart, currency }) => {
                 <style jsx>{`
                 @media(max-width: 768px) {
                   ._img {
-                    background-image: url(${data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl});
+                    background-image: url(${data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl || data?.image?.mediaItemUrl});
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
@@ -36,7 +36,7 @@ const BagResponsive = ({ bag, general, cart, currency }) => {
                 }
                 @media(max-width: 576px) {
                   ._img {
-                    background-image: url(${data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl});
+                    background-image: url(${data?.product?.node?.image?.mediaItemUrl || data?.product?.image?.mediaItemUrl || data?.image?.mediaItemUrl});
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
@@ -47,7 +47,7 @@ const BagResponsive = ({ bag, general, cart, currency }) => {
               </div>
               <div className={styles._content}>
                 <div className={styles._productName}>
-                  <p>{data?.product?.node?.name || data?.product?.name}</p>
+                  <p>{data?.product?.node?.name || data?.product?.name || data?.name}</p>
                 </div>
                 <div className={styles._colorSection}>
                   <p>{(!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[0]?.name : data?.variation?.attributes.nodes[0]?.name}</p>
@@ -63,15 +63,15 @@ const BagResponsive = ({ bag, general, cart, currency }) => {
                     <p className={styles._dataText} >{data?.quantity}</p>
                   </div>
                   <div className={styles._dataBox}>
-                    <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'minus')}>-</p>
-                    <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'add')}>+</p>
+                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'minus')}>-</p>}
+                    {!info && <p className={[styles._dataText, styles._quantityButton].join(' ')} onClick={() => modifyQuantity(data?.key, 'add')}>+</p>}
                   </div>
                 </div>
                 <div className={styles._dataPrice}>
                   <p className={styles._dataText}>{(data?.product?.node?.price) ? formatCurrency(currency, data?.product?.node?.price) : formatCurrency(currency, data?.product?.price)}</p>
                 </div>
                 <div className={styles._deleteBox}>
-                  <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}><TrashCan /></p>
+                  {!info && <p className={styles._deleteButton} onClick={() => removeItem(data?.key)}><TrashCan /></p>}
                 </div>
               </div>
             </div>

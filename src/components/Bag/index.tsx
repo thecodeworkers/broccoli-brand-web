@@ -20,8 +20,6 @@ const Bag = ({ cart, info = false }) => {
     dispatch(updateQuantity(product, type))
   }
 
-  console.log(cart)
-
   return (
     <div className={(!info) ? styles._main : [styles._main, styles._infoMain].join(' ')}>
       {!info && <div className={styles._titleContainer}>
@@ -105,7 +103,7 @@ const Bag = ({ cart, info = false }) => {
         </section>
       </div>
       <div className={styles._responsive}>
-        <BagResponsive bag={bag} general={general} cart={cart} currency={currency} />
+        <BagResponsive bag={bag} info={info} cart={cart} currency={currency} />
       </div>
     </div>
   )

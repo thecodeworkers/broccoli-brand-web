@@ -13,6 +13,7 @@ import refreshToken from './refreshToken'
 import updateShippingMethod from './updateShippingMethod'
 import addFee from './addFee'
 import emptyCart from './emptyCart'
+import resetUserPassword from './resetUserPassword'
 
 const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
 
@@ -30,7 +31,8 @@ const mutations = async (resource: any, values, auth = null, wcAuth = null) => {
     'refreshJwtAuthToken': refreshToken,
     'updateShippingMethod': updateShippingMethod,
     'addFee': addFee,
-    'emptyCart': emptyCart
+    'emptyCart': emptyCart,
+    'resetUserPassword': resetUserPassword
   }
 
   const query = `

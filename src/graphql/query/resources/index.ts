@@ -10,6 +10,7 @@ import productCategories from './productCategories'
 import attributes from './attributes'
 import currencies from './currencies'
 import alerts from './alerts'
+import resetPage from './resetPage'
 
 const resource = async (language, auth = null, wcAuth = null) => {
   const query = `
@@ -24,6 +25,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
       ${attributes(language)}
       ${productCategories(language)}
       ${alerts(language)}
+      ${resetPage(language)}
       ${currencies}
     }
   `
@@ -42,6 +44,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
     attributes: normalizedArray(data?.attributes?.nodes),
     currencies: normalizedArray(data?.currencies?.nodes),
     alerts: normalized(data?.alerts?.translation),
+    reset: normalized(data?.resetPage?.translation),
     language: language
   }
 }
