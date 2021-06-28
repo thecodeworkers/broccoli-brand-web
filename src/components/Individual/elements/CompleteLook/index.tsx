@@ -2,7 +2,7 @@ import React from 'react'
 import { Product } from '@components'
 import styles from './styles.module.scss'
 
-const Colors = ({ data, title }) => {
+const CompleteLook = ({ data, title }) => {
 
   return (
     <>
@@ -51,4 +51,4 @@ const Colors = ({ data, title }) => {
   )
 }
 
-export default Colors
+export default CompleteLook
