@@ -72,7 +72,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
       <style jsx>
         {`
           .setImage {
-            background-image: url(${data ? data.image?.mediaItemUrl : 'images/backgrounds/Pic_not_available.png'});
+            background-image: url(${data ? data?.image?.mediaItemUrl : 'images/backgrounds/Pic_not_available.png'});
             background-size: 100% 100%;
             background-position: center;
             background-repeat: no-repeat;

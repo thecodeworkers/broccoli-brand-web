@@ -32,7 +32,7 @@ const Details = ({ data, texts, reference }) => {
             <div className='_img'></div>
             <style jsx>{`
             ._img {
-              background-image: url(${data?.image?.mediaItemUrl});
+              background-image: url(${data?.image?.mediaItemUrl || 'images/backgrounds/Pic_not_available.png'});
               background-repeat: no-repeat;
               background-position: center;
               background-size: 100% 100%;
@@ -40,7 +40,7 @@ const Details = ({ data, texts, reference }) => {
             }
             @media(max-width: 576px) {
               ._img {
-                background-image: url(${data?.image?.mediaItemUrl});
+                background-image: url(${data?.image?.mediaItemUrl || 'images/backgrounds/Pic_not_available.png'});
                 background-repeat: no-repeat;
                 background-size:100% 100%;
                 height: 45vh;
