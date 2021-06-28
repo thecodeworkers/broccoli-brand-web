@@ -41,7 +41,7 @@ const resource = async (language, auth = null, wcAuth = null) => {
     productCategories: normalizedArray(data?.productCategories?.nodes),
     attributes: normalizedArray(data?.attributes?.nodes),
     currencies: normalizedArray(data?.currencies?.nodes),
-    alerts: normalizedArray(data?.alerts?.nodes),
+    alerts: normalized(data?.alerts?.translation),
     language: language
   }
 }

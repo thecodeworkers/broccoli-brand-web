@@ -47,3 +47,11 @@
 ._borderSuccess {
   border: 1px solid $success;
 }
+._iconBox {
+  height: 1rem;
+  margin-right: 0.5rem;
+  svg {
+    width: auto;
+    height: 100%;
+  }
+}
