@@ -5,7 +5,7 @@ const WP_API_URL = process.env.NEXT_PUBLIC_WP_ROOT_API_URL || fallbackRestUrl
 
 const RestClient = async (url, method = 'GET', data = {}) => {
   try {
-    const options = {
+    const options: any = {
       method: method,
       data: data,
       auth: {
@@ -15,7 +15,7 @@ const RestClient = async (url, method = 'GET', data = {}) => {
     }
 
     console.log(`${WP_API_URL}${url}`)
-    const response = await axios(`${WP_API_URL}${url}`,options)
+    const response = await axios(`${WP_API_URL}${url}`, options)
     console.log(response)
     if (response.data.errors?.length) return response.data.errors[0]
 
