@@ -65,4 +65,19 @@
       }
     }
   }
+
+  ._selected {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid $black;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
 }

@@ -40,14 +40,16 @@
 @include responsive(md) {
   ._socialContent {
     flex-direction: column;
-    height: none;
+    height: 75vh;
     
     ._socialImageContainer {
       width: 100%;
+      height: 40%;
     }
 
     ._socialInfoContainer {
       width: 100%;
+      height: 60%;
     }
   }
 

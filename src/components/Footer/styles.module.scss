@@ -23,7 +23,7 @@
 
     ._textMargin {
       cursor: pointer;
-      margin-right: 13%;
+      margin-right: 8%;
     }
   }
 }
@@ -155,6 +155,16 @@
 
 ._responsive {
   display: none;
+}
+
+@include responsive(xl) {
+  ._bottomSection {
+    ._bottomItem {
+      ._textMargin {
+        margin-right: 5%;
+      }
+    }
+  }
 }
 
 @include responsive(md) {

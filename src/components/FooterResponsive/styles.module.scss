@@ -40,6 +40,8 @@
     font-family: $roboto;
     font-size: $roboto16;
     color: $white;
+    border-radius: 0;
+    -webkit-appearance: none;
   }
 
   ._formButton {
