@@ -21,7 +21,7 @@ const Products = ({ data }) => {
   }, [])
 
   useEffect(() => {
-    if (search?.valid) dispatch(searchProduct(search?.text))
+    if (search?.valid) dispatch(searchProduct(search?.text, false))
     if (!search?.valid) dispatch(setShop())
   }, [products])
 

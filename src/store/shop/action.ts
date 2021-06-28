@@ -11,7 +11,7 @@ export const setShop: any = () => async (dispatch, getState) => {
 
 export const setSearch: any = (value) => actionObject(SET_SEARCH, value)
 
-export const searchProduct: any = (value) => async (dispatch, getState) => {
+export const searchProduct: any = (value, valid = true) => async (dispatch, getState) => {
 
   dispatch(actionObject(LOADER, true))
   const { resource: { products }, shop: { filter: filterProducts } } = getState()
@@ -20,7 +20,7 @@ export const searchProduct: any = (value) => async (dispatch, getState) => {
   data = filter(data, value, 'name')
 
   dispatch(actionObject(SET_FILTER, { filter: filterProducts, shop: data }))
-  dispatch(actionObject(SET_SEARCH, { valid: true, text: value }))
+  dispatch(actionObject(SET_SEARCH, { valid: valid, text: value }))
   dispatch(actionObject(LOADER, false))
 }
 
