@@ -1,5 +1,30 @@
 @import '@styles/index.scss';
 
+// @include responsive(xxxl) {
+//   ._leftContainer {
+//     width: calc(50% - 1px);
+//     border-top: 1px solid $black;
+//     border-right: 1px solid $black;
+//     display: flex;
+//     flex-direction: column;
+//     flex-wrap: wrap;
+  
+//     ._bigPic {
+//       width: 33.3%;
+//       height: calc(100% - 1px);
+//       border-bottom: 1px solid $black;
+//     }
+  
+//     ._smallPic {
+//       width: calc(33.3% - 1px);
+//       height: calc(50% - 1.5px);
+//       border-right: 1px solid $black;
+//       border-left: 1px solid $black;
+//       border-bottom: 1px solid $black;
+//     }
+//   }
+// }
+
 ._galleryContainter {
   display: flex;
   height: 70vh;
@@ -21,7 +46,7 @@
 
   ._smallPic {
     width: calc(33.3% - 1px);
-    height: calc(50% - 2px);
+    height: calc(50% - 1px);
     border-right: 1px solid $black;
     border-left: 1px solid $black;
     border-bottom: 1px solid $black;
@@ -68,6 +93,15 @@
   margin: 3% auto;
   // font-size: $roboto18;
 }
+
+@include responsive(md) {
+  ._leftContainer {
+    ._smallPic {
+      height: calc(50% - 2px);
+    }
+  }
+}
+
 
 @include responsive(sm) {
   ._galleryContainter {
