@@ -14,15 +14,10 @@ const RestClient = async (url, method = 'GET', data = {}) => {
       }
     }
 
-    console.log(`${WP_API_URL}${url}`)
     const response = await axios(`${WP_API_URL}${url}`, options)
-    console.log(response)
-    if (response.data.errors?.length) return response.data.errors[0]
-
-    return response.data.data
+    return response.data
 
   } catch (err) {
-    console.log(err)
     return null
   }
 }
