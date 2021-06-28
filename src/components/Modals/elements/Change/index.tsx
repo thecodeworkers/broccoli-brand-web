@@ -1,5 +1,5 @@
 import { Button } from '@components'
-import { closeModal, guestUser, openModal } from '@store/actions'
+import { closeModal } from '@store/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import styles from './styles.module.scss'

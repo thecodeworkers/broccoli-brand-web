@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { World, Coin, User } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeLanguage, setLoader, openModal, logout, changeCurrencies } from '@store/actions'
+import { changeLanguage, setLoader, openModal, logout, changeCurrencies, setContact } from '@store/actions'
 import { useRouter } from 'next/router'
 import { createMarkup, scrolling } from '@utils'
 import { useEffect } from 'react'
 
-const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
+const ResponsiveMenu = ({ show = 0, method, data, language }) => {
   const [unfold, setUnfold] = useState(false)
   const [display, setDisplay] = useState(false)
 
@@ -17,10 +17,10 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
   const router = useRouter()
 
   useEffect(() => {
-    if(show == 1 && display) return setDisplay(false)
-    if(show == 1) return setDisplay(true)
-    if(show == 2 && display) return setDisplay(false)
-    if(show == 2 && !display) return setDisplay(true)
+    if (show == 1 && display) return setDisplay(false)
+    if (show == 1) return setDisplay(true)
+    if (show == 2 && display) return setDisplay(false)
+    if (show == 2 && !display) return setDisplay(true)
   }, [show])
 
   const navigation = (route, loader = false) => {
@@ -28,6 +28,14 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
       if (loader) dispatch(setLoader(true))
       router.push(route)
     }
+  }
+
+  const contactNav = () => {
+    if (router.pathname != '/' && router.pathname != '/about-us') {
+      dispatch(setLoader(true))
+      router.push('/')
+    }
+    dispatch(setContact(true))
   }
 
   const modal = (type) => {
@@ -65,18 +73,9 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
         <section className={styles._internalLinks}>
           {data?.navigationBar?.navigation?.map((nav, index) => {
             if (index == 3) {
-              if (router.pathname == '/about-us' || router.pathname == '/') {
-                return (
-                  <a key={index}>
-                    <div onClick={() => scrolling(reference, 100)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
-                      <p className={styles._linkText}>{nav.text}</p>
-                    </div>
-                  </a>
-                )
-              }
               return (
                 <div key={index}>
-                  <div onClick={() => navigation('/#contact-us', true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
+                  <div onClick={() => contactNav()} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
                     <p className={styles._linkText}>{nav.text}</p>
                   </div>
                 </div>

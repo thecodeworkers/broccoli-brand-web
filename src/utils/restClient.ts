@@ -1,32 +1,25 @@
-import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api'
-import { fallbackRestUrl, fallbackWooCommerceApiClient, fallbackWooCommerceApiSecret } from './path'
+import { fallbackNewsletterKey, fallbackNewsletterSecret, fallbackRestUrl } from './path'
+import axios from 'axios'
 
-const RestClient = async (url: string, method: string = 'GET', data: any | null = null) => {
+const WP_API_URL = process.env.NEXT_PUBLIC_WP_ROOT_API_URL || fallbackRestUrl
 
-  const wooCommerce = new WooCommerceRestApi({
-    url: process.env.NEXT_PUBLIC_WP_ROOT_API_URL || fallbackRestUrl,
-    consumerKey: process.env.NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_KEY || fallbackWooCommerceApiClient,
-    consumerSecret: process.env.NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_SECRET || fallbackWooCommerceApiSecret,
-    version: 'wc/v3',
-  })
+const RestClient = async (url, method = 'GET', data = {}) => {
+  try {
+    const options: any = {
+      method: method,
+      data: data,
+      auth: {
+        username: process.env.NEWSLETTER_KEY || fallbackNewsletterKey,
+        password: process.env.NEWSLETTER_SECRET || fallbackNewsletterSecret
+      }
+    }
 
-  switch (method) {
-    case 'GET':
-      const get = await wooCommerce.get(url)
-      return get.data
-    case 'POST':
-      const post = await wooCommerce.post(url, data)
-      return post.data
-    case 'PUT':
-      const put = await wooCommerce.put(url, data)
-      return put.data
-    case 'DELETE':
-      const del = await wooCommerce.get(url)
-      return del.data
-    default:
-      return {}
+    const response = await axios(`${WP_API_URL}${url}`, options)
+    return response.data
+
+  } catch (err) {
+    return null
   }
-
 }
 
 export default RestClient
