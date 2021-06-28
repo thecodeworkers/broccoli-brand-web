@@ -27,7 +27,7 @@ const Shop = ({ data }) => {
       <Colors data={data?.productData?.allColors} title={general?.generalText?.individual?.allColorsText} />
       </div>
       <CompleteLook data={data?.upsell} title={general?.generalText?.individual?.completeLookText} />
-      {/* <Related data={data?.crossSell} title={general?.generalText?.individual?.alsoLikeText} /> */}
+      <Related data={data?.crossSell} title={general?.generalText?.individual?.alsoLikeText} />
       <Footer />
     </div>
   ) : <div></div>
