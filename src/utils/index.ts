@@ -1,4 +1,5 @@
 export { default as GraphQlClient } from './graphqlClient'
+export { default as WooCommerceClient } from './wooCommerceClient'
 export { default as RestClient } from './restClient'
 export * from './dataTransform'
 export * from './common'

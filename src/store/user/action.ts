@@ -3,7 +3,7 @@ import { setAlert } from '@store/alert/action';
 import { getCart } from '@store/cart/action';
 import { LOADER } from '@store/loader/action-types';
 import { closeModal } from '@store/modal/action';
-import { actionObject, filter, RestClient, setCamelCaseKey } from '@utils'
+import { actionObject, filter, WooCommerceClient, setCamelCaseKey } from '@utils'
 import { FORGOT_PASSWORD, LOGOUT, SET_CHECKOUT, SIGN_IN, SIGN_UP } from './action-types'
 
 export const signUp: any = (values) => async (dispatch, getState) => {
@@ -56,7 +56,7 @@ export const updateUserData: any = () => async (dispatch, getState) => {
     if (user?.databaseId) {
       dispatch(actionObject(LOADER, true))
 
-      let orders = await RestClient('orders')
+      let orders = await WooCommerceClient('orders')
       orders = filter(orders, user?.databaseId, 'customer_id')
 
       orders = orders.map((order) => {
@@ -90,9 +90,9 @@ export const cancelOrder: any = (value) => async (dispatch, getState) => {
     if (user?.databaseId) {
       dispatch(actionObject(LOADER, true))
 
-      await RestClient(`orders/${value}`, 'PUT', { status: 'cancelled' })
+      await WooCommerceClient(`orders/${value}`, 'PUT', { status: 'cancelled' })
 
-      let orders = await RestClient('orders')
+      let orders = await WooCommerceClient('orders')
       orders = filter(orders, user?.databaseId, 'customer_id')
 
       orders = orders.map((order) => {
@@ -149,7 +149,7 @@ export const changePassword: any = (values) => async (dispatch, getState) => {
   try {
     dispatch(actionObject(LOADER, true))
 
-    const data: any = await RestClient(`customers/${user?.databaseId}`, 'PUT', { password: values.password })
+    const data: any = await WooCommerceClient(`customers/${user?.databaseId}`, 'PUT', { password: values.password })
 
     dispatch(setAlert(alerts?.alerts?.successChangePassword, true, 'success'))
     dispatch(getCart())
@@ -238,7 +238,7 @@ export const editUser = () => async (dispatch, getState) => {
     if (billingName[1]) checkout.billing.last_name = billingName[1]
     if (shippingName[1]) checkout.shipping.last_name = shippingName[1]
 
-    const data: any = await RestClient(`customers/${user?.databaseId}`, 'PUT', checkout)
+    const data: any = await WooCommerceClient(`customers/${user?.databaseId}`, 'PUT', checkout)
 
     const userData = {
       firstName: data?.first_name,
