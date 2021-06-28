@@ -3,12 +3,12 @@ import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
 import { World, Coin, Bag, User, Pipe, Arrow } from '@images/svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeCurrencies, changeLanguage, logout, openModal, searchProduct, setLoader } from '@store/actions'
+import { changeCurrencies, changeLanguage, logout, openModal, searchProduct, setContact, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
 import { createMarkup, scrolling } from '@utils';
 
-const Navbar = ({ reference }: any = '') => {
+const Navbar = () => {
 
   const dispatch = useDispatch()
   const router = useRouter()
@@ -49,6 +49,14 @@ const Navbar = ({ reference }: any = '') => {
       if (loader) dispatch(setLoader(true))
       router.push(route)
     }
+  }
+
+  const contactNav = () => {
+    if (router.pathname != '/' && router.pathname != '/about-us') {
+      dispatch(setLoader(true))
+      router.push('/')
+    }
+    dispatch(setContact(true))
   }
 
   const modal = (type) => {
@@ -155,28 +163,15 @@ const Navbar = ({ reference }: any = '') => {
                     </div>
                   )
                 }
-
-                if (path == '/about-us' || path == '/') {
-                  return (
-                    <a key={index} onClick={() => scrolling(reference, 100)}
-                      className={styles._bottomSection}
-                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
-                    >
-                      <p className={styles._bottomText}>{nav.text}</p>
-                    </a>
-                  )
-                } else {
-                  return (
-                    <div key={index} onClick={() => navigation('/#contact-us', true)}
-                      className={styles._bottomSection}
-                      onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
-                    >
-                      <p className={styles._bottomText}>{nav.text}</p>
-                    </div>
-                  )
-                }
+                return (
+                  <div key={index} onClick={() => contactNav()}
+                    className={styles._bottomSection}
+                    onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
+                    onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
+                  >
+                    <p className={styles._bottomText}>{nav.text}</p>
+                  </div>
+                )
               })}
             </div>
             <div className={styles._searchContainer}>
@@ -190,7 +185,7 @@ const Navbar = ({ reference }: any = '') => {
       </nav>
 
       <div className={styles._responsive}>
-        <NavbarResponsive data={general} language={language} reference={reference} />
+        <NavbarResponsive data={general} language={language} />
       </div>
       <style jsx>
         {`

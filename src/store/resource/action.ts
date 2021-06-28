@@ -1,4 +1,4 @@
-import { SET_RESOURCES } from './action-types'
+import { SET_CONTACT, SET_RESOURCES } from './action-types'
 import { actionObject, filter, orderBy, WooCommerceClient, simplifyArray, RestClient } from '../../utils'
 import { pages, resources } from '../../graphql/query'
 import { GET_PAGES } from '@store/page/action-types'
@@ -123,3 +123,5 @@ export const subscribe: any = (value) => async (dispatch, getState) => {
   }
 
 }
+
+export const setContact = (value) => actionObject(SET_CONTACT, value)

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { createMarkup, scrolling } from '@utils';
+import { createMarkup } from '@utils';
 import FooterResponsive from '../FooterResponsive';
 import { useRouter } from 'next/router';
-import { setLoader, subscribe } from '@store/actions'
+import { setContact, setLoader, subscribe } from '@store/actions'
 
-const Footer = ({ reference }: any = '') => {
+const Footer = () => {
   const { resource: { general: { general } } } = useSelector((state: any) => state)
   const router = useRouter();
   const dispatch = useDispatch()
@@ -22,6 +22,14 @@ const Footer = ({ reference }: any = '') => {
 
   const subs = () => {
     if (mail) dispatch(subscribe({ email: mail }))
+  }
+
+  const contactNav = () => {
+    if (router.pathname != '/' && router.pathname != '/about-us') {
+      dispatch(setLoader(true))
+      router.push('/')
+    }
+    dispatch(setContact(true))
   }
 
   return general ? (
@@ -73,20 +81,11 @@ const Footer = ({ reference }: any = '') => {
                     </div>
                   )
                 }
-
-                if (router.pathname == '/about-us' || router.pathname == '/') {
-                  return (
-                    <a key={index} onClick={() => scrolling(reference, 100)} className={[styles._whiteText, styles._textMargin].join(" ")}>
-                      <p>{nav.text}</p>
-                    </a>
-                  )
-                } else {
-                  return (
-                    <div key={index} onClick={() => navigation('/#contact-us', true)} className={[styles._whiteText, styles._textMargin].join(" ")}>
-                      <p>{nav.text}</p>
-                    </div>
-                  )
-                }
+                return (
+                  <div key={index} onClick={() => contactNav()} className={[styles._whiteText, styles._textMargin].join(" ")}>
+                    <p>{nav.text}</p>
+                  </div>
+                )
               })
             }
           </div>
