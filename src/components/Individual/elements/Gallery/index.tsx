@@ -35,7 +35,7 @@ const Gallery = ({ data }) => {
         </div>
         <div className={styles._rightContainer}>
           <div className={styles._descriptionContainer}>
-            <div className={styles._description} dangerouslySetInnerHTML={createMarkup(data.description)}></div>
+            <div className={styles._description} dangerouslySetInnerHTML={createMarkup(data?.description)}></div>
           </div>
         </div>
       </section>
