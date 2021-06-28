@@ -115,11 +115,11 @@ export const subscribe: any = (value) => async (dispatch, getState) => {
     dispatch(actionObject(LOADER, true))
     const subs = await RestClient(subscribes, 'POST', value)
     if (!subs) throw new Error("error");
-    dispatch(setAlert(alerts?.alerts?.successMailSend, true, 'success'))
+    dispatch(setAlert(alerts?.alerts?.successSubscriptionUser, true, 'success'))
     dispatch(actionObject(LOADER, false))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
-    dispatch(setAlert(alerts?.alerts?.errorMailSend, true, 'warning'))
+    dispatch(setAlert(alerts?.alerts?.errorSubscriptionUser, true, 'warning'))
   }
 
 }

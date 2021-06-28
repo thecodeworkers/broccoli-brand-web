@@ -4,6 +4,7 @@ import { LOADER } from '@store/loader/action-types'
 import { mutations, shops } from '@graphql'
 import { setAlert } from '@store/alert/action'
 import getStripe from '@utils/getStripe'
+import { editUser } from '@store/user/action'
 
 export const getCart: any = () => async (dispatch, getState) => {
   const { user } = getState()
@@ -151,6 +152,7 @@ export const processPayment = () => async (dispatch, getState) => {
 
     dispatch(setAlert(alerts?.alerts?.successPayment, true, 'success'))
     dispatch(getCart())
+    dispatch(editUser())
     dispatch(actionObject(LOADER, false))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
