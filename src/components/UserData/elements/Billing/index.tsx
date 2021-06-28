@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 
 const Billing = () => {
 
-  const { resource: { checkout: { checkout = {} }, countries }, user: { user, checkout:userCheckout } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = {} }, countries }, user: { user, checkout: userCheckout } } = useSelector((state: any) => state)
   const { deliveryAddressAndShipping, billingAndSummary } = checkout
   const dispatch = useDispatch()
   const formik = formikConfig()
@@ -39,11 +39,11 @@ const Billing = () => {
 
   useEffect(() => {
     if (formik.isValid && !Object.keys(errors).length) dispatch(checkoutForm({ 'billing': { ...formik.values, isValid: formik.isValid } }))
-  }, [formik.isValid])
+  }, [formik.isValid, formik.values.address_1, formik.values.address_2, formik.values.city, formik.values.email, formik.values.name, formik.values.phone, formik.values.postcode])
 
   useEffect(() => {
     if (formik.values.addressSelection === 'same') {
-      setDefaultValues(userCheckout?.shipping); 
+      setDefaultValues(userCheckout?.shipping);
       setChange(false)
     }
     if (formik.values.addressSelection === 'alternative') setChange(true)

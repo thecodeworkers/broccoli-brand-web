@@ -19,18 +19,18 @@ const Shipping = ({ data = null }) => {
   const setDefaultValues = () => {
     if (user?.shipping) for (let key in user.shipping) {
       if (key === 'address1') {
-        formik.setFieldValue('address_1', user?.shipping[key])
+        if (user?.shipping[key]) formik.setFieldValue('address_1', user?.shipping[key])
         continue;
       }
       if (key === 'address2') {
-        formik.setFieldValue('address_2', user?.shipping[key])
+        if (user?.shipping[key]) formik.setFieldValue('address_2', user?.shipping[key])
         continue;
       }
       if (key === 'firstName') {
-        formik.setFieldValue('name', `${user?.shipping?.firstName}${(user?.shipping?.lastName) ? ' ' + user?.shipping?.lastName : ''}`)
+        if (user?.shipping[key]) formik.setFieldValue('name', `${user?.shipping?.firstName}${(user?.shipping?.lastName) ? ' ' + user?.shipping?.lastName : ''}`)
         continue;
       }
-      formik.setFieldValue(key, user?.shipping[key])
+      if (user?.shipping[key]) formik.setFieldValue(key, user?.shipping[key])
     }
   }
 
