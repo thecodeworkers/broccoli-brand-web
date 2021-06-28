@@ -59,7 +59,7 @@ const Colors = ({ data, title }) => {
         <div className='_img'></div>
         <style jsx>{`
         ._img {
-          background-image: url(${item?.image?.mediaItemUrl});
+          background-image: url(${item?.image?.mediaItemUrl || 'images/backgrounds/Pic_not_available.png' });
           background-repeat: no-repeat;
           background-position: center;
           background-size: cover;
