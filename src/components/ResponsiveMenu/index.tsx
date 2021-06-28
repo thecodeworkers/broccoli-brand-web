@@ -84,11 +84,11 @@ const ResponsiveMenu = ({ show = 0, method, data, language, reference }) => {
             }
             return (
               <div key={index}>
-                <div onClick={() => navigation(nav.link, true)} className={[styles._internalSection, index == 0 ? styles._homeSection : ''].join(" ")}>
+                <div onClick={() => navigation(nav.link, true)} className={[styles._internalSection, index == 2 ? styles._homeSection : ''].join(" ")}>
                   <p className={styles._linkText}>{nav.text}</p>
-                  {index == 0 ? <img className={styles._whiteArrow} src='images/backgrounds/white-arrow.svg' alt='arrow' onClick={() => changeUnfold()} /> : ''}
+                  {index == 2 ? <img className={styles._whiteArrow} src='images/backgrounds/white-arrow.svg' alt='arrow' onClick={() => changeUnfold()} /> : ''}
                 </div>
-                {index == 0 ?
+                {index == 2 ?
                   <div className={assignShow()}>
                     <div className={styles._shoppingContainer}>
                       {data?.navigationBar?.dropdownMenu?.columnList.map((item, index) => (

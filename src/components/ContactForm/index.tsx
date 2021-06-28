@@ -49,7 +49,7 @@ const ContactForm = ({ data }) => {
               <div className={styles._formContainer}>
                 <p className={errors.subject && touched.subject ? [styles._inputError, styles._labelForm].join(' ') : styles._labelForm}>{data.subject.title}</p>
                 <label htmlFor="subject" className={styles._customSelect}>
-                  <select name="subject" defaultValue={data.subject.fields[0].text} id="subject" onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm}>
+                  <select name="subject" defaultValue={data.subject.fields[0].text} id="subject" onChange={formik.handleChange} onBlur={formik.handleBlur} className={styles._selectForm} required>
                     {data.subject.fields.map((field, index) => <option key={index} value={field.text}>{field.text}</option>)}
                   </select>
                 </label>
