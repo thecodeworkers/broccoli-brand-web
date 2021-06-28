@@ -4,16 +4,16 @@ import { FirstBanner, Contact, Shop, Sponsors, Brand } from './elements'
 import { Navbar, Footer } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setContact } from '@store/actions'
+import { useCallback } from 'react'
 
 const AboutUs = ({ data }) => {
   const dispatch = useDispatch()
   const { resource: { contact } } = useSelector((state: any) => state)
-  const resultRef: any = useRef()
 
-  useEffect(() => {
-    if (contact && resultRef.current) {
+  const contactRef = useCallback((resultRef) => {
+    if (contact && resultRef) {
       const scrollToResults = () => {
-        resultRef.current.scrollIntoView({
+        resultRef.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         })
@@ -21,8 +21,7 @@ const AboutUs = ({ data }) => {
       dispatch(setContact(false))
       scrollToResults()
     }
-
-  }, [contact, resultRef.current])
+  }, [contact]);
 
   return data ? (
     <div >
@@ -34,7 +33,7 @@ const AboutUs = ({ data }) => {
       <Brand data={data.brandImage} />
       <Shop data={data.shop} />
       <Sponsors data={data.sponsors} />
-      <div ref={contact}>
+      <div ref={contactRef}>
         <Contact data={data.contact} />
       </div>
       <Footer />

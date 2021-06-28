@@ -4,29 +4,26 @@ import { FirstBanner, Social, Brand, Outstanding, Contact } from './elements'
 import { Navbar, Footer } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setContact } from '@store/actions'
+import { useCallback } from 'react'
 
 const Home = ({ data }) => {
 
   const dispatch = useDispatch()
   const { resource: { contact } } = useSelector((state: any) => state)
-  const resultRef: any = useRef()
 
-  useEffect(() => {
-    console.log(contact, 'contact')
-    console.log(resultRef.current)
-    if (contact && resultRef.current) {
+  const contactRef = useCallback((resultRef) => {
+    if (contact && resultRef) {
       const scrollToResults = () => {
-        resultRef.current.scrollIntoView({
+        resultRef.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         })
       }
-      console.log('disable')
       dispatch(setContact(false))
       scrollToResults()
     }
+  }, [contact]);
 
-  }, [contact, resultRef.current])
 
   return data ? (
     <div>
@@ -38,7 +35,7 @@ const Home = ({ data }) => {
       <Outstanding data={data?.outstanding} />
       <Brand data={data?.brand} />
       <Social data={data?.webPromotion} />
-      <div ref={resultRef}>
+      <div ref={contactRef}>
         <Contact data={data?.contact} />
       </div>
       <Footer />
