@@ -33,7 +33,7 @@
   }
 
   ._input {
-    height: auto;
+    height: -webkit-fill-available;
     width: 88%;
     font-family: $roboto;
     margin: 0;
