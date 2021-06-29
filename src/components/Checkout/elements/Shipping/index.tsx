@@ -160,7 +160,7 @@ const Shipping = () => {
           <div className={styles._shippingContent}>
             <div className={styles._radioBox}>
               {(cart?.availableShippingMethods) && cart?.availableShippingMethods[0]?.rates?.map((method, index) => (
-                <label key={index} className={formik.values.shippingMethod === method.id ? [styles._radioLabel, styles._radioChecked].join(' ') : styles._radioLabel}>
+                <label key={index} className={formik.values.shippingMethod === method.id ? [styles._radioLabel, styles._radioChecked, styles._method].join(' ') : [styles._radioLabel, styles._method].join(" ")}>
                   <input defaultChecked={formik.values.shippingMethod === cart?.chosenShippingMethods[0]} name="shippingMethod" type="radio" className={errors.shippingMethod && touched.shippingMethod ? [styles._inputError, styles._radio].join(' ') : styles._radio}
                     onChange={formik.handleChange} onBlur={formik.handleBlur} onClick={(event) => shipping(event.currentTarget.checked, method.id)} value={method.id} />
                   {getTitle(method.label)}
