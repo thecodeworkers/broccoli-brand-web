@@ -65,7 +65,7 @@ const Product = ({ containerStyles = null, details = true, data = null }) => {
                 <p className={styles._producSizes}>{data?.price ? formatCurrency(currency, data?.price) : data?.attributes?.nodes[1]?.options?.join(", ")}</p>
               </div>
             </div>
-            <div className={styles._bag}><Bag width='15' height='15' fill='black' /></div>
+            <div className={styles._bag} onClick={add}><Bag width='15' height='15' fill='black' /></div>
           </div>
         ) : null}
       </section>

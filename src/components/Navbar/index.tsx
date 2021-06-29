@@ -71,7 +71,7 @@ const Navbar = ({ reference }: any = '') => {
               <World />
               <label htmlFor="language" className={styles._customSelect}>
                 <select name="language" id="language" value={language} onChange={changeLang} placeholder={'Idioma'} className={styles._topText}>
-                  <option value='ES'>Espanol</option>
+                  <option value='ES'>Español</option>
                   <option value='EN'>English</option>
                 </select>
               </label>
