@@ -134,7 +134,6 @@
     display: block;
     width: 100%;
     padding: 3%;
-    padding-bottom: 0;
     padding-left: 1.5rem;
     font-size: $roboto16;
     height: -webkit-fill-available;
@@ -265,6 +264,14 @@
 ._shippingContent {
   width: 90%;
   padding: 0 5%;
+}
+
+._method {
+  padding-left: 0%;
+
+  &::before {
+    width: 2rem;
+  }
 }
 
 @include responsive(md) {
