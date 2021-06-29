@@ -161,7 +161,6 @@
     display: block;
     width: 100%;
     padding: 3%;
-    padding-bottom: 0;
     padding-left: 1.5rem;
     font-size: $roboto16;
     height: -webkit-fill-available;
@@ -183,6 +182,28 @@
     border-left: 1px solid $black;
     font-weight: 700;
     z-index: -1;
+  }
+}
+
+._customSelectDown{
+  &:after {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+    width: 4rem;
+    height: 100%;
+    content: url('../../../../../public/images/backgrounds/arrow.svg');
+    text-align: center;
+    color: $black;
+    font-size: 18px;
+    border-right: 1px solid $black;
+    border-left: none;
+    font-weight: 700;
+    z-index: -1;
+    transform: rotate(180deg);
   }
 }
 
