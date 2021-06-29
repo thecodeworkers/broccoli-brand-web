@@ -1,9 +1,10 @@
 import { GET_CART, ADD_TO_CART } from './action-types'
-import { actionObject, fetchPostJSON, filter, formatWooCommerceAmount, reduceVariation, RestClient } from '../../utils'
+import { actionObject, fetchPostJSON, filter, formatWooCommerceAmount, reduceVariation, WooCommerceClient } from '../../utils'
 import { LOADER } from '@store/loader/action-types'
 import { mutations, shops } from '@graphql'
 import { setAlert } from '@store/alert/action'
 import getStripe from '@utils/getStripe'
+import { editUser } from '@store/user/action'
 
 export const getCart: any = () => async (dispatch, getState) => {
   const { user } = getState()
@@ -147,10 +148,11 @@ export const processPayment = () => async (dispatch, getState) => {
 
     if (data === null && !data.message) throw new Error(alerts?.alerts?.errorPayment);
 
-    await RestClient(`orders/${data?.order?.orderNumber}`, 'PUT', { customer_id: databaseId, status: 'completed' })
+    await WooCommerceClient(`orders/${data?.order?.orderNumber}`, 'PUT', { customer_id: databaseId, status: 'completed' })
 
     dispatch(setAlert(alerts?.alerts?.successPayment, true, 'success'))
     dispatch(getCart())
+    dispatch(editUser())
     dispatch(actionObject(LOADER, false))
   } catch (error) {
     dispatch(actionObject(LOADER, false))

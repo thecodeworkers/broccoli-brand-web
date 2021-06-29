@@ -19,7 +19,7 @@ const SingleOrder = ({ data, order }) => {
     setCart(dataCart)
   }
 
-  return data && order ? (
+  return (data && order) ? (
     <div className={styles._main}>
       <div className={styles._tableContainer}>
         <section className={styles._titleTablesContainer}>

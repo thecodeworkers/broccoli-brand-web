@@ -40,8 +40,20 @@ const Shipping = () => {
   }, [user.shipping])
 
   useEffect(() => {
-    if (cart?.chosenShippingMethods) formik.setFieldValue('shippingMethod', cart?.chosenShippingMethods[0])
+    if (cart?.chosenShippingMethods) {
+      formik.setFieldValue('shippingMethod', cart?.chosenShippingMethods[0])
+
+    }
   }, [cart?.chosenShippingMethods])
+
+  useEffect(() => {
+    if (checkout?.fees) {
+      if (formik.values.taxMethod !== checkout?.fees[0].label) {
+        formik.setFieldValue('taxMethod', checkout?.fees[0].label)
+        fee(true, checkout?.fees[0].label, checkout?.fees[0].amount)
+      }
+    }
+  }, [checkout?.fees])
 
   useEffect(() => {
     if (cart?.contents) {

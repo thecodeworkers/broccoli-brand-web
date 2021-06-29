@@ -297,19 +297,22 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.5s;
-  &:hover{
+  &:hover {
     background-color: $black;
-    color: $white
+    color: $white;
   }
-
 }
-._searchContainer{
+._searchContainer {
   margin: 2rem 0;
   width: 100%;
   display: flex;
   justify-content: flex-start;
 }
 
+._completeBox {
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
 ._tableContainerResponsive {
   display: none;
   // height: 4rem;

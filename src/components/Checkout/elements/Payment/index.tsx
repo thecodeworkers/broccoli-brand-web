@@ -51,7 +51,6 @@ const Payment = () => {
       dispatch(checkoutForm({ 'payment': { ...formik.values, isValid: false, card: '' } }))
       setDisabled(!disabled)
     } catch (error) {
-      console.log(error)
       dispatch(setAlert(alerts?.alerts?.errorVerifiedCard, true, 'warning'))
       dispatch(setLoader(false))
       setDisabled(!disabled)

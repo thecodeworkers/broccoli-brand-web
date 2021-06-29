@@ -77,12 +77,12 @@ const Orders = ({ data }) => {
                   </div>
                 </div>
                 <div className={styles._dataTable}>
-                  <div className={[styles._dataBox, styles._statusBox].join(' ')}>
+                  <div className={(!(data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled')) ? [styles._dataBox, styles._statusBox].join(' ') : [styles._dataBox, styles._completeBox].join(' ')}>
                     <p className={styles._dataText}>{getProcess(data?.status)}</p>
-                    <div className={styles._dataButton}>
-                      {!(data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled') && 
-                      <Button onClick={() => cancelThisOrder(data?.orderNumber)} disabled={data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />}
-                    </div>
+                    {!(data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled') && <div className={styles._dataButton}>
+
+                      <Button onClick={() => cancelThisOrder(data?.orderNumber)} disabled={data?.status.toLowerCase() === 'completed' || data?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />
+                    </div>}
                   </div>
                 </div>
               </div>
@@ -119,7 +119,7 @@ const Orders = ({ data }) => {
               <p className={styles._dataText}>{getProcess(item?.status)}</p>
             </div>
             <div className={styles._dataButton}>
-            {!(item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled') && <Button onClick={() => cancelThisOrder(item?.orderNumber)} disabled={item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />}
+              {!(item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled') && <Button onClick={() => cancelThisOrder(item?.orderNumber)} disabled={item?.status.toLowerCase() === 'completed' || item?.status.toLowerCase() === 'cancelled'} text={'CANCEL'} borderColor='black' blackHover={true} colorText='black' />}
             </div>
           </section>
         )) :
@@ -134,7 +134,7 @@ const Orders = ({ data }) => {
 
       </div>
       {/* <div className={styles._searchContainer}> */}
-      {orders?.length && <div className={styles._searchContainer}>
+      {(orders?.length) && <div className={styles._searchContainer}>
         <div className={styles._searchBox}>
           <input name='search' className={styles._searchInput} value={search} onChange={(event) => { setSearch(event.target.value) }} placeholder={data?.orders?.table?.searchPlaceholder} />
           <button className={styles._searchButton} onClick={searchOrder} >

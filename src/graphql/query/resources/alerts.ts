@@ -46,6 +46,8 @@ alerts: page(id: "${alertId}") {
       declinedCardPayment
       badPasswordLogin
       badCvcPayment
+      successSubscriptionUser
+      errorSubscriptionUser
     }
     id
   }

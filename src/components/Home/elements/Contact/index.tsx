@@ -4,7 +4,7 @@ import { ContactForm } from '@components'
 const Contact = ({ data }) => {
   return (
     <>
-      <section id='contact' className={styles._content}>
+      <section id='contact-us' className={styles._content}>
         <div className={styles._contactFormContainer}>
           <ContactForm data={data} />
         </div>

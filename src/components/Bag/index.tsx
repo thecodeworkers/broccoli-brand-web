@@ -54,8 +54,8 @@ const Bag = ({ cart, info = false }) => {
                       </div>
                       <div className={styles._itemContent}>
                         <p className={styles._itemName}>{data?.product?.node?.name || data?.product?.name || data?.name}</p>
-                        <p className={styles._itemName}>{data?.variation?.attributes[0]?.name}: <span className={styles._color} style={{ backgroundColor: data?.variation?.attributes[0]?.value }}></span></p>
-                        <p className={styles._itemName}>{data?.variation?.attributes[1]?.name}: <span className={styles._data}> {data?.variation?.attributes[1]?.value}</span></p>
+                        <p className={styles._itemName}>{(!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[0]?.name : data?.variation?.attributes.nodes[0]?.name}: <span className={styles._color} style={{ backgroundColor: (!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[0]?.value : data?.variation?.attributes.nodes[0]?.value }}></span></p>
+                        <p className={styles._itemName}>{(!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[1]?.name : data?.variation?.attributes.nodes[1]?.name}: <span className={styles._data}> {(!data?.variation?.attributes?.nodes) ? data?.variation?.attributes[1]?.value : data?.variation?.attributes.nodes[1]?.value}</span></p>
                       </div>
                     </div>
                   </div>
@@ -103,7 +103,7 @@ const Bag = ({ cart, info = false }) => {
         </section>
       </div>
       <div className={styles._responsive}>
-        <BagResponsive bag={bag} general={general} cart={cart} currency={currency} />
+        <BagResponsive bag={bag} info={info} cart={cart} currency={currency} />
       </div>
     </div>
   )
