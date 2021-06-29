@@ -84,6 +84,28 @@
   }
 }
 
+._customSelectDown{
+  &:after {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    content: url('../../../../../public/images/backgrounds/arrow.svg');
+    text-align: center;
+    color: $black;
+    font-size: 18px;
+    border-right: 1px solid $black;
+    border-left: none;
+    font-weight: 700;
+    z-index: -1;
+    transform: rotate(180deg);
+  }
+}
+
 ._sortByContainer {
   width: 25%;
   align-self: flex-end;

@@ -13,6 +13,7 @@ const Products = ({ data }) => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
   const [showFilter, setShowFilter] = useState(false)
+  const [arrowDown, setArrowDown] = useState(false)
 
   const { shop: { shop, recent, search }, resource: { products } } = useSelector((state: any) => state)
 
@@ -34,6 +35,11 @@ const Products = ({ data }) => {
     if (showFilter) return setShowFilter(false)
     return setShowFilter(true)
   }
+  
+  const changeArrowDown = () => {
+    if(arrowDown) return setArrowDown(false)
+    return setArrowDown(true)
+  }
 
   return (
     <>
@@ -49,7 +55,7 @@ const Products = ({ data }) => {
         </div>
         <div className={styles._productsContainer}>
           <div className={styles._sortByContainer}>
-            <label htmlFor="sort" className={styles._customSelect}>
+            <label htmlFor="sort" className={[styles._customSelect, arrowDown ? styles._customSelectDown : ''].join(" ")} onClick={() => changeArrowDown()}>
               <select name="sort" id="sort" onChange={sortBy} className={styles._selectForm}>
                 {Object.keys(data?.sortBy).map((item, key) => (
                   <option value={item} key={key}>{data?.sortBy[item]}</option>
