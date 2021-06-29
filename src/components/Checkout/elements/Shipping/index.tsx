@@ -1,7 +1,7 @@
 import { checkoutForm, putFee, setLoader, updateShipping } from '@store/actions'
 import { filter } from '@utils'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import styles from './styles.module.scss'
@@ -16,6 +16,7 @@ const Shipping = () => {
   const formik = formikConfig(dispatch)
 
   const { errors, touched } = formik
+  const [arrowDown, setArrowDown] = useState(false)
 
   const setDefaultValues = () => {
     if (user?.shipping) for (let key in user.shipping) {
@@ -83,6 +84,11 @@ const Shipping = () => {
     if (checked) dispatch(putFee(label, amount))
   }
 
+  const changeArrowDown = () => {
+    if(arrowDown) return setArrowDown(false)
+    return setArrowDown(true)
+  }
+
   return (
     <div className={styles._main}>
       <div className={styles._addressBox}>
@@ -109,7 +115,7 @@ const Shipping = () => {
               <label htmlFor="country" className={styles._selectLabel}>
                 {deliveryAddressAndShipping?.delivery?.country}
               </label>
-              <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
+              <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : [styles._customSelect, arrowDown ? styles._customSelectDown : ''].join(' ')} onClick={() => changeArrowDown()}>
                 <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="countryShipping" value={formik.values.country} className={styles._selectForm}>
                   {countries?.length ? countries?.map((country, index) => (
                     <option key={index} value={country.code}>{country.name}</option>
