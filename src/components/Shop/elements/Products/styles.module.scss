@@ -10,7 +10,7 @@
   width: 70%;
   display: flex;
   flex-direction: column;
-  
+
   ._productContainer {
     display: flex;
     flex-wrap: wrap;
@@ -84,6 +84,28 @@
   }
 }
 
+._customSelectDown{
+  &:after {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    content: url('../../../../../public/images/backgrounds/arrow.svg');
+    text-align: center;
+    color: $black;
+    font-size: 18px;
+    border-right: 1px solid $black;
+    border-left: none;
+    font-weight: 700;
+    z-index: -1;
+    transform: rotate(180deg);
+  }
+}
+
 ._sortByContainer {
   width: 25%;
   align-self: flex-end;
@@ -137,7 +159,7 @@
   }
 }
 
-._filterButton { 
+._filterButton {
   display: none;
 }
 
@@ -149,11 +171,11 @@
   ._productsContainer {
     width: 70%;
     margin: auto;
-    
+
     ._productContainer {
       flex-wrap: wrap;
       justify-content: space-between;
-      
+
       ._item {
         width: 32%;
         height: 23rem;
@@ -184,11 +206,11 @@
       padding-left: 5%;
     }
   }
-  
+
   ._recentlyTitleContainer {
     text-align: center;
     margin: 5% 0;
-    
+
     .recentlyTitle {
       text-transform: uppercase;
       font-family: $roboto;
@@ -197,28 +219,28 @@
       font-weight: 800;
     }
   }
-  
+
   ._productsContainer {
     width: 70%;
     margin: auto;
-    
+
     ._productContainer {
       justify-content: space-between;
-      
+
       ._item {
         width: 48%;
         margin-bottom: 5%;
       }
     }
   }
-  
+
   ._recentsContainer {
     flex-wrap: wrap;
   }
   ._recentlyContent {
     width: 50%;
   }
-  
+
   ._buttonContainer {
     margin: 3% 0;
     width: 48%;
@@ -283,13 +305,13 @@
     font-family: $roboto;
     font-size: $roboto18;
   }
-  
+
   ._productsContainer {
     width: 90%;
 
     ._productContainer {
       justify-content: space-between;
-      
+
       ._item {
         width: 48%;
         height: 30vh;

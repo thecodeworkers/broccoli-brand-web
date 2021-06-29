@@ -31,7 +31,7 @@ const Sidebar = () => {
         {attributes?.map((data, index) => (
           <div className={styles._genderContainer} key={index}>
 
-            <div className={styles._customSelect} onClick={() => { showItem(index) }}>
+            <div className={(unfold[index] === index) ? [styles._customSelect, styles._customSelectDown].join(' ') : styles._customSelect} onClick={() => { showItem(index) }}>
               <p className={styles._customSelectText}>{data.translation.title}</p>
             </div>
             <div className={[styles[`_${data?.translation?.atData?.showOptions}`], unfold[index] === index ? styles._show : styles._hide].join(" ")}>
@@ -46,7 +46,7 @@ const Sidebar = () => {
           </div>
         ))}
         <div className={styles._sizesContainer}>
-          <div className={[styles._customSelect, styles._categoryLine].join(" ")} onClick={() => { showItem('cat') }}>
+          <div className={(unfold['cat'] === 'cat') ? [styles._customSelect, styles._customSelectDown, styles._categoryLine].join(' ') : [styles._customSelect, styles._categoryLine].join(" ")} onClick={() => { showItem('cat') }}>
             <p className={styles._customSelectText}>{shop.categories}</p>
           </div>
           <div className={[styles._vertical, unfold['cat'] === 'cat' ? styles._show : styles._hide].join(" ")}>

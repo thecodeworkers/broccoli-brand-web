@@ -1,5 +1,5 @@
 import { checkoutForm } from '@store/actions'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formikConfig } from './formik'
 import { formikAccountConfig } from './formikAccount'
@@ -15,6 +15,7 @@ const Shipping = ({ data = null }) => {
   const formikAccount = formikAccountConfig(dispatch)
 
   const { errors, touched } = formik
+  const [arrowDown, setArrowDown] = useState(false)
 
   const setDefaultValues = () => {
     if (user?.shipping) for (let key in user.shipping) {
@@ -32,6 +33,11 @@ const Shipping = ({ data = null }) => {
       }
       if (user?.shipping[key]) formik.setFieldValue(key, user?.shipping[key])
     }
+  }
+
+  const changeArrowDown = () => {
+    if(arrowDown) return setArrowDown(false)
+    return setArrowDown(true)
   }
 
   useEffect(() => {
@@ -67,7 +73,7 @@ const Shipping = ({ data = null }) => {
             <label htmlFor="country" className={styles._selectLabel}>
               {deliveryAddressAndShipping?.delivery?.country}
             </label>
-            <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
+            <label htmlFor="country" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : [styles._customSelect,arrowDown ? styles._customSelectDown : ''].join(' ')} onClick={() => changeArrowDown()}>
               <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="countryShipping" defaultValue={formik.values.country} className={styles._selectForm}>
                 {countries?.length ? countries?.map((country, index) => (
                   <option key={index} value={country.code}>{country.name}</option>
