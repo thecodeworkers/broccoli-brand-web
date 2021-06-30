@@ -71,7 +71,7 @@ const Navbar = () => {
     <>
       <nav className={styles._main}>
         <section className={styles._topContainer}>
-          <div className={styles._logoContainer}>
+          <div className={styles._logoContainer} onClick={() => { navigation('/', true) }}>
             <BroccoliLogo />
           </div>
           <div className={styles._topSections}>

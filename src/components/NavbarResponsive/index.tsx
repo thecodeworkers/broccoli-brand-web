@@ -42,7 +42,7 @@ const NavbarResponsive = ({ data, language }) => {
     <>
       <nav className={styles._nav}>
         <section className={styles._child}>
-          <div className={styles._logo}>
+          <div className={styles._logo} onClick={() => { navigation('/', true) }}>
             <BroccoliLogo />
           </div>
           <div className={styles._menuIcons}>
