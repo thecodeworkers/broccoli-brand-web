@@ -7,7 +7,7 @@ import { setLoader, openModal } from '@store/actions'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 
-const NavbarResponsive = ({ data, language }) => {
+const NavbarResponsive = ({ data, language, user }) => {
 
   const [show, setShow] = useState(0)
   const [showSearch, setSearch] = useState(false)
@@ -38,16 +38,23 @@ const NavbarResponsive = ({ data, language }) => {
     dispatch(openModal(type))
   }
 
+  const openBag = () => {
+    if (!user.isAuth) modal('login')
+    if (user.isAuth) modal('bag')
+  }
+
   return (
     <>
       <nav className={styles._nav}>
         <section className={styles._child}>
-          <div className={styles._logo} onClick={() => { navigation('/', true) }}>
-            <BroccoliLogo />
+          <div className={styles._logo}>
+            <div className={styles._logoBox} onClick={() => { navigation('/', true) }}>
+              <BroccoliLogo />
+            </div>
           </div>
           <div className={styles._menuIcons}>
             <div className={styles._iconContainer} onClick={deploySearch}><Search width='18' height='18' /></div>
-            <div className={styles._iconContainer} onClick={() => modal('bag')}><Bag width='18' height='18' /></div>
+            <div className={styles._iconContainer} onClick={openBag}><Bag width='18' height='18' /></div>
             <div className={styles._iconContainer} onClick={() => { navigation('profile', true) }}><User width='18' height='18' /></div>
             <div className={styles._iconContainer} onClick={deployMenu}><Menu width='18' height='18' /></div>
           </div>
