@@ -8,7 +8,7 @@ import styles from './styles.module.scss'
 
 const Billing = () => {
 
-  const { resource: { checkout: { checkout = {} }, currency, countries }, cart: { cart }, user: { checkout: userCheckout, user } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = {} }, countries }, intermittence: { currency }, cart: { cart }, user: { checkout: userCheckout, user } } = useSelector((state: any) => state)
   const { deliveryAddressAndShipping, billingAndSummary } = checkout
   const [change, setChange] = useState(true)
 

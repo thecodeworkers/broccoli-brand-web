@@ -47,7 +47,8 @@ const makeStore: any = ({ isServer }) => {
     storage,
     blacklist: [
       'loader',
-      'page'
+      'page',
+      'resource'
     ]
   }
 

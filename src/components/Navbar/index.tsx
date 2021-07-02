@@ -13,7 +13,7 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [down, setDown] = useState(false)
-  const { resource: { language, general: generalPage = {}, currency, currencies }, user, shop: { search: shopSearch } } = useSelector((state: any) => state)
+  const { intermittence: { language, currency }, resource: { general: generalPage = {}, currencies }, user, shop: { search: shopSearch } } = useSelector((state: any) => state)
   const { general } = generalPage
   const [path, setPath] = useState<any>()
 
@@ -33,6 +33,9 @@ const Navbar = () => {
   const changeCurrency = (event) => {
     const iso = event.target.value
     dispatch(changeCurrencies(iso))
+    if (typeof window !== 'undefined') {
+      document.cookie = `currency=${iso}`
+    }
   }
 
   const search = () => {
@@ -131,7 +134,8 @@ const Navbar = () => {
           </div>
         </section>
         <section className={styles._bottomContainer}>
-          <section className={showCat ? styles._categoriesShow : styles._categoriesHide}>
+          <section className={showCat ? styles._categoriesShow : styles._categoriesHide}
+            onMouseLeave={() => setShowCat(false)}>
             <div className={styles._categoriesContainer}>
               <div className={styles._halfCategories}>
                 <div className={styles._listContainer}>
@@ -163,7 +167,6 @@ const Navbar = () => {
                     <div onClick={() => navigation(nav.link, true)} key={index}
                       className={styles._bottomSection}
                       onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
                     >
                       <p className={styles._bottomText}>{nav.text}</p>
                     </div>
@@ -173,7 +176,6 @@ const Navbar = () => {
                   <div key={index} onClick={() => contactNav()}
                     className={styles._bottomSection}
                     onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                    onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
                   >
                     <p className={styles._bottomText}>{nav.text}</p>
                   </div>

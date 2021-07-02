@@ -8,7 +8,7 @@ import { useCallback } from 'react'
 
 const AboutUs = ({ data }) => {
   const dispatch = useDispatch()
-  const { resource: { contact } } = useSelector((state: any) => state)
+  const { intermittence: { contact } } = useSelector((state: any) => state)
 
   const contactRef = useCallback((resultRef) => {
     if (contact && resultRef) {
