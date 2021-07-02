@@ -1,15 +1,14 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import Head from 'next/head'
 import { FirstBanner, Social, Brand, Outstanding, Contact } from './elements'
 import { Navbar, Footer } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setContact } from '@store/actions'
-import { useCallback } from 'react'
 
 const Home = ({ data }) => {
 
   const dispatch = useDispatch()
-  const { resource: { contact } } = useSelector((state: any) => state)
+  const { intermittence: { contact } } = useSelector((state: any) => state)
 
   const contactRef = useCallback((resultRef) => {
     if (contact && resultRef) {

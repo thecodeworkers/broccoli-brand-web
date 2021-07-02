@@ -44,14 +44,14 @@ const FirstBanner = ({ data }) => {
                       background-image: url(${newArray[index]?.image?.mediaItemUrl});
                       background-repeat: no-repeat;
                       background-position: center;
-                      background-size: 100% 100%;
+                      background-size: auto;
                       height: 85vh;
                     }
                     @media(max-width: 576px) {
                       ._banner${index} {
                         background-image: url(${newArray[index]?.responsiveImage?.mediaItemUrl});
                         background-repeat: no-repeat;
-                        background-size:100% 100%;
+                        background-size:auto;
                         height: 94vh;
                       }
                     }

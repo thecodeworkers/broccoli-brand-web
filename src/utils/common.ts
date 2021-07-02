@@ -37,11 +37,26 @@ export const getCurrentLang = req => {
   }
 }
 
+export const getCurrentCurrency = req => {
+  try {
+    const currentCookie = req.headers.cookie.replace(
+      /(?:(?:^|.*;\s*)currency\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+
+    return currentCookie ? currentCookie : 'USD'
+
+  } catch {
+    return 'USD'
+  }
+}
+
+
 export const dispatchPage = (props, pageName) => {
   const { store, req } = props
   const lang = getCurrentLang(req)
-
-  return store.dispatch(getResources(pageName, lang))
+  const currency = getCurrentCurrency(req)
+  return store.dispatch(getResources(pageName, lang, currency))
 }
 
 export const getDate = (date) => {

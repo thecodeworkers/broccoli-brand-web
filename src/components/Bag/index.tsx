@@ -7,7 +7,7 @@ import { formatCurrency } from '@utils'
 
 const Bag = ({ cart, info = false }) => {
 
-  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {}, currency } } = useSelector((state: any) => state)
+  const { resource: { checkout: { checkout = { bag: {} } }, general: generalPage = {} }, intermittence: { currency } } = useSelector((state: any) => state)
   const { bag } = checkout
   const { general } = generalPage
   const dispatch = useDispatch()

@@ -11,7 +11,7 @@ const ResponsiveMenu = ({ show = 0, method, data, language }) => {
   const [unfold, setUnfold] = useState(false)
   const [display, setDisplay] = useState(false)
 
-  const { user: { isAuth }, resource: { currency, currencies }, } = useSelector((state: any) => state)
+  const { user: { isAuth }, resource: { currencies }, intermittence: { currency } } = useSelector((state: any) => state)
 
   const dispatch = useDispatch()
   const router = useRouter()
