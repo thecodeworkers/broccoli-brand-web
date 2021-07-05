@@ -11,6 +11,7 @@ const Billing = () => {
   const { resource: { checkout: { checkout = {} }, countries }, intermittence: { currency }, cart: { cart }, user: { checkout: userCheckout, user } } = useSelector((state: any) => state)
   const { deliveryAddressAndShipping, billingAndSummary } = checkout
   const [change, setChange] = useState(true)
+  const [arrowDown, setArrowDown] = useState(false)
 
   const dispatch = useDispatch()
   const formik = formikConfig(dispatch)
@@ -58,6 +59,11 @@ const Billing = () => {
     if (formik.values.addressSelection === 'alternative') setChange(true)
   }, [formik.values.addressSelection, userCheckout?.shipping])
 
+  const changeArrowDown = () => {
+    if(arrowDown) return setArrowDown(false)
+    return setArrowDown(true)
+  }
+
   return (
     <div className={styles._main}>
       <div className={styles._addressBox}>
@@ -95,7 +101,7 @@ const Billing = () => {
               <label htmlFor="shippingCountry" className={styles._selectLabel}>
                 {deliveryAddressAndShipping?.delivery?.country}
               </label>
-              <label htmlFor="shippingCountry" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : styles._customSelect}>
+              <label htmlFor="shippingCountry" className={errors.country && touched.country ? [styles._inputError, styles._customSelect].join(' ') : [styles._customSelect, arrowDown ? styles._customSelectDown : ''].join(' ')}  onClick={() => changeArrowDown()}>
                 <select disabled={!change} onChange={formik.handleChange} onBlur={formik.handleBlur} name="country" id="shippingCountry" value={formik.values.country} className={styles._selectForm}>
                   {countries?.length ? countries?.map((country, index) => (
                     <option key={index} value={country.code}>{country.name}</option>
