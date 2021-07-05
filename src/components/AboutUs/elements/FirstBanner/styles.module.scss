@@ -2,11 +2,13 @@
 
 ._content {
   margin-top: 6.5rem;
+  height: calc(auto - 6.5rem);
 }
 
 ._main {
   position: relative;
-  height: 85vh;
+  height: auto;
+  overflow: hidden;
 }
 
 ._img {
@@ -14,8 +16,33 @@
   height: inherit;
 }
 
+._bannerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+._imageResponsive {
+  display: none;
+}
+
 @include responsive(lg) {
   ._content {
     margin-top: 0%;
   }
+}
+
+@include responsive(md){
+  ._imageResponsive {
+    display: block;
+  }
+  ._imageWeb {
+    display: none;
+  }
+
 }

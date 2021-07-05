@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import { Button } from '@components'
 
 const FirstBanner = ({ data }) => {
-  
+
   const [currentIndex, setcurrentIndex] = useState(0);
   const [newArray, setNewArray] = useState(data.banner)
   const [height, setHeight] = useState(0)
@@ -38,24 +38,9 @@ const FirstBanner = ({ data }) => {
             const currentClass = index + 1;
             return (
               <div className={newArray[index].className} id={currentClass.toString()} key={index}>
-                <div className={`_banner${index}`}>
-                  <style jsx>{`
-                    ._banner${index} {
-                      background-image: url(${newArray[index]?.image?.mediaItemUrl});
-                      background-repeat: no-repeat;
-                      background-position: center;
-                      background-size: auto;
-                      height: 85vh;
-                    }
-                    @media(max-width: 576px) {
-                      ._banner${index} {
-                        background-image: url(${newArray[index]?.responsiveImage?.mediaItemUrl});
-                        background-repeat: no-repeat;
-                        background-size:auto;
-                        height: 94vh;
-                      }
-                    }
-                  `}</style>  
+                <div className={[`_banner${index}`, styles._bannerContainer].join(' ')}>
+                  <img className={styles._imageWeb} src={newArray[index]?.image?.mediaItemUrl} />
+                  <img className={styles._imageResponsive} src={newArray[index]?.responsiveImage?.mediaItemUrl} />
                 </div>
               </div>
             )
