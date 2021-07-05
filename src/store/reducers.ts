@@ -7,6 +7,7 @@ import user from './user/reducer'
 import alert from './alert/reducer'
 import cart from './cart/reducer'
 import shop from './shop/reducer'
+import intermittence from './intermittence/reducer'
 
 const reducers = combineReducers({
   loader,
@@ -16,7 +17,8 @@ const reducers = combineReducers({
   user,
   alert,
   cart,
-  shop
+  shop,
+  intermittence
 })
 
 export default reducers

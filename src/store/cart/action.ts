@@ -5,6 +5,7 @@ import { mutations, shops } from '@graphql'
 import { setAlert } from '@store/alert/action'
 import getStripe from '@utils/getStripe'
 import { editUser } from '@store/user/action'
+import { openModal } from '@store/modal/action'
 
 export const getCart: any = () => async (dispatch, getState) => {
   const { user } = getState()
@@ -38,7 +39,7 @@ export const addToCar: any = (product: any, quantity: any, variation: any = null
       dispatch(actionObject(LOADER, false))
     }
 
-    if (!user?.isAuth) dispatch(setAlert(alerts?.alerts?.loginBeforeContinue, true, 'warning'))
+    if (!user?.isAuth) dispatch(openModal('login'))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     if (error.message === 'stock') return dispatch(setAlert(alerts?.alerts?.noStock, true, 'warning'))
@@ -63,7 +64,7 @@ export const addCoupon: any = (code) => async (dispatch, getState) => {
       dispatch(actionObject(LOADER, false))
     }
 
-    if (!user?.isAuth) dispatch(setAlert(alerts?.alerts?.loginBeforeContinue, true, 'warning'))
+    if (!user?.isAuth) dispatch(openModal('login'))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert(alerts?.alerts?.errorAddedCoupon, true, 'warning'))
@@ -96,7 +97,7 @@ export const updateQuantity: any = (product: any, type: any) => async (dispatch,
       dispatch(setAlert(alerts?.alerts?.limitUpdateProduct, true, 'warning'))
       dispatch(actionObject(LOADER, false))
     }
-    if (!user?.isAuth) dispatch(setAlert(alerts?.alerts?.loginBeforeContinue, true, 'warning'))
+    if (!user?.isAuth) dispatch(openModal('login'))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert(alerts?.alerts?.errorUpdateProduct, true, 'warning'))
@@ -181,7 +182,7 @@ export const updateShipping: any = (method: any) => async (dispatch, getState) =
       dispatch(actionObject(LOADER, false))
     }
 
-    if (!user?.isAuth) dispatch(setAlert(alerts?.alerts?.loginBeforeContinue, true, 'warning'))
+    if (!user?.isAuth) dispatch(openModal('login'))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert(alerts?.alerts?.errorUpdateShipping, true, 'warning'))
@@ -205,7 +206,7 @@ export const putFee: any = (name: any, amount) => async (dispatch, getState) => 
       dispatch(actionObject(LOADER, false))
     }
 
-    if (!user?.isAuth) dispatch(setAlert(alerts?.alerts?.loginBeforeContinue, true, 'warning'))
+    if (!user?.isAuth) dispatch(openModal('login'))
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     dispatch(setAlert(alerts?.alerts?.errorUpdateFee, true, 'warning'))

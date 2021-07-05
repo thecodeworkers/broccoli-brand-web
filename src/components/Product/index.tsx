@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import { ColorPicker } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,11 +6,10 @@ import { addToCar, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { Bag } from '@images/svg'
 import { formatCurrency } from '@utils'
-
 const Product = ({ containerStyles = null, details = true, data = null }) => {
 
   const dispatch = useDispatch()
-  const { resource: { general: texts, currency } } = useSelector((state: any) => state)
+  const { resource: { general: texts }, intermittence: { currency } } = useSelector((state: any) => state)
 
   const [selected, setColor] = useState('')
 

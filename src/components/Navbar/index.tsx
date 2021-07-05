@@ -13,7 +13,7 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [down, setDown] = useState(false)
-  const { resource: { language, general: generalPage = {}, currency, currencies }, user, shop: { search: shopSearch } } = useSelector((state: any) => state)
+  const { intermittence: { language, currency }, resource: { general: generalPage = {}, currencies }, user, shop: { search: shopSearch } } = useSelector((state: any) => state)
   const { general } = generalPage
   const [path, setPath] = useState<any>()
 
@@ -33,6 +33,9 @@ const Navbar = () => {
   const changeCurrency = (event) => {
     const iso = event.target.value
     dispatch(changeCurrencies(iso))
+    if (typeof window !== 'undefined') {
+      document.cookie = `currency=${iso}`
+    }
   }
 
   const search = () => {
@@ -63,6 +66,11 @@ const Navbar = () => {
     dispatch(openModal(type))
   }
 
+  const openBag = () => {
+    if (!user.isAuth) modal('login')
+    if (user.isAuth) modal('bag')
+  }
+
   useEffect(() => {
     setPath(router.pathname)
   }, [router.pathname])
@@ -71,12 +79,13 @@ const Navbar = () => {
     <>
       <nav className={styles._main}>
         <section className={styles._topContainer}>
-          <div className={styles._logoContainer}>
-            <BroccoliLogo />
+          <div className={styles._logoContainer} >
+            <div className={styles._logoBox} onClick={() => { navigation('/', true) }}>
+              <BroccoliLogo />
+            </div>
           </div>
           <div className={styles._topSections}>
             <div className={styles._topSection}>
-              <World />
               <label htmlFor="language" className={styles._customSelect}>
                 <select name="language" id="language" value={language} onChange={changeLang} placeholder={'Idioma'} className={styles._topText}>
                   <option value='ES'>Español</option>
@@ -92,7 +101,7 @@ const Navbar = () => {
                 </select>
               </label>
             </div>
-            <div className={styles._topSection} onClick={() => modal('bag')}>
+            <div className={styles._topSection} onClick={openBag}>
               <Bag />
               <div className={styles._topText}>{general?.navigationBar?.carText}</div>
             </div>
@@ -125,7 +134,8 @@ const Navbar = () => {
           </div>
         </section>
         <section className={styles._bottomContainer}>
-          <section className={showCat ? styles._categoriesShow : styles._categoriesHide}>
+          <section className={showCat ? styles._categoriesShow : styles._categoriesHide}
+            onMouseLeave={() => setShowCat(false)}>
             <div className={styles._categoriesContainer}>
               <div className={styles._halfCategories}>
                 <div className={styles._listContainer}>
@@ -157,7 +167,6 @@ const Navbar = () => {
                     <div onClick={() => navigation(nav.link, true)} key={index}
                       className={styles._bottomSection}
                       onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                      onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
                     >
                       <p className={styles._bottomText}>{nav.text}</p>
                     </div>
@@ -167,7 +176,6 @@ const Navbar = () => {
                   <div key={index} onClick={() => contactNav()}
                     className={styles._bottomSection}
                     onMouseEnter={index == 2 ? () => setShowCat(true) : () => setShowCat(false)}
-                    onMouseLeave={index == 2 ? () => setShowCat(false) : () => setShowCat(false)}
                   >
                     <p className={styles._bottomText}>{nav.text}</p>
                   </div>
@@ -185,7 +193,7 @@ const Navbar = () => {
       </nav>
 
       <div className={styles._responsive}>
-        <NavbarResponsive data={general} language={language} />
+        <NavbarResponsive data={general} user={user} language={language} />
       </div>
       <style jsx>
         {`

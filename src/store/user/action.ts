@@ -123,7 +123,7 @@ export const cancelOrder: any = (value) => async (dispatch, getState) => {
 
 export const guestUser: any = () => async (dispatch, getState) => {
 
-  const { resource: { language, alerts } } = getState()
+  const { resource: { alerts }, intermittence: { language } } = getState()
   try {
     dispatch(actionObject(LOADER, true))
 
@@ -193,7 +193,6 @@ export const restorePassword: any = (values) => async (dispatch, getState) => {
     dispatch(actionObject(LOADER, false))
     dispatch(closeModal())
   } catch (error) {
-    console.log(error)
     dispatch(actionObject(LOADER, false))
     if (error.message === 'Invalid username.') return dispatch(setAlert(alerts?.alerts?.invalidUserForgotPassword, true, 'warning'))
     dispatch(setAlert(alerts?.alerts?.errorChangePassword, true, 'warning'))

@@ -4,10 +4,9 @@ const reconcile = (state, payload) => {
 
   keyNames.forEach(key => {
     switch (key) {
-      case 'resource':
-        const currentResource = state[key]
-        if ('general' in currentResource.general)
-          trueState = { ...trueState, resource: currentResource }
+      case 'intermittence':
+        const currentIntermittence = state[key]
+        trueState = { ...trueState, user: currentIntermittence }
         break
       case 'user':
         const currentUser = state[key]
