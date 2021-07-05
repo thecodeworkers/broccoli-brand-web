@@ -2,10 +2,13 @@
 
 ._content {
   margin-top: 6.5rem;
+  height: calc(auto - 6.5rem);
 }
 
 ._main {
   position: relative;
+  height: auto;
+  overflow: hidden;
 }
 
 ._hidden {
@@ -13,8 +16,24 @@
 }
 
 ._show {
+  height: auto;
   display: block;
   animation: fadeIn 1s ease;
+}
+
+._bannerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+._imageResponsive {
+  display: none;
 }
 
 @keyframes fadeIn {
@@ -44,14 +63,14 @@
   font-size: $roboto44;
   color: $white;
   margin-bottom: 5%;
-  font-weight:$weight900;
+  font-weight: $weight900;
 }
 
 ._buttonContainer {
   width: 250px;
 }
 
-@include responsive(xxl) { 
+@include responsive(xxl) {
   ._rightShopContainer {
     right: 15vw;
   }
@@ -84,6 +103,13 @@
     margin-right: 5%;
   }
 
+  ._imageResponsive {
+    display: block;
+  }
+  ._imageWeb {
+    display: none;
+  }
+
   ._rightShopContainer {
     left: 0;
     right: 0;
@@ -96,4 +122,3 @@
     width: 100%;
   }
 }
-
