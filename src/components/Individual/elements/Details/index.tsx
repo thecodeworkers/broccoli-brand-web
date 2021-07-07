@@ -4,6 +4,7 @@ import { ColorPicker, Button } from '@components'
 import styles from './styles.module.scss'
 import { useDispatch } from 'react-redux';
 import { addToCar } from '@store/actions';
+import { ArrowLeft, ArrowRight } from '@images/icons'
 
 const Details = ({ data, texts, reference }) => {
   const dispatch = useDispatch()
@@ -11,6 +12,8 @@ const Details = ({ data, texts, reference }) => {
   const [gallery, setGallery] = useState([])
   const [selectedColor, setColor] = useState('')
   const [selectedSize, setSize] = useState('')
+  const [selectPicture, setSelectPicture] = useState(0)
+  const [showMax, setShowMax] = useState(false)
 
   const addProduct = () => {
     if (data) dispatch(addToCar(data, 1, { color: selectedColor, size: selectedSize }));
@@ -24,12 +27,27 @@ const Details = ({ data, texts, reference }) => {
     setSize(data?.attributes?.nodes[1].options[0])
   }, [data])
 
+  const showPicture = (index) => {
+    setSelectPicture(index)
+    setShowMax(true)
+  }
+
+  const nextPic = () => {
+    let nextIndex = selectPicture + 1
+    setSelectPicture((nextIndex > gallery.length) ? 0 : nextIndex)
+  }
+
+  const backPic = () => {
+    let backIndex = selectPicture - 1
+    setSelectPicture((backIndex < 0) ? gallery.length : backIndex)
+  }
+
   return data ? (
     <>
       <div className={styles._content}>
         <section className={styles._detailsContainter}>
           <div className={styles._leftContainer}>
-            <div className='_img'></div>
+            <div className='_img' onClick={() => showPicture(0)}></div>
             <style jsx>{`
             ._img {
               background-image: url(${data?.image?.mediaItemUrl || 'images/backgrounds/Pic_not_available.png'});
@@ -52,7 +70,7 @@ const Details = ({ data, texts, reference }) => {
             {
               gallery?.map((item, index) => {
                 return (
-                  <div key={index} className={[`_banner${index}`, (index == 0 || index == 3) ? styles._bigPic : styles._smallPic].join(" ")}>
+                  <div key={index} onClick={() => showPicture(index + 1)} className={[`_banner${index}`, (index == 0 || index == 3) ? styles._bigPic : styles._smallPic].join(" ")}>
                     <style jsx>{`
                   ._banner${index} {
                     background-image: url('${item?.mediaItemUrl}');
@@ -135,6 +153,18 @@ const Details = ({ data, texts, reference }) => {
           </div>
         </section>
       </div>
+      {showMax && <div className={styles._expandContainer}>
+        <div className={styles._close} onClick={() => setShowMax(false)}>X</div>
+        <div className={styles._expandItem}>
+          <div onClick={backPic} className={[styles._arrow, styles._arrowLeft].join(' ')}>
+            <ArrowLeft />
+          </div>
+          {(gallery) && <img className={styles._expandImage} src={[...[{ mediaItemUrl: data?.image?.mediaItemUrl }], ...gallery][selectPicture]?.mediaItemUrl} />}
+          <div onClick={nextPic} className={[styles._arrow, styles._arrowRight].join(' ')}>
+            <ArrowRight />
+          </div>
+        </div>
+      </div>}
     </>
   ) : null
 }
