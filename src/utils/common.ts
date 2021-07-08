@@ -56,7 +56,7 @@ export const dispatchPage = (props, pageName) => {
   const { store, req, params } = props
   const lang = getCurrentLang(req)
   const currency = getCurrentCurrency(req)
-  return store.dispatch(getResources(pageName, lang, currency, params.id))
+  return store.dispatch(getResources(pageName, lang, currency, params?.id))
 }
 
 export const getDate = (date) => {
