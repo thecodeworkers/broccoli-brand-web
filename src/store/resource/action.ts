@@ -18,7 +18,7 @@ export const dataResources = (data) => {
   return data
 }
 
-export const getResources: any = (pageType, lang = 'ES', currency = 'USD') => async (dispatch, getState) => {
+export const getResources: any = (pageType, lang = 'ES', currency = 'USD', id = null) => async (dispatch, getState) => {
 
   dispatch(actionObject(LOADER, true))
 
@@ -27,7 +27,7 @@ export const getResources: any = (pageType, lang = 'ES', currency = 'USD') => as
   const allResources = await resources(lang)
   const allCountries = await WooCommerceClient('data/countries')
   allResources['countries'] = allCountries
-  const result: any = await pages(pageType, lang)
+  const result: any = await pages(pageType, lang, id)
   page[pageType] = result
 
   const currencies = allResources['currencies']

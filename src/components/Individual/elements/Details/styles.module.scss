@@ -78,7 +78,8 @@
   display: flex;
   height: 13vh;
 
-  ._typeColors, ._buttonContainer {
+  ._typeColors,
+  ._buttonContainer {
     width: 50%;
     display: flex;
     align-items: center;
@@ -120,7 +121,7 @@
     font-weight: 600;
     margin: 3% 0;
   }
-  
+
   ._span {
     font-size: $roboto16;
     font-weight: 500;
@@ -193,6 +194,68 @@
   justify-content: center;
 }
 
+._expandContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  background-color: #020101b8;
+  animation: down 0.5s;
+}
+
+._close {
+  width: 2rem;
+  height: 2rem;
+  background-color: $white;
+  font-family: $roboto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+
+@keyframes down {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+._expandItem {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+._arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: $white;
+  margin: 0 4rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._expandImage {
+  max-width: 80%;
+  height: auto;
+  overflow: auto;
+
+  z-index: 2000;
+}
+
 @include responsive(lg) {
   ._content {
     margin-top: 0%;
@@ -203,11 +266,10 @@
   ._span {
     display: none;
   }
-  
+
   ._half p {
     font-size: $roboto14;
   }
-
 }
 
 @include responsive(sm) {
@@ -220,7 +282,8 @@
     height: inherit;
   }
 
-  ._leftContainer, ._rightContainer {
+  ._leftContainer,
+  ._rightContainer {
     width: 100%;
     border-right: none;
   }
@@ -248,7 +311,7 @@
       width: 90%;
       margin: auto;
     }
-    
+
     ._circlesContainer {
       margin-top: 2%;
       margin-bottom: 5%;
@@ -262,11 +325,11 @@
       }
     }
   }
-  
+
   ._colorsContainer {
     border-top: 1px solid $black;
     border-bottom: 0;
-    
+
     ._typeColors {
       margin: 5% 0;
       width: 100%;
@@ -276,7 +339,7 @@
         margin: auto;
       }
     }
-  
+
     ._buttonContainer {
       display: none;
     }
@@ -302,7 +365,6 @@
     margin-right: 10%;
     width: 15%;
   }
-  
 
   ._textContent {
     justify-content: flex-start;
@@ -329,20 +391,20 @@
     flex-wrap: wrap;
     width: 100%;
     height: 30vh;
-  
+
     ._bigPic {
       width: 33.3%;
       height: calc(100% - 1px);
       border-top: 1px solid $black;
     }
-    
+
     ._smallPic {
       width: calc(33.3% - 1px);
       height: calc(50% - 2px);
       border-right: 1px solid $black;
       border-left: 1px solid $black;
       border-top: 1px solid $black;
-    } 
+    }
   }
 
   ._span {
