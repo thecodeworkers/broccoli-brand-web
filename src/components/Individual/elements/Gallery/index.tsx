@@ -45,6 +45,7 @@ const Gallery = ({ data }) => {
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
+                    cursor: pointer;
                   }
                   `}</style>
                 </div>

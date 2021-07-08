@@ -55,6 +55,7 @@ const Details = ({ data, texts, reference }) => {
               background-position: center;
               background-size: 100% 100%;
               height: 100%;
+              cursor: pointer;
             }
             @media(max-width: 576px) {
               ._img {
@@ -62,6 +63,7 @@ const Details = ({ data, texts, reference }) => {
                 background-repeat: no-repeat;
                 background-size:100% 100%;
                 height: 45vh;
+                cursor: pointer;
               }
             }
           `}</style>
@@ -77,6 +79,7 @@ const Details = ({ data, texts, reference }) => {
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
+                    cursor: pointer;
                   }
                   `}</style>
                   </div>
