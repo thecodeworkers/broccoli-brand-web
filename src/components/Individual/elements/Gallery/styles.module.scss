@@ -8,13 +8,13 @@
 //     display: flex;
 //     flex-direction: column;
 //     flex-wrap: wrap;
-  
+
 //     ._bigPic {
 //       width: 33.3%;
 //       height: calc(100% - 1px);
 //       border-bottom: 1px solid $black;
 //     }
-  
+
 //     ._smallPic {
 //       width: calc(33.3% - 1px);
 //       height: calc(50% - 1.5px);
@@ -52,7 +52,7 @@
     border-bottom: 1px solid $black;
   }
 }
-  
+
 ._rightContainer {
   width: 50%;
   margin: 5% 0px;
@@ -64,7 +64,10 @@
 }
 
 ._descriptionContainer {
-  > h1, h2, h3, h4 {
+  > h1,
+  h2,
+  h3,
+  h4 {
     width: 80%;
     margin: 0% auto 3% 0%;
     color: $black;
@@ -93,6 +96,63 @@
   margin: 3% auto;
   // font-size: $roboto18;
 }
+._expandContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  background-color: #020101b8;
+  animation: down 0.5s;
+}
+
+@keyframes down {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+._expandItem {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+._arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: $white;
+  margin: 0 4rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+._close {
+  width: 2rem;
+  height: 2rem;
+  background-color: $white;
+  font-family: $roboto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+._expandImage {
+  max-width: 80%;
+  height: auto;
+  overflow: auto;
+}
 
 @include responsive(md) {
   ._leftContainer {
@@ -101,7 +161,6 @@
     }
   }
 }
-
 
 @include responsive(sm) {
   ._galleryContainter {
