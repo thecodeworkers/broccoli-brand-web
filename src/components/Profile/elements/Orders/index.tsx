@@ -26,7 +26,7 @@ const Orders = ({ data }) => {
       case 'cancelled':
         return 'Cancelled'
       default:
-        return 'hola'
+        return 'In Progress'
     }
   }
 
