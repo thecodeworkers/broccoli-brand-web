@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broccoli-dev-web
+  namespace: broccoli
+  labels:
+    app: broccoli-dev-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broccoli-dev-web
+  template:
+    metadata:
+      labels:
+        app: broccoli-dev-web
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+        - name: broccoli-dev-web
+          imagePullPolicy: Always
+          image: registry.thecodeworkers.com/broccoli-dev-web:latest
+          ports:
+            - name: http-port
+              containerPort: 3000

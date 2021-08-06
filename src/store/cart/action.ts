@@ -154,7 +154,7 @@ export const processPayment = () => async (dispatch, getState) => {
     dispatch(setAlert(alerts?.alerts?.successPayment, true, 'success'))
     dispatch(getCart())
     dispatch(editUser())
-    dispatch(actionObject(LOADER, false))
+    dispatch(actionObject(LOADER, false)) 
   } catch (error) {
     dispatch(actionObject(LOADER, false))
     if (error.message === 'card_declined') return dispatch(setAlert(alerts?.alerts?.declinedCardPayment, true, 'warning'))
