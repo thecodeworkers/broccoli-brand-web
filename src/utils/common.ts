@@ -71,6 +71,20 @@ export const getHour = (date) => {
   return `${hour}:${date.getMinutes()} ${late}`
 }
 
+export const secondsToString = (totalSeconds) => {
+  let hours: any = Math.floor(totalSeconds / 3600);
+  totalSeconds %= 3600;
+  let minutes: any = Math.floor(totalSeconds / 60);
+  let seconds: any = totalSeconds % 60;
+
+  // If you want strings with leading zeroes:
+  minutes = String(minutes).padStart(2, "0");
+  hours = String(hours).padStart(2, "0");
+  seconds = String(seconds).padStart(2, "0");
+  return hours + ":" + minutes + ":" + seconds;
+}
+
+
 export const setCamelCaseKey = (obj) => {
   const newObj = {}
   for (let key in obj) {

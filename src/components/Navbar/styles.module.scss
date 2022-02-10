@@ -8,7 +8,41 @@
   background: $white;
   top: 0;
 }
+._timerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  padding-right: 0;
+  p {
+    font-family: $roboto;
+    color: black;
+    font-size: $roboto18;
+  }
+}
+._timerInfo {
+  display: flex;
+}
 
+._timerClose {
+  display: block;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+._timerContent {
+  display: flex;
+  width: 20rem;
+  padding: 0.5rem;
+  padding-right: 1rem;
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffdb00;
+}
 ._topContainer {
   width: 90%;
   margin: auto;
@@ -23,7 +57,7 @@
   margin-left: 1rem;
 }
 
-._logoBox{
+._logoBox {
   cursor: pointer;
   width: min-content;
   height: min-content;
@@ -168,7 +202,12 @@
     height: 100%;
     width: 15%;
 
-    > h1, h2, h3, h4, h5, h6 {
+    > h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-size: $roboto20;
       font-weight: 700;
       margin-bottom: 25%;
@@ -231,11 +270,11 @@
   }
 }
 
-._dropdownUser{
+._dropdownUser {
   position: relative;
 }
 
-._dropdownUserMenu{
+._dropdownUserMenu {
   margin-top: 0.5rem;
   position: absolute;
   z-index: 10;
@@ -246,7 +285,7 @@
   right: 0px;
 }
 
-._dropdownUserItem{
+._dropdownUserItem {
   font-family: $roboto;
   font-size: $roboto14;
   color: $black;
@@ -254,13 +293,13 @@
   padding: 0.5rem 1rem;
   display: block;
   transition: all 0.5s;
-  &:hover{
+  &:hover {
     background-color: $black;
-    color: $white
+    color: $white;
   }
 }
 
-._arrowUser{
+._arrowUser {
   margin-left: 0.5rem;
 }
 

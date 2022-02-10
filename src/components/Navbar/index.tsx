@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './styles.module.scss'
 import { BroccoliLogo } from '@images/components'
 import { World, Coin, Bag, User, Pipe, Arrow } from '@images/svg'
@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeCurrencies, changeLanguage, logout, openModal, searchProduct, setContact, setLoader } from '@store/actions'
 import { useRouter } from 'next/router'
 import { NavbarResponsive } from '@components'
-import { createMarkup, scrolling } from '@utils';
+import { createMarkup, scrolling, secondsToString } from '@utils';
 
 const Navbar = () => {
 
@@ -16,10 +16,44 @@ const Navbar = () => {
   const { intermittence: { language, currency }, resource: { general: generalPage = {}, currencies }, user, shop: { search: shopSearch } } = useSelector((state: any) => state)
   const { general } = generalPage
   const [path, setPath] = useState<any>()
-
+  const [showTimer, setShowTimer] = useState(true)
   const [searchValue, setSearchValue] = useState(shopSearch?.text);
 
   const [showCat, setShowCat] = useState(false)
+
+  const [timer, setTimer] = useState('0')
+
+  const timerInterval = useRef(null)
+
+  const setTime = () => {
+    const now = new Date().getTime()
+    const date = general?.navigationBar?.timer?.split(' ')
+    const times = date[1].split(':')
+    const days = date[0].split('/')
+    const end = new Date()
+
+    end.setMonth(parseInt(days[1]) - 1)
+    end.setFullYear(days[2])
+    end.setDate(days[0])
+    end.setHours(times[0])
+    end.setMinutes(times[1])
+    end.setSeconds(0)
+
+    const endTime = end.getTime()
+    const diff = (endTime - now) / 1000;
+    const time = secondsToString(diff.toFixed(0))
+
+    setTimer(time)
+  }
+
+  useEffect(() => {
+    if (general?.navigationBar?.timer && !timerInterval.current) {
+      timerInterval.current = setInterval(setTime, 1000)
+    }
+    return () => {
+      if (timerInterval.current) clearInterval(timerInterval.current)
+    }
+  }, [general?.navigationBar?.timer])
 
   const changeLang = (event) => {
     const lang = event.target.value
@@ -190,6 +224,20 @@ const Navbar = () => {
             </div>
           </div>
         </section>
+        {
+          (general?.navigationBar?.timer && showTimer) && (
+            <div className={styles._timerContainer}>
+              <div className={styles._timerInfo}>
+                <p className={styles._timerClose} onClick={() => setShowTimer(false)}>X</p>
+                <p className={styles._timerText}>TIMER</p>
+              </div>
+              <div className={styles._timerContent}>
+                <p className={styles._timerLaunch}>LAUNCH STARTING IN</p>
+                <p className={styles._timer}>{timer}</p>
+              </div>
+            </div>
+          )
+        }
       </nav>
 
       <div className={styles._responsive}>

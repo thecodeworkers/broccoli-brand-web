@@ -21,6 +21,7 @@ generalPage: page(id: "${generalId}") {
         register
         carText
         logout
+        timer
         navigation {
           text
           link
