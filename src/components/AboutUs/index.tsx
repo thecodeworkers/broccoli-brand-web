@@ -31,8 +31,8 @@ const AboutUs = ({ data }) => {
       <Navbar />
       <FirstBanner data={data.mainBanner} />
       <Brand data={data.brandImage} />
-      <Shop data={data.shop} />
-      <Sponsors data={data.sponsors} />
+      <Shop data={data.shop} />{/* 
+      <Sponsors data={data.sponsors} /> */}
       <div ref={contactRef}>
         <Contact data={data.contact} />
       </div>
