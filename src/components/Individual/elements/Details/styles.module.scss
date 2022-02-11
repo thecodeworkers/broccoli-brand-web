@@ -270,6 +270,10 @@
   ._half p {
     font-size: $roboto14;
   }
+
+  ._arrow {
+    margin: 0;
+  }
 }
 
 @include responsive(sm) {

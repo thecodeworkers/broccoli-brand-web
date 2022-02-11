@@ -160,6 +160,9 @@
       height: calc(50% - 2px);
     }
   }
+  ._arrow {
+    margin: 0 !important;
+  }
 }
 
 @include responsive(sm) {
@@ -186,5 +189,8 @@
     width: 90%;
     margin: 5% auto 0 auto;
     font-size: $roboto16;
+  }
+  ._arrow {
+    margin: 0;
   }
 }
